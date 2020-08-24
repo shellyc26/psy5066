@@ -69,7 +69,7 @@ navbar:
       href: bonus.html
   right:
     - icon: fa-github
-      href: https://github.com/uopsych/psy611    
+      href: https://github.com/shellyc26/psy5066
 output:
   html_document:
     lib_dir: site_libs
