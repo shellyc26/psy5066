@@ -1,0 +1,137 @@
+schedule
+* order should be one-sample t-test, paired sample t-tests, independent-samples t, effect sizes (cohen's d and overlap), assumptions and non-parametric tests
+
+general lab feedback
+* make the first minihack easy and walk them through it
+* find out what was in the bootcamp and you can skim or gloss that content
+* exercises throughout are good
+* try to budget at least 20 minutes for mini-hacks
+* is it possbile to use the learnr package and have students download shiny apps to run on their computer?
+* idea for the future: use learnr package to create labs, bundle these inside a package
+* add in-text R code (reporting sample sizes, means, proper formatting, etc)
+
+TA expectations
+* prep labs (minor tweaks), attend lecture, take quizzes and homework assignments (to give feedback on difficulty and time)
+
+homework general
+* B's get degrees 
+* don't say "it's in your best interest to attempt all of them"
+
+1-intro.html
+* Replace Leibniz picture with Helmhotlz
+    * Don't bother with Locke and Leibniz
+    * The cleaner story is to talk about Descartes (statue story) then to Helmholtz (measuring reaction times) then more complex data.
+* Hold back non-psych students to meet each other and form study groups
+* Goals of this class:
+  1. learn stats and R
+  2. challenge you -- this class is designed to push you to your personal limit and then just beyond. if you feel like you're sailing through this class come talk to me
+  3. develop practical skills that will help throughout your career -- learning things on your own, asking for help, saying no, even teaching
+* road map: summarizing data --> probability --> sampling --> making inferences about the unknown --> making a decision --> evaluating that decision
+    
+2-measurement.html
+* Replace "units" with something else
+* Remove humor nomological net -- better to use the student generated example
+
+lab-1.html
+* make it shorter -- didn't get to mini-hacks (aim for 20 min for mini-hacks each week)
+  * importing data can be delayed until lab 2 (maybe?)
+  * idea: keep all material in document, but skim sections (e.g., types of variables)
+* next set of RAs add questions throughout (parts where students have to complete code or write answers)
+  * students look at prepared markdown, but TAs live-code (print html so you know where you are)
+  
+3-describing_data_1.html
+* too long! 
+* did we use world happiness? take out description of variables
+* leptokurtic - leaping up, platykurtic -- plate, mesokurtic -- middle
+* is there a more efficient way to make the point about statistical tests of normality being tied to sample size?
+
+lab-2.html
+* more interactive throughout
+* ask more questions (sometimes on html doc, or not)
+* in-text R code summarizing sample size and means
+
+5-matrix.html
+* For XT and TX, give example in slides
+* post-multiply -- affecting columns, doing this to every single row
+* pre-multiply -- affecting row, doing this to every single column
+* add orders to all matrix notations
+
+quiz-2.docx
+* replace word "masquerade"
+
+lab-3.html
+* notes: covered a lot of material, went slowly and left time for first mini-hack (walk through first together), linear combinations were difficult
+* more relevant or straight-forward examples for diagonal matrices and pre- and post-multiplication
+* give mean example
+
+6-probability.html
+* define random
+* add animations!
+* bag of candy -- replacement vs not
+
+7-binomial.html
+* make clear -- binary/binomial doesn't mean 50%
+* any sample space can be divided into two non-elementary events
+* explain a deck of cards (what?!)
+
+
+1-homework.Rmd
+* rewrite correlation freedom/generosity instructions: "calculate the correlation between freedom and generosity" (take out thing about "for a country")
+* question 5.1 -- take out density distribution or give them code. (students are drawing based on mean and sd, not using empirical)
+* 5.3 change validity of correlation to "statistical conclusion valdity"
+* more time for homeworks? post 2 weeks in advance, instead of 1
+
+8-normal.html
+* move slides about chi sq from sampling to here
+
+lab-4.html
+* need to explain a deck of cards
+
+10-nhst.html
+* more on pvalues
+* include figure with p-values bunching up at .05
+* move ratio of signal to noise here
+
+lab-5.html
+* skim tidy data and helper functions, but keep in so people can see them
+
+12-critiques.html
+* fewer quotes at the beginning (be prepared to run out of time)
+
+2-homework.html
+* MIDDLE 50% 
+* clarifiy confidence interval 1-[alpha]
+* summed SQUARED z-scores
+* 20 pt question -- clarify that they should use norm, not t
+
+lab-7.html
+* is this worth having?
+* next time, chi-square
+  * doing the test
+  * frequency tables
+  * output tables to word document
+  * extracting information
+  * in-line R code to summarize results
+* or more on data wrangling
+  * move summarize here
+  * more about first one
+    * tidy data
+* pros: first year sem already covers some of this?
+
+14-one-sample.html
+* reiterate signal/noise
+
+15-two-means_I.html
+* reiterate signal/noise
+
+lab-8.html
+* include welch's t-test
+* good to have them walk through the steps
+* had time to go through the mini-hacks
+
+17-dependent means.html
+* the cohen's d discussion is awkward but healthy. keep it in
+* pay attention to notation for standard deviation and standard error
+* no matter which d you use, say which one or indicate how you calculated
+
+  

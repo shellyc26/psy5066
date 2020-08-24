@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Helpful and/or interesting material</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PSY 611</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures/1-intro.html">1-Introduction</a>
+    </li>
+    <li>
+      <a href="lectures/2-measurement.html">2-Validity</a>
+    </li>
+    <li>
+      <a href="lectures/3-describing_data.html">3-Describing data I</a>
+    </li>
+    <li>
+      <a href="lectures/4-describing_data.html">4-Describing data II</a>
+    </li>
+    <li>
+      <a href="lectures/5-matrix.html">5-Matrix algebra</a>
+    </li>
+    <li>
+      <a href="lectures/6-probability.html">6-Probability</a>
+    </li>
+    <li>
+      <a href="lectures/7-binomial.html">7-Binomial</a>
+    </li>
+    <li>
+      <a href="lectures/8-normal.html">8-Normal</a>
+    </li>
+    <li>
+      <a href="lectures/9-sampling.html">9-Sampling</a>
+    </li>
+    <li>
+      <a href="lectures/10-nhst.html">10-Hypothesis testing I</a>
+    </li>
+    <li>
+      <a href="lectures/11-nhst.html">11-Hypothesis testing II</a>
+    </li>
+    <li>
+      <a href="lectures/12-critiques.html">12-Critiques of NHST</a>
+    </li>
+    <li>
+      <a href="lectures/13-open_science.html">13-Open Science</a>
+    </li>
+    <li>
+      <a href="lectures/14-one_sample.html">14-One-sample tests</a>
+    </li>
+    <li>
+      <a href="lectures/15-two_means_I.html">15-Comparing two means I</a>
+    </li>
+    <li>
+      <a href="lectures/16-two_means_II.html">16-Comparing two means II</a>
+    </li>
+    <li>
+      <a href="lectures/17-two_means_III.html">17-Comparing dependent means</a>
+    </li>
+    <li>
+      <a href="lectures/18-two_means_IV.html">18-Comparing two means IV</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="labs/lab-1.html">Introduction to R and RStudio</a>
+    </li>
+    <li>
+      <a href="labs/lab-2.html">R Basics and Descriptives</a>
+    </li>
+    <li>
+      <a href="labs/lab-3.html">Matrix Algebra</a>
+    </li>
+    <li>
+      <a href="labs/lab-4.html">Probability Distributions</a>
+    </li>
+    <li>
+      <a href="labs/lab-5.html">Data Wrangling</a>
+    </li>
+    <li>
+      <a href="labs/lab-6.html">Data Visualization</a>
+    </li>
+    <li>
+      <a href="labs/lab-7.html">Preregistration</a>
+    </li>
+    <li>
+      <a href="labs/lab-8.html">One-Sample and Independent Samples t-tests</a>
+    </li>
+    <li>
+      <a href="labs/lab-9.html">Paired Sample t-tests</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="homework.html">Homework</a>
+</li>
+<li>
+  <a href="bonus.html">Useful Material</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Previous Years
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://uopsych.github.io/psy611_2019/">2019</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/uopsych/psy611">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Helpful and/or interesting material</h1>
+
+</div>
+
+
+<p>This page contains links to journal articles, blog posts, webpages, etc., that we (the instructors) believe may be useful to you, or at the very least interesting. <strong>Bold</strong> articles are ones that we consider <strong>must-reads</strong> but don’t have enough time to actually assign. And to be clear, must-read means that people will probably assume you’ve read this and know the basic points.</p>
+<div id="on-data-collection-measuring-constructs-scales" class="section level2">
+<h2>On data collection, measuring constructs, scales</h2>
+<p>Lord (1953) <a href="readings/Lord_1953.pdf">“On the statistical treatment of football numbers.”</a> – This one is worth reading several times, ideally with a friend. Don’t worry, it’s quite short. A small note: “Tchebycheff” is sometimes written as “Chebyshev” and in either case is pronounced Cheb-ee-sheve.</p>
+<p>Malone &amp; Goldstone (2019) <a href="https://www.npr.org/2019/08/28/755191639/episode-936-the-modal-american">“Episode 936: The Modal American.”</a> – This episode of NPR’s podcast, <em>Planet Money</em>, is a great discussion of what we mean when we say “average,” why the mean can be a bad measure of central tendency, and how complicated calculating simple statistics are. They don’t use the words “artifact” or “collinearity”, but they discuss both and how they can lead to bad answers.</p>
+<p>Rohrer (2019) <a href="http://www.the100.ci/2019/10/03/indirect-effect-ex-machina">“Indirect Effect <em>Ex Machina</em>.”</a> – come for the ice cream and sauerkraut, stay for the creeping dread that many mediation studies are probably wrong.</p>
+<p>Chester &amp; Lasko (2019) <a href="https://psyarxiv.com/t7ev9">“Construct Validation of Experimental Manipulations in Social Psychology: Current Practices and Recommendations for the Future.”</a> – a totally brand new preprint about construct validity in social psychology. They do a great job of explaining different kinds of validity in addition to empirically describing the extent to which social psychologists check for construct validity. Here is a lovely quote: “In the context of archery, construct validity is the practice of checking that the arrow hit the bullseye and internal validity is the practice of preventing the wind and your own breathing from influencing your aim.”</p>
+</div>
+<div id="on-matrix-algebra" class="section level2">
+<h2>On (matrix) algebra</h2>
+<p>Kahn Academy <a href="https://www.khanacademy.org/math/linear-algebra">“Linear algebra.”</a> For those looking for tutorials to practice matrix algebra. I’ve linked to the broader page because it includes linear combinations.</p>
+<p>3Blue1Brown’s <a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw">YouTube channel.</a> Thanks to Scott Wallner for recommending these! There are playlists for <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">linear algebra</a>, <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr">calculus</a>, and <a href="https://www.youtube.com/watch?v=gB9n2gHsHN4">fractals</a>, among others.</p>
+</div>
+<div id="on-probability-and-its-use-and-misuse" class="section level2">
+<h2>On probability and its use and misuse</h2>
+<p>Fry (2019) <a href="https://www.newyorker.com/magazine/2019/09/09/what-statistics-can-and-cant-tell-us-about-ourselves">“What statistics can and can’t tell us about ourselves.”</a> This article in the <em>New Yorker</em> explains issues of (frequentist) probability in terms you can explain to your grandma, as well as makes clear the issues of the Fisher tradition of reducing experiments to p-values.</p>
+<p>Resnick (2017) <a href="https://www.vox.com/science-and-health/2017/7/31/16021654/p-values-statistical-significance-redefine-0005">“What a nerdy debate about p-values shows about science – and how to fix it.”</a> Another great article, this time on <em>Vox</em>, about p-values</p>
+</div>
+<div id="on-the-credibility-revolution-aka-replication-crisis-or-reproducibility-crisis" class="section level2">
+<h2>On the credibility revolution (aka replication crisis or reproducibility crisis)</h2>
+<p><strong>Ioannidis (2005) <a href="readings/Ioannidis_2005.pdf">“Why most published findings are false.”</a></strong> – This is one of the articles that kick-started the concern.</p>
+<p><strong>Bem (2011) <a href="readings/Bem_2011.pdf">“Feeling the future: Experimental evidence for anomalous retroactive influences on cognition and affect.”</a></strong> – It’s true, ESP is real. Or is it? What (if anything) in this article makes you skeptical of the results? Try to articulate the weaknesses.</p>
+<p>Bem (2004) <a href="readings/Bem_2004.pdf">“Writing the empirical journal article.”</a> – This was assigned to me when I was a graduate student. Some of the advice is actually very good, although most of the best stuff can be found in Strunk and White. The part of this article that’s really worth reading is the “Analyzing Data” and “Reporting the Findings” subsections of “Planning your article.”</p>
+<p><strong>Szollosi et al. (2019). <a href="https://psyarxiv.com/x36pz/">“Preregistration is redundant, at best.”</a></strong> Preprint.</p>
+</div>
+<div id="on-coding-and-data-science" class="section level2">
+<h2>On coding and data science</h2>
+<p>Peters (2004) <a href="https://www.python.org/dev/peps/pep-0020/">“The Zen of Python.”</a> – A list of 19 principles for writing better Python code; the principles also apply to writing better R code.</p>
+<p>Hill (2019) <a href="https://arm.rbind.io/slides/xaringan.html#1">“Meet xaringan.”</a> – There are a ton of resource for learning how to make slides using R. Too many to list here. I like this one because it’s accessible, funny, visually appealing, and will help you make slides that you’re proud of. (By the way, UO has theme you can use.)</p>
+<p>Bryan (2019?) <a href="https://happygitwithr.com">“Happy Git with R.”</a> – Interested in using GitHub for version control? Jenny Bryan will guide you through the process and metaphorically hand you a tissue when you’re screaming with frustration.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
