@@ -21,13 +21,18 @@ This course is the first in a two-course sequence that introduces necessary skil
 ## Instructors
 
 **Shelly Cooper** -- [shelly.cooper@wustl.edu](mailto:shelly.cooper@wustl.edu)
-Office Hours: By appointment & in "check-in" times
+
+- Office Hours: By appointment & in "check-in" times
 
 **Jayde Homer** -- [jaydehomer@wustl.edu](mailto:jaydehomer@wustl.edu)
-Office Hours: By appointment & in "check-in" times
 
-**AI2** -- [ai2@wustl.edu](mailto:ai2@wustl.edu)
-Office Hours: By appointment & in "check-in" times
+- Office Hours: By appointment & in "check-in" times
+- *If you are in Psychology or Computational & Data Sciences*
+
+**April Yu** -- [tianjiao.yu@wustl.edu](mailto:tianjiao.yu@wustl.edu)
+
+- Office Hours: By appointment & in "check-in" times
+- *If you are in Business, Movement Science, PNP, Speech & Hearing*
 
 # Materials
 
