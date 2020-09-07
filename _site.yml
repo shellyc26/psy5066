@@ -11,8 +11,6 @@ navbar:
         href: "lectures/1-intro.html"
     - text: Homework
       href: homework.html
-    - text: Useful Material
-      href: bonus.html
   right:
     - icon: fa-github
       href: https://github.com/shellyc26/psy5066
