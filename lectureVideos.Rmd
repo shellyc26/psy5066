@@ -1,0 +1,14 @@
+---
+title: "Lecture Videos"
+output: 
+  html_document:
+    toc: TRUE
+    toc_depth: 2
+    toc_float: TRUE
+    theme: cosmo
+---
+
+The following links should take you to the appropriate YouTube video.
+
+## 1-Introduction
+- [Introduction Vid](https://www.youtube.com/watch?v=jeVg-KhLf68)

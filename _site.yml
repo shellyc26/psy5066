@@ -5,10 +5,12 @@ navbar:
   left:
     - text: Syllabus
       href: schedule.html
-    - text: Lectures
+    - text: Lecture Slides
       menu:
       - text: "1-Introduction"
         href: "lectures/1-intro.html"
+    - text: Lecture Videos
+      href: lectureVideos.html
     - text: Homework
       href: homework.html
   right:
