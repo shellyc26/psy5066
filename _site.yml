@@ -9,6 +9,8 @@ navbar:
       menu:
       - text: "1-Introduction"
         href: "lectures/1-intro.html"
+      - text: "2-Measurement" 
+        href: "lectures/2-measurement"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
