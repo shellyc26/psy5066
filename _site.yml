@@ -10,7 +10,9 @@ navbar:
       - text: "1-Introduction"
         href: "lectures/1-intro.html"
       - text: "2-Measurement" 
-        href: "lectures/2-measurement"
+        href: "lectures/2-measurement.html"
+      - text: "3-Describing Data Part 1"
+        href: "lectures/3-describing-data.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework

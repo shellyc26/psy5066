@@ -96,7 +96,11 @@ The first two moments (mean and variance) will be central to many inferential pr
 
 ## Mean, $\mu$
 
-- The **mean** is the average. The population mean is represented by the Greek symbol $\mu$.
+- The **mean** is the average
+
+- The population mean is represented by the Greek symbol $\mu$
+
+- The sample mean is represented by the Latin symbol $\bar{X}$
 
 - Example: a set of numbers is:  `7, 7, 8, 3, 9, 2`. 
 
@@ -115,11 +119,11 @@ $$\mu = \frac{\Sigma(x_i)}{N}=\frac{7+7+8+3+9+2}{6}=\frac{`r sum(c(7,7,8,3,9,2))
 
 --
 
-- Deviations from the mean sum to 0
+- The mean is strongly influenced by outliers. 
 
 --
 
-- The mean is strongly influenced by outliers. 
+- Deviations from the mean sum to 0
 
 --
 
@@ -224,8 +228,6 @@ sum((x - mean(x))^2)/length(x)
 ###Good things about variance:
 - It's additive.
   - Given two variables X and Y, if I create $Z = X + Y$ then $Var(Z) = Var(X) + Var(Y)$
-- It can be calculated using expected values.
-  - $\sigma^2 = E(X^2) - E(X)^2$
 - Represents all values in a dataset
 
 --
@@ -235,19 +237,23 @@ sum((x - mean(x))^2)/length(x)
 
 ---
 
-
+## Standard Deviation
 
 **Standard deviation $\sigma$** is the square root of the variance. 
 ```{r}
 sqrt(sum(deviation^2)/length(deviation))
 ```
 
+--
+
+![](images/sdVariants.png)
+
 ???
 We'll get to expected values when we talk about probability distributions, but for now, treat the expected value as the mean of a continuous variable.
 
 ---
   
-  ```{r, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 world %>% ggplot(aes(x = Happiness)) + 
   geom_histogram(fill = "gray") +
   geom_vline(aes(xintercept = mean(Happiness))) +
@@ -280,8 +286,13 @@ In a skewed distribution, both the mean and median get pulled away from the mode
   Moments 3 and 4 of a distribution are **skew** and **kurtosis**.
 
 - Skewness = asymmetry
+  - Negative skew = tail pointed towards the negative values (left)
+  - Positive skew = tail pointed towards the positive values (right)
 
-- Kurtosis = pointyness. 
+- Kurtosis = pointyness
+  - Too pointy = leptokurtic
+  - Perfect = mesokurtic
+  - Too flat = platykurtic (as in platypus!)
 
 Most inferential statistics assume distributions are not skewed and are mesokurtic.
 
@@ -342,7 +353,6 @@ How do we know if there is a problem and what should we do?
 - Tests of extremity for a particular moment 
 -  $$SE_{skew} =\sqrt{\frac{6n(n-1)}{(n-1)(n+2)(n+3)}}$$
   - Implication?
-  - Determine the impact of the problem on inferences.  How does it affect your data?
   - Use procedures that are immune to the problem.
 
 ---
