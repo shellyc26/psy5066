@@ -13,6 +13,10 @@ navbar:
         href: "lectures/2-measurement.html"
       - text: "3-Describing Data Part 1"
         href: "lectures/3-describing-data.html"
+      - text: "4-Describing Data Part 2"
+        href: "lectures/4-describing_data.html"
+      - text: "5-Fisher & Probability"
+        href: "5_FisherandProbability.pdf"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework

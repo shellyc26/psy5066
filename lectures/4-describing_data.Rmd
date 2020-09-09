@@ -215,14 +215,21 @@ Correlation = `r round(cor(data$x, data$y),2)`
 - $r^2$: Proportion of variance "explained"
     - as [Ozer & Funder (2019)](https://uopsych.github.io/psy611/readings/Ozer_Funder_2019.pdf) discuss, we're not really explaining anything and the change in scale can mess up our interpretations if we're not careful.
 
---
-
-- [Rosenthal & Rubin (1982)](https://psycnet.apa.org/fulltext/1982-22591-001.pdf): life and death (the Binomial Effect Size Display)
-  - treatment success rate $= .50 + .5(r)$ and the control success rate $= .50 - .5(r)$.
-
 ---
 
-## Ozer & Funder (2019)
+## What are good benchmarks? 
+
+From Ozer & Funder (2019)
+
+- Classic social psych studies: $r = .36-.42$
+- Scarcity increases the perceived alue of a commodity $r = .12$
+- People attribute failures to bad luck $r = .10$
+- Communicators perceived as more credible are more persuasive $r = .10$
+- People in a bad mood are more aggressive $r = .41$
+- Antihistomine and symptom relief $r = .11$
+- Ibuprofen and pain relief $r = .14$
+- Height and weight $r = .44$
+
 
 ???
 **What are good benchmarks?**
@@ -302,29 +309,32 @@ data %>% ggplot(aes(x=x, y=y)) + geom_point()
 
 ## Outliers
 
-```{r, fig.height = 5}
-data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_smooth(data = data[-51,], method = "lm", se = FALSE)
+.pull-left[
+```{r, eval=FALSE, message = FALSE, warning = FALSE}
+data %>% ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") +
+  geom_smooth(data = data[-51,], 
+              method = "lm", 
+              se = FALSE)
 ```
+]
 
----
-
-## Outliers
-
-```{r, echo = FALSE}
-set.seed(101019) # so we all get the same random numbers
-mu = c(3, 4)
-n = 15
-Sigma = matrix(c(.9, .8, .8, .9), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
-data = mvrnorm(n = n, mu = mu, Sigma = Sigma)
-data = as.data.frame(data)
-colnames(data) = c("x", "y")
-data[n+1, ] = c(1.5, 5.5)
-
+.pull-right[
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+data %>% ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") +
+  geom_smooth(data = data[-51,], 
+              method = "lm", 
+              se = FALSE)
 ```
+]
 
-```{r, fig.height = 5}
-data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_smooth(data = data[-c(n+1),], method = "lm", se = FALSE)
-```
 ---
 
 ## Restriction of range
@@ -340,9 +350,22 @@ real_data = data
 data = filter(data, x >100 & x < 101)
 ```
 
-```{r, fig.height = 5}
+.pull-left[
+```{r, eval = FALSE, message = FALSE, warning = FALSE}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red")
+```
+]
+
+.pull-right[
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
+]
 
 ???
 
@@ -352,9 +375,39 @@ What if I told you there were scores on X could range from 97 to 103?
 
 ## Restriction of range
 
-```{r, fig.height = 5}
-data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_point(data = real_data) + geom_smooth(method = "lm", se = FALSE, data = real_data, color = "blue")
+.pull-left[
+```{r, eval = FALSE, warning=F, message=F}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") + 
+  geom_point(data = real_data) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              data = real_data,
+              color = "blue")
 ```
+]
+
+.pull-right[
+```{r, echo = FALSE, warning=F, message=F}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") + 
+  geom_point(data = real_data) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              data = real_data,
+              color = "blue")
+```
+]
+
+
 
 ???
 
@@ -365,13 +418,13 @@ My idea: that many psychology studies only look at undergraduates (restricted ag
 
 ## Nonlinearity
 
-```{r, echo = FALSE, warning = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 x = runif(n = 150, min = -2, max = 2)
 y = x^2 +rnorm(n = 150, sd = .5)
 data = data.frame(x,y)
 ```
 
-```{r, fig.height = 5}
+```{r, fig.height = 5, warning=FALSE, message=FALSE}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
@@ -389,28 +442,6 @@ Sometimes issues that affect correlations won't appear in your graph, but you st
 
 ---
 
-## Reliability
-
-Recall from last week:
-
-$$r_{xy} = \rho_{xy}\sqrt{r_{xx}r_{yy}}$$
-
-Meaning that our estimate of the population correlation coefficient is attenuated in proportion to reduction in reliability.  
-
-**If you have a bad measure of X or Y, you will have a lower estimate of $\rho$.**
-
----
-
-## Content overlap
-
-If your Operation Y of Construct B includes items (or tasks or manipulations) that could also be influenced by Constrct A, then the correlation between X and Y will be inflated.
-
-- Example: SAT scores and IQ tests
-- Example: Depression and number of hours sleeping
-
-
-- Which kind of validity is this associated with?
----
 ## Multiple groups
 
 ```{r, echo = FALSE}
@@ -433,7 +464,7 @@ f_data$gender = "female"
 data = rbind(m_data, f_data)
 ```
 
-```{r, fig.height = 5}
+```{r, fig.height = 5, message=F, warning=F}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
@@ -441,7 +472,7 @@ data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = 
 
 ## Multiple groups
 
-```{r, fig.height = 5}
+```{r, fig.height = 5, message=F, warning=F}
 data %>% ggplot(aes(x=x, y=y, color = gender)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + guides(color = F)
 ```
 ---
@@ -528,30 +559,8 @@ ltm::biserial.cor(x,d_y)
 
 ### Don't use median splits!
 ---
-
-### Special cases of the Pearson correlation
-
-Why do we have special cases of the correlation?
-
-- Sometimes we get different results
-  - If we treat ordinal data like interval/ratio data, our estimate will be incorrect
-  
-- Sometimes we get the same result
-
-  - Even when formulas are different
-  
-  - Example: Point biserial formula
-      - $$r_{pb} = \frac{M_1-M_0}{\sqrt{\frac{1}{n-1}\Sigma(X_i-\bar{X})^2}}\sqrt{\frac{n_1n_0}{n(n-1)}}$$
-
-  
-???
-
-We don't have different formulas because the correlation is mathematically different -- these formulas were developed when we did things by hand. These formulas are short cuts!
-
----
-
 class: inverse
 
 ## Next time...
 
-matrix algebra
+Probability

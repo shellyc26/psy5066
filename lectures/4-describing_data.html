@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Describing Data II</title>
     <meta charset="utf-8" />
@@ -205,14 +205,21 @@ Correlation = 0
 - `\(r^2\)`: Proportion of variance "explained"
     - as [Ozer &amp; Funder (2019)](https://uopsych.github.io/psy611/readings/Ozer_Funder_2019.pdf) discuss, we're not really explaining anything and the change in scale can mess up our interpretations if we're not careful.
 
---
-
-- [Rosenthal &amp; Rubin (1982)](https://psycnet.apa.org/fulltext/1982-22591-001.pdf): life and death (the Binomial Effect Size Display)
-  - treatment success rate `\(= .50 + .5(r)\)` and the control success rate `\(= .50 - .5(r)\)`.
-
 ---
 
-## Ozer &amp; Funder (2019)
+## What are good benchmarks? 
+
+From Ozer &amp; Funder (2019)
+
+- Classic social psych studies: `\(r = .36-.42\)`
+- Scarcity increases the perceived alue of a commodity `\(r = .12\)`
+- People attribute failures to bad luck `\(r = .10\)`
+- Communicators perceived as more credible are more persuasive `\(r = .10\)`
+- People in a bad mood are more aggressive `\(r = .41\)`
+- Antihistomine and symptom relief `\(r = .11\)`
+- Ibuprofen and pain relief `\(r = .14\)`
+- Height and weight `\(r = .44\)`
+
 
 ???
 **What are good benchmarks?**
@@ -282,37 +289,45 @@ data %&gt;% ggplot(aes(x=x, y=y)) + geom_point()
 
 ## Outliers
 
+.pull-left[
 
 ```r
-data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_smooth(data = data[-51,], method = "lm", se = FALSE)
+data %&gt;% ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") +
+  geom_smooth(data = data[-51,], 
+              method = "lm", 
+              se = FALSE)
 ```
+]
 
-![](4-describing_data_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+.pull-right[
+![](4-describing_data_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
 
----
-
-## Outliers
-
-
-
-
-```r
-data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_smooth(data = data[-c(n+1),], method = "lm", se = FALSE)
-```
-
-![](4-describing_data_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 ---
 
 ## Restriction of range
 
 
 
+.pull-left[
 
 ```r
-data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+data %&gt;%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red")
 ```
+]
 
+.pull-right[
 ![](4-describing_data_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+]
 
 ???
 
@@ -322,12 +337,28 @@ What if I told you there were scores on X could range from 97 to 103?
 
 ## Restriction of range
 
+.pull-left[
 
 ```r
-data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red") + geom_point(data = real_data) + geom_smooth(method = "lm", se = FALSE, data = real_data, color = "blue")
+data %&gt;%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") + 
+  geom_point(data = real_data) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              data = real_data,
+              color = "blue")
 ```
+]
 
-![](4-describing_data_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+.pull-right[
+![](4-describing_data_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+
 
 ???
 
@@ -345,7 +376,7 @@ My idea: that many psychology studies only look at undergraduates (restricted ag
 data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
-![](4-describing_data_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -361,28 +392,6 @@ Sometimes issues that affect correlations won't appear in your graph, but you st
 
 ---
 
-## Reliability
-
-Recall from last week:
-
-`$$r_{xy} = \rho_{xy}\sqrt{r_{xx}r_{yy}}$$`
-
-Meaning that our estimate of the population correlation coefficient is attenuated in proportion to reduction in reliability.  
-
-**If you have a bad measure of X or Y, you will have a lower estimate of `\(\rho\)`.**
-
----
-
-## Content overlap
-
-If your Operation Y of Construct B includes items (or tasks or manipulations) that could also be influenced by Constrct A, then the correlation between X and Y will be inflated.
-
-- Example: SAT scores and IQ tests
-- Example: Depression and number of hours sleeping
-
-
-- Which kind of validity is this associated with?
----
 ## Multiple groups
 
 
@@ -392,7 +401,7 @@ If your Operation Y of Construct B includes items (or tasks or manipulations) th
 data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
-![](4-describing_data_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -403,7 +412,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se
 data %&gt;% ggplot(aes(x=x, y=y, color = gender)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + guides(color = F)
 ```
 
-![](4-describing_data_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 ---
 
 ### Special cases of the Pearson correlation
@@ -583,33 +592,11 @@ ltm::biserial.cor(x,d_y)
 
 ### Don't use median splits!
 ---
-
-### Special cases of the Pearson correlation
-
-Why do we have special cases of the correlation?
-
-- Sometimes we get different results
-  - If we treat ordinal data like interval/ratio data, our estimate will be incorrect
-  
-- Sometimes we get the same result
-
-  - Even when formulas are different
-  
-  - Example: Point biserial formula
-      - `$$r_{pb} = \frac{M_1-M_0}{\sqrt{\frac{1}{n-1}\Sigma(X_i-\bar{X})^2}}\sqrt{\frac{n_1n_0}{n(n-1)}}$$`
-
-  
-???
-
-We don't have different formulas because the correlation is mathematically different -- these formulas were developed when we did things by hand. These formulas are short cuts!
-
----
-
 class: inverse
 
 ## Next time...
 
-matrix algebra
+Probability
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -656,9 +643,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -667,7 +670,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
