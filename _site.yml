@@ -16,7 +16,7 @@ navbar:
       - text: "4-Describing Data Part 2"
         href: "lectures/4-describing_data.html"
       - text: "5-Fisher & Probability"
-        href: "5_FisherandProbability.pdf"
+        href: "lectures/5_FisherandProbability.pdf"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
