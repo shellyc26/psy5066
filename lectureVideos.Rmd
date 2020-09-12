@@ -3,7 +3,7 @@ title: "Lecture Videos"
 output: 
   html_document:
     toc: TRUE
-    toc_depth: 2
+    toc_depth: 4
     toc_float: TRUE
     theme: cosmo
 ---
@@ -11,7 +11,47 @@ output:
 The following links should take you to the appropriate YouTube video.
 
 ## Week 1
+#### 9/15
+
 - [Introduction](https://youtu.be/0w6LF4Z0b60)
+- [Zoom Link for Check-in 1 with Everyone](https://wustl.zoom.us/j/94508468165?pwd=ZlhqazhTTDliUWcrYUc0SHNVREc3dz09)
+
+#### 9/17
+
 - [Measurement Validity](https://youtu.be/ygvxDHE5In4)
+- [Zoom Link for Check-in 1 with April](https://wustl.zoom.us/j/98006752991?pwd=ZHFFTmluUVJ3S3Z2R1lnaDVkODEvUT09)
 
 ## Week 2
+#### 9/22
+
+- Describing Data Part 1
+- **Quiz 1 due by 9am**
+- HW 1 posted
+
+#### 9/24
+
+- Describing Data Part 2
+- [Zoom Link for Check-in 3 with Shelly](https://wustl.zoom.us/j/94510139791?pwd=RDFnZjdiVW1QT1ZZR1h0OWpnUnQ1Zz09)
+
+## Week 3
+#### 9/29
+
+- Fisher Tradition & Probability
+- **HW 1 due by 9am**
+
+#### 10/1
+
+- Binomial & Normal Distributions
+- [Zoom Link for Check-in 4 with Jayde](https://wustl.zoom.us/j/95247533976?pwd=ZEZ3aTEzRzlEWURpaTJxYThqdktyUT09)
+
+## Week 4
+#### 10/6
+
+- Introduction to Bayesian Statistics
+- **Quiz 2 due by 9am**
+- HW 2 posted
+
+#### 10/8
+
+- Sampling distributions & $t$-distributions
+- [Zoom Link for Check-in 5 with Shelly](https://wustl.zoom.us/j/92791152076?pwd=Tmw3RFlpakVHemhoWVlyS1Y3WGpMQT09)
