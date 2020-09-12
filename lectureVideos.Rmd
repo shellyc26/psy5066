@@ -10,5 +10,8 @@ output:
 
 The following links should take you to the appropriate YouTube video.
 
-## 1-Introduction
-- [Introduction Vid](https://www.youtube.com/watch?v=jeVg-KhLf68)
+## Week 1
+- [Introduction](https://youtu.be/0w6LF4Z0b60)
+- [Measurement Validity](https://youtu.be/ygvxDHE5In4)
+
+## Week 2
