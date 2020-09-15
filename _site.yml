@@ -21,9 +21,6 @@ navbar:
       href: lectureVideos.html
     - text: Homework
       href: homework.html
-  right:
-    - icon: fa-github
-      href: https://github.com/shellyc26/psy5066
 output:
   html_document:
     lib_dir: site_libs
