@@ -30,7 +30,7 @@ library(lsr) # for mode and maxFreq functions
 
 Examples today are based on data from the [2015 World Happiness Report](https://worldhappiness.report/ed/2015/), which is an annual survey part of the [Gallup World Poll](https://www.gallup.com/178667/gallup-world-poll-work.aspx). 
 
-The dataset is available on GitHub for those interested in trying at home.
+The dataset is available on the Lecture Videos page under the link to the Describing Data Part 1 video, for those who want to play along at home.
 
 ---
 
