@@ -24,14 +24,14 @@ The following links should take you to the appropriate YouTube video.
 ## Week 2
 #### 9/22
 
-- Describing Data Part 1
+- [Describing Data Part 1](https://youtu.be/OeWELMpEbNQ)
 - [Happiness Data](data/world_happiness_2015.csv) (used in the lecture)
 - **Quiz 1 due by 9am**
 - HW 1 posted
 
 #### 9/24
 
-- Describing Data Part 2
+- [Describing Data Part 2](https://youtu.be/bC3i5Zvkg8w)
 - [Zoom Link for Check-in 3 with Shelly](https://wustl.zoom.us/j/94510139791?pwd=RDFnZjdiVW1QT1ZZR1h0OWpnUnQ1Zz09)
 
 ## Week 3
