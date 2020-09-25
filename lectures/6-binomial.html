@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>Probability: Binomial Distribution</title>
+    <title>Binomial Distribution</title>
     <meta charset="utf-8" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
@@ -12,17 +12,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Probability: Binomial Distribution
+# Binomial Distribution
 
 ---
 
-
-### Student Experience Survey
-
-Available on DuckWeb until 6pm on October 25. 
-
-
----
 
 
 
@@ -37,21 +30,19 @@ The **binomial distribution** is the theoretical probability distribution approp
 
 - The probability of the target outcome (usually called a “success”) is the same for all N trials 
 
-    - “with replacement” might be necessary
+--
+
+- The outcomes of the trials are *independent*
+
+  - The probability of a success in any one trial must be the same from trial to trial
 
 --
 
-- The trials are independent
-
---
-
-- The number of trials is fixed
+- The number of trials is fixed (you know how many times you're flipping a coin)
 
 ---
 
-
-
-If these assumptions hold then X is a binomial random variable representing the expected number of successes over N trials, with expected success on each trial of `\(\theta\)` .
+If these assumptions hold then `\(X\)` is a binomial random variable representing the *expected number of successes* over `\(N\)` trials, with expected success on each trial of `\(\theta\)` .
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
@@ -62,34 +53,49 @@ A common and compact way of stating the same thing is:
 
 
 `$$\Huge X \sim B(N, \theta)$$`
+.small[
+Note: Last lecture we used `\(p\)` to denote the probability of success. This time we'll use `\(\theta\)`. `\(\theta\)` is more correct for the population parameter, but you'll see `\(p\)` used a lot, too.
+]
 ---
 
 The probability distribution for X is defined by the following **probability mass function**: 
 
 `$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
 
-The probability mass function tells us what to expect for any particular X in the sample space.
+The probability mass function tells us what to expect for any particular value of X in the sample space.
+
+---
+
+The probability distribution for X is defined by the following **probability mass function**: 
+
+`$$\Large P(X = r|N,p) = \bigg(\frac{N}{r}\bigg)p^r(q)^{N-r}$$`
+
+This is the same exact thing as previous slide! 
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
+--
+
 All theoretical distributions have a mass function (if discrete) or a density function (if continuous). These are the defining equations that tells us the generating process for the behavior of X.
 
-???
-
-A common way to write the binomial mass function is to think of `\(\theta\)` as the probability of success ($p$) and `\(1-\theta\)` as the probability of failure ($q$). It becomes easier to write the function:
-
-$$ P(X|\theta,N) = \frac{N!}{X!(N-X)!}p^X(q)^{N-X}$$
 ---
 
 `$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
 
 ***
 
-`\(\mathbf{P(X|\theta,N)}\)` is a conditional probability: the probability of X given `\(\theta\)` and `\(N\)`.
+`\(\mathbf{P(X|\theta,N)}\)` is a conditional probability: the probability of X **given** `\(\theta\)` and `\(N\)`.
 
-- X is the number of successful trials over N independent trials, with the probability of success on any trial equal to `\(\theta\)`.
+- X is the number of successful trials (in our other formula this is r -- as in r correct "choices")
 
-- `\(\theta\)` and N are parameters of the binomial distribution.
+- N is the number of trials; must be independent
+
+- `\(\theta\)` is the probability of success on any given trial (in our other formula, this is p)
+
+
+`\(\theta\)` and N are parameters of the binomial distribution.
+
+The probability mass function tells us what to expect for any particular value of X in the sample space.
 
 ---
 
@@ -101,11 +107,11 @@ $$ P(X|\theta,N) = \frac{N!}{X!(N-X)!}p^X(q)^{N-X}$$
 - This is just a general form of the basic probability rule:
 
 `$$A \text{ and } B = P(A \cap B) = P(A)P(B)$$`
-
-Note that this form of the rule assumes *independent events*.
+- AKA the intersection AKA `\(p(success) \times p(failure)\)`
+- Note that this form of the rule assumes *independent events*.
 
 ---
-For example, let's examine a sequence of 5 independent rolls of a die:
+For example, let's examine a sequence of 5 independent rolls of a fair die:
 
 `3  6  6  1  6`
 
@@ -125,23 +131,22 @@ The probability of that particular sequence is then:
 --
 
 `$$P(6)^3P(Not6)^2 = (\frac{1}{6})^3(\frac{5}{6})^2 = 0.0027$$`
-
-
-
 ---
 
+But a specific sequence of independent outcomes is just one way we could have X successful trials out of N. 
+
+- We need to know **how many possible ways** we could get X successes in N trials.
+  - 66612, 61626, 12666, etc...
+
+The remaining part of the equation -- the combination rule from probability theory, `\(\bigg(\frac{N}{r}\bigg)\)` --, tells us how many different ways that can happen.
+
+---
 
 `$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
 
 ***
 
-But a specific sequence of independent outcomes is just one way we could have X successful trials out of N. 
-
-- We need to know **how many possible ways** we could get X successes in N trials.
-
-The remaining part of the equation (the combination rule from probability theory, `\(_XC_N\)`), tells us how many different ways that can happen.
-
-`$$\Large \frac{N!}{X!(N-X)!}$$`
+`\(\mathbf{\frac{N!}{X!(N-X)!}}\)` is the number of distinct combintions of N objects, irrespective of order
 
 ---
 
@@ -192,27 +197,34 @@ Putting the pieces together:
 = (10)(.0032) \\
 =.032$$`
 
---
-
-A note about notation:
-
-Many texts refer to the probability of success as `\(p\)` and the probability of not success (or failure) as `\(q\)`. 
-
-In some ways, this makes the formula easier to understand:
-
-`$$P(X|p, N)= \frac{N!}{X!(N-X)!}p^Xq^{(N-X)}$$`
+The probability of rolling a 6 on a fair die 3 times out of 5 rolls is .032
 
 ---
 
 What does the Law of Total Probability require to be true?
 
-![](7-binomial_files/figure-html/binom-plot-1.png)&lt;!-- --&gt;
+.pull-left[
+
+```
+##   num     p
+## 1   0 0.402
+## 2   1 0.402
+## 3   2 0.161
+## 4   3 0.032
+## 5   4 0.003
+## 6   5 0.000
+```
+]
+
+.pull-right[
+![](6-binomial_files/figure-html/binom-plot-1.png)&lt;!-- --&gt;
+
 
 
 ```r
 data.frame(num = 0:5, p = dbinom(x = 0:5, size = 5, prob = 1/6), three = as.factor(c(0,0,0,1,0,0))) %&gt;% ggplot(aes(x=num, y=p, fill = three)) + geom_bar(stat="identity") + scale_x_continuous("Number of sixes (X) in five rolls (N)", breaks=c(0:5)) +scale_y_continuous("Probability")+ guides(fill = F) + ggtitle("Binomial Probability Distribution")
 ```
-
+]
 ???
 
 Independent rolls!
@@ -233,11 +245,25 @@ Each probability distribution also has a variance. For the binomial:
 
 Importantly, this means our mean and variance are related in the binomial distribution, because they both depend on `\(\theta\)`. How are they related?
 
+---
+
+## Let's set our mean = variance
+
+
+$$ 
+`\begin{equation}
+N\theta = N\theta(1-\theta) \\
+Np = Np(1-p) \\
+Np = Np(q) \\
+\text{mean} = \text{mean} \times q
+\end{equation}`
+$$
+
+
 --
 
-If you have a discrete distribution with a small N, these estimates may not have a sensible meaning. 
-
-Later we will use the variance to help us make statements about how confident we are with regard to the location of the mean. 
+If q = 1, then `\(E(X) = Var(X)\)`
+Else, `\(E(X) &gt; Var(X)\)` 
 
 ???
 
@@ -245,18 +271,15 @@ Expected value = most likely result of the probability function,
 * the thing we would expect to happen if we have no other information than the parameters of the distribution. 
 *the long run average over an infinite amount of trials or samplings
 
-Sensible mean = number of arms example
-
 ---
 
 .left-column[
 The mean, .835, does not exist in the sample space, and rounding up to 1 and claiming that to be the most typical outcome is not quite right either. 
 ]
 
-![](7-binomial_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
-
-
+- If you have a discrete distribution with a small N, these estimates may not have a sensible meaning
 ---
 
 The **probability mass (density) function** allows us to answer other questions about the sample space that might be more important, or at least realistic.
@@ -274,17 +297,17 @@ I might want to know the proportion of outcomes in the sample space that fall at
 ---
 At or below what outcome in the sample space do .75 of the outcomes fall?
 
-![](7-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 What proportion of outcomes in the sample space that fall at or below a given outcome?
 
 .pull-left[
-![](7-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ]
 .pull-right[
-![](7-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -297,17 +320,15 @@ For example, suppose I give a 40-item multiple choice test, with each question h
 
 * I am worried that students might do well by chance alone.  I would not want to pass students in the class if they were just showing up for the exams and guessing for each question.
 
+--
+
 * What are the parameters in the binomial distribution that will help me address this question?
-
-???
-
-`\(N = 40\)`
-s
-`\(\theta = .25\)`
+  - `\(N = 40\)`
+  - `\(\theta = .25\)`
 
 ---
 
-![](7-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
 
 ???
 I could use this distribution to help me decide if a given student is consistent with a guessing model.
@@ -324,18 +345,20 @@ $$P(24|.25, 40) + P(25|.25,40) + P(26|.25,40) + ... + P(40|.25, 40) $$
 
 In R, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
 
+The probability of getting 23 questions or fewer correct:
+
 
 ```r
-pbinom(q = 10, size = 40, prob = .25)
+pbinom(q = 23, size = 40, prob = .25)
 ```
 
 ```
-## [1] 0.5839041
+## [1] 0.9999972
 ```
 
 --
 
-&lt;!-- `$$1-P(X = 23|\theta = .25, N= 40)= \\ 1-\frac{23!}{23!(40-23)!}(.25)^{23}(1-.25)^{17}$$` --&gt;
+The probability of getting 24 or more questions correct:
 
 ```r
 #Note the use of the Law of Total Probability here
@@ -351,7 +374,7 @@ pbinom(q = 10, size = 40, prob = .25)
 
 Cumulatively, what proportion of guessers will fall below each score?
 
-![](7-binomial_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -362,23 +385,12 @@ Seems safe to assume that, practically speaking, all guessers will fall below th
 
 But, what assumptions are we making and what consequences will they have?
 
---
 
 * The outcome on every trial is binary (also called a Bernoulli trial)
-
---
-
-* The probability of the target outcome (usually called a "success") is the same for all N trials ("with replacement" might be necessary)
-
---
-
+* The probability of the target outcome (usually called a "success") is the same for all N trials
 * The trials are independent `\(P(A\cap B) = P(A|B)P(B)=P(A)P(B)\)`
-
---
-
 * The number of trials is fixed
 
---
 
 In probability and statistics, if the assumptions are wrong then inferences based on those assumptions could be wrong too, perhaps seriously so.
 
@@ -393,7 +405,6 @@ We might have viable alternative models:
   
 
 * **Negative binomial distribution:** Used if we are interested in the number of successes in a series of repeated trials until a specified number of failures are seen 
-  * "What is the probability that a baseball player will get his 2nd hit on his 4th at-bat?"
   * "A child won't return from trick or treating until they get 5 full-size candy bars. What is the probability that they will have to visit 34 homes to get this?"
 
 ---
@@ -407,7 +418,7 @@ Because of the difficulties in calculating large factorials, there is a large-sa
 ]
 
 
-![](7-binomial_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -462,9 +473,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -473,7 +500,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
