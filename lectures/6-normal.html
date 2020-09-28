@@ -60,14 +60,6 @@ Although these values communicate information about probability or likelihood, t
 ![](6-normal_files/figure-html/normal-1.png)&lt;!-- --&gt;
 
 
-```r
-ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
-  stat_function(fun = function(x) dnorm(x)) +
-  scale_x_continuous("Variable X") +
-  scale_y_continuous("Density")+
-  ggtitle("The normal curve") +
-  theme(text = element_text(size = 20))
-```
 
 ---
 
@@ -233,15 +225,20 @@ Note for the standard deviation property
 
 .pull-left[
 
-name              height
----------------  -------
-Luke Skywalker       172
-C-3PO                167
-R2-D2                 96
-Darth Vader          202
-Leia Organa          150
-Owen Lars            178
+```
+## # A tibble: 6 x 2
+##   name           height
+##   &lt;chr&gt;           &lt;int&gt;
+## 1 Luke Skywalker    172
+## 2 C-3PO             167
+## 3 R2-D2              96
+## 4 Darth Vader       202
+## 5 Leia Organa       150
+## 6 Owen Lars         178
+```
 ]
+
+--
 
 .pull-right[
 
@@ -250,21 +247,24 @@ starwars %&gt;%
   select(1:2) %&gt;% 
   mutate_at(2, ~round(x = scale(.), digits = 2)) %&gt;% 
   head(.) %&gt;% 
-  kable()
+  print(.)
 ```
 
-
-
-name              height
----------------  -------
-Luke Skywalker     -0.07
-C-3PO              -0.21
-R2-D2              -2.25
-Darth Vader         0.79
-Leia Organa        -0.70
-Owen Lars           0.10
+```
+## # A tibble: 6 x 2
+##   name           height[,1]
+##   &lt;chr&gt;               &lt;dbl&gt;
+## 1 Luke Skywalker      -0.07
+## 2 C-3PO               -0.21
+## 3 R2-D2               -2.25
+## 4 Darth Vader          0.79
+## 5 Leia Organa         -0.7 
+## 6 Owen Lars            0.1
+```
 
 ]
+
+---
 
 ## Using z-scores
 Given any score, we can calculate the probability of getting a value greater than that z-score. *(Or less than that z-score.)*
@@ -275,6 +275,111 @@ Check out this [z-table](https://www.dummies.com/education/math/statistics/how-t
   - Top is how you can add on to the hundreths place in the decimal
   
 Luke Skywalker's height is z = -.07
+
+--
+
+
+```r
+pnorm(q = -.07, mean = 0, sd = 1)
+```
+
+```
+## [1] 0.4720968
+```
+
+
+---
+
+What does .4721 mean?
+  - The probability of obtaining a z-score less than -.07
+  - The area under the curve from -.07, moving left
+  
+![](6-normal_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+  
+What do we want?
+  - The probabilty of obtaining a z-score of -.07 or something more extreme
+  - This could be more extreme in the positive direction (moving right)
+  - This could be more extreme in the negative direction (moving left)
+  - You could split the difference and it can be in either direction
+
+---
+
+.pull-left[
+.small[
+The probability of getting a z-score of -.07 or greater?
+
+
+```r
+1-pnorm(q = -.07, mean = 0, sd = 1)
+```
+
+```
+## [1] 0.5279032
+```
+
+]
+]
+
+.pull-right[
+![](6-normal_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+---
+
+.pull-left[
+.small[
+What about R2D2? (z-score of -2.25)
+  - Probability of getting a z-score of -2.25 or something even smaller
+  
+
+```r
+pnorm(q = -2.25, mean = 0, sd = 1)
+```
+
+```
+## [1] 0.01222447
+```
+]
+]
+
+.pull-right[
+![](6-normal_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+---
+.pull-left[
+.small[
+Probability of getting a z-score of -2.25 or something larger
+  
+
+```r
+1-pnorm(q = -2.25, mean = 0, sd = 1)
+```
+
+```
+## [1] 0.9877755
+```
+]
+]
+
+.pull-right[
+![](6-normal_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+]
+
+---
+## Some z-scores of note
+
+- `\(z = 1.64\)`; most extreme 5% of the standard normal distribution (the very far tail)
+
+- `\(z = 1.96\)`; most extreme 2.5% of the standard normal distribution (used when splitting the difference of most positive and most negative extremes)
+
+---
+class: inverse
+
+## Next time...
+
+- A quick side track to Bayesian frameworks
+- Sampling distributions and expansions of the normal distribution
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
