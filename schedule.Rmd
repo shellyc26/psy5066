@@ -58,7 +58,7 @@ Your final grade is comprised of three components:
 
 ## Quizzes
 
-Quizzes are intended to assess your understanding of the theoretical principles underlying statistics. They will be administered via Canvas. The Canvas quizzes will be posted at noon on Thursdays, and will be due by **9am on Tuesday**. For example, the first quiz will be posted on Thursday 9/17 at 12pm and will be due 9/22 at 9am. There will be a quiz due every other Tuesday (there are some exceptions – please see the schedule). You may take this quiz as many times as you’d like before the due date/time. I will accept your most *recent* submission. You may not retake the quiz after the due date has passed. You can use resources such as lecture slides, notes, and the textbook for these quizzes. The only resource you *cannot* use are your peers! 
+Quizzes are intended to assess your understanding of the theoretical principles underlying statistics. They will be administered via Canvas. The Canvas quizzes will be posted at noon on Thursdays, and will be due by **9am on Tuesday**. For example, the first quiz will be posted on Thursday 9/17 at 12pm and will be due 9/22 at 9am. There will be a quiz due every other Tuesday (there are some exceptions – please see the schedule). You may NOT resubmit quizzes or take them as many times as you'd like (see the announcement from 9/29). You can use resources such as lecture slides, notes, and the textbook for these quizzes. The only resource you *cannot* use are your peers! 
 
 ## Homework assignments
 
