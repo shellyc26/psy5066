@@ -18,245 +18,258 @@ class: center, middle, inverse, title-slide
 
 
 
-## Frequentist Viewpoint
+## What the vast majority of [insert field here] do
 
-- Frequentist vs. Bayesian
-- **Frequentist** view is sometimes called the "in the long run" view. It defines probability as what is expected to happen in the long run, if the event in question (e.g., tossing a coin, rolling a die) is repeated over and over. *(This is what we've been talking about)*
+**Frequentist** approach
 
-  - Ex: We know that a fair coin will come up on heads 50% of the time: `\(P(H) = .5\)`
-  - A coin flipped a 2 times might come up heads both times (100%), but a head flipped 1000 times would not likely come up heads 1000 times. *In the long run, the proportion of heads will converge on the expected probability.*
+  - Sometimes called the "in the long run" view
+  
+  - Defines probability as what is expected to happen in the long run, if the event in question (e.g., tossing a coin, rolling a die) is repeated over and over and over again
+--
 
----
-## Frequentist Viewpoint
+    - Ex: We know that a fair coin will come up on heads 50% of the time: `\(P(H) = .5\)`
+  
+    - A coin flipped a 2 times might come up heads both times (100%), but a head flipped 1000 times would not likely come up heads 1000 times. *In the long run, the proportion of heads will converge on the expected probability.*
+    
+    - This "long run" view means that in the *short run* the outcomes will not behave as expected. They will show variability around the expected probability outcome.
 
-This "long run" view of probability means that in "short run" the outcomes will not behave as expected—the outcomes will show variability around the expected probability outcome. ]
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-The utility here is that we know what the truth is and can see how closely we approximate it in the long run, but also see what happens in realistic short run circumstances:
-
-- Tossing a coin: proportion of heads, P(H) = .5
-
-- Rolling a die: proportion of sixes, P(6) = .1666
-
-- Selecting a Scrabble tile: proportion of Zs, P(Z)=.01
-
----
-
-The frequentist view is popular because it is objective. The events in question are observable and the definition of probability (proportion of an event in the long run) is calculated in the same way by everyone.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-On the other hand, in real life, "the long run" may not have a simple or realistic meaning: 
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-"The probability that Shelly has her phone with her today is .8, or 80%."
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-At one level, we all have an intuitive feel for what this means and understand it to tell us that Shelly likely does not have her phone.
-
----
-
-But, in the strict sense, that statement doesn’t have a sensible meaning in the language of a frequentist view.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-I either do or I do not have my phone with me today (there are only two outcomes in the sample space); it makes no sense to say that I have 80% of my phone with me today and the event is not repeatable (having my phone today) in the strict sense, so the “long run” doesn’t seem to apply.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-Instead, we have to say something like, on days like today (which can be repeated), the probability that Shelly has her phone with her is .8.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-Probability and statistics involve many such convenient fictions...
 
 ???
-
-They allow us to get on with the job of forecasting from models to data or making inferences when going from data to models.
-
----
-
-The link between probability and statistics is clear when we make the move to inference—the major task in science.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-In probability, the model (the probability distribution, the generating function) is known and informs us what will be true about the data.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-In statistical inference, the model is not known and we let the data inform us about the plausibility of different models that might be true.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-We have to make assumptions about those models in order to sensibly answer the inference question.
+Called "frequentist" bc data is a repeatable random sample. there's frequency.
 
 ---
+## The Frequentist Setup
 
-If this coin is fair (proposed model), I expect the proportion of heads to be .5 in the long run.
+- Define a null hypothesis &amp; an alternative hypothesis
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+- Make a yes-no decision about that null hypothesis (accept or reject)
 
-After a long run (data collection), I find the proportion of heads to be .75.  I reject the "fair coin model."  I could be wrong but will try to limit the mistakes.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-This is statistical inference.  It relies upon assuming some generating process for the events (a model), typically defined by a theoretical probability distribution (here the binomial).  That framework allows us know the likelihood that we are wrong in our inference, especially in the short run.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-Probability and probability distributions provide a frame of reference for making inferences.
-
----
-
-### Distributions and their distinctions.
-
-**Population distribution:** the usually hypothetical set of all possible measurements.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-- In the frequentist view this would be an infinitely long series of events.  
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-- In practice, we have to settle for “really long.”
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-**Sample distribution:** the set of measurements in hand, assumed to be a random sample from the population. 
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-- I will use statistics about the sample to infer what is true about population parameters.
-
----
-
-### Distributions and their distinctions.
-
-**Sampling distribution:** Any sample will be off the mark in the value of a statistic relative to the population.  These statistic values will have a distribution across different random samples of the same size from the same population.  The variability in that distribution will tell us about the precision of the sample as a population estimate and the confidence we can have in claims we make about parameters.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-- Long run version (repeated sampling interpretation)
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-- Theoretical version
-
-*More on both of these when we talk about sampling.*
-
----
-
-## Bayesian statistics
-
-In contrast to the frequentist view, the Bayesian view takes prior beliefs into account in determining the probability of an event.  
-
-- It is a model of rational thinking that adjusts current beliefs about the probability of an event given previous knowledge or beliefs.  
-
-- Because those prior beliefs could come from anywhere, the approach is sometimes labeled "subjectivist," but it need not be hopelessly subjective.
-
-The key contribution can be summarized in Bayes’ Theorem:
-
-`$$\Large \text{A given B} = P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\neg A)P(\neg A)}$$`
-
----
-
-### Bayesian example
-
-I have the personal theory that, generally speaking, Bayesians are smug.  I meet a smug person. What is the probability that I have met a Bayesian?
-
-`$$\large \text{Bayesian | Smug} = P(B|S) = \frac{P(S|B)P(B)}{P(S|B)P(B) + P(S|\neg B)P(\neg B)}$$`
-`\(P(B) = .1 \text{(Bayesian are not common, overall)}\)`
-
-`\(P(S|B) = .8\)`
-
-`\(P(S|\neg B) = .3\)`
-
-`$$\large \text{Bayesian | Smug} = P(B|S) = \frac{(.8)(.1)}{(.8)(.1) + (.3)(.9)} = 0.229$$`
----
-
-`\(P(B) = .1\)`
-
-`\(P(S|B) = .8\)`
-
-`\(P(S|\neg B) = .3\)`
-
-`\(P(B|S) = 0.229\)`
-
-From a pure baserate standpoint I should assume the probability is .1 that this person is a Bayesian.  Bayesian reasoning tells me to take my prior beliefs into account given what I believe to be true about the relation of smugness to Bayesian status.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
---
-But, it also tells me not to be too enthusiastic about this Bayesian attribution.  I should not just flip around my conditional probability of "smugness given Bayesian" and claim the probability is .8 that I’ve just encountered a Bayesian. 
-
---
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-In the language of Bayes Theory, P(B) is called the **prior probability**, P(B|S) is the **posterior probability**, which is an adjustment of P(B) in the face of additional information (smugness).
-
----
-
-The liberal sprinkling of the term, belief, in all this is what garners the label, subjectivist.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-There is no need for P(B) or P(S|B) to be point estimates.  We can express uncertainty about these beliefs by making them *probability distributions*. The result is a posterior probability distribution.  I can use actual data to help me decide which of several different models about Bayesian-smugness beliefs is the better account.
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-There is no controversy when the prior information is based on solid scientific evidence.
-
----
-
-## Another Bayesian example
-
-My doctor calls me with the results of a diagnostic test for a very rare but always fatal medical condition. I ask about the nature of the test and he tells me it has a sensitivity of .99 and specificity of .99, based on a large number of clinical studies.  How worried should I be? What is the probability that I will actually get this disease?
+- Repeat
 
 --
 
-Assume that in the population, 1 out of every 10,000 people gets the condition: P(Disease) = .0001. 
+The `\(p\)`-value is the probability of getting your test statistic (or something more extreme), given that the null hypothesis is true. 
+  - If it's a very low probability (less than 5%) of getting that test statistic (+) under the null hypothesis, then we reject the null in favor of the alternative
+  
+  - But is this explicit support of the null? Can you ever prove the null?
 
-The sensitivity tells me that P(Positive Test|Disease) is .99.
+---
+## The Upside
 
-The specificity tells me that P(Positive Test|No Disease) is .01.
+- Objective view of probability
+- The only way to incorporate prior beliefs is in the study design (informal). There is no way to formally model the experimenter's prior beliefs.
+- Assumes that paramters are fixed, unknown constants
+- Less computationally intensive
 
-What is the probability that I will get this disease given that I have a positive test?  P(Disease|Positive Test) = .0098
+.center[
+&lt;img src="images/frequOwl.png", width = "45%"&gt;
+]
+
+---
+
+## The Bayesian Idea
+
+- Start out with a set of hypotheses. You don't know what is true, but you have some beliefs about which are plausible and which are not.
+
+- Observe the data
+
+- Revise those beliefs
+  - If data are consistent with a hypothesis --&gt; belief strengthened
+  - If data are inconsistent with a hypothesis --&gt; belief weakened
+  
+--
+
+- Inherently subjective
+- Updating beliefs based on new evidence
+- Parameters are unknown and random -- wind up with distributions of parameters
+- More computationally intensive
 
 ???
+The bayesian view can be summarized as "belief revision"
 
-Before transitioning, need to know probability of rare disease.
+---
+## Probability vs. Likelihood
 
-`$$\frac{(.99)(.0001)}{(.99)(.0001)+(.01)(.9999)}$$`
+[Gallistel 2015 article](https://www.psychologicalscience.org/observer/bayes-for-beginners-probability-and-likelihood)
 
+--
+
+
+**Probability attaches to results**
+
+**Likelihood attaches to hypotheses**
+
+
+???
+To frame an understanding of the Bayesian framework, it's worth focusing on the difference between **probability** and **likelihood**
+
+---
+
+## Probability attaches to *results*
+
+Results are mututally exclusive &amp; exhaustive
+ - **Mututally exclusive** = 2 events cannot occur at the same time
+   - In a coin flip, you can't get both a heads and tails
+    
+ - **Exhaustive** = events cover the entire sample space
+   - Coin flip = 2 possibilities, roll of die = 6 possibilities etc.
+
+--
+
+Law of total probability
+ - sum of all probabilities = 1
+  
+--
+  
+Ex:
+ - You flip a coin 10 times. You predict the outcome of each of your 10 flips.
+ - 11 possible results (0 correct predictions - 10 correct predictions)
+ - The probabilities of all those possible results sum to 1
+ - The actual result (what you predicted) will only be 1 of the possible results. 
+
+---
+
+## Likelihood attaches to *hypotheses*
+
+Hypotheses are NOT mutually exclusive
+ - Data: Participant A predicts 7 out of 10 outcomes
+ - H1: Participant A guessed and got lucky
+ - H2: Prticipant A might be somewhat clairvoyant
+   - that *might be* part is not a statement of certainty
+   - they may be or they may not be clairvoyant
+   - H1 is not mutually exclusive from H2
+
+--
+
+Hypotheses are NOT exhaustive
+ - The sky's the limit
+ - IRL, we basically never test even close to all the possible hypotheses 
+  
+--
+
+Can we say that the likelihood of a hypothesis + likelihood of another hypothesis sums to 1 (or to anything)?
+ - Likelihoods don't have inherent meaning
+ - Relative likelihoods (ratio of 2 likelihoods) do have meaning
+
+---
+## A Binomial Probabiliity Function
+
+.pull-left[
+The parameters of the binomial distribution are `\(N\)` &amp; `\(\theta\)`
+  - We assume these are given
+  - We use this to compute **probabilities**
+  
+
+
+```
+##    Successes Probabilities
+## 1          0  0.0009765625
+## 2          1  0.0097656250
+## 3          2  0.0439453125
+## 4          3  0.1171875000
+## 5          4  0.2050781250
+## 6          5  0.2460937500
+## 7          6  0.2050781250
+## 8          7  0.1171875000
+## 9          8  0.0439453125
+## 10         9  0.0097656250
+## 11        10  0.0009765625
+```
+
+
+```r
+sum(data$Probabilities)
+```
+
+```
+## [1] 1
+```
+]
+
+.pull-right[
+![](7-bayes_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+## A Binomial Likelihood Function
+
+.pull-left[
+We are given the number of successes &amp; number of trials
+  - 7 correct and 10 trials
+  - These become the "parameters"
+  - *"What are the different probabilities of success?"*
+  - Continuous! AUC = 1
+  
+
+
+```
+##   Probabilities  Likelihoods
+## 1          0.00 0.000000e+00
+## 2          0.01 1.164359e-12
+## 3          0.02 1.445671e-10
+## 4          0.03 2.395219e-09
+## 5          0.04 1.739462e-08
+## 6          0.05 8.037891e-08
+```
+
+]
+
+.pull-right[
+![](7-bayes_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+## Binomial Likelihood function
+
+.pull-left[
+What does this mean?
+ - Rather than varying # of success, we're varying probabilities of getting 7 correct out of 10 trials -- a **distribution** of successful predictions
+ - The probability of getting 7 correct out of 10 trials is unlikely to be .1
+ - The probability of getting 7 correct out of 10 trials is more likely to be .7
+ - The probability of getting 7 correct out of 10 trials being .5 is not as likely as a probability of .7, but it wouldn't be shocking either.
+]
+
+.pull-right[
+![](7-bayes_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+---
+## Binomial Likelihood function
+
+Hypothesis 1: The probabilitiy of getting 7 correct out of 10 trials is .7
+
+Hypothesis 2: The probability of getting 7 correct out of 10 trials is .5
+
+--
+
+Which hypothesis is more *likely*? 
+  - Get the likelihood of Hypothesis 1; P(.7) = L(0.27)
+  - Get the likelihood of Hypothesis 2; P(.5) = L(0.12)
+  - Look at the ratio of 0.27 to 0.12, which is **2.28**
+  
+--
+  
+Interpretation:
+  - Given our experimental results, Hypothesis 1 is ~2x as likely as Hypothesis 2 (a little more than 2x as likely)
+  
 ---
 ## `\(p\)`-values
-
-Soon enough, we'll get to how `\(p\)`-values are derived from data. But it's worth bringing them up now, because they are statments about probability. 
-
-What are `\(p\)`-values representing the probability of?
-
---
-
-Which view of probability, frequentist or Bayesian, are `\(p\)`-values associated with?
-
----
-
-## Likelihood under different views
 
 .pull-left[
 ### Frequentist
 
 `$$p = P(\text{Data}|H_0)$$`
+The land of probabilities
 ]
 
 .pull-right[
 ### Bayesian
 `$$\text{Bayes Factor} = \frac{P(\text{Data}|H_A)}{P(\text{Data}|H_0)}$$`
+The land of likelihoods
 ]
 
-Which is right?
+---
+## Which is right?
 
 * `\(p\)`-values and Bayes Factor are highly correlated ([Wetzels et al., 2011](../readings/Wetzels_etal_2011.pdf)).
 
@@ -286,6 +299,7 @@ class: inverse
 ## Next time...
 
 Sampling distributions
+
 `\(t\)`-distributions
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

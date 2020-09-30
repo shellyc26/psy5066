@@ -21,6 +21,8 @@ navbar:
         href: "lectures/6-binomial.html"
       - text: "6b-Normal"
         href: "lectures/6-normal.html"
+      - text: "7-Bayes"
+        href: "lectures/7-bayes.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
