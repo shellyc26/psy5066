@@ -27,7 +27,7 @@ We want to make inferences about a population
 
 - The population distribution is a *theoretical probability distribution* that has some mathematical form
 
-- We want ot know how the population distribution influences the distribution of **sample** statistics
+- We want to know how the population distribution influences the distribution of **sample** statistics
 
 - Ultimately we want to use a sample distribution to understand the population distribution
 
@@ -49,7 +49,7 @@ We're using our sample as an estimate
 
 |             | Population<br>Distribution |  Sample<br>Distribution |
 |:-----------:|:-----------:|:-----------:|:-----------:|
-| Distiribution consists of:    |    Individual observations<br> $x$    | Individual observations<br> $x$       | 
+| Distribution consists of:    |    Individual observations<br> $x$    | Individual observations<br> $x$       | 
 | Central tendency |    $\mu$   | $\bar{x}$      | 
 | Dispersion | $\sigma^2$ | $s^2$ |
 |            | $\sigma$ | $s$ |
@@ -203,7 +203,7 @@ Sampling distributions can be constructed around any statistic -- ranges, standa
   - To keep it simple, let's just focus on the mean 
   - Statistic will be our *estimator* of the population
 
-- **Sampling distriubtion $\neq$ sample distribution**
+- **Sampling distribution $\neq$ sample distribution**
 
 ---
 ## Sampling Distributions
@@ -598,9 +598,9 @@ print(c(ci_lb_z, ci_ub_z))
 ---
 
 
-|             | Population<br>Distribution |  Sample<br>Distribution | Sampling<br>distribution |
+|             | Population<br>Distribution |  Sample<br>Distribution | Sampling<br>Distribution |
 |:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
-| Distiribution consists of:    |    Individual observations<br> $x$    | Individual observations<br> $x$   | Statistics<br> $\bar{x}, s, s^2$ | 
+| Distribution consists of:    |    Individual observations<br> $x$    | Individual observations<br> $x$   | Statistics<br> $\bar{x}, s, s^2$ | 
 | Central tendency |    $\mu$   | $\bar{x}$      | $\mu_M$ |
 | Dispersion | $\sigma^2$ | $s^2$ | $\sigma^2_M$ |
 |            | $\sigma$ | $s$ | SEM $\sigma_M$ |
