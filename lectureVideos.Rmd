@@ -49,11 +49,25 @@ The following links should take you to the appropriate YouTube video.
 ## Week 4
 #### 10/6
 
-- Introduction to Bayesian Statistics
+- [Introduction to Bayesian Statistics](https://youtu.be/giLi4I9utZo)
 - **Quiz 2 due by 9am**
 - HW 2 posted
 
 #### 10/8
 
-- Sampling distributions & $t$-distributions
+- [Sampling distributions & $t$-distributions](https://youtu.be/H5hlZbuHuW4)
 - [Zoom Link for Check-in 5 with Shelly](https://wustl.zoom.us/j/92791152076?pwd=Tmw3RFlpakVHemhoWVlyS1Y3WGpMQT09)
+
+## Week 5
+#### 10/13
+
+- **EXAM 1 OPENS**
+  - Electronic copy will post to Canvas at 9:30am 
+  - Hard copies available outside the Psychology Building (Somers Family Hall) from 8:30am-9:30am. I will be at the main entrance of the building (under the over-hang thing).
+- **HW 2 due by 9am**
+
+#### 10/15
+
+- **EXAM 1 CLOSES**
+  - Electronic versions must be submitted to Canvas by 9:30am
+  - Hard copies must be returned to me between 8:30am-9:30am in the same location as the exam pick-up.

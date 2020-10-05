@@ -13,3 +13,7 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 ## Homework 1
 - [Homework 1 is here](homework/homework_1.html)
 - Due on 9/29 by 9am
+
+## Homework 2
+- [Homework 2 is here](homework/homework_2.html)
+- Due on 10/13 by 9am
