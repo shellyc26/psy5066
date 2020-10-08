@@ -12,6 +12,46 @@ output:
 
 # Announcements
 
+#### **Exam 1 Policies -- 10/8**
+Exam 1 is next week! There was a Zoom check-in today with me. I have recorded that check-in and posted it to the Lecture Videos page.
+
+Things to keep in mind regarding the exam itself:
+
+- **This is a "hand written" exam.** I know that's kinda weird since we're fully online and asynchronous. But it is important that you do NOT use R, Excel, SPSS, SAS, python, or any other program/programming language to complete the exam. You MAY use a calculator as you see fit. Options on how to complete the exam:
+  - Download file from Canvas; print at home; write on exam in pencil/pen; scan at home; upload finished Canvas
+  - Download file from Canvas; use a stylus to "write" on the exam digitally; upload finished exam to Canvas
+  - Pick up a physical copy of the exam from the Psychology department between 8:30-9:30am on Tuesday; drop off the physical copy at the Psychology department between 8:30-9:30am on Thursday
+  - **_If none of these options work, please contact me ASAP_**
+
+- The exam will cover all topics presented in the slides. Your textbook is just a supplement to this material -- I will *not* test you material that is presented in the textbook that we do not talk about in the slides. Slides/videos are your #1 tool.
+
+- There will be a combination of multiple choice questions, short answer questions, and actual problems to work through. There will be no R code, and you are not expected to open R at all for this exam (quite the opposite, in fact).
+
+- You are not to work with anyone on this exam. This means you may NOT work with: peers, students (past or current), friends, family, tutors, etc. It must be YOUR OWN work. If it comes to my attention that you have been working with someone in the class, both parties will receive an automatic 0 and will not be able to retake the exam. If it comes up that you alone have been working with someone outside of the class, you will get an automatic 0 and will not be allowed to retake the exam. 
+
+- You will NOT be provided a formula sheet since this is an open note exam.
+
+- We will be answering any clarifying questions about exam problems until **Wednesday 10/14 at 5pm**. We will do our best to answer your questions, however we will not give you any tips or hints as to how to solve it. To ask a question, please email all 3 of us (Jayde, April, and Shelly) -- one of us will respond. After 5pm on Wednesday, the only questions we will answer will be regarding technical issues (e.g., you're having trouble uploading to Canvas etc.).
+
+#### **Homework 1 Notes -- 10/8**
+Homework 1 will be returned today (via Canvas) and grades will post (also on Canvas). If you would like to resubmit your homework to try to earn points back, you must turn this in to your AI absolutely no later than **Sunday 10/11 by midnight**.
+
+Remember, there is NO PARTIAL CREDIT on homeworks. It's all-or-nothing. If you don't like your grade, you can turn in a resubmit to earn back points:
+
+  - If you got a low overall grade, it's very, very likely that just a few minor tweaks will get you back on track.
+  - Before you get discouraged from a low score, please actually look at the document that was returned to you. You might find that you would get full points back for multiple questions with just 1 or 2 fixes here and there.
+  - Please directly email your resubmits to your AI -- don't go through Canvas.
+
+Here is some feedback for the entire class from April & Jayde:
+
+  - Be sure to label figures informatively. This means including a title, axis labels, and labels for any lines added to the plot.
+  - Be sure to actually print your results! It's great to save values to objects (e.g., `meanAge <- mean(Age)`), but if you don't actually print out `meanAge`, then we can't see if it's correct! 
+  - After you knit your PDF, you should give it one last look through before you submit it. Make sure you can locate your own answers to each question. If you can't find it in your own PDF, then neither can we. Try to distinguish your responses from the question text in some way.
+  - Include all your code or methods for answering questions. A few people did somehow find the names of the outlying countries, but did not indiciate *how* they figured that out, i.e., by providing the code or simply stating they visually searched and referenced the data.frame. 
+  - Some of you presented answers very nicely and might be interested in [checking out the `kable()` function in the `knitr` package](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html). It's not at all required, though. 
+
+If you earn points back with your resubmission, your AI will manually update your grade. Please get in touch with us if you have any questions.
+
 #### **Update to Quiz Policy -- 9/29**
 Canvas sucks. It doesn't let us program quizzes in a way that works with our current setup. As such, I am changing the policy on quizzes such that you will **_not_** be able to re-take quizzes as many times as you'd like before the due date. Instead, it will be like any other in-person quiz; you show up, take the quiz, and get a score. Quizzes will still be due by 9am on Tuesdays. Answers to the quizzes will appear on Canvas at 9:30am on Tuesdays, so you can always check your answers.
 
