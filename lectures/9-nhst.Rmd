@@ -460,7 +460,7 @@ p = pnorm(-2.32)*2
 
 The probability that the average female applicant's score would be at least 2.32 units away from the average male score is `r round(p, 3)`.
 
-This whole process is called the $z$-test. It's almost never used IRL, but it's a useful tool in terms of understanding what's happening. We use it when we want to know if our mean is the same or different from a population mean. Is our mean from 9 females different from the population mean of males. 
+This whole process is called the $z$-test. It's almost never used IRL, but it's a useful tool in terms of understanding what's happening. We use it when we want to know if our mean is the same or different from a population mean. 
 
 ---
 

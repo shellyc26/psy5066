@@ -250,7 +250,7 @@ cv = qnorm(mean = mu, sd = sem, p = .05, lower.tail = F)
 ```
 
 
-```{r student null and alt, echo = F}
+```{r student null and alt, echo = F, warning=FALSE, message=FALSE}
 mu = 100
 s = 20
 
@@ -275,7 +275,8 @@ ggplot(data.frame(x = seq(70, 130)), aes(x)) +
   scale_x_continuous("Means", breaks = seq(70,130,10)) +
   scale_y_continuous(NULL, breaks = NULL) + 
   theme( text = element_text(size = 20),
-    legend.position = "bottom")
+    legend.position = "bottom") +
+  labs(fill = "")
 
 ```
 
@@ -283,7 +284,7 @@ ggplot(data.frame(x = seq(70, 130)), aes(x)) +
 
 
 .pull-left[
-```{r ref.label="student null and alt", fig.height=6, echo = F}
+```{r ref.label="student null and alt", fig.height=6, echo = F, warning=FALSE, message=FALSE}
 
 ```
 
@@ -313,7 +314,7 @@ mean = 115
 ```
 
 
-```{r ref.label="student null and alt", fig.height=7, fig.width=7, echo = F}
+```{r ref.label="student null and alt", fig.height=7, fig.width=7, echo = F, warning=FALSE, message=FALSE}
 
 ```
 ]
@@ -336,7 +337,7 @@ n = 40
 ```
 
 
-```{r fig.height=7, fig.width=7, echo = F}
+```{r fig.height=7, fig.width=7, echo = F, warning = FALSE, message=FALSE}
 
 mu = 100
 
@@ -367,7 +368,7 @@ ggplot(data.frame(x = seq(70, 130)), aes(x)) +
 ```
 ]
 .pull-right[
-$$\text{Critical Value} = 100 + 1.645\frac{20}{\sqrt{40}} = 105.2$$
+$$\text{CV} = 100 + 1.645\frac{20}{\sqrt{40}} = 105.2$$
 
 $$Z_1 = \frac{105.2 - 110}{\frac{20}{\sqrt{40}}} = -1.52$$
 ```{r}
@@ -383,14 +384,14 @@ What if we decrease the significance level to .025?
 
 
 .pull-left[
-```{r, echo = F}
+```{r, echo = F, warning = FALSE, message=FALSE}
 mean = 110
 n = 20
 cv = qnorm(mean = mu, sd = sem, p = .025, lower.tail = F)
 ```
 
 
-```{r ref.label="student null and alt", fig.height=7, fig.width=7, echo = F}
+```{r ref.label="student null and alt", fig.height=7, fig.width=7, echo = F, warning= FALSE, message = FALSE}
 
 ```
 ]
@@ -562,7 +563,7 @@ means %>%
 
 
 .pull-left[
-```{r ref.label="student null and alt", echo = F}
+```{r ref.label="student null and alt", echo = F, warning=FALSE, message=FALSE}
 
 ```
 
@@ -623,7 +624,7 @@ Figuring out how common Type I and Type II errors are in a literature requires a
 
 - How often $H_0$ is true.
 
-[Ioannidis (2005)](../readings/Ioannidis_2005.pdf) demonstrates that given R (the ratio of $H_0$ false over $H-0$ true), we can calculate the **positive predictive value** of a finding, which is the likelihood that $H_1$ is true given we found a significant result:
+[Ioannidis (2005)](../readings/Ioannidis_2005.pdf) demonstrates that given R (the ratio of $H_0$ false over $H_0$ true), we can calculate the **positive predictive value** of a finding, which is the likelihood that $H_1$ is true given we found a significant result:
 
 $$\frac{(1-\beta)R}{(1-\beta)R+\alpha}$$
 ???

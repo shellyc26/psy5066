@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>NHST II</title>
     <meta charset="utf-8" />
@@ -174,7 +174,7 @@ We begin by defining the location in the null hypothesis distribution beyond whi
 ]
 ]
 
-![](11-nhst_files/figure-html/student null-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/student null-1.png)&lt;!-- --&gt;
 ???
 
 ### How do we figure out where this region is?
@@ -215,7 +215,7 @@ What if the null hypothesis is false?  How likely are we to correctly reject the
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
-![](11-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 
 
@@ -234,13 +234,13 @@ null with probability of .28 ( `\(\beta\)` ).
 
 
 
-![](11-nhst_files/figure-html/student null and alt-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/student null and alt-1.png)&lt;!-- --&gt;
 
 ---
 
 
 .pull-left[
-![](11-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 Once the critical value and alternative value is established, we can determine the location of the critical value in the alternative distribution.
 ]
@@ -271,7 +271,7 @@ The choice of 110 as the mean of `\(H_1\)` is completely arbirtary. What if we b
 
 
 
-![](11-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
 `$$Z_1 = \frac{107.4 - 115}{\frac{20}{\sqrt{20}}} = -1.71$$`
@@ -294,10 +294,10 @@ What if instead we increase the sample size?  This will reduce variability in th
 
 
 
-![](11-nhst_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
-`$$\text{Critical Value} = 100 + 1.645\frac{20}{\sqrt{40}} = 105.2$$`
+`$$\text{CV} = 100 + 1.645\frac{20}{\sqrt{40}} = 105.2$$`
 
 `$$Z_1 = \frac{105.2 - 110}{\frac{20}{\sqrt{40}}} = -1.52$$`
 
@@ -321,7 +321,7 @@ What if we decrease the significance level to .025?
 
 
 
-![](11-nhst_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -345,43 +345,43 @@ I strongly recommend playing around with different configurations of `\(N\)`, `\
 
 More generally we can determine the relationship between effect size and power for a constant `\(\alpha\)` (.05) and sample size ( `\(N = 20\)` ).
 
-![](11-nhst_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 
 Likewise, we can display the relationship between sample size and power for a constant `\(\alpha\)` and effect size.
 
-![](11-nhst_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
 ---
 
 Power changes as a function of significance level for a constant effect size and sample size.
 
-![](11-nhst_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ---
 
 For a two-tailed test, we divide the rejection area equally in the two tails. If `\(\alpha = .05\)`, then each tail contains .025 and critical values will be 1.96 standard errors away from the null mean.
 
-![](11-nhst_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 
 The relationship of power to effect size is more complicated because deviations above and below the null mean are relevant.
 
 
-![](11-nhst_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
 A two-tailed test is less powerful (more conservative) than a one-tailed test for the same sample size.
 
 
-![](11-nhst_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ---
 
-![](11-nhst_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -389,7 +389,7 @@ A two-tailed test is less powerful (more conservative) than a one-tailed test fo
 
 
 .pull-left[
-![](11-nhst_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ]
 .pull-right[
@@ -448,7 +448,7 @@ Figuring out how common Type I and Type II errors are in a literature requires a
 
 - How often `\(H_0\)` is true.
 
-[Ioannidis (2005)](../readings/Ioannidis_2005.pdf) demonstrates that given R (the ratio of `\(H_0\)` false over `\(H-0\)` true), we can calculate the **positive predictive value** of a finding, which is the likelihood that `\(H_1\)` is true given we found a significant result:
+[Ioannidis (2005)](../readings/Ioannidis_2005.pdf) demonstrates that given R (the ratio of `\(H_0\)` false over `\(H_0\)` true), we can calculate the **positive predictive value** of a finding, which is the likelihood that `\(H_1\)` is true given we found a significant result:
 
 `$$\frac{(1-\beta)R}{(1-\beta)R+\alpha}$$`
 ???
@@ -459,18 +459,18 @@ Note that given publication bias, or the tendancy to only publish significant re
 
 Let's make some assumptions. If psychology studies use `\(\alpha = .05\)` and are good at achieving adequate power ( `\(1-\beta = .80\)` ), how does the choice of hypothesis affect PPV?
 
-![](11-nhst_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 ---
 
 However, there are many reasons to think that psychology studies are underpowered. Typical power may be closer to .5 or even worse. 
 
-![](11-nhst_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 
 In addition to being under-powered, there's recognition that research practices have inflated family-wise error, making `\(\alpha\)` much bigger than it should be. 
 
-![](11-nhst_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 ---
 
 ![](images/ioannidis.png)
@@ -528,9 +528,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -539,7 +555,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
