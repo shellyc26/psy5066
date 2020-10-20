@@ -1,0 +1,60 @@
+---
+title: 'Psych 5066: Homework #3'
+author: YOUR NAME HERE
+output: 
+  html_document
+---
+
+# Instructions
+
+Please complete this assignment using the RMarkdown file provided (<a href="homework_3.Rmd" download="homework_3.Rmd">download here</a>). Be sure to (1) include your name in the preamble, (2) save the file, including your last name **AND THE NAME OF YOUR AI** (e.g., "cooper_jayde_homework_3.Rmd"). When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files.
+
+  - If you are in Psychology or Computational & Data Sciences: your AI is Jayde
+  - If you are in any of the other programs: your AI is April
+
+There will be empty gray sections below each question. Please put all R `CODE` within these gray chunks. They will behave as normal R code. If you are asked to explain something or write a few sentences, please do that *outside* of the gray chunks. That way, when you knit, your sentences will show up as normal text, but all of your code will be in a designated code chunk.
+
+You will be able to retry questions to earn full credit, but here are some things to keep in mind:
+
+1. You can only do this for questions that you attempted on the first try. If you skip a question, you will not be able to resubmit for full credit. 
+
+2. For each question, the points are all-or-nothing, meaning you cannot receive partial credit if you correctly answer only some of the question (this includes the description/explanation of results).
+
+3. Late assignments will receive 50% of the points earned, with no opportunity to resubmit your answers for a higher grade (unless otherwise discussed with Dr. Cooper, Jayde, or April). For example, if you correctly answer questions and earn 10 points but submit the assignment late, you will receive 5 points for the assignment. 
+
+4. You are allowed to Google things. *However*, if you use code from an outside source (meaning not the lecture slides or the R help documentation), then you must provide a **working link** to the website you used. You don't need to use APA formatting or anything. Just a working url. You may discuss homework assignments with your classmates; however, it is important that you complete each assignment on your own and **do not simply copy someone else’s code**. If we believe one student has copied another’s work, both students will receive a 0 on the homework assignment and will not be allowed to resubmit the assignment for points.
+
+5. In the instructions, when it says **_by hand_**, what we mean is that you should not use a function that is built into R to complete the task. For example, if I ask you to find the mean *by hand*, you should **not** use the `mean()` function. However, you can (and should!) use your variables. So for instance, if I ask you to find the `mean()` by hand, you may do something like `sum(variableX)/length(variableX)`. This would be an appropriate *by hand* calculation. (You don't need to type `(3 + 5 + 5 + 17) / 4`...you can still use your variables). 
+
+You will not need a specific dataset for this homework assignment, and you also should not need any packages for this assignment.
+
+Good luck!
+
+## Question 1 (5 pts)
+
+Women in the U.S. Air Force have hands that are 6.9 inches long on average (from the tip of the middle finger to the heel of the hand). The standard deviation is .34 inches. Assume that hand length is normally distributed.
+
+* What proportion would have hands 7 inches or longer?
+* What proportion would have hands 6 inches or shorter?
+* What proportion would have hands between 6.5 and 7.2 inches long?
+* Of 3000 women in the U.S. Air Force, how many would have hands 7.5 inches (the mean for male Air Force personnel) or longer?
+* How long would a woman's hand have to be to put her among the 10% with the longest hands in the U.S. Air Force?
+
+## Question 2 (2 pts)
+
+You had the opportunity to work with data from a sample of 38 children about the age (in months) at which they first stood without support. The mean you calculated was 13.00 months.
+
+If the population mean for children standing on their own is 13.20 months with a standard deviation of 2, what is the probability of randomly selecting a sample of 38 children who stood on their own by the average age of 13.00 months or earlier? 
+
+## Question 3 (3 pts)
+
+A teacher was interested in the mathematical ability of graduating high school seniors in her state. She gave a 32-item test to a random sample of 75 seniors from her state with the following results: The $\Sigma{x}$ = 1275 and $\Sigma{x^2}$= 23525. Establish a 95% confidence interval about the mean, and write a sentence that explains the interval you found to a high school principal.
+
+## Question 4 (5 pts)
+
+In your own words, describe this table. Do so in language that an average **freshman in high school** could understand (aka no jargon!)
+
+|             |   Reject $H_0$   |   Do not reject  |
+|------------:|:----------------:|:----------------:|
+|  $H_0$ True |   $\alpha$   | $1-\beta$ |
+| $H_0$ False | $1-\alpha$ |   $\beta$  |
