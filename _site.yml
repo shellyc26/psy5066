@@ -25,6 +25,10 @@ navbar:
         href: "lectures/7-bayes.html"
       - text: "8-Sampling"
         href: "lectures/8-sampling.html"
+      - text: "9-NHST 1"
+        href: "lectures/9-nhst.html"
+      - text: "10-NHST 2"
+        href: "lectures/10-nhst.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
