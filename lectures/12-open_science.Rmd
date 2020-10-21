@@ -18,21 +18,17 @@ Sometimes labelled **"the reform movement"** -- (psychological) scientists tryin
 
 Within psychology, much of the force behind this movement has been driven by social and personality psychologists. 
 
-  - **Open** because one of the primary problems of the replication crisis was the lack of transparency. Stapel, Bem, everyone did work in private; kept data secret; buried, hid, lost key aspects of research. Opaque was normal.
+  - **Open** because one of the primary problems of the replication crisis was the lack of transparency. Everyone did work in private; kept data secret; buried, hid, lost key aspects of research. Opaque was normal.
   
 ---
 
 ### Dates
 
-2011-2012 -- Bem ESP paper, False Positive Psychology paper, Diederik Stapel fraud case, Hauser fraud case, Sanna fraud case, Smeesters fraud case. 
-  - an interesting time to start graduate school...
+2011-2012 -- Bem ESP paper, False Positive Psychology paper, [Diederik Stapel fraud case](https://www.apa.org/science/about/psa/2011/12/diederik-stapel), [Hauser fraud case](https://www.sciencemag.org/news/2012/09/harvard-psychology-researcher-committed-fraud-us-investigation-concludes), [Sanna fraud case](https://www.nature.com/news/uncertainty-shrouds-psychologist-s-resignation-1.10968), [Smeesters fraud case](https://www.sciencemag.org/news/2012/06/rotterdam-marketing-psychologist-resigns-after-university-investigates-his-data). 
 
 2013 -- Center for Open Science is founded
 
-2016 -- Innagural meeting of the Society for the Improvement of Psychological Science. 100 attendees. 
-
-  - Attendees include: David Condon, Grace Binion, Rita Ludwig, and Sanjay Srivastava
-
+2016 -- Innagural meeting of the Society for the Improvement of Psychological Science. 
 
 ---
 
@@ -154,11 +150,8 @@ Increased flexibility: Markdown can be used to create
 
 By combining Markdown with R... 
 
----
-
-![](images/rmarkdown.jpg)
-
-(Yes, we'll talk about this in PSY 612)
+???
+what you see is what you get editor
 
 ---
 
@@ -225,6 +218,8 @@ OSF connects to PsyArXiv, which is the primary preprint server for psychology
 * Make your work available to the public (equity and inclusion)
 
 * Post reports of work that can't get published (avoid the file drawer, improve everyone's work)
+
+* Even citable in journals with doi
 ]
 
 ---
@@ -311,29 +306,6 @@ Many journals now allow RRs, and even RRR (registered **replication** reports)
 
 - Preregistration needs to be specific, otherwise it doesn't work
 
-
----
-
-### Growing trends
-
-How much are these tools used by scientists right now?
-
---
-
-Some fields and subfields are more active than others. 
-
-- Personality psychology has reputation for being an early adopter (and no wonder, with David Condon on the PsyArXiv steering committee and Sanjay Srivastava as the former president of SIPS)
-
-Some subfields are developing...
-
-- Developmental psychology: push for openness (Jenn Pfiefer and Kate Mills)
-- Neuroscience: pioneers leading the way (Elliot Berkman and Rob Chavez)
-
---
-
-UO Psychology is kinda special. (2 of 11 job ads containing language about open science this year)
-
-
 ---
 
 ### Meta-science tools
@@ -353,6 +325,9 @@ New methods of conducting science on science -- often developed to find fraud, b
 
 ![](images/psychacc.png)
 
+???
+The Psychological Science Accelerator is a globally distributed network of psychological science laboratories (currently over 500), representing over 70 countries on all six populated continents, that coordinates data collection for democratically selected studies.
+
 ---
 .pull-left[
 ![](images/sips.png)
@@ -365,7 +340,8 @@ New methods of conducting science on science -- often developed to find fraud, b
 
 Traditional status hierarchies are being upset. Many early career researchers have contributed to open science, even as graduate students. 
 
-
+???
+society for the improvement of psychological science
 ---
 
 ## Criticisms
@@ -378,8 +354,7 @@ It is worth admitting that, unless incentive structures don't change, there can 
 
 A more legitimate criticism is that adoption of these methods can fool researchers into believing that all research using these methods is "good" and all research not using them are "bad."
 
-A timely example: ["Preregistration is redundant, at best." (Oct 31, 2019). Szollosi et al.](https://psyarxiv.com/x36pz/)
-
+Example: ["Preregistration is redundant, at best." (Oct 31, 2019). Szollosi et al.](https://psyarxiv.com/x36pz/)
 
 
 ---
@@ -388,4 +363,4 @@ class: inverse
 
 ## Next time...
 
-One-sample tests
+Chi-squared tests

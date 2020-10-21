@@ -126,26 +126,7 @@ Ask students to define replication
   - Low precision (“differences” are enough)
   - No non-nil null hypotheses
   - Weak, slow progress as a science
-
----
-
-### Focusing on $p$ -values
-
-Let's start with some intuition. 
-
-Imagine you conduct two studies. Assuming your **alpha is .05** and the **null is true**, what is the probability that the first study or the second study or both studies yield significant results?
-
-- Less than 5%?
-- Exactly 5%? 
-- More than 5%?
-
-???
-
-Correct answer is 9.75%
-
-$P(A \cup B) = P(A) + P(B) - P(A\cap B)$
-
-$P(A \cup B) = .05 + .05 - (.05*.05) = .10 - .0025$
+  - [see paper/tweet by Eiko Fried](https://twitter.com/EikoFried/status/1289181554737065985)
 
 ---
 ### Focusing on $p$ -values
@@ -153,7 +134,7 @@ $P(A \cup B) = .05 + .05 - (.05*.05) = .10 - .0025$
 Imagine rolling a die. 
 
 - What’s the probability you roll a 2?
-    - $P(6) = 1/20 = 16.7\%$
+    - $P(2) = 1/6 = 16.7\%$
 
 - If you roll the die twice, what’s the probability that you get a 2 at least once? $30.6\%$
 
@@ -222,9 +203,7 @@ Only 36% of the studies were replicated, despite high power and claimed fidelity
 
 ![](images/replicability.png)
 
----
 
-![](images/replicability2.png)
 ---
 
 ###Why is it so hard to replicate?

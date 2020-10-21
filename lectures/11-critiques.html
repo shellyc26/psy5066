@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Critiques of NHST</title>
     <meta charset="utf-8" />
@@ -133,26 +133,7 @@ Ask students to define replication
   - Low precision (“differences” are enough)
   - No non-nil null hypotheses
   - Weak, slow progress as a science
-
----
-
-### Focusing on `\(p\)` -values
-
-Let's start with some intuition. 
-
-Imagine you conduct two studies. Assuming your **alpha is .05** and the **null is true**, what is the probability that the first study or the second study or both studies yield significant results?
-
-- Less than 5%?
-- Exactly 5%? 
-- More than 5%?
-
-???
-
-Correct answer is 9.75%
-
-`\(P(A \cup B) = P(A) + P(B) - P(A\cap B)\)`
-
-`\(P(A \cup B) = .05 + .05 - (.05*.05) = .10 - .0025\)`
+  - [see paper/tweet by Eiko Fried](https://twitter.com/EikoFried/status/1289181554737065985)
 
 ---
 ### Focusing on `\(p\)` -values
@@ -160,7 +141,7 @@ Correct answer is 9.75%
 Imagine rolling a die. 
 
 - What’s the probability you roll a 2?
-    - `\(P(6) = 1/20 = 16.7\%\)`
+    - `\(P(2) = 1/6 = 16.7\%\)`
 
 - If you roll the die twice, what’s the probability that you get a 2 at least once? `\(30.6\%\)`
 
@@ -229,9 +210,7 @@ Only 36% of the studies were replicated, despite high power and claimed fidelity
 
 ![](images/replicability.png)
 
----
 
-![](images/replicability2.png)
 ---
 
 ###Why is it so hard to replicate?
@@ -374,9 +353,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -385,7 +380,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
