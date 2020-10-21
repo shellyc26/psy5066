@@ -1,0 +1,102 @@
+---
+title: "Quiz 3 Answer Key"
+output: html_document
+---
+
+# Minihacks {#minihacks}
+
+You are welcome to work with a partner or in a small group of 2-3 people. Please feel free to ask the lab leader any questions you might have!
+
+## Minihack 1: Binomial Distributions
+
+You are playing Dungeons and Dragons and, to the Dungeon Master's displeasure, you run immediately to the dragon that is meant to be encountered at the end of her carefully-crafted campaign.
+
+1. To defeat the dragon, you must roll `5` `20`-sided dice, and get a `20` on each die. What is the probability of getting this result?
+
+```{r}
+# x = 5; you're trying to get a "success" of "20" 5x
+# size = 5; you're rolling 5 times 
+# prob = 1/20; you're trying to get a specific value out of a 20 sided dice
+dbinom(x = 5, size = 5, prob = 1/20)
+```
+
+2. Your dungeon master decides to take pity on you. She tells you, if you roll greater than `2` (i.e., `3` or more) `20`s she will let you slay the dragon. What is the probability of getting more than `2` `20`s when rolling `5` `20`-sided dice?
+
+```{r}
+# q = 2; how many successes you're trying to get more of
+# size = 5; you're rolling 5 of the dice
+# prob = 1/20; you're trying to get a specific calue out of a 20 sided dice
+# lower.tail = FALSE; the key here is the "and greater". That means we want the upper tail (aka, not the lower tail)
+pbinom(q = 2, size = 5, prob = 1/20, lower.tail = FALSE)
+```
+
+*I'll accept either `q=2` or `q=3`*
+
+3. You begin to cry. Between your sobs you tell her you will only roll if the probability is greater than `.10`. She acquiesces. What number of `6`s or greater is associated with a cumulative probability of `.10` when rolling `5` `20`-sided dice?
+
+```{r}
+# p = .10; probability 
+# size = 5; rolling 5 different dice
+# prob = 1/20
+# lower.tail = FALSE; want the upper tail
+#
+qbinom(p = .10, size = 5, prob = 1/20, lower.tail = FALSE) 
+```
+
+*Note this question was coded into Canvas incorrectly. Everyone should have full credit for this now*
+
+## Minihack 2: Normal Distributions
+
+From data released from the Graduate Coffee Drinkers Association (GCDA), you know coffee consumption is normally distributed among graduate students, with the average student drinking `5` cups of coffee per day and 68% of students drinking between `4` and `6` cups of coffee per day (i.e., the distribution has a standard deviation of `1`).
+
+4. What is the probability that a randomly selected graduate student will drink `2 or less` cups of coffee per day?
+
+```{r}
+pnorm(q = 2, mean = 5, sd = 1)
+```
+
+5. Sample `50` graduate students from the distribution three times. Plot each of these samples as a histogram. Are the histograms identical? Why or why not?
+
+```{r}
+hist(rnorm(n = 50, mean = 5, sd = 1))
+hist(rnorm(n = 50, mean = 5, sd = 1))
+hist(rnorm(n = 50, mean = 5, sd = 1))
+```
+
+**FALSE** this histograms are not identical.
+
+6. Ever since finding the data from the GCDA, you have begun to worry about how much coffee you are drinking compared to the average graduate student. Calculate the probability that a graduate student would drink exactly `10` cups of coffee per day.
+
+```{r}
+dnorm(x = 10, mean = 5, sd = 1)
+```
+
+7. Using your large and highly-caffeinated brain, you remember that the probability of any one value in a continuous distribution is `0.00`. Calculate the probability that a graduate student would drink `10 or more` cups of coffee a day.
+
+```{r}
+pnorm(q = 9, mean = 5, sd = 1, lower.tail = FALSE)
+```
+
+*Note this question was coded into Canvas incorrectly. Everyone should have full credit for this now*
+
+## Minihack 3: Other Distributions to Extend your Knowledge
+
+*Note these were meant to help you expand your knowledge to other distributions. Even though we haven't covered this yet, you should still have understood the premise (all you're doing is changing the underlying distribution). However, since this is a quiz and not a "lab" or exercise, I will give full credit on the remaining 3 questions.*
+
+8. A magician accosts you in the street, and demands you think of a number between `1` and `100`. You think of `37` and the magician guesses `37`. Assuming the choice of numbers follows a uniform distribution, what is the probability that the magician guessed your number at random? Use `dunif()` to prove your intuition is correct.
+
+```{r}
+dunif(x = 37, min = 0, max = 100)
+```
+
+9. Shortly after your run in with the magician, an advocate of null hypothesis testing approaches you and demands that you calculate the probability of getting a $\chi^2$-value of greater than `3.00` with `10` degrees of freedom. Use `chisq()` to calculate the probability.
+
+```{r}
+pchisq(q = 3.00, df = 10, lower.tail = FALSE)
+```
+
+10. Seeing that their test statistic was non-significant, the null hypothesis tester becomes irate and demands you calculate the probability of getting `3.00 or greater` with `10` degrees of freedom from a t-distribution. Google (or use your intuition) to determine how to calculate a cumulative probability from a t-distribution.
+
+```{r}
+pt(q = 3, df = 10, lower.tail = FALSE)
+```
