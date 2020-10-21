@@ -12,6 +12,9 @@ output:
 
 # Announcements
 
+#### **NHST Slide & HW3 Table Changes - 10/21**
+I changed the table on slide 33 of the NHST slides as well as the table on HW3 ( $1-\alpha$ and $1-\beta$ were swapped).
+
 #### **Exam 1 Policies -- 10/8**
 Exam 1 is next week! There was a Zoom check-in today with me. I have recorded that check-in and posted it to the Lecture Videos page.
 
