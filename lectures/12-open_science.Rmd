@@ -148,8 +148,6 @@ Increased flexibility: Markdown can be used to create
 - books
 - websites
 
-By combining Markdown with R... 
-
 ???
 what you see is what you get editor
 
@@ -228,7 +226,7 @@ OSF connects to PsyArXiv, which is the primary preprint server for psychology
 
 OSF also allows you to preregister a project. 
 
-**[Preregistration](https://www.theguardian.com/science/blog/2013/jun/05/trust-in-science-study-pre-registration)** is creating a time-stamped, publicly availble, frozen document of your research plan prior to executing that plan. 
+**[Preregistration](https://www.theguardian.com/science/blog/2013/jun/05/trust-in-science-study-pre-registration)** is creating a time-stamped, publicly available, frozen document of your research plan prior to executing that plan. 
 
 ![](images/prereg.png)
 
