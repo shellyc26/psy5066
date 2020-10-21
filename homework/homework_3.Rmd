@@ -56,5 +56,5 @@ In your own words, describe this table. Do so in language that an average **fres
 
 |             |   Reject $H_0$   |   Do not reject  |
 |------------:|:----------------:|:----------------:|
-|  $H_0$ True |   $\alpha$   | $1-\beta$ |
-| $H_0$ False | $1-\alpha$ |   $\beta$  |
+|  $H_0$ True |   $\alpha$   | $1-\alpha$ |
+| $H_0$ False | $1-\beta$ |   $\beta$  |

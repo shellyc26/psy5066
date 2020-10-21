@@ -15,6 +15,11 @@ library(tidyverse)
 library(pwr)
 ```
 
+class: inverse
+
+*Note: slide 33 changed on 10/21*
+
+---
 
 ## Review of key Points
 
@@ -612,8 +617,8 @@ Consider where $\alpha$, $\beta$ and power fall in this grid.
 
 |             |   Reject $H_0$   |   Do not reject  |
 |------------:|:----------------:|:----------------:|
-|  $H_0$ True |   $\alpha$   | $1-\beta$ |
-| $H_0$ False | $1-\alpha$ |   $\beta$  |
+|  $H_0$ True |   $\alpha$   | $1-\alpha$ |
+| $H_0$ False | $1-\beta$ |   $\beta$  |
 
 What is the sum of these cells?
 
