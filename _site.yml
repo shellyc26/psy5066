@@ -29,6 +29,10 @@ navbar:
         href: "lectures/9-nhst.html"
       - text: "10-NHST 2"
         href: "lectures/10-nhst.html"
+      - text: "11-Critiques"
+        href: "lectures/11-critiques.html"
+      - text: "12-Open Science"
+        href: "lectures/12-open_science.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
