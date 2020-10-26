@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Comparing two dependent means</title>
     <meta charset="utf-8" />
@@ -244,7 +244,7 @@ To calculate the standard error of our difference scores, we simply divide the s
 `$$\frac{\hat{\sigma}_\Delta}{\sqrt{N}} = 26.58$$`
 ---
 
-![](17-two_means_III_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](16-two_means_III_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -262,7 +262,7 @@ In this case, N refers to the number of pairs, not the total sample size.
 
 ---
 
-![](17-two_means_III_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](16-two_means_III_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -326,7 +326,7 @@ ggpubr::ggpaired(data = gulls, cond1 = "At", cond2 = "Away", line.color = "grey"
                  title = "Some gulls approach food more quickly when \npeople look away from them")
 ```
 
-![](17-two_means_III_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](16-two_means_III_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -516,12 +516,108 @@ wilcox.test(gulls$At, gulls$Away, paired = T)
 ```
 
 ---
+background-image: url("images/wrap-up1.jpeg")
+background-size: contain
 
+---
+
+background-image: url("images/wrap-up2.jpeg")
+background-size: contain
+
+---
+
+background-image: url("images/wrap-up3.jpeg")
+background-size: contain
+
+---
+
+background-image: url("images/wrap-up4.jpeg")
+background-size: contain
+
+---
+
+background-image: url("images/wrap-up5.jpeg")
+background-size: contain
+
+---
+
+background-image: url("images/wrap-up6.jpeg")
+background-size: contain
+
+---
+
+Because we're using probability theory, we have to assume independence between trials.
+
+* independent rolls of the die
+* independent draws from a deck of cards
+* independent... tests of hypotheses?
+
+
+What happens when our tests are not independent of one another?
+
+* For example, what happens if I only add a covariate to a model if the original covariate-less model is not significant?
+
+* Similarly, what happens if I run multiple tests on one dataset?
+
+---
+
+The issue of independence between tests has long been ignored by scientists. It was only when we were confronted with impossible-to believe results (people have ESP, listening to "When I'm Sixty-Four" by The Beatles makes you younger) that we started to doubt our methods.
+
+And an explosion of fraud cases made us revisit our incentive structures. Maybe we weren't producing the best science we could...
+
+.pull-left[
+![](images/replicability2.png)
+]
+
+.pull-right[
+
+Since then (2011), there's been greater push to revisit "known" effects in psychology and related fields, with sobering results. 
+
+The good news is that things seem to be changing, rapidly.
+]
+
+---
+
+Independence isn't the only assumption we have to make to conduct hypothesis tests. 
+
+We also make assumptions about the underlying populations.
+
+![](images/null.png)
+.pull-left[Normality]
+.pull-right[Homogeneity of variance]
+
+&amp;nbsp;&amp;nbsp;
+Sometimes we fail to meet those assumptions, in which case we may have to change course. 
+
+
+.small[Picture credit: Cameron Kay]
+
+---
+
+How big of a violation of the assumption is too much?
+
+--
+
+* It depends. 
+
+
+How do you know your operation X measures your construct A well?
+
+--
+
+* You don't. 
+
+What should alpha be?
+
+--
+
+* You tell me. 
+
+
+---
 class: inverse
 
-### Next time...
-
-Wrapping up *t*-tests and the big picture
+Exam 2 (omgggggg!)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -568,9 +664,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -579,7 +691,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {

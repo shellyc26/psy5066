@@ -19,109 +19,6 @@ library(kableExtra)
 library(ggpubr)
 ```
 
-
-# Today
-
-* One mean versus the population (review)
-
-* Two independent means
-
----
-
-# One-sample *t*-test
-
-The one-sample t-test is appropriate when a single sample mean is compared to a population mean but the population standard deviation is unknown.  
-
-A sample estimate of the population standard deviation is used instead.  
-
-The appropriate sampling distribution is the t-distribution, with N-1 degrees of freedom.
-
-$$t_{df=N-1} = \frac{\bar{X}-\mu}{\frac{\hat{\sigma}}{\sqrt{N}}}$$
----
-
-## A new example
-
-We can again use the Census at School database, which includes six questions asking students to rate the following issues on a scale from 0 (not important) to 1000 (very important):
-
-* Reducing pollution
-* Recycling
-* Conserving water
-* Conserving energy (electricity, gas, oil for heating, lighting, car travel)
-* Owning a computer
-* Access to the internet
-
-A random sample of 247 Oregon high schoolers can be compared to the means from high schoolers from all 50 states.
-
-
----
-
-```{r, results = 'hide', warning = F, message = F}
-school = read_csv(here("data/census_at_school.csv"))
-school = school %>% filter(ClassGrade >= 9)
-
-usa = read_csv(here("data/census_at_school_usa.csv"))
-usa = usa %>% filter(ClassGrade >= 9 & Region != "OR")
-```
-
----
-
-The null and alternative hypotheses:
-
-$$H_0: \bar{X}_{OR} = \mu_{USA}$$
-
-$$H_1: \bar{X}_{OR} \neq \mu_{USA}$$
-
-```{r, eval = F}
-t.test(school$Importance_reducing_pollution, 
-       mu = mean(usa$Importance_reducing_pollution, na.rm=T),
-       alternative = "two.sided", conf.level = .95)
-```
-
-```{r, echo = F, results = 'asis'}
-variables = names(usa)[grepl("Importance", names(usa))]
-USA_means = usa %>%
-  select(variables) %>%
-  mutate_all(function(x) as.numeric(gsub("\\D+","",x))) %>%
-  summarise_all(mean, na.rm=T)
-
-school %>%
-  select(variables) %>%
-  mutate_all(function(x) as.numeric(gsub("\\D+","",x))) %>% 
-  gather("variable", "scores") %>%
-  nest(scores) %>%
-  mutate(OR = map(data, function(x) mean(x$scores, na.rm=T))) %>%
-  mutate(usa = t(USA_means)[,1]) %>%
-  mutate(t = map2(data, usa, function(x,y) t.test(x$scores, mu = y))) %>%
-  mutate(t.value = map(t, "statistic")) %>%
-  mutate(t.value = map(t.value, 1)) %>%
-  mutate(p.value = map(t, "p.value")) %>%
-  select(variable, OR, usa, t.value, p.value) %>%
-  unnest() %>%
-  mutate(variable = gsub("Importance_", "", variable)) %>%
-  kable(., digits = 2, col.names = c("Issue", "USA Mean", "OR mean", "t value", "p value")) %>%
-  kable_styling()
-```
-
----
-
-.small[The lsr package has t-test functions that provide more detailed output.]
-
-```{r}
-lsr::oneSampleTTest(x = school$Importance_reducing_pollution, 
-       mu = mean(usa$Importance_reducing_pollution, na.rm=T))
-```
-
----
-
-### Assumptions
-
-* Normality
-* Independence
-
-If population scores are normally distributed, the sampling distribution of the mean will also be normally distributed.
-
-If the data are independent, then the *t* distribution chosen by $df = N-1$ will provide an accurate approximation of the sampling distribution of the mean for purposes of making inferences.
-
 ---
 
 ## Independent samples *t*-test
@@ -543,7 +440,7 @@ class: inverse
 
 * Assumptions
 * Cohen's D 
-* Matrix algebra
+
 
 
 

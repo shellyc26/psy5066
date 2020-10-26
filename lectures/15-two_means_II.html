@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Comparing two means II</title>
     <meta charset="utf-8" />
@@ -18,14 +18,6 @@ class: center, middle, inverse, title-slide
 
 
 
-
-## Reminders
-
-Quiz 9 is on Thursday next week
-
-Sign up for your oral exam time slot ASAP!
-
----
 
 ## Last time
 
@@ -66,10 +58,8 @@ psych::describe(congress$age)
 ```
 
 ```
-##    vars   n  mean    sd median trimmed   mad  min max range  skew kurtosis
-## X1    1 542 57.58 10.92  57.95   57.66 10.82 29.8  93  63.2 -0.02    -0.13
-##      se
-## X1 0.47
+##    vars   n  mean    sd median trimmed   mad  min max range  skew kurtosis   se
+## X1    1 542 57.58 10.92  57.95   57.66 10.82 29.8  93  63.2 -0.02    -0.13 0.47
 ```
 ---
 
@@ -78,7 +68,7 @@ psych::describe(congress$age)
 congress %&gt;% ggplot(aes(x = age)) + geom_histogram(bins = 50, color = "white") + labs(x = "Age in years", y = "Frequency", title = "Age Distribution of Congressional \nMembers in 113th Congress", caption = "This is pretty normal.") + theme_bw(base_size = 20)
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ---
 
 
@@ -86,7 +76,7 @@ congress %&gt;% ggplot(aes(x = age)) + geom_histogram(bins = 50, color = "white"
 congress %&gt;% ggplot(aes(x = age, fill = party)) + geom_histogram(bins = 50, color = "white", position = "dodge") + labs(x = "Age in years", y = "Frequency", title = "Age Distribution of Congressional \nMembers in 113th Congress", caption = "This is pretty normal.") + scale_fill_manual(values = c("blue", "red")) + theme_bw(base_size = 20)
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -99,16 +89,12 @@ psych::describeBy(congress$age, group = congress$party)
 ## 
 ##  Descriptive statistics by group 
 ## group: D
-##    vars   n  mean    sd median trimmed   mad  min max range  skew kurtosis
-## X1    1 259 59.55 10.85   60.4   59.85 10.53 29.8  93  63.2 -0.19     0.02
-##      se
-## X1 0.67
-## -------------------------------------------------------- 
+##    vars   n  mean    sd median trimmed   mad  min max range  skew kurtosis   se
+## X1    1 259 59.55 10.85   60.4   59.85 10.53 29.8  93  63.2 -0.19     0.02 0.67
+## ------------------------------------------------------------ 
 ## group: R
-##    vars   n  mean    sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 283 55.78 10.68   56.1   55.67 9.79 31.6 89.7  58.1 0.13    -0.11
-##      se
-## X1 0.64
+##    vars   n  mean    sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 283 55.78 10.68   56.1   55.67 9.79 31.6 89.7  58.1 0.13    -0.11 0.64
 ```
 
 
@@ -166,7 +152,7 @@ $$
 ## [1] 4.071568
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -178,7 +164,7 @@ ggerrorplot(congress, x = "party", y = "age", desc_stat = "mean_ci", xlab = "Par
             color = "party", palette = c("red", "blue"))
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -190,7 +176,7 @@ ggerrorplot(congress, x = "party", y = "age", desc_stat = "mean_ci", xlab = "Par
   stat_compare_means(comparisons = test)
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -219,7 +205,7 @@ For example, traditional benchmarks might suggest that the average young adult r
 
 We can plot these effects against our population mean:
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -306,12 +292,12 @@ Another useful metric is the overlap between the two population distributions --
 
 ---
 
-![](16-two_means_II_files/figure-html/overlap_plot-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/overlap_plot-1.png)&lt;!-- --&gt;
 
 
 ---
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 
 These distributions have 86.1 % overlap.
@@ -476,7 +462,7 @@ shapiro.test(x = congress$age)
 hist(congress$age, col = "purple", border = "white")
 ```
 
-![](16-two_means_II_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](15-two_means_II_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -500,138 +486,6 @@ wilcox.test(age~party, data = congress)
 ## W = 44488, p-value = 1.674e-05
 ## alternative hypothesis: true location shift is not equal to 0
 ```
-
-
----
-
-## Matrix algebra
-
-For now, we're going to focus on how we can use matrix algebra to represent the underlying models of these tests, but we're going to ignore the probability/significance part. 
-
-At it's heart, the independent samples *t*-test proposes a model in which our best guess of a person's score is the mean of their group. 
-
-We can use **linear combinations** of both rows and columns to generate these "best guess" scores. 
-
----
-Assume your data take the following form:
-
-.pull-left[
-
-`$$\large \mathbf{X} = \left(\begin{array}
-{rr}
-\text{Party} &amp; \text{Age} \\
-D &amp; 85.9  \\
-R &amp; 78.8  \\
-\vdots &amp; \vdots  \\
-D &amp; 83.2 
-\end{array}\right)$$`
-]
-
-.pull-right[
-What are your linear combinations of columns?
-
-
-What are your linear combinations of rows?
-]
-
---
-
-**Linear combinations of columns:** 
-
-`$$\large \mathbf{T_C} = \left(\begin{array}
-{rr}
-0, 1
-\end{array}\right)$$`
-
----
-Assume your data take the following form:
-
-.pull-left[
-
-`$$\large \mathbf{X} = \left(\begin{array}
-{rr}
-\text{Party} &amp; \text{Age} \\
-D &amp; 85.9  \\
-R &amp; 78.8  \\
-\vdots &amp; \vdots  \\
-D &amp; 83.2 
-\end{array}\right)$$`
-]
-
-.pull-right[
-What are your linear combinations of columns?
-
-
-What are your linear combinations of rows?
-]
-
-
-
-**Linear combinations of rows:** 
-
-`$$\mathbf{T_R} = \left(\begin{array}
-{rr}
-\frac{1}{N_D} &amp; 0 \\
-0 &amp; \frac{1}{N_R} \\
-\vdots &amp; \vdots  \\
-\frac{1}{N_D} &amp; 0 \\
-\end{array}\right)$$`
-
----
-
-`$$(T_R)X(T_C) = M$$`
-
-This set of linear combinations calculates the different means of our two groups. That's great! 
-
-
-But there's another way. We can create a single transformation matrix, T, that's very simple:
-
-`$$\mathbf{T} = \left(\begin{array}
-{rr}
-1 &amp; 0 \\
-1 &amp; 1 \\
-\vdots &amp; \vdots  \\
-1 &amp; 0 \\
-\end{array}\right)$$`
-
-Using this matrix, we can solve a different equation:
-
-`$$(T'T)^{-1}T'X = (b)$$`
-In this case, *b* will be a vector with 2 scalars.
-
----
-
-
-```r
-X = congress$age
-T_mat = matrix(1, ncol = 2, nrow = length(X))
-T_mat[congress$party == "D", 2] = 0
-```
-
-```
-##      [,1] [,2]
-## [1,]    1    1
-## [2,]    1    0
-## [3,]    1    0
-## [4,]    1    0
-## [5,]    1    0
-## [6,]    1    1
-```
-
-`$$(T'T)^{-1}T'X = (b)$$`
-
-
-```r
-solve(t(T_mat) %*% T_mat) %*% t(T_mat) %*% X
-```
-
-```
-##           [,1]
-## [1,] 59.550965
-## [2,] -3.768633
-```
-
-What do these numbers represent?
 
 ---
 
@@ -686,9 +540,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -697,7 +567,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {

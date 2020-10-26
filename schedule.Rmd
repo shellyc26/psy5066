@@ -29,8 +29,8 @@ LSR readings can be found in the free, online textbook, [_Learning Statistics wi
 | 7    | 10/27 | Critique of NHST        | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf)   |          | HW 3            |  |
 | -    | 10/29 | Open science practices                | [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)          |            |             | Shelly |
 | 8    | 11/3  | Chi-Square test                      | LSR Ch 12   | Quiz 4    |             |
-| -    | 11/5  | Comparing two means 1                    | LSR Ch 13  |            |             | Jayde |
-| 9    | 11/10 | Comparing two means 2                   | LSR Ch 13                  | | HW 4            |
+| -    | 11/5  | One-sample tests                    | LSR Ch 13  |            |             | Jayde |
+| 9    | 11/10 | Comparing two means 2 (parts 1 & 2)                   | LSR Ch 13                  | | HW 4            |
 | -    | 11/12 | Comparing dependent means  | LSR Ch 13 | Quiz 5 |    | Shelly |
 | 10   | 11/17 | **Exam 2**                    |                    |            |             |
 | -    | 11/19 | **Exam 2**                    |                    |     |             |
