@@ -28,15 +28,15 @@ LSR readings can be found in the free, online textbook, [_Learning Statistics wi
 | -    | 10/22 | Hypothesis testing 2        | LSR Ch 11   |        |             | April |
 | 7    | 10/27 | Critique of NHST        | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf)   |          | HW 3            |  |
 | -    | 10/29 | Open science practices                | [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)          |            |             | Shelly |
-| 8    | 11/3  | Chi-Square test                      | LSR Ch 12   | Quiz 4    |             |
+| 8    | 11/3  | Chi-Square test                      | LSR Ch 12   | Quiz 4 (now due 11/4)    |             |
 | -    | 11/5  | One-sample tests                    | LSR Ch 13  |            |             | Jayde |
-| 9    | 11/10 | Comparing two means 2 (parts 1 & 2)                   | LSR Ch 13                  | | HW 4            |
-| -    | 11/12 | Comparing dependent means  | LSR Ch 13 | Quiz 5 |    | Shelly |
+| 9    | 11/10 | Comparing two means 2 (parts 1 & 2)                   | LSR Ch 13                  | | HW 4 (cancelled)            |
+| -    | 11/12 | Comparing dependent means  | LSR Ch 13 | Quiz 5 (cancelled) |    | Shelly |
 | 10   | 11/17 | **Exam 2**                    |                    |            |             |
 | -    | 11/19 | **Exam 2**                    |                    |     |             |
-| 11   | 11/24 | Introduction to model comparisons |    |   |    |   |
+| 11   | 11/24 | One-way ANOVA & $F$ distribution | LSR Ch 14   |   |    |   |
 | -    | 11/16 | *Thanksgiving Break* |  |  |  |
-| 12   | 12/1  | One-way ANOVA & $F$ distribution | LSR Ch 14 |   |  |  |
+| 12   | 12/1  | Introduction to model comparisons |  |   |  |  |
 | -    | 12/3  | Multiple comparisons & contrasts | LSR Ch 14 |    | HW 5  | April |
 | 13   | 12/8  | Two between-subjects factors | LSR Ch 16 |   |   |   |
 | -    | 12/10 | Interactions & ANCOVA | LSR Ch 16 | Quiz 6 |   | Jayde |
