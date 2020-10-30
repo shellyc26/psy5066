@@ -33,6 +33,10 @@ navbar:
         href: "lectures/11-critiques.html"
       - text: "12-Open Science"
         href: "lectures/12-open_science.html"
+      - text: "13-Chi Square"
+        href: "lectures/13-chisq.html"
+      - text: "14-One Sample"
+        href: "lectures/14-one_sample.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework

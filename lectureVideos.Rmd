@@ -100,25 +100,23 @@ The following links should take you to the appropriate YouTube video.
 ## Week 8
 #### 11/3
 
-- Chi-Square Test
+- [Chi-Square Test](https://youtu.be/9oBpECAs4sc)
 - **Quiz 4 due by 9am**
 - HW 4 posted by noon
 
 #### 11/5
 
-- Comparing Two Means 1
+- [One-sample tests](https://youtu.be/5Te2tZsqjD0)
 - [Zoom Check-in 8 with Jayde](https://wustl.zoom.us/j/92763597580?pwd=UzJKSW0xemZBY3dIVTRob2s5T1dyUT09)
 
 ## Week 9
 #### 11/10
 
-- Comparing Two Means 2
-- **HW 4 due by 9am**
+- Comparing Two Means
 
 #### 11/12
 
 - Comparing Dependent Means
-- **Quiz 5 due by 9am**
 - [Zoom Check-in 9 with Shelly](https://wustl.zoom.us/j/92678939360?pwd=NHF4TCsxY1ppQWhIZGZtenMzRFpnUT09)
 
 ## Week 10
