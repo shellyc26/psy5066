@@ -19,7 +19,6 @@ library(kableExtra)
 library(ggpubr)
 ```
 
----
 
 ## Independent samples *t*-test
 
@@ -95,7 +94,6 @@ $$\large{\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sig
 The first part of this equation pools the two variance estimates by weighting each one based on sample size. 
 
 The second part changes the units from scores to differences in means. 
-  * Recall that in hypothesis testing, we're not interested in the likelihood of scores, but the likelihood of statistics. 
   
 ---
 
@@ -138,8 +136,8 @@ psych:: describe(school$Hanging_Out_With_Friends_Hours)
 ```{r, message = F, warning = F}
 school %>%
   ggplot(aes(x = friends)) + 
-   geom_density(color = "red", size = 2, fill = "red", alpha = .3) + 
-  geom_histogram(aes(y = ..density..), bins = 50) + 
+  geom_histogram(aes(y = ..density..), bins = 50) +
+  geom_density(color = "red", size = 2, fill = "red", alpha = .3) + 
  labs(x = "Hours per week", title = "Full sample") + theme_minimal(base_size = 20)
 ```
 ]
@@ -149,8 +147,8 @@ school %>%
 school %>%
   filter(friends < 168) %>%
   ggplot(aes(x = friends)) + 
+  geom_histogram(aes(y = ..density..), bins = 50) +
   geom_density(color = "red", size = 2, fill = "red", alpha = .3) + 
-  geom_histogram(aes(y = ..density..), bins = 50) + 
   labs(x = "Hours per week", title = "Mathematically possible") + theme_minimal(base_size = 20)
 ```
 ]
@@ -312,7 +310,7 @@ t.test(friends~Gender, data = school_new, var.equal = T)
 
 ## Confidence intervals
 
-**Confidence intervals** are used to communicate the precision in our how well our statistic estimates the parameter. As a reminder, they are grounded in frequenst probability: if we repeated our experiment many times, we would expect that 95% of the time, our 95% confidence interval would capture the true population parameter.
+**Confidence intervals** are used to communicate the precision in how well our statistic estimates the parameter. As a reminder, they are grounded in frequenst probability: if we repeated our experiment many times, we would expect that 95% of the time, our 95% confidence interval would capture the true population parameter.
 
 In an independent sample's t-test, you have calculated three different statistics, and so you can construct three different confidence intervals.
 

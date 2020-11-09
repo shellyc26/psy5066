@@ -380,13 +380,7 @@ Recall the three assumptions of Student's *t*-test:
 * Normality
 * Homogeneity of variance
 
-There are no good statistical tests to determine whether you've violated the first -- it depends on how you sampled your population. 
-
---
-
-* Draw phone numbers at random from a phone book?
-* Recruit random sets of fraternal twins?
-* Randomly select houses in a city and interview the person who answers the door?
+There are no good statistical tests to determine whether you've violated the first -- it depends on how you sampled your population.
 
 ---
 

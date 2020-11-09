@@ -6,7 +6,6 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -327,94 +326,6 @@ ggpubr::ggpaired(data = gulls, cond1 = "At", cond2 = "Away", line.color = "grey"
 ```
 
 ![](16-two_means_III_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
-
----
-
-## The variance of difference scores
-
-With the raw data, the calculation of the variance of the standard deviation scores `\(\large (\hat{\sigma}_\Delta)\)` is intuitive. Sometimes you will not have access to the raw data, but will want to conduct the test. 
-
-
-
-For example, you read a study that compares a sample of Oregon students to known US benchmarks on several variables using multiple one-sample *t*-tests; you want to know whether OR students respond more to one variable than the other.
-
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; N &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Mean &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; SD &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Importance_reducing_pollution &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 194 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 792.15 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 937.03 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Importance_recycling_rubbish &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 194 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 714.85 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 652.65 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-
-It turns out that the mean difference score is the same as the difference in means, so that's an easy part of the calculation. 
-
-But the calculation of the standard deviation becomes a little more complicated:
-
-`$$\large \hat{\sigma}_\Delta = \sqrt{\hat{\sigma}^2_{M_1} + \hat{\sigma}^2_{M_2} - 2r(\hat{\sigma}_{M_1}\hat{\sigma}_{M_2})}$$`
-
-
-```r
-sd_1 = sd(school$Importance_reducing_pollution, na.rm=T)
-sd_2 = sd(school$Importance_recycling_rubbish, na.rm=T)
-cor_12 = cor(school$Importance_reducing_pollution, school$Importance_recycling_rubbish, use = "pairwise")
-
-var_d = sd_1^2 + sd_2^2 -2*cor_12*sd_1*sd_2
-sqrt(var_d)
-```
-
-```
-## [1] 746.1475
-```
-
-```r
-sd(school$Importance_reducing_pollution-school$Importance_recycling_rubbish, na.rm=T)
-```
-
-```
-## [1] 746.1475
-```
-
-???
-
-Useful for meta-analysis or getting more information from articles you read.
-
-What else can this equation tell us?
-
-* What happens if the two variables are highly correlated with each other?
-
-
----
-
-`$$\large \hat{\sigma}_\Delta = \sqrt{\hat{\sigma}^2_{M_1} + \hat{\sigma}^2_{M_2} - 2r(\hat{\sigma}_{M_1}\hat{\sigma}_{M_2})}$$`
-
-What happens if `\(\large r\)` is large and positive?
-
---
-
-What happens if `\(\large r\)` is small and positive?
-
---
-
-What happens if `\(\large r\)` is negative?
 
 ---
 
