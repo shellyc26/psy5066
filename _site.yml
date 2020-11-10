@@ -42,7 +42,7 @@ navbar:
       - text: "15b-Comparing Means II"
         href: "lectures/15-two_means_II.html"
       - text: "16-Comparing Dependent Means"
-        href: "lectuers/16-two_means_III.html"
+        href: "lectures/16-two_means_III.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
