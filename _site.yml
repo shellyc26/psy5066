@@ -37,6 +37,12 @@ navbar:
         href: "lectures/13-chisq.html"
       - text: "14-One Sample"
         href: "lectures/14-one_sample.html"
+      - text: "15a-Comparing Means I"
+        href: "lectures/15-two_means_I.html"
+      - text: "15b-Comparing Means II"
+        href: "lectures/15-two_means_II.html"
+      - text: "16-Comparing Dependent Means"
+        href: "lectuers/16-two_means_III.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
