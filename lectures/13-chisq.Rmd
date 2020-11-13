@@ -17,6 +17,9 @@ library(knitr)
 
 ## Recap
 
+*Note: Slide 32 was updated on 11/13/2020*
+
+
 Typically, the probability distribution function for a distribution is regulated by two parameters:
 
  - mean
@@ -446,7 +449,7 @@ attachment
 ```
 
 Practice:
-- Work through the full chi-square test on your own time. You should get .008. See if you're right!
+- Work through the full chi-square test on your own time. You should get .003. See if you're right!
 - Calculate the effect size (odds ratio). You can choose what you're calculating, but note that your interpretation will change!
 
 ---
