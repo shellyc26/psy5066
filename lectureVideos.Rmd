@@ -128,3 +128,41 @@ The following links should take you to the appropriate YouTube video.
 #### 11/19
 
 - **Exam 2 Closes**
+
+## Week 11
+#### THANKSGIVING BREAK!
+
+## Week 12
+#### 12/1
+
+- [Model Comparisons Approach](https://youtu.be/JIKigo20R3I)
+  - *Note: There are slight errors on slides 18 & 36. The video recording added some corrections. Please pay attention to the video for those slides!*
+- HW 5 posted
+
+#### 12/3
+
+- Oneway ANOVA
+- [Zoom Check-in 10 with April](https://wustl.zoom.us/j/98200455792?pwd=WHlEYXB1WFZ0VUpaUTJ4Z1ZWMDNtUT09)
+
+## Week 13
+#### 12/8
+
+- Multiple Comparisons & Contrasts
+- **HW 5 due by 9am**
+
+#### 12/10
+
+- Two between-subjects factors
+  - Taught by our very own Jayde Homer!
+- [Zoom Check-in 11 with Jayde](https://wustl.zoom.us/j/99714102106?pwd=aCtOMURzZkw3MFRhNXgvb2RIVFFtZz09)
+
+## Week 14
+#### 12/15
+
+- Interactions & ANCOVA
+
+#### 12/17
+
+- Within-subjects designs
+- **Quiz 6 due by 9am**
+- [Zoom Check-in 12 with Shelly](https://wustl.zoom.us/j/91609788784?pwd=VktQSTE3RExscmF4Vk9ZYXFEdzR6QT09)

@@ -34,15 +34,15 @@ LSR readings can be found in the free, online textbook, [_Learning Statistics wi
 | -    | 11/12 | Comparing dependent means  | LSR Ch 13 | Quiz 5 (cancelled) |    | Shelly |
 | 10   | 11/17 | **Exam 2**                    |                    |            |             |
 | -    | 11/19 | **Exam 2**                    |                    |     |             |
-| 11   | 11/24 | One-way ANOVA & $F$ distribution | LSR Ch 14   |   |    |   |
+| 11   | 11/24 | *Thanksgiving Break* |    |   |    |   |
 | -    | 11/16 | *Thanksgiving Break* |  |  |  |
-| 12   | 12/1  | Introduction to model comparisons |  |   |  |  |
-| -    | 12/3  | Multiple comparisons & contrasts | LSR Ch 14 |    | HW 5  | April |
-| 13   | 12/8  | Two between-subjects factors | LSR Ch 16 |   |   |   |
-| -    | 12/10 | Interactions & ANCOVA | LSR Ch 16 | Quiz 6 |   | Jayde |
-| 14   | 12/15 | Within-subjects designs | LSR Ch 16 |  |  |  |
-| -    | 12/17 | TBD (maybe early Exam 3?) |     |    | HW 6  | Shelly |
-|Finals| TBD   | **Exam 3**                                         |                    |            |          
+| 12   | 12/1  | Introduction to model comparisons & $F$-distribution |LSR Ch 14  |   |  |  |
+| -    | 12/3  | One-way ANOVA  | LSR Ch 14 |    |  | April |
+| 13   | 12/8  | Multiple comparisons & contrasts | LSR Ch 16 |   | HW 5  |   |
+| -    | 12/10 | Two between-subjects factors | LSR Ch 16 |  |   | Jayde |
+| 14   | 12/15 | Interactions & ANCOVA | LSR Ch 16 |  |  |  |
+| -    | 12/17 | Within-subjects designs | LSR Ch 16    | Quiz 6   | HW 6 (cancelled)  | Shelly |
+|Finals| On Own Time   | **Exam 3**                                         |                    |            |          
 
 
 # Graded materials
