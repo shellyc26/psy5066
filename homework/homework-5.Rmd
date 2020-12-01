@@ -40,7 +40,7 @@ I suggest including a setup chunk to load your dataset and make sure it is in a 
 ## Question 1 (6 pts total)
 For now, ignore the `condition` column of your data.frame and only pay attention to the scores. You recently read a literature review that suggested that your study population has an average BDI score of 14.
 
-### 1a) Write out the restricted and ull models for the analysis, in your own words (e.g., NOT equations)
+### 1a) Write out the restricted and full models for the analysis, in your own words (e.g., NOT equations)
 
 
 ### 1b) Conduct the appropriate analysis to compare these models.
