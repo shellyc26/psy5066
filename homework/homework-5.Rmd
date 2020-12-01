@@ -7,7 +7,7 @@ output:
 
 # Instructions
 
-Please complete this assignment using the RMarkdown file provided (<a href="homework_5.Rmd" download="homework_5.Rmd">download here</a>). Be sure to (1) include your name in the preamble, (2) save the file, including your last name **AND THE NAME OF YOUR AI** (e.g., "cooper_april_homework_5.Rmd"). When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files.
+Please complete this assignment using the RMarkdown file provided (<a href="homework-5.Rmd" download="homework-5.Rmd">download here</a>). Be sure to (1) include your name in the preamble, (2) save the file, including your last name **AND THE NAME OF YOUR AI** (e.g., "cooper_april_homework_5.Rmd"). When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files.
 
   - If you are in Psychology or Computational & Data Sciences: your AI is Jayde
   - If you are in any of the other programs: your AI is April
