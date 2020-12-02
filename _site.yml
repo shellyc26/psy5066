@@ -45,6 +45,8 @@ navbar:
         href: "lectures/16-two_means_III.html"
       - text: "17-Model Comparisons"
         href: "lectures/17-modelcomparison.html"
+      - text: "18-Oneway ANOVA"
+        href: "lectures/18-onewayanova.pdf"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
