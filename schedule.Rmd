@@ -41,7 +41,7 @@ LSR readings can be found in the free, online textbook, [_Learning Statistics wi
 | 13   | 12/8  | Multiple comparisons & contrasts | LSR Ch 16 |   | HW 5  |   |
 | -    | 12/10 | Two between-subjects factors | LSR Ch 16 |  |   | Jayde |
 | 14   | 12/15 | Interactions & ANCOVA | LSR Ch 16 |  |  |  |
-| -    | 12/17 | Within-subjects designs | LSR Ch 16    | Quiz 6   | HW 6 (cancelled)  | Shelly |
+| -    | 12/17 | Within-subjects designs | LSR Ch 16    | Quiz 6 (cancelled)   | HW 6 (cancelled)  | Shelly |
 |Finals| On Own Time   | **Exam 3**                                         |                    |            |          
 
 
