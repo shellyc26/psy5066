@@ -160,10 +160,9 @@ The following links should take you to the appropriate YouTube video.
 ## Week 14
 #### 12/15
 
-- Interactions & ANCOVA
+- [Twoway ANOVA with Interactions](https://youtu.be/wm9qHvMPxFo)
 
 #### 12/17
 
 - Within-subjects designs
-- **Quiz 6 due by 9am**
 - [Zoom Check-in 12 with Shelly](https://wustl.zoom.us/j/91609788784?pwd=VktQSTE3RExscmF4Vk9ZYXFEdzR6QT09)
