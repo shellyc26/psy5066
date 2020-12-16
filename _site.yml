@@ -53,6 +53,8 @@ navbar:
         href: "lectures/20-btwn_subj_fctr_lecture.html"
       - text: "21-Interactions"
         href: "lectures/21-twowayWithInteraction.pdf"
+      - text: "22-Within Subjects"
+        href: "lectures/22-within.html"
     - text: Lecture Videos
       href: lectureVideos.html
     - text: Homework
