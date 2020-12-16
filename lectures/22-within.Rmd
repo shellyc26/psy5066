@@ -140,9 +140,11 @@ class: inverse
 
 - For ANOVA, it's slightly different...
   - $H_0 : Y_{ij} = \mu + \epsilon_{ij}$
-  - $H_0 : Y_{ij} = \mu-j + \epsilon_{ij}$
-  - The assumption is that \epsilon_{ij}, or your residuals, need to be normally distributed -- lots more next semester
+  - $H_1 : Y_{ij} = \mu_j + \epsilon_{ij}$
+  - The assumption is that $\epsilon_{ij}$, or your residuals, need to be normally distributed -- lots more next semester
   - Can use QQ plots and Shaprio-Wilk -- QQ plots more common
+  
+**NOTE THIS SLIDE WAS EDITED AFTER THE VIDEO WAS RECORDED**
 
 ---
 
