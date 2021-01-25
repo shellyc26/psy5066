@@ -531,13 +531,13 @@ cor(x,y, method = "pearson")
 ]
 .pull-right[
 ```{r}
-ltm::biserial.cor(x,y)
+ltm::biserial.cor(x,y, level = 2)
 ```
 ]
 ---
 ## Do the special cases matter?
 
-If your data are artifically binary, there can be big differences.
+If your data are artificially binary, there can be big differences.
 
 ```{r}
 x = rnorm(n = 10); y = rnorm(n = 10)
@@ -553,7 +553,7 @@ cor(x,y, method = "pearson")
 ```{r}
 d_y = ifelse(y < median(y), 0, 1)
 head(cbind(x,y, d_y))
-ltm::biserial.cor(x,d_y)
+ltm::biserial.cor(x,d_y, level = 2)
 ```
 ]
 

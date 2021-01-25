@@ -3,6 +3,7 @@
   <head>
     <title>Describing Data II</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -523,17 +524,17 @@ cor(x,y, method = "pearson")
 .pull-right[
 
 ```r
-ltm::biserial.cor(x,y)
+ltm::biserial.cor(x,y, level = 2)
 ```
 
 ```
-## [1] -0.1079188
+## [1] 0.1079188
 ```
 ]
 ---
 ## Do the special cases matter?
 
-If your data are artifically binary, there can be big differences.
+If your data are artificially binary, there can be big differences.
 
 
 ```r
@@ -582,11 +583,11 @@ head(cbind(x,y, d_y))
 ```
 
 ```r
-ltm::biserial.cor(x,d_y)
+ltm::biserial.cor(x,d_y, level = 2)
 ```
 
 ```
-## [1] 0.4079477
+## [1] -0.4079477
 ```
 ]
 
