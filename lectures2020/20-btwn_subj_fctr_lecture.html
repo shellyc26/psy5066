@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Two Between-Subjects Factors</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Two Between-Subjects Factors
+
+---
+
+
+
+
+## Recap
+
+  * We've taken a model comparison approach to comparing group means with ANOVA
+    * Restricted 
+    * Full 
+    * F test
+  * Explored different approaches to comparing means
+    * Multiple comparisons
+    * Contrast coefficients
+
+---
+
+## This time
+
+* Adding another independent variable: 
+
+**Between Subjects Factors**
+
+---
+
+## The Plan
+
+* Two between-subjects factors
+* Working example 
+* Null in a two-factor design
+* Full and restricted models in two-factor design
+* Setting up the F table
+    * Decomposing variance in two-factor
+    * Degrees of freedom for different factors
+* Calculating the main effects in a two-factor design
+* Making R do the work
+
+---
+
+name: one
+
+## Nomenclature
+
+![an image caption Source: gnomes.](20-btwn_subj_fctr_lecture_files/figure-html/gardengnome.jpg)
+
+---
+
+## Consider the following design
+
+**Kindergarten and 1st Graders' knowledge of double letters in words**
+
+.pull-left[
+Allowed doubles
+- *baff* &amp; *bbaf*
+- *lopiff* &amp; *llopif*
+- *dess* &amp; *ddes*]
+
+.pull-right[
+Unallowed doubles
+- *holl* &amp; *hhol*
+- *vaff* &amp; *vvaf*
+- *juss* &amp; *jjus*]
+
+--
+
+## Data
+
+Two-way between-subjects, completely crossed (balanced) 
+
+```
+##      doublet
+## grade allowed unallowed
+##     1       4         4
+##     K       4         4
+```
+---
+## Null Hypothesis for "Main Effects" 
+
+`\(H_01\)`: Main effect of grade: The two age groups perform similarly
+
+`\(H_02\)`: Main effect of doublet legality: Children perform similarly with allowed and unallowed doublets
+
+--
+
+`\(H_01\)`: `\(\bar{x}_K = \bar{x}_{1st}\)`
+
+`\(H_02\)`: `\(\bar{x}_{allowed} = \bar{x}_{unallowed}\)`
+
+--
+
+
+```r
+(grandmean &lt;- mean(data$correct))
+```
+
+```
+## [1] 6.0625
+```
+
+```r
+(groupmeans &lt;- aggregate(correct ~ grade + doublet, data, mean))
+```
+
+```
+##   grade   doublet correct
+## 1     1   allowed    8.50
+## 2     K   allowed    2.75
+## 3     1 unallowed    9.50
+## 4     K unallowed    3.50
+```
+
+---
+
+## Model Comparison Approach for Main Effects
+
+- **Two Restricted Models:** reflects what we are testing *against*. 
+  - grand mean is our best guess for the main effect of grade
+  - grand mean is our best guess for the main effect of doublet position
+
+
+--
+
+- **Two Full Models:** allows us to fully include all information we might have.
+  - best way of minimizing errors is to use grade-specific mean
+  - best way of minimizing errors is to use doublet-specific mean
+
+---
+
+## F Table 
+
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F2.png)
+---
+
+## The variance tree
+
+--
+
+![an image caption Source: variancetree1](20-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
+---
+## The variance tree
+
+![an image caption Source: variancetree2](20-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
+
+---
+## The variance tree
+
+![an image caption Source: variancetree3](20-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
+
+---
+## The variance tree
+
+![an image caption Source: variancetree4](20-btwn_subj_fctr_lecture_files/figure-html/SS4.png)
+
+---
+## The variance tree
+
+![an image caption Source: variancetree5](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
+---
+
+## Degrees of Freedom in two factor between subjects
+
+- For *each* factor: 
+  - `\(df_A = F_{A} - 1\)`
+  - e.g., grade has **2 levels** (K, first)
+    - `\(df_{grade} = 2 -1 = 2\)`
+
+- For the withinerror or residual: 
+  - `\(df_w = N - (R - 1) - (C - 1) - 1\)`
+  - simplifies to `\(N - R - C + 1\)`
+  - e.g., 16 observations, 1 additional mean for group factor, 1 additional mean for doublet factor, and 1 grand mean
+    - `\(df_w = 16 - 1 - 1 - 1 = 13\)`
+---
+
+## Putting the pieces together
+
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F1.png)
+
+---
+
+## Let's start with Grade!
+
+`\(SS_{grade} = E_R - E_F\)`
+
+Restricted: our best guess for any student is the grand mean + some error
+
+Full: our best guess for any student is their grade's mean + some error
+---
+
+## Step 1: The Restricted Model for Grade
+
+Get Er for grade. First, deviations by subtracting from our grand mean of 6.025. That is, 6.025 is our PREDICTION of the **restricted** model for our first factor: grade. Then square deviations and sum them up.
+
+
+```r
+data$prediction &lt;- grandmean
+(restricted_grade &lt;- data %&gt;%
+  mutate(deviationScores = correct - prediction,
+         dev2 = deviationScores ^ 2))
+```
+
+```
+##    grade   doublet correct prediction deviationScores       dev2
+## 1      K   allowed       2     6.0625         -4.0625 16.5039062
+## 2      K   allowed       3     6.0625         -3.0625  9.3789062
+## 3      K   allowed       4     6.0625         -2.0625  4.2539062
+## 4      K   allowed       2     6.0625         -4.0625 16.5039062
+## 5      K unallowed       3     6.0625         -3.0625  9.3789062
+## 6      K unallowed       4     6.0625         -2.0625  4.2539062
+## 7      K unallowed       3     6.0625         -3.0625  9.3789062
+## 8      K unallowed       4     6.0625         -2.0625  4.2539062
+## 9      1   allowed       8     6.0625          1.9375  3.7539062
+## 10     1   allowed       9     6.0625          2.9375  8.6289062
+## 11     1   allowed       7     6.0625          0.9375  0.8789062
+## 12     1   allowed      10     6.0625          3.9375 15.5039062
+## 13     1 unallowed       9     6.0625          2.9375  8.6289062
+## 14     1 unallowed      10     6.0625          3.9375 15.5039062
+## 15     1 unallowed       9     6.0625          2.9375  8.6289062
+## 16     1 unallowed      10     6.0625          3.9375 15.5039062
+```
+
+```r
+(Er_grade &lt;- sum(restricted_grade$dev2))
+```
+
+```
+## [1] 150.9375
+```
+
+---
+
+## Step 2: The Full Model for Grade
+
+Get Ef for grade. Our best guess is the group's mean. 
+
+
+```r
+(grade_means &lt;- aggregate(correct ~ grade, data, mean))
+```
+
+```
+##   grade correct
+## 1     1   9.000
+## 2     K   3.125
+```
+
+---
+## Step 2: The Full Model for Grade
+
+First, deviations by subtracting each observation in a group from it's respective group mean. That is our deviations are each kindergartener's score - the kindergarten mean of 3.125. Each first grader's score - the first grade mean of 9. Then square deviations and sum them up. This is our **ERROR** term, our squared errors for grade. 
+
+
+```
+##    grade   doublet correct prediction deviationScores     dev2
+## 1      K   allowed       2      3.125          -1.125 1.265625
+## 2      K   allowed       3      3.125          -0.125 0.015625
+## 3      K   allowed       4      3.125           0.875 0.765625
+## 4      K   allowed       2      3.125          -1.125 1.265625
+## 5      K unallowed       3      3.125          -0.125 0.015625
+## 6      K unallowed       4      3.125           0.875 0.765625
+## 7      K unallowed       3      3.125          -0.125 0.015625
+## 8      K unallowed       4      3.125           0.875 0.765625
+## 9      1   allowed       8      9.000          -1.000 1.000000
+## 10     1   allowed       9      9.000           0.000 0.000000
+## 11     1   allowed       7      9.000          -2.000 4.000000
+## 12     1   allowed      10      9.000           1.000 1.000000
+## 13     1 unallowed       9      9.000           0.000 0.000000
+## 14     1 unallowed      10      9.000           1.000 1.000000
+## 15     1 unallowed       9      9.000           0.000 0.000000
+## 16     1 unallowed      10      9.000           1.000 1.000000
+```
+
+```
+## [1] 12.875
+```
+---
+## Step 3: Calculate SS. 
+
+`\(SS_{grade} = E_r - E_f\)`
+
+
+```r
+(SS_grade &lt;- Er_grade - Ef_grade)
+```
+
+```
+## [1] 138.0625
+```
+
+---
+## Step 4: Determine the degrees of freedom. 
+
+- `\(df_{grade} = k_{grade}-1\)`
+- where `\(k\)` = number of levels in the factor
+
+---
+
+## F Table
+
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F3.png)
+
+---
+
+## Rinse and repeat for doublet legality
+
+`\(SS_{doublet} = E_R - E_F\)`
+
+Restricted: our best guess for any student is the grand mean + some error
+- that is, regardless of whether students saw allowable or unallowable doublets, they have the same predicted number of correct items
+
+Full: our best guess for any student is their doublet type group's mean + some error
+
+---
+
+## Step 1: The Restricted Model for Doublet Type
+
+
+```r
+data$prediction &lt;- grandmean
+(restricted_dbl&lt;- data %&gt;%
+  mutate(deviationScores = correct - prediction,
+         dev2 = deviationScores ^ 2))
+```
+
+```
+##    grade   doublet correct prediction deviationScores       dev2
+## 1      K   allowed       2     6.0625         -4.0625 16.5039062
+## 2      K   allowed       3     6.0625         -3.0625  9.3789062
+## 3      K   allowed       4     6.0625         -2.0625  4.2539062
+## 4      K   allowed       2     6.0625         -4.0625 16.5039062
+## 5      K unallowed       3     6.0625         -3.0625  9.3789062
+## 6      K unallowed       4     6.0625         -2.0625  4.2539062
+## 7      K unallowed       3     6.0625         -3.0625  9.3789062
+## 8      K unallowed       4     6.0625         -2.0625  4.2539062
+## 9      1   allowed       8     6.0625          1.9375  3.7539062
+## 10     1   allowed       9     6.0625          2.9375  8.6289062
+## 11     1   allowed       7     6.0625          0.9375  0.8789062
+## 12     1   allowed      10     6.0625          3.9375 15.5039062
+## 13     1 unallowed       9     6.0625          2.9375  8.6289062
+## 14     1 unallowed      10     6.0625          3.9375 15.5039062
+## 15     1 unallowed       9     6.0625          2.9375  8.6289062
+## 16     1 unallowed      10     6.0625          3.9375 15.5039062
+```
+
+```r
+(Er_dbl &lt;- sum(restricted_dbl$dev2))
+```
+
+```
+## [1] 150.9375
+```
+
+---
+
+## Step 2: The Full Model for Doublet
+
+
+```r
+(dbl_means &lt;- aggregate(correct ~ doublet, data, mean))
+```
+
+```
+##     doublet correct
+## 1   allowed   5.625
+## 2 unallowed   6.500
+```
+
+---
+## Step 2: The Full Model for Doublet
+
+
+```
+##    grade   doublet correct prediction deviationScores      dev2
+## 1      K   allowed       2      5.625          -3.625 13.140625
+## 2      K   allowed       3      5.625          -2.625  6.890625
+## 3      K   allowed       4      5.625          -1.625  2.640625
+## 4      K   allowed       2      5.625          -3.625 13.140625
+## 5      1   allowed       8      5.625           2.375  5.640625
+## 6      1   allowed       9      5.625           3.375 11.390625
+## 7      1   allowed       7      5.625           1.375  1.890625
+## 8      1   allowed      10      5.625           4.375 19.140625
+## 9      K unallowed       3      6.500          -3.500 12.250000
+## 10     K unallowed       4      6.500          -2.500  6.250000
+## 11     K unallowed       3      6.500          -3.500 12.250000
+## 12     K unallowed       4      6.500          -2.500  6.250000
+## 13     1 unallowed       9      6.500           2.500  6.250000
+## 14     1 unallowed      10      6.500           3.500 12.250000
+## 15     1 unallowed       9      6.500           2.500  6.250000
+## 16     1 unallowed      10      6.500           3.500 12.250000
+```
+
+```
+## [1] 147.875
+```
+---
+## Step 3: Calculate SS. 
+
+`\(SS_{dbl} = E_r - E_f\)`
+
+
+```r
+(SS_dbl &lt;- Er_dbl - Ef_dbl)
+```
+
+```
+## [1] 3.0625
+```
+
+---
+## Step 4: Determine the degrees of freedom. 
+
+- `\(df_{dbl} = k_{dbl}-1\)`
+- where `\(k\)` = number of levels in the factor
+
+---
+
+## F Table
+
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F4.png)
+
+---
+
+## What about that Error? 
+
+![an image caption Source: variance](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
+This is our **leftover variation** after taking our grade and doublet variables into account. 
+
+---
+## Calculating SS error
+
+`\(SS_{Total} = SS_{grade} + SS_{doublet} + SS_{error}\)`
+
+--
+
+Conceptually: 
+
+`\(SS_{error} = SS_{Total}- SS_{grade} + SS_{doublet}\)`
+
+---
+
+## Calculating SS error (Full Model perspective)
+
+Our full model allows for a grade effect and a doublet effect. 
+
+So from the full model perspective, the best guess for any student is...
+
+---
+
+## Calculating SS error
+
+
+```
+##    grade   doublet correct prediction deviationScores   dev2
+## 1      K   allowed       2       2.75           -0.75 0.5625
+## 2      K   allowed       3       2.75            0.25 0.0625
+## 3      K   allowed       4       2.75            1.25 1.5625
+## 4      K   allowed       2       2.75           -0.75 0.5625
+## 5      K unallowed       3       3.50           -0.50 0.2500
+## 6      K unallowed       4       3.50            0.50 0.2500
+## 7      K unallowed       3       3.50           -0.50 0.2500
+## 8      K unallowed       4       3.50            0.50 0.2500
+## 9      1   allowed       8       8.50           -0.50 0.2500
+## 10     1   allowed       9       8.50            0.50 0.2500
+## 11     1   allowed       7       8.50           -1.50 2.2500
+## 12     1   allowed      10       8.50            1.50 2.2500
+## 13     1 unallowed       9       9.50           -0.50 0.2500
+## 14     1 unallowed      10       9.50            0.50 0.2500
+## 15     1 unallowed       9       9.50           -0.50 0.2500
+## 16     1 unallowed      10       9.50            0.50 0.2500
+```
+
+
+```r
+(SSe &lt;- sum(full_error$dev2))
+```
+
+```
+## [1] 9.75
+```
+
+---
+
+## F Table
+
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F5.png)
+---
+
+## F Table
+
+```r
+MS&lt;- tibble(` ` = c("grade", "dbl", "error"),
+             df = as.numeric(c(1, 1, 13)),
+             SS = c(SS_grade, SS_dbl, SSe),
+             MS = c(SS_grade/1, SS_dbl/1, SSe/13),
+             F_val = as.numeric(c(MS[1]/MS[3], MS[2]/MS[3], "")))
+kable(MS, digits = 3)
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SS &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; MS &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F_val &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grade &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.062 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.062 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 184.083 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; dbl &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.062 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.062 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.083 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.750 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## F Table
+![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F6.png)
+
+---
+
+## A star is born
+
+
+```r
+MS &lt;- MS %&gt;% mutate(p_val = pf(F_val, df, df[3], lower.tail = F),
+                    show_me_stars = c(ifelse(p_val &lt; .001, "***", 
+                                             ifelse(p_val &gt; .05, ".", ""))))
+kable(MS, digits = 4, booktabs = T)
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SS &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; MS &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F_val &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_val &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; show_me_stars &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grade &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.0625 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.0625 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 184.0833 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; *** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; dbl &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.0625 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.0625 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.0833 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0644 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; . &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.7500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Without stars
+
+1. We know that when F &gt; 1, effect is significant
+
+--
+
+2. Use a critical value to determine whether to reject the null. 
+
+
+```r
+(F_crit = qf(.05, df1 = 1, df2 = 13, lower.tail = F))
+```
+
+```
+## [1] 4.667193
+```
+
+`\(F_{grade} = 184.08\)` is more extreme than our `\(F_{crit} = 4.67\)` so we reject our `\(H_01\)`
+
+`\(F_{dbl} = 4.08\)` is *not* more extreme than our `\(F_{crit} = 4.67\)` so we fail to reject our `\(H_02\)`
+
+---
+
+## Is it always this painful? 
+
+No, because we have R! 
+
+
+```r
+summary(aov(correct ~ grade + doublet, data))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## grade        1 138.06  138.06 182.911 4.92e-09 ***
+## doublet      1   3.06    3.06   4.057   0.0652 .  
+## Residuals   13   9.81    0.75                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+## Next time
+
+What if we expect performance to depend on **both** factors? 
+
+We would add an *interaction* to our ANOVA: grade x doublet.
+
+--
+
+You'll get Dr. Cooper and her fiddle leaf fig back :)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

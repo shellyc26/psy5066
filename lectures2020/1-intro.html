@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Overview &amp; Measurement Scales</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Overview &amp; Measurement Scales
+
+---
+
+
+## Kinds of statistics
+
+- Descriptive
+- Inferential
+
+???
+Which is more important? -- Neither
+
+Descriptive -- about the data
+Inferential -- about the world
+- assessing risk or uncertainty. How likely?
+
+---
+
+## Kinds of statistics
+
+- Exploratory
+- Confirmatory
+
+--
+
+
+
+
+.center[Exploratory ---------------------------------------- Confirmatory]
+
+???
+Which is more important? -- Neither
+
+Exploratory -- I don't have a hypothesis or theory. I don't know what's going to happen
+Confirmatory -- if theory X is true, then data should look like Y
+
+Really more of a continuum
+
+---
+
+## Kinds of research
+
+- Experimental
+- Observational
+
+--
+
+Typically we pair some kinds of statistical tests with experimental work and other kinds of tests with observational work.
+
+--
+
+In reality, most statistical tests can be used with most kinds of research. It's not so much the kind of research that matters, but __which statistic helps to answer your question__ and __what types of variables do you have?__
+
+- We'll discuss the first point throughout the course
+- Let's discuss variables now
+
+---
+
+## Scales of measurement
+
+Four scales
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
+
+---
+
+## Nominal
+
+- response options are groups
+- no specific order
+- example: What is your favorite fruit? Blueberries, apples, coconuts
+
+
+---
+
+## Ordinal
+
+- response options are ordered
+- no consistent distance between possible scores
+- example: List the following fruits in order of preference: peaches, grapes, raspberries
+
+---
+
+## Interval
+
+- response options are ordered
+- distance between response options is the same
+- no meaningful 0 
+- example: On a scale from 0-5, how much do you like bananas?
+
+
+---
+
+## Ratio
+
+- response options are ordered
+- distance between response options is the same
+- 0 indicates an _absence_ of something
+- example: how many times have you eaten watermelon in the last 6 months?
+
+
+---
+
+## Scales of measurement
+
+.pull-left[
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
+]
+
+--
+
+
+.pull-right[
+- **Why does this matter?**
+
+  - Different amounts of information
+  - Different mathematical properties
+      - Example: Bobby scores 6 and Megan scores 3. If the scale is interval, can we say Bobby scored twice as high as Megan?]
+
+---
+
+## Scales of measurement
+
+.pull-left[
+- Nominal
+- Ordinal
+- Interval 
+- Ratio]
+
+.pull-right[
+**You try!**
+
+- "On a scale from 1 to 6, how much does the word *outgoing* describe you?"]
+
+---
+
+## Scales of measurement
+
+Two types
+- Categorical
+- Continuous
+
+---
+
+## Scales of measurement
+
+.pull-left[
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
+]
+
+.pull-right[
+- Categorical
+- Continuous
+]
+
+How do these two methods of describing scales match up?
+
+--
+
+  - Nominal &amp; ordinal variables will always be categorical
+
+--
+
+  - Interval and ratio variables will *usually* be continuous, but they can sometimes be discrete, too.
+
+--
+
+  - Height
+    - inches/cm ---&gt; RATIO
+    - what shelf can you reach in the pantry? ---&gt; INTERVAL
+    - rank from tallest to shortest ---&gt; ORDINAL
+      
+---
+class: inverse 
+
+## Next time
+
+Measurement validity
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

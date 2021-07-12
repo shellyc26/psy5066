@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Within-Subjects Designs (and more)</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Within-Subjects Designs (and more)
+
+---
+
+
+
+
+## Today
+
+A series of shpiels 
+
+- **Within-subjects designs**
+- Non-parametric tests
+- Exam 3 + semester wrap up
+
+---
+class: inverse
+
+# Within-subjects
+
+---
+
+## What is it?
+
+- Other names: within-groups, repeated measures
+
+- Each subject contributes a score to each level of an independent variable
+
+- We've done this before...paired `\(t\)`-test
+
+  - Pre vs. Post 
+  
+---
+
+## Why does this matter?
+
+- Some of the variability in the scores within a level of a factor is predictable if you know which participant contributed the score.
+
+- If you could remove the variability that goes with the differences between the participants, you could reduce the variability within a level of the factor. 
+  
+  - Same participants, or paired in some way (matched)
+  
+---
+
+## Repeated Measures ANOVA 
+
+- You can calculate, and then discard, the variability among the means that comes from differences between the subjects
+
+  - What does this mean if you want to know about individual differences?
+  
+--
+
+- The remaining variability in the dataset is then partitioned into 2 components:
+
+  1. variance due to differences between treatments/conditions/levels
+  2. variance due to error (like measurement error, random noise etc.)
+
+---
+
+## What changes in the calculations? 
+
+- Restricted Model: `\(\Sigma D_i^2\)`
+
+  - The null is that there is no difference in the participants' scores between conditions
+  - Take the difference scores, square them, sum them up
+  - `\(df_r\)` = how many difference scores there are; you do not remove a df because you don't use a mean
+  
+---
+## What changes in the calculations? 
+
+- Full Model: `\(\Sigma(D_i - \bar{D})^2\)`
+
+  - The full model/alternative hypothesis is that there is a difference in the participants' scores between conditions
+  - Take each individual's difference score and find the deviatio for that difference score from the mean difference score of the sample. Square it, sum it up. 
+  - EX: pre = 8, post = 10, diff = 2
+  - EX: if the average of the difference scores was 5, you would then do `2 - 5 = -3`
+  - `\(df_f\)` = number of difference scores - 1; you lose 1 df because you calculated the mean of difference scores
+  
+---
+
+## The Consequences -- Good
+
+- Same participants = less time and effort
+
+- Statistical POWER!
+  - What goes into our F-statistic? `\(\frac{MS_{btwn}}{MS_{error}}\)` 
+  - The smaller `\(MS_{error}\)`, the larger the `\(F\)`-statistic
+  - The repeated design allows you to remove the between-subject variability, so `\(MS_{error}\)` gets smaller
+  
+---
+
+## The Consequences -- Bad
+
+- Often not feasible
+
+- Order effects
+
+  - All participants are assigned to eat 3 different flavors of ice cream and rate each of them on a scale of 1 to 10
+  - They all eat Chocolate -&gt; Vanilla -&gt; Strawberry
+  - How do you know that eating chocolate ice cream first doesn't change the way vanilla tastes to participants? 
+  - You need to counterbalance! (some get c -&gt; v -&gt; s, some get v -&gt; s -&gt; c etc...)
+  
+- Time elapsed can be...tricky
+
+  - Take Josh Jackson's Applied Longitudinal class
+
+---
+
+## To Summarize
+
+![](22-within_files/figure-html/partition.png)
+
+---
+class: inverse
+
+# Non-parametric Tests
+
+---
+
+## Normality Assumption
+
+- For `\(t\)`-test, we said the data needed to be normally distributed
+  - can use QQ plots (quantile-quantile plots)
+  - can use Shapiro-Wilk test
+  
+--
+
+- For ANOVA, it's slightly different...
+  - `\(H_0 : Y_{ij} = \mu + \epsilon_{ij}\)`
+  - `\(H_1 : Y_{ij} = \mu_j + \epsilon_{ij}\)`
+  - The assumption is that `\(\epsilon_{ij}\)`, or your residuals, need to be normally distributed -- lots more next semester
+  - Can use QQ plots and Shaprio-Wilk -- QQ plots more common
+  
+**NOTE THIS SLIDE WAS EDITED AFTER THE VIDEO WAS RECORDED**
+
+---
+
+## Who cares?
+
+If we violate our assumptions, *any of them*, we cannot make any valid inferences! 
+
+![](22-within_files/figure-html/cat.png)
+
+---
+## Non-parametric tests
+
+Enter parametric tests. Often these are based on using the rank order of data (and the median instead of the mean).
+
+Helpful when:
+
+  - Dependent variable is nominal
+  - Indepenedent or dependent variable is ordinal
+  - Sample size is small
+  - Underlying population is skewed (reaction times, household income)
+
+--
+
+Limitations:
+
+  - CI and effect size calculations aren't always possible (or if they are, they're a pain)
+  - Less powerful typically
+  - Increased risk of a Type II error; maybe that's OK?
+  - Nominal/ordinal scales provide less detail than continuous data
+  
+---
+
+## Which test to use
+
+.small[
+| Parametric Test | Situation | Non-Parametric Version|
+|-----------------|-----------|-----------------------|
+|Single sample *z* |Compare sample mean to population mean with known sigma | ¯\\_(ツ)_/¯  |
+|Single sample *t* |Compare sample mean to population mean with unknown sigma |*Wilcoxon Signed-Rank Test*|
+|Paired samples *t* |Compare 2 means with within-groups design|*Wilcoxon Signed-Rank Test*|
+|Independent samples *t* |Compare 2 means with between-groups design|*Mann-Whitney U Test*|
+|Oneway ANOVA (btwn groups)|Compare 3+ levels of IV|*Kruskal-Wallis H Test*|
+|Oneway ANOVA (repeated measures)|Compare 3+ levels of IV|*Friedman Test* |
+|Twoway ANOVA|2+ IVs (main effects/interactions)|*Kruskal-Wallis H Test* |
+|Correlation| Relationship between 2 continuous vars| *Spearman Rank-Order Correlation*|
+]
+
+---
+class: inverse
+
+# Exam 3 
+
+---
+
+## Exam 3
+
+- Opens on **Monday 12/21 at 9am**
+
+- Closes on **Thursday 12/31 at 9am** (Sayonara, 2020 -- you were the worst)
+
+- Will be listed as a Quiz
+
+- Use CHROME as your web browser. Safari doesn't like this. Unclear how Firefox handles it.
+
+- Turn OFF your ad blocker. Canvas doesn't have ads.
+
+
+---
+
+## Exam 3
+
+- You will have **50 hours** to complete the exam. Once you OPEN the quiz, the countdown timer begins
+  - If you close the window, the countdown timer will still be running
+  - IT WILL LOCK YOU OUT AFTER 50 HOURS...DON'T BE LATE
+
+![](22-within_files/figure-html/quizquestion.png)
+
+---
+class: inverse
+
+# Next semester...
+
+Regression all day, every day (or at least every Tues/Thurs)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
