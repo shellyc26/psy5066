@@ -64,6 +64,10 @@ navbar:
         href: "lectures2020/21-twowayWithInteraction.pdf"
       - text: "22-Within Subjects"
         href: "lectures2020/22-within.html"
+    - text: GitHub
+      href: https://github.com/shellyc26/psy5066
+    - text: Slack
+      href: https://quantii-spring2021.slack.com
 output:
   html_document:
     lib_dir: site_libs
