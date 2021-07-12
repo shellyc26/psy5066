@@ -3,7 +3,7 @@ title: "Syllabus"
 output: 
   html_document:
     toc: TRUE
-    toc_depth: 2
+    toc_depth: 3
     toc_float: TRUE
     theme: cosmo
 ---
@@ -12,75 +12,150 @@ output:
 
 LSR readings can be found in the free, online textbook, [_Learning Statistics with R_](https://learningstatisticswithr-bookdown.netlify.com/index.html) by Danielle Navarro. For those interested in taking notes, I recommend the use of the [Hypothes.is](http://Hypothes.is) app to annotate webpages. I will note that the formatting of the book online is wonky in a few places. If this bothers you, or you prefer to work offline, you can download a [PDF version](https://learningstatisticswithr.com/lsr-0.6.pdf) of the book. 
 
-| Week | Date  |  Topic                                 |Readings            | Quiz Due Dates | Homework Due Dates | Check-ins  | 
--------|-------|----------------------------------------|--------------------|----------------|--------------------|------------|
-| 1    | 9/15  | Introduction, overview & measurement scales             | LSR Ch 1 \& 3      |            |             | Everyone |
-| -    | 9/17  | Threats to measurement validity        | LSR CH 2 \& 4, [Cronbach \& Meehl (1955)](readings/Cronbach_Meehl_1955.pdf) |            |             | April |
-| 2    | 9/22  | Describing data                        | LSR Ch 5 \& 6      |  Quiz 1    |             |            |
-| -    | 9/24  | Describing data                        | LSR Ch 5 \& 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf)|      |             | Shelly |
-| 3    | 9/29  | Fisher tradition & probability         | LSR Ch 9           |            | HW 1        |            |
-| -    | 10/1  | Normal & binomial distributions        | LSR Ch 9   |   |             | Jayde            | 
-| 4    | 10/6  | Introduction to Bayesian statistics    | LSR Ch 17  |  Quiz 2    |            |     |
-| -    | 10/8  | Sampling distributions and $t$ distributions | LSR Ch 10 |   |             | Shelly |
-| 5    | 10/13 | **Exam 1**                               |           |   | HW 2           |   |
-| -    | 10/15 | **Exam 1**                      |          |            |             |   |
-| 6    | 10/20 | Hypothesis testing 1                    | LSR Ch 11 | Quiz 3      |             |  |
-| -    | 10/22 | Hypothesis testing 2        | LSR Ch 11   |        |             | April |
-| 7    | 10/27 | Critique of NHST        | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf)   |          | HW 3            |  |
-| -    | 10/29 | Open science practices                | [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)          |            |             | Shelly |
-| 8    | 11/3  | Chi-Square test                      | LSR Ch 12   | Quiz 4 (now due 11/4)    |             |
-| -    | 11/5  | One-sample tests                    | LSR Ch 13  |            |             | Jayde |
-| 9    | 11/10 | Comparing two means 2 (parts 1 & 2)                   | LSR Ch 13                  | | HW 4 (cancelled)            |
-| -    | 11/12 | Comparing dependent means  | LSR Ch 13 | Quiz 5 (cancelled) |    | Shelly |
-| 10   | 11/17 | **Exam 2**                    |                    |            |             |
-| -    | 11/19 | **Exam 2**                    |                    |     |             |
-| 11   | 11/24 | *Thanksgiving Break* |    |   |    |   |
-| -    | 11/16 | *Thanksgiving Break* |  |  |  |
-| 12   | 12/1  | Introduction to model comparisons & $F$-distribution |LSR Ch 14  |   |  |  |
-| -    | 12/3  | One-way ANOVA  | LSR Ch 14 |    |  | April |
-| 13   | 12/8  | Multiple comparisons & contrasts | LSR Ch 16 |   | HW 5  |   |
-| -    | 12/10 | Two between-subjects factors | LSR Ch 16 |  |   | Jayde |
-| 14   | 12/15 | Interactions & ANCOVA | LSR Ch 16 |  |  |  |
-| -    | 12/17 | Within-subjects designs | LSR Ch 16    | Quiz 6 (cancelled)   | HW 6 (cancelled)  | Shelly |
-|Finals| On Own Time   | **Exam 3**                                         |                    |            |          
+| Week | Date  |  Topic                                 |Readings            | HW Due | Peer Review Due | 
+-------|-------|----------------------------------------|--------------------|----------------|--------------------|
+| 1 | 8/31  | Syllabus, Measurement, RMarkdown/RProjects | LSR Ch 1 \& 3 | | | 
+| - | 9/2   | Threats to measurement validity | LSR CH 2 \& 4, [Cronbach \& Meehl (1955)](readings/Cronbach_Meehl_1955.pdf) | | | 
+| 2 | 9/7   | Describing data | LSR Ch 5 \& 6 | | |           
+| - | 9/9   | Describing data | LSR Ch 5 \& 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf) | | | 
+| 3| 9/14   | Fisher tradition & probability | LSR Ch 9 | HW 1 | 9/ 17 |      
+| - | 9/16  | Normal & binomial distributions | LSR Ch 9 | | | 
+| 4 | 9/21  | Sampling distributions and $t$ distributions | LSR Ch 10 | | |  
+| - | 9/23  | Exam 1 Review | | HW 2| 9/26 | 
+| 5 | 9/28  | **Exam 1** | | | |  
+| - | 9/30  | Hypothesis testing 1 | LSR Ch 11 | | |  
+| 6 | 10/5  | Hypothesis testing 2 | LSR Ch 11 | | |
+| - | 10/7  | Critique of NHST | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf) | | |
+| 7 | 10/12 | *No Class - Happy Fall Break* | | | | |
+| - | 10/14 | Open science practices | [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/) | | | 
+| 8 | 10/19 | Chi-Square test | LSR Ch 12 | | |           
+| - | 10/21 | One-sample tests | LSR Ch 13  | HW 3 | 10/24 | 
+| 9 | 10/26 | Comparing two means 2 (parts 1 & 2) | LSR Ch 13 | | |
+| - | 10/28 | Comparing dependent means  | LSR Ch 13 | |  | 
+| 10| 11/2  | Introduction to Bayesian statistics | LSR Ch 17 | | |
+| - | 11/4  | Exam 2 Review | | HW 4 | 11/7 |
+| 11| 11/9  | **Exam 2** | | | |   
+| - | 11/11 | Introduction to model comparisons & $F$-distribution | LSR Ch 14 | | |
+| 12| 11/16 | One-way ANOVA | LSR Ch 14  | | |
+| - | 11/18 | Multiple comparisons & contrasts  | LSR Ch 16 | | | 
+| 13| 11/23 | Two between-subjects factors | LSR Ch 16 | HW 5 | 11/26 |
+| - | 11/25 | *No Class - Happy Thanksgiving* | | | |
+| 14| 11/30 | Interactions & ANCOVA | LSR Ch 16 | | | |
+| - | 12/2  | Within-subjects designs | LSR Ch 16 | | | 
+| 15| 12/7  | TBD | | HW 6 | 12/10 |         
+| - | 12/9  | Exam 3 Review | | | | 
+|Final| 12/21 | **Exam 3** | 6pm-8pm | | | 
 
+*Note, we can consider moving the final to the last class period*
+
+# Overview
+
+This course is the first in a two-course sequence that introduces necessary skills and knowledge for carrying out statistical analyses in the social sciences. The course has an applied focus for psychological research, but theoretical details will be emphasized when they facilitate understanding of key concepts. In other words, we will strike a balance between learning how to do statistics and knowing why we are doing it a particular way. Mastering both will facilitate generalization to new problems and techniques. Topics to be covered this semester include probability theory, measurement scales, theoretical sampling distributions (e.g., binomial, $t$, $F$, $\chi^2$), measures of central tendency and variability, inferences about population means, confidence intervals, the pros and cons of null hypothesis testing, power, and effect sizes, and ANOVA. 
+
+### Textbook
+
+We will primarily be referring to chapters in [_Learning Statistics with R_](https://learningstatisticswithr-bookdown.netlify.com/index.html) by Danielle Navarro. This textbook is available for free online. You may choose to purchase a paper copy if you wish, but it is not required. Additional readings assignments will be posted here. 
+
+### R and RStudio
+
+Students must have the latest version of R, which can be downloaded [here](https://ftp.osuosl.org/pub/cran/). It is strongly recommended that students also download the RStudio GUI, available [here](https://www.rstudio.com/products/rstudio/download/#download). Both are free. 
+
+### Resources for R and RStudio
+
+While we will be covering the use of R and RStudio extensively, one of the key skills required to use R is the ability to find answers on the Internet. The R community (sometimes referred to as the `useR` or `rstats` community) tends to be friendly and helpful and enjoys solving R-related problems in their spare time. For that reason, many common questions or problems have been posted to spaces online and answered by smart people. Finding and deciphering those answers is the key skill you should seek to hone this year. It's much more important than remembering function names. 
+
+Here's a [resource page](data/resources2021.pdf) to get you going. 
 
 # Graded materials
 
 Your final grade is comprised of three components:
 
-  - 6 (almost biweekly) Quizzes: 5\% each, 30\% total 
-  - 6 (almost biweekly) Homework: 5\% each, 30\% total
-  - Exam 1: 10\%
-  - Exam 2: 15\%
-  - Exam 3: 15\%
+  - 6 Homework: 5\% each, 30\% total
+  - 6 Peer Reviews: 2.5\% each, 15\% total
+  - Exam 1: 15\%
+  - Exams 2 & 3: 20\% each, 40\% total
 
+### Homework assignments
 
-## Quizzes
+Homework assignments are intended to gauge your ability to apply the topics covered in class to the practice of data analysis. Homework assignments are to be done using R and RMarkdown; completed assignments should be submitted to Canvas. Please submit BOTH your .Rmd and .html file. Please do not use PDF or Word documents. There will be 6 assignments in total, each worth 5% of your grade.
 
-Quizzes are intended to assess your understanding of the theoretical principles underlying statistics. They will be administered via Canvas. The Canvas quizzes will be posted at noon on Thursdays, and will be due by **9am on Tuesday**. For example, the first quiz will be posted on Thursday 9/17 at 12pm and will be due 9/22 at 9am. There will be a quiz due every other Tuesday (there are some exceptions – please see the schedule). You may NOT resubmit quizzes or take them as many times as you'd like (see the announcement from 9/29). You can use resources such as lecture slides, notes, and the textbook for these quizzes. The only resource you *cannot* use are your peers! 
+HWs are due at their due date by 9:30am. Grading will go by the following rubric:
 
-## Homework assignments
-
-Homework assignments will be posted one week before they are due. All assignments will make use of R statistical software. In addition, homework assignments will ask students to critically describe their findings in a write-up, with consideration of the potential flaws of the statistical and methodological strategy. Homework assignments will not be accepted after the deadline, and they should be turned in on Canvas. You may work with your peers on homework assignments, with the following caveats:
+  - 5/5: Completed all parts of the assignment, and results/interpreations were mostly correct (with maybe a few minor errors along the way)
+  - 4/5: Completed all parts of the assignment, and ~25% of the results/interpretations are incorrect
+  - 3/5: Completed all parts of the assignment, however ~50% of the results/intepretations are incorrect
+  - 2/5: Either parts of the assignment are missing but what is there is correct, OR all parts have been completed but there are substantial issues with the results/interpretation
+  - 1/5: Parts of the assignment are missing, and there are substantial issues with the results/interpreation
+  - 0/5: No assignment submitted
+  
+You may work with your peers on homework assignments, with the following caveats:
 
 1. Your code cannot be 100% identical to your peer's code (trust me, I can tell). It’s one thing to work together and consult, but it’s another thing to copy someone else’s assignment. If it is determined that someone copied an entire homework assignment, both parties will be given automatic zero.
 2. If you work with someone, you *must* acknowledge them in the assignment itself. 
 
-Homework assignments may be resubmitted with corrections and receive full credit. Please note, however, that corrections can only be made to problems for which an answer was attempted at initial submission. You may only resubmit a homework **once**. If you would like to resubmit a homework, your resubmission must be within sent to the AI within 3 days of receiving the graded assignment. For example, if a homework assignment was returned to you on Thursday 8/27, your resubmission must be sent to the AI by the end of the day Sunday 8/30.
+### Peer Reviews
 
-## Exams
+It's important to get feedback on your work not just from the instructors/AIs but also from your peers. You will gain valuable experience in reading other peoples' code, which is far more prevalent than you might expect. Code reviews will take place on Canvas in Discussion threads. You will submit your code to the discussion thread by the assignment due date. You then have 72 hours (3 days) to complete the code review. You will follow the the template I provide for each code review. Each review will be worth 2.5% each for a total of 15% of your grade. 
 
-There will be 3 exams that will be administered online. As of this iteration of the syllabus, these will be timed exams. This is subject to change, however I will provide you with written communication to any changes made. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). 
+### Exams
 
-All assignments and examinations are mandatory. If you are to miss an exam you must get in touch with me as soon as possible. Rescheduling of exams will be considered on a case by case basis, but the instructor is not required to approve a rescheduled exam.
+There will be 3 exams. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). The first exam is worth 15% of your grade, and the remaining two exams are each worth 20% of your grade.
 
-# Materials needed
+### Final Grading Rubric
 
-We will be using R for all data wrangling, visulaization, and analysis. You may not use another statistical program in this course.
-Students must have the latest version of R, which can be downloaded [here](https://ftp.osuosl.org/pub/cran/). It is strongly recommended that students also download the RStudio GUI, available [here](https://www.rstudio.com/products/rstudio/download/#download). Both softwares are free. 
+All assignments and examinations are mandatory. If you need to miss an exam you must get in touch with me as soon as possible. Rescheduling of exams will be considered on a case by case basis, but I am _not_ required to approve a rescheduled exam.
 
-All reading assignments will be posted online. 
+\begin{equation}
+\begin{split}
+
+& \text{> 100% = A+} \\
+& \text{93% - 99.99% = A} \\
+& \text{90% - 92.99% = A-} \\
+& \text{87% - 89.99% = B+} \\
+& \text{83% - 86.99% = B} \\
+& \text{80% - 82.99% = B-} \\
+
+\end{split}
+
+\begin{split}
+& \text{77% - 79.99% = C+} \\
+& \text{73% - 76.99% = C} \\
+& \text{70% - 72.99% = C-} \\
+& \text{67% - 69.99% = D+} \\
+& \text{63% - 66.99% = D} \\
+& \text{60% - 62.99% = D-} \\
+&\text{< 50% = F}
+
+\end{split}
+\end{equation}
+
+# Learning from a Crappy Year 
+
+The 2020-2021 academic year sucked. But instead of burying our heads in the sand and forgetting it existed, let's at least extract some things and incorporate them into our lives. For this class, here's what that means...
+
+### Staying Connected
+
+Last year was lonely. Although we're back in person, we still might feel that residual loneliness. On top of that, learning stats, learning to code, and grad school in general can be really scary -- impostor syndrome is real! The best thing we can do to combat these feelings is to stay connected to one another. Here's how we'll accomplish this in our class:
+
+-	Your peer review will be with the same person. This way, you will get to know your buddy over the course of the semester. Make a friend! 
+
+-	We will have a dedicated class Slack workspace (see upper right corner of website for link). You can post questions that everyone can see, or make use of direct messaging. Shelly or the AIs will respond to your questions on slack (if your peers don't respond first!). This is really great for one-off questions, or need some quick clarification on. We will also have a dedicated channel for silly programming and stats memes, because humor is important when you're learning a skill like coding, in which you’ll repeatedly fail. Slack is not required *per se*, but it is **highly encouraged**.
+
+### Be Considerate and Kind
+
+- It is OK to not be OK. If you tell me you're having trouble, I'm not going to judge you or think less of you. I hope you will do the same for me. I will work with you to make sure we have a reasonable plan in place should something come up. *However*, this does require you telling me "hey, I'm not OK".
+- You are always welcome to come talk to me about things that you're going through. If I can't help you, I usually know someone who can help -- or I can at least give you some resources and point you in the right direction.
+- If you are struggling or need extra help, please just ask. I promise I will work with you.
+
+### Online Etiquette
+
+There will be a lot of online communication with the instructor, the AI, and your peers. You are expected to maintain a polite and respectful tone in their online discourse. Some things to consider:
+
+  -	Any communication shared privately may become public, so be mindful of what you share in discussion boards or chats. This is especially true for sharing any personal and/or identifying information about you or someone else. Do not share any passwords or divulge any personal information (yours or others) that can be used in a malicious manner (phone numbers, addresses etc.).
+  -	Humor doesn't always translate in an online forum. If you want to make a joke or a sarcastic remark, be 100% sure that it is clear you are joking. 
+  -	Your comments must be readable to everyone. Very common acronyms are OK (“lol” or “haha”). But please refrain from acronyms that are not as well-known (“fwiw” etc.).
+  -	Treat your classmates, professor, and AIs with kindness and respect. Any indication of online harassment or bullying will not be tolerated and will be reported. This is especially pertinent when giving constructive feedback in code reviews.
+  - Please avoid using ALL CAPS because it can be interpreted as yelling.
 
 # Policies & Resources
 
@@ -110,25 +185,3 @@ All reading assignments will be posted online.
 - Contact the university's Title IX Director, Ms. Jessica Kennedy, at [jwkennedy@wustl.edu](mailto:jwkennedy@wustl.edu) or call 314-935-3118
 
 _**You can always come to me!** Period. However, if you come to me with any issues surrounding child abuse, suicidal tendencies, or sexual assault, sexual discrimination, sexual harassment, dating violence, domestic violence or stalking, I am required to report these to their appropriate administrators. Washington University faculty and administrators strive to maintain confidentiality, but some information may need to be disclosed when it is a matter of safety._
-
-# COVID-19 & How to be OK
-
-*(This section was created and slightly modified from [this awesome tweet by Dr. Chris Jones](https://twitter.com/ProfChrisMJones/status/1282036533562834944). And, you know, the state of the world)*
-
-In case you hadn’t noticed, there is a **_global pandemic_**. None of us are really “OK”. If you tell me you’re having trouble, I’m not going to judge you or think less of you. I hope you’ll extend me the same grace. 
-
-Let’s set the stage:
-
-  -	You never owe me personal information about your health (mental or physical), or anything else. Since this course is entirely online, we do not have to worry about the whole class physically distancing or needing to go into quarantine if one of us is exposed.
-  -	You are always welcome to come talk to me about things that you’re going through, however.
-  -	If I can’t help you, I usually know somebody who can.
-  -	If you need extra help or you need more time with something, just ask. I’ll work with you. Promise. 
-
-# Online Learning
-
-For those of you who have never taken an online class (and those who have!), one thing you might not be prepared for is the amount of *intrinsic motivation* needed to succeed. While it’s great to be able to access material at your own pace, many students mistakenly think this somehow makes the class easier. It is, unfortunately, all too common for students to fall into the trap of procrastination and ultimately fall behind in the class. Don’t let this be you! Here are some steps you can take right now to ensure you are ready to rock and roll:
-
-  - Make a schedule for yourself, and stick to it! Carve out time to watch the lectures and complete the homeworks & quizzes. Time management is the key to online success and graduate school more generally. There are TONS of apps and tools to help you with this and can take the form of calendars, organizers, time tracking apps etc.
-  - If you get distracted by all the other websites on the planet, consider some apps like [Cold Turkey](https://getcoldturkey.com/), [Freedom](https://freedom.to/stayfocusd), or others that will block external sites (Twitter, Netflix etc.) and help you focus.
-
-

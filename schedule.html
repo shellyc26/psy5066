@@ -13,12 +13,22 @@
 
 <title>Syllabus</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,12 +36,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -79,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -324,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -363,89 +333,106 @@ div.tocify {
     <li>
       <a href="lectures/2-measurement.html">2-Measurement</a>
     </li>
-    <li>
-      <a href="lectures/3-describing-data.html">3-Describing Data Part 1</a>
-    </li>
-    <li>
-      <a href="lectures/4-describing_data.html">4-Describing Data Part 2</a>
-    </li>
-    <li>
-      <a href="lectures/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
-    </li>
-    <li>
-      <a href="lectures/6-binomial.html">6a-Binomial</a>
-    </li>
-    <li>
-      <a href="lectures/6-normal.html">6b-Normal</a>
-    </li>
-    <li>
-      <a href="lectures/7-bayes.html">7-Bayes</a>
-    </li>
-    <li>
-      <a href="lectures/8-sampling.html">8-Sampling</a>
-    </li>
-    <li>
-      <a href="lectures/9-nhst.html">9-NHST 1</a>
-    </li>
-    <li>
-      <a href="lectures/10-nhst.html">10-NHST 2</a>
-    </li>
-    <li>
-      <a href="lectures/11-critiques.html">11-Critiques</a>
-    </li>
-    <li>
-      <a href="lectures/12-open_science.html">12-Open Science</a>
-    </li>
-    <li>
-      <a href="lectures/13-chisq.html">13-Chi Square</a>
-    </li>
-    <li>
-      <a href="lectures/14-one_sample.html">14-One Sample</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_I.html">15a-Comparing Means I</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_II.html">15b-Comparing Means II</a>
-    </li>
-    <li>
-      <a href="lectures/16-two_means_III.html">16-Comparing Dependent Means</a>
-    </li>
-    <li>
-      <a href="lectures/17-modelcomparison.html">17-Model Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/18-onewayanova.pdf">18-Oneway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/21-twowayWithInteraction.pdf">21-Interactions</a>
-    </li>
-    <li>
-      <a href="lectures/22-within.html">22-Within Subjects</a>
-    </li>
   </ul>
-</li>
-<li>
-  <a href="lectureVideos.html">Lecture Videos</a>
 </li>
 <li>
   <a href="homework.html">Homework</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Fall2020
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures2020/1-intro.html">1-Introduction</a>
+    </li>
+    <li>
+      <a href="lectures2020/2-measurement.html">2-Measurement</a>
+    </li>
+    <li>
+      <a href="lectures2020/3-describing-data.html">3-Describing Data Part 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/4-describing_data.html">4-Describing Data Part 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-binomial.html">6a-Binomial</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-normal.html">6b-Normal</a>
+    </li>
+    <li>
+      <a href="lectures2020/7-bayes.html">7-Bayes</a>
+    </li>
+    <li>
+      <a href="lectures2020/8-sampling.html">8-Sampling</a>
+    </li>
+    <li>
+      <a href="lectures2020/9-nhst.html">9-NHST 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/10-nhst.html">10-NHST 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/11-critiques.html">11-Critiques</a>
+    </li>
+    <li>
+      <a href="lectures2020/12-open_science.html">12-Open Science</a>
+    </li>
+    <li>
+      <a href="lectures2020/13-chisq.html">13-Chi Square</a>
+    </li>
+    <li>
+      <a href="lectures2020/14-one_sample.html">14-One Sample</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_I.html">15a-Comparing Means I</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_II.html">15b-Comparing Means II</a>
+    </li>
+    <li>
+      <a href="lectures2020/16-two_means_III.html">16-Comparing Dependent Means</a>
+    </li>
+    <li>
+      <a href="lectures2020/17-modelcomparison.html">17-Model Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/18-onewayanova.pdf">18-Oneway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/21-twowayWithInteraction.pdf">21-Interactions</a>
+    </li>
+    <li>
+      <a href="lectures2020/22-within.html">22-Within Subjects</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/shellyc26/psy5066">GitHub</a>
+</li>
+<li>
+  <a href="https://quantii-spring2021.slack.com">Slack</a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -458,324 +445,379 @@ div.tocify {
 <h1>Weekly schedule</h1>
 <p>LSR readings can be found in the free, online textbook, <a href="https://learningstatisticswithr-bookdown.netlify.com/index.html"><em>Learning Statistics with R</em></a> by Danielle Navarro. For those interested in taking notes, I recommend the use of the <a href="http://Hypothes.is">Hypothes.is</a> app to annotate webpages. I will note that the formatting of the book online is wonky in a few places. If this bothers you, or you prefer to work offline, you can download a <a href="https://learningstatisticswithr.com/lsr-0.6.pdf">PDF version</a> of the book.</p>
 <table>
-<colgroup>
-<col width="5%" />
-<col width="5%" />
-<col width="32%" />
-<col width="16%" />
-<col width="13%" />
-<col width="16%" />
-<col width="9%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Week</th>
 <th>Date</th>
 <th>Topic</th>
 <th>Readings</th>
-<th>Quiz Due Dates</th>
-<th>Homework Due Dates</th>
-<th>Check-ins</th>
+<th>HW Due</th>
+<th>Peer Review Due</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>9/15</td>
-<td>Introduction, overview &amp; measurement scales</td>
+<td>8/31</td>
+<td>Syllabus, Measurement, RMarkdown/RProjects</td>
 <td>LSR Ch 1 &amp; 3</td>
 <td></td>
 <td></td>
-<td>Everyone</td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>9/17</td>
+<td>9/2</td>
 <td>Threats to measurement validity</td>
 <td>LSR CH 2 &amp; 4, <a href="readings/Cronbach_Meehl_1955.pdf">Cronbach &amp; Meehl (1955)</a></td>
 <td></td>
 <td></td>
-<td>April</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>9/22</td>
+<td>9/7</td>
 <td>Describing data</td>
 <td>LSR Ch 5 &amp; 6</td>
-<td>Quiz 1</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>9/24</td>
+<td>9/9</td>
 <td>Describing data</td>
 <td>LSR Ch 5 &amp; 6, <a href="readings/Ozer_Funder_2019.pdf">Ozer &amp; Funder (2019)</a></td>
 <td></td>
 <td></td>
-<td>Shelly</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>9/29</td>
+<td>9/14</td>
 <td>Fisher tradition &amp; probability</td>
 <td>LSR Ch 9</td>
-<td></td>
 <td>HW 1</td>
-<td></td>
+<td>9/ 17</td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>10/1</td>
+<td>9/16</td>
 <td>Normal &amp; binomial distributions</td>
 <td>LSR Ch 9</td>
 <td></td>
 <td></td>
-<td>Jayde</td>
 </tr>
 <tr class="odd">
 <td>4</td>
-<td>10/6</td>
-<td>Introduction to Bayesian statistics</td>
-<td>LSR Ch 17</td>
-<td>Quiz 2</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>10/8</td>
+<td>9/21</td>
 <td>Sampling distributions and <span class="math inline">\(t\)</span> distributions</td>
 <td>LSR Ch 10</td>
 <td></td>
 <td></td>
-<td>Shelly</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>9/23</td>
+<td>Exam 1 Review</td>
+<td></td>
+<td>HW 2</td>
+<td>9/26</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>10/13</td>
+<td>9/28</td>
 <td><strong>Exam 1</strong></td>
 <td></td>
 <td></td>
-<td>HW 2</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>10/15</td>
-<td><strong>Exam 1</strong></td>
-<td></td>
-<td></td>
+<td>9/30</td>
+<td>Hypothesis testing 1</td>
+<td>LSR Ch 11</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>6</td>
-<td>10/20</td>
-<td>Hypothesis testing 1</td>
-<td>LSR Ch 11</td>
-<td>Quiz 3</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>10/22</td>
+<td>10/5</td>
 <td>Hypothesis testing 2</td>
 <td>LSR Ch 11</td>
 <td></td>
 <td></td>
-<td>April</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>10/7</td>
+<td>Critique of NHST</td>
+<td>LSR Ch 11, <a href="readings/Simmons_etal_2011.pdf">Simmons et al. (2011)</a>, <a href="readings/Cumming_2014.pdf">Cumming (2014)</a></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>10/27</td>
-<td>Critique of NHST</td>
-<td>LSR Ch 11, <a href="readings/Simmons_etal_2011.pdf">Simmons et al. (2011)</a>, <a href="readings/Cumming_2014.pdf">Cumming (2014)</a></td>
+<td>10/12</td>
+<td><em>No Class - Happy Fall Break</em></td>
 <td></td>
-<td>HW 3</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>10/29</td>
+<td>10/14</td>
 <td>Open science practices</td>
 <td><a href="https://fivethirtyeight.com/features/science-isnt-broken/">Five Thirty Eight</a></td>
 <td></td>
 <td></td>
-<td>Shelly</td>
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>11/3</td>
+<td>10/19</td>
 <td>Chi-Square test</td>
 <td>LSR Ch 12</td>
-<td>Quiz 4 (now due 11/4)</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>11/5</td>
+<td>10/21</td>
 <td>One-sample tests</td>
 <td>LSR Ch 13</td>
-<td></td>
-<td></td>
-<td>Jayde</td>
+<td>HW 3</td>
+<td>10/24</td>
 </tr>
 <tr class="odd">
 <td>9</td>
-<td>11/10</td>
+<td>10/26</td>
 <td>Comparing two means 2 (parts 1 &amp; 2)</td>
 <td>LSR Ch 13</td>
 <td></td>
-<td>HW 4 (cancelled)</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>11/12</td>
+<td>10/28</td>
 <td>Comparing dependent means</td>
 <td>LSR Ch 13</td>
-<td>Quiz 5 (cancelled)</td>
 <td></td>
-<td>Shelly</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>10</td>
-<td>11/17</td>
-<td><strong>Exam 2</strong></td>
-<td></td>
-<td></td>
+<td>11/2</td>
+<td>Introduction to Bayesian statistics</td>
+<td>LSR Ch 17</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>11/19</td>
-<td><strong>Exam 2</strong></td>
+<td>11/4</td>
+<td>Exam 2 Review</td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>HW 4</td>
+<td>11/7</td>
 </tr>
 <tr class="odd">
 <td>11</td>
-<td>11/24</td>
-<td><em>Thanksgiving Break</em></td>
-<td></td>
+<td>11/9</td>
+<td><strong>Exam 2</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>11/16</td>
-<td><em>Thanksgiving Break</em></td>
-<td></td>
-<td></td>
+<td>11/11</td>
+<td>Introduction to model comparisons &amp; <span class="math inline">\(F\)</span>-distribution</td>
+<td>LSR Ch 14</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>12</td>
-<td>12/1</td>
-<td>Introduction to model comparisons &amp; <span class="math inline">\(F\)</span>-distribution</td>
-<td>LSR Ch 14</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>12/3</td>
+<td>11/16</td>
 <td>One-way ANOVA</td>
 <td>LSR Ch 14</td>
 <td></td>
 <td></td>
-<td>April</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>12/8</td>
-<td>Multiple comparisons &amp; contrasts</td>
-<td>LSR Ch 16</td>
-<td></td>
-<td>HW 5</td>
-<td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>12/10</td>
-<td>Two between-subjects factors</td>
+<td>11/18</td>
+<td>Multiple comparisons &amp; contrasts</td>
 <td>LSR Ch 16</td>
 <td></td>
 <td></td>
-<td>Jayde</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>11/23</td>
+<td>Two between-subjects factors</td>
+<td>LSR Ch 16</td>
+<td>HW 5</td>
+<td>11/26</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>11/25</td>
+<td><em>No Class - Happy Thanksgiving</em></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>14</td>
-<td>12/15</td>
+<td>11/30</td>
 <td>Interactions &amp; ANCOVA</td>
 <td>LSR Ch 16</td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>-</td>
-<td>12/17</td>
+<td>12/2</td>
 <td>Within-subjects designs</td>
 <td>LSR Ch 16</td>
-<td>Quiz 6 (cancelled)</td>
-<td>HW 6 (cancelled)</td>
-<td>Shelly</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Finals</td>
-<td>On Own Time</td>
+<td>15</td>
+<td>12/7</td>
+<td>TBD</td>
+<td></td>
+<td>HW 6</td>
+<td>12/10</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>12/9</td>
+<td>Exam 3 Review</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Final</td>
+<td>12/21</td>
 <td><strong>Exam 3</strong></td>
-<td></td>
-<td></td>
+<td>6pm-8pm</td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<p><em>Note, we can consider moving the final to the last class period</em></p>
+</div>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>This course is the first in a two-course sequence that introduces necessary skills and knowledge for carrying out statistical analyses in the social sciences. The course has an applied focus for psychological research, but theoretical details will be emphasized when they facilitate understanding of key concepts. In other words, we will strike a balance between learning how to do statistics and knowing why we are doing it a particular way. Mastering both will facilitate generalization to new problems and techniques. Topics to be covered this semester include probability theory, measurement scales, theoretical sampling distributions (e.g., binomial, <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(\chi^2\)</span>), measures of central tendency and variability, inferences about population means, confidence intervals, the pros and cons of null hypothesis testing, power, and effect sizes, and ANOVA.</p>
+<div id="textbook" class="section level3">
+<h3>Textbook</h3>
+<p>We will primarily be referring to chapters in <a href="https://learningstatisticswithr-bookdown.netlify.com/index.html"><em>Learning Statistics with R</em></a> by Danielle Navarro. This textbook is available for free online. You may choose to purchase a paper copy if you wish, but it is not required. Additional readings assignments will be posted here.</p>
+</div>
+<div id="r-and-rstudio" class="section level3">
+<h3>R and RStudio</h3>
+<p>Students must have the latest version of R, which can be downloaded <a href="https://ftp.osuosl.org/pub/cran/">here</a>. It is strongly recommended that students also download the RStudio GUI, available <a href="https://www.rstudio.com/products/rstudio/download/#download">here</a>. Both are free.</p>
+</div>
+<div id="resources-for-r-and-rstudio" class="section level3">
+<h3>Resources for R and RStudio</h3>
+<p>While we will be covering the use of R and RStudio extensively, one of the key skills required to use R is the ability to find answers on the Internet. The R community (sometimes referred to as the <code>useR</code> or <code>rstats</code> community) tends to be friendly and helpful and enjoys solving R-related problems in their spare time. For that reason, many common questions or problems have been posted to spaces online and answered by smart people. Finding and deciphering those answers is the key skill you should seek to hone this year. It’s much more important than remembering function names.</p>
+<p>Here’s a <a href="data/resources2021.pdf">resource page</a> to get you going.</p>
+</div>
 </div>
 <div id="graded-materials" class="section level1">
 <h1>Graded materials</h1>
 <p>Your final grade is comprised of three components:</p>
 <ul>
-<li>6 (almost biweekly) Quizzes: 5% each, 30% total</li>
-<li>6 (almost biweekly) Homework: 5% each, 30% total</li>
-<li>Exam 1: 10%</li>
-<li>Exam 2: 15%</li>
-<li>Exam 3: 15%</li>
+<li>6 Homework: 5% each, 30% total</li>
+<li>6 Peer Reviews: 2.5% each, 15% total</li>
+<li>Exam 1: 15%</li>
+<li>Exams 2 &amp; 3: 20% each, 40% total</li>
 </ul>
-<div id="quizzes" class="section level2">
-<h2>Quizzes</h2>
-<p>Quizzes are intended to assess your understanding of the theoretical principles underlying statistics. They will be administered via Canvas. The Canvas quizzes will be posted at noon on Thursdays, and will be due by <strong>9am on Tuesday</strong>. For example, the first quiz will be posted on Thursday 9/17 at 12pm and will be due 9/22 at 9am. There will be a quiz due every other Tuesday (there are some exceptions – please see the schedule). You may NOT resubmit quizzes or take them as many times as you’d like (see the announcement from 9/29). You can use resources such as lecture slides, notes, and the textbook for these quizzes. The only resource you <em>cannot</em> use are your peers!</p>
-</div>
-<div id="homework-assignments" class="section level2">
-<h2>Homework assignments</h2>
-<p>Homework assignments will be posted one week before they are due. All assignments will make use of R statistical software. In addition, homework assignments will ask students to critically describe their findings in a write-up, with consideration of the potential flaws of the statistical and methodological strategy. Homework assignments will not be accepted after the deadline, and they should be turned in on Canvas. You may work with your peers on homework assignments, with the following caveats:</p>
+<div id="homework-assignments" class="section level3">
+<h3>Homework assignments</h3>
+<p>Homework assignments are intended to gauge your ability to apply the topics covered in class to the practice of data analysis. Homework assignments are to be done using R and RMarkdown; completed assignments should be submitted to Canvas. Please submit BOTH your .Rmd and .html file. Please do not use PDF or Word documents. There will be 6 assignments in total, each worth 5% of your grade.</p>
+<p>HWs are due at their due date by 9:30am. Grading will go by the following rubric:</p>
+<ul>
+<li>5/5: Completed all parts of the assignment, and results/interpreations were mostly correct (with maybe a few minor errors along the way)</li>
+<li>4/5: Completed all parts of the assignment, and ~25% of the results/interpretations are incorrect</li>
+<li>3/5: Completed all parts of the assignment, however ~50% of the results/intepretations are incorrect</li>
+<li>2/5: Either parts of the assignment are missing but what is there is correct, OR all parts have been completed but there are substantial issues with the results/interpretation</li>
+<li>1/5: Parts of the assignment are missing, and there are substantial issues with the results/interpreation</li>
+<li>0/5: No assignment submitted</li>
+</ul>
+<p>You may work with your peers on homework assignments, with the following caveats:</p>
 <ol style="list-style-type: decimal">
 <li>Your code cannot be 100% identical to your peer’s code (trust me, I can tell). It’s one thing to work together and consult, but it’s another thing to copy someone else’s assignment. If it is determined that someone copied an entire homework assignment, both parties will be given automatic zero.</li>
 <li>If you work with someone, you <em>must</em> acknowledge them in the assignment itself.</li>
 </ol>
-<p>Homework assignments may be resubmitted with corrections and receive full credit. Please note, however, that corrections can only be made to problems for which an answer was attempted at initial submission. You may only resubmit a homework <strong>once</strong>. If you would like to resubmit a homework, your resubmission must be within sent to the AI within 3 days of receiving the graded assignment. For example, if a homework assignment was returned to you on Thursday 8/27, your resubmission must be sent to the AI by the end of the day Sunday 8/30.</p>
 </div>
-<div id="exams" class="section level2">
-<h2>Exams</h2>
-<p>There will be 3 exams that will be administered online. As of this iteration of the syllabus, these will be timed exams. This is subject to change, however I will provide you with written communication to any changes made. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below).</p>
-<p>All assignments and examinations are mandatory. If you are to miss an exam you must get in touch with me as soon as possible. Rescheduling of exams will be considered on a case by case basis, but the instructor is not required to approve a rescheduled exam.</p>
+<div id="peer-reviews" class="section level3">
+<h3>Peer Reviews</h3>
+<p>It’s important to get feedback on your work not just from the instructors/AIs but also from your peers. You will gain valuable experience in reading other peoples’ code, which is far more prevalent than you might expect. Code reviews will take place on Canvas in Discussion threads. You will submit your code to the discussion thread by the assignment due date. You then have 72 hours (3 days) to complete the code review. You will follow the the template I provide for each code review. Each review will be worth 2.5% each for a total of 15% of your grade.</p>
+</div>
+<div id="exams" class="section level3">
+<h3>Exams</h3>
+<p>There will be 3 exams. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). The first exam is worth 15% of your grade, and the remaining two exams are each worth 20% of your grade.</p>
+</div>
+<div id="final-grading-rubric" class="section level3">
+<h3>Final Grading Rubric</h3>
+<p>All assignments and examinations are mandatory. If you need to miss an exam you must get in touch with me as soon as possible. Rescheduling of exams will be considered on a case by case basis, but I am <em>not</em> required to approve a rescheduled exam.</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+
+&amp; \text{&gt; 100% = A+} \\
+&amp; \text{93% - 99.99% = A} \\
+&amp; \text{90% - 92.99% = A-} \\
+&amp; \text{87% - 89.99% = B+} \\
+&amp; \text{83% - 86.99% = B} \\
+&amp; \text{80% - 82.99% = B-} \\
+
+\end{split}
+
+\begin{split}
+&amp; \text{77% - 79.99% = C+} \\
+&amp; \text{73% - 76.99% = C} \\
+&amp; \text{70% - 72.99% = C-} \\
+&amp; \text{67% - 69.99% = D+} \\
+&amp; \text{63% - 66.99% = D} \\
+&amp; \text{60% - 62.99% = D-} \\
+&amp;\text{&lt; 50% = F}
+
+\end{split}
+\end{equation}\]</span></p>
 </div>
 </div>
-<div id="materials-needed" class="section level1">
-<h1>Materials needed</h1>
-<p>We will be using R for all data wrangling, visulaization, and analysis. You may not use another statistical program in this course. Students must have the latest version of R, which can be downloaded <a href="https://ftp.osuosl.org/pub/cran/">here</a>. It is strongly recommended that students also download the RStudio GUI, available <a href="https://www.rstudio.com/products/rstudio/download/#download">here</a>. Both softwares are free.</p>
-<p>All reading assignments will be posted online.</p>
+<div id="learning-from-a-crappy-year" class="section level1">
+<h1>Learning from a Crappy Year</h1>
+<p>The 2020-2021 academic year sucked. But instead of burying our heads in the sand and forgetting it existed, let’s at least extract some things and incorporate them into our lives. For this class, here’s what that means…</p>
+<div id="staying-connected" class="section level3">
+<h3>Staying Connected</h3>
+<p>Last year was lonely. Although we’re back in person, we still might feel that residual loneliness. On top of that, learning stats, learning to code, and grad school in general can be really scary – impostor syndrome is real! The best thing we can do to combat these feelings is to stay connected to one another. Here’s how we’ll accomplish this in our class:</p>
+<ul>
+<li><p>Your peer review will be with the same person. This way, you will get to know your buddy over the course of the semester. Make a friend!</p></li>
+<li><p>We will have a dedicated class Slack workspace (see upper right corner of website for link). You can post questions that everyone can see, or make use of direct messaging. Shelly or the AIs will respond to your questions on slack (if your peers don’t respond first!). This is really great for one-off questions, or need some quick clarification on. We will also have a dedicated channel for silly programming and stats memes, because humor is important when you’re learning a skill like coding, in which you’ll repeatedly fail. Slack is not required <em>per se</em>, but it is <strong>highly encouraged</strong>.</p></li>
+</ul>
+</div>
+<div id="be-considerate-and-kind" class="section level3">
+<h3>Be Considerate and Kind</h3>
+<ul>
+<li>It is OK to not be OK. If you tell me you’re having trouble, I’m not going to judge you or think less of you. I hope you will do the same for me. I will work with you to make sure we have a reasonable plan in place should something come up. <em>However</em>, this does require you telling me “hey, I’m not OK”.</li>
+<li>You are always welcome to come talk to me about things that you’re going through. If I can’t help you, I usually know someone who can help – or I can at least give you some resources and point you in the right direction.</li>
+<li>If you are struggling or need extra help, please just ask. I promise I will work with you.</li>
+</ul>
+</div>
+<div id="online-etiquette" class="section level3">
+<h3>Online Etiquette</h3>
+<p>There will be a lot of online communication with the instructor, the AI, and your peers. You are expected to maintain a polite and respectful tone in their online discourse. Some things to consider:</p>
+<ul>
+<li>Any communication shared privately may become public, so be mindful of what you share in discussion boards or chats. This is especially true for sharing any personal and/or identifying information about you or someone else. Do not share any passwords or divulge any personal information (yours or others) that can be used in a malicious manner (phone numbers, addresses etc.).</li>
+<li>Humor doesn’t always translate in an online forum. If you want to make a joke or a sarcastic remark, be 100% sure that it is clear you are joking.</li>
+<li>Your comments must be readable to everyone. Very common acronyms are OK (“lol” or “haha”). But please refrain from acronyms that are not as well-known (“fwiw” etc.).</li>
+<li>Treat your classmates, professor, and AIs with kindness and respect. Any indication of online harassment or bullying will not be tolerated and will be reported. This is especially pertinent when giving constructive feedback in code reviews.</li>
+<li>Please avoid using ALL CAPS because it can be interpreted as yelling.</li>
+</ul>
+</div>
 </div>
 <div id="policies-resources" class="section level1">
 <h1>Policies &amp; Resources</h1>
@@ -806,26 +848,6 @@ div.tocify {
 </ul>
 <p><em><strong>You can always come to me!</strong> Period. However, if you come to me with any issues surrounding child abuse, suicidal tendencies, or sexual assault, sexual discrimination, sexual harassment, dating violence, domestic violence or stalking, I am required to report these to their appropriate administrators. Washington University faculty and administrators strive to maintain confidentiality, but some information may need to be disclosed when it is a matter of safety.</em></p>
 </div>
-<div id="covid-19-how-to-be-ok" class="section level1">
-<h1>COVID-19 &amp; How to be OK</h1>
-<p><em>(This section was created and slightly modified from <a href="https://twitter.com/ProfChrisMJones/status/1282036533562834944">this awesome tweet by Dr. Chris Jones</a>. And, you know, the state of the world)</em></p>
-<p>In case you hadn’t noticed, there is a <strong><em>global pandemic</em></strong>. None of us are really “OK”. If you tell me you’re having trouble, I’m not going to judge you or think less of you. I hope you’ll extend me the same grace.</p>
-<p>Let’s set the stage:</p>
-<ul>
-<li>You never owe me personal information about your health (mental or physical), or anything else. Since this course is entirely online, we do not have to worry about the whole class physically distancing or needing to go into quarantine if one of us is exposed.</li>
-<li>You are always welcome to come talk to me about things that you’re going through, however.</li>
-<li>If I can’t help you, I usually know somebody who can.</li>
-<li>If you need extra help or you need more time with something, just ask. I’ll work with you. Promise.</li>
-</ul>
-</div>
-<div id="online-learning" class="section level1">
-<h1>Online Learning</h1>
-<p>For those of you who have never taken an online class (and those who have!), one thing you might not be prepared for is the amount of <em>intrinsic motivation</em> needed to succeed. While it’s great to be able to access material at your own pace, many students mistakenly think this somehow makes the class easier. It is, unfortunately, all too common for students to fall into the trap of procrastination and ultimately fall behind in the class. Don’t let this be you! Here are some steps you can take right now to ensure you are ready to rock and roll:</p>
-<ul>
-<li>Make a schedule for yourself, and stick to it! Carve out time to watch the lectures and complete the homeworks &amp; quizzes. Time management is the key to online success and graduate school more generally. There are TONS of apps and tools to help you with this and can take the form of calendars, organizers, time tracking apps etc.</li>
-<li>If you get distracted by all the other websites on the planet, consider some apps like <a href="https://getcoldturkey.com/">Cold Turkey</a>, <a href="https://freedom.to/stayfocusd">Freedom</a>, or others that will block external sites (Twitter, Netflix etc.) and help you focus.</li>
-</ul>
-</div>
 
 
 
@@ -838,7 +860,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -856,7 +878,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -866,6 +888,9 @@ $(document).ready(function () {
 <script>
 $(document).ready(function ()  {
 
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
         .removeClass('toc-ignore')
@@ -873,11 +898,11 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

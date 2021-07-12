@@ -9,30 +9,41 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Fall 2020. Instructor: Shelly R. Cooper" />
+<meta name="author" content="Fall 2021 | Somers Family Hall 216B" />
 
 
 <title>Psych 5066: Quantitative Methods I</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,32 +56,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -80,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -100,40 +82,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -161,7 +116,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -173,7 +128,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -184,10 +139,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -199,7 +167,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -252,69 +219,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -322,16 +226,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -364,254 +258,137 @@ div.tocify {
     <li>
       <a href="lectures/2-measurement.html">2-Measurement</a>
     </li>
-    <li>
-      <a href="lectures/3-describing-data.html">3-Describing Data Part 1</a>
-    </li>
-    <li>
-      <a href="lectures/4-describing_data.html">4-Describing Data Part 2</a>
-    </li>
-    <li>
-      <a href="lectures/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
-    </li>
-    <li>
-      <a href="lectures/6-binomial.html">6a-Binomial</a>
-    </li>
-    <li>
-      <a href="lectures/6-normal.html">6b-Normal</a>
-    </li>
-    <li>
-      <a href="lectures/7-bayes.html">7-Bayes</a>
-    </li>
-    <li>
-      <a href="lectures/8-sampling.html">8-Sampling</a>
-    </li>
-    <li>
-      <a href="lectures/9-nhst.html">9-NHST 1</a>
-    </li>
-    <li>
-      <a href="lectures/10-nhst.html">10-NHST 2</a>
-    </li>
-    <li>
-      <a href="lectures/11-critiques.html">11-Critiques</a>
-    </li>
-    <li>
-      <a href="lectures/12-open_science.html">12-Open Science</a>
-    </li>
-    <li>
-      <a href="lectures/13-chisq.html">13-Chi Square</a>
-    </li>
-    <li>
-      <a href="lectures/14-one_sample.html">14-One Sample</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_I.html">15a-Comparing Means I</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_II.html">15b-Comparing Means II</a>
-    </li>
-    <li>
-      <a href="lectures/16-two_means_III.html">16-Comparing Dependent Means</a>
-    </li>
-    <li>
-      <a href="lectures/17-modelcomparison.html">17-Model Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/18-onewayanova.pdf">18-Oneway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/21-twowayWithInteraction.pdf">21-Interactions</a>
-    </li>
-    <li>
-      <a href="lectures/22-within.html">22-Within Subjects</a>
-    </li>
   </ul>
-</li>
-<li>
-  <a href="lectureVideos.html">Lecture Videos</a>
 </li>
 <li>
   <a href="homework.html">Homework</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Fall2020
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures2020/1-intro.html">1-Introduction</a>
+    </li>
+    <li>
+      <a href="lectures2020/2-measurement.html">2-Measurement</a>
+    </li>
+    <li>
+      <a href="lectures2020/3-describing-data.html">3-Describing Data Part 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/4-describing_data.html">4-Describing Data Part 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-binomial.html">6a-Binomial</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-normal.html">6b-Normal</a>
+    </li>
+    <li>
+      <a href="lectures2020/7-bayes.html">7-Bayes</a>
+    </li>
+    <li>
+      <a href="lectures2020/8-sampling.html">8-Sampling</a>
+    </li>
+    <li>
+      <a href="lectures2020/9-nhst.html">9-NHST 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/10-nhst.html">10-NHST 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/11-critiques.html">11-Critiques</a>
+    </li>
+    <li>
+      <a href="lectures2020/12-open_science.html">12-Open Science</a>
+    </li>
+    <li>
+      <a href="lectures2020/13-chisq.html">13-Chi Square</a>
+    </li>
+    <li>
+      <a href="lectures2020/14-one_sample.html">14-One Sample</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_I.html">15a-Comparing Means I</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_II.html">15b-Comparing Means II</a>
+    </li>
+    <li>
+      <a href="lectures2020/16-two_means_III.html">16-Comparing Dependent Means</a>
+    </li>
+    <li>
+      <a href="lectures2020/17-modelcomparison.html">17-Model Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/18-onewayanova.pdf">18-Oneway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/21-twowayWithInteraction.pdf">21-Interactions</a>
+    </li>
+    <li>
+      <a href="lectures2020/22-within.html">22-Within Subjects</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/shellyc26/psy5066">GitHub</a>
+</li>
+<li>
+  <a href="https://quantii-spring2021.slack.com">Slack</a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Psych 5066: Quantitative Methods I</h1>
 <h3 class="subtitle">Department of Psychological &amp; Brain Sciences, Washington University in St. Louis</h3>
-<h4 class="author">Fall 2020. Instructor: Shelly R. Cooper</h4>
+<h4 class="author">Fall 2021 | Somers Family Hall 216B</h4>
+<h4 class="date">Tue/Thur 9:30am - 10:50am</h4>
 
 </div>
 
 
-<div id="announcements" class="section level1">
-<h1>Announcements</h1>
-<div id="last-series-of-announcements-hopefully-1217" class="section level4">
-<h4><strong>Last Series of Announcements (hopefully!) – 12/17</strong></h4>
-<div id="hw-5" class="section level5">
-<h5>HW 5</h5>
-<p>The resubmission for HW 5 is due <em>tomorrow</em>! Please note:</p>
-<ul>
-<li>An effect size should be either Cohen’s <span class="math inline">\(d\)</span> or <span class="math inline">\(\eta^2\)</span></li>
-<li>When describing the restricted vs. full model, we are not looking for null and alternative hypotheses, per se. We want you to tell us what you expect of the restricted model vs. the full model. After that, if you want to weave in null and alternative hypotheses, that’s OK. But think more about what you expect of the restricted model in terms of the error vs. what you expect of the full model in terms of the error.</li>
-</ul>
-</div>
-<div id="exam-3-readme" class="section level5">
-<h5>Exam 3 – README</h5>
-<p>Here are some tips for Exam 3:</p>
-<ul>
-<li>It is primarily <em>not</em> cumulative. However, you still need to know some things from the past (for example, you still need to know what a confidence interval is). You also need to know all the different statistical tests we’ve talked about over the course of the semester. Good news is that we’ve mainly continued to talk about them in this last unit, but from the lens of the model comparison framework.</li>
-<li>I will ONLY test you on material from the slides/lecture videos. Your book should be considered a supplement. If I don’t explain something as clearly as you’d like, you can consult the book for another way of framing it. However, I will <strong>NOT</strong> test you on anything from the book that I do NOT cover in the lectures. Put differently, the lectures should 100% be your main source of study material. Similarly, the internet can be misleading. We’re testing you on the material covered in class.</li>
-<li>I strongly suggest preparing for this exam as though you were preparing for an in-class exam. <strong>Don’t rely on the open notes aspect</strong>. The only real difference between these online exams and the ones I administer in person is that when it’s in person, I give you a formula sheet. Online, you use the slides. So the more comfortable you are with the slides, the better off you’ll be (and the easier it will be to find the information you’re looking for).</li>
-<li>When I give this exam in person, I usually give students 2-3 hours to complete it. That’s roughly how long it should take you to complete it at home, too. Hopefully this helps you gauge things. Instead, I’m giving you 50 hours (2 days + a 2 hour buffer for tech issues).</li>
-<li>IF YOU HAVE A QUESTION ABOUT THE EXAM, PLEASE EMAIL ME AND ONLY ME. You do not need to include April and Jayde. They have worked really hard all semester long, and they deserve a break 😄</li>
-<li>To make the tech work, please watch the end of Lecture 22. In it I describe how you should use the Chrome web browser, turn off your ad blocker, and that you must hit the Submit button on Canvas in order for us to receive your exam file.</li>
-</ul>
-</div>
-</div>
-<div id="hw-5-posted-back-on-our-grind-1130" class="section level4">
-<h4><strong>HW 5 Posted, Back On Our Grind – 11/30</strong></h4>
-<p>Hope you had a great break! We are now back in action and ready finish up this semester. Homework 5 has been posted. Homework 6 has been cancelled.</p>
-</div>
-<div id="hw2-hw4-quiz-5-updates-1029" class="section level4">
-<h4><strong>HW2, HW4, &amp; Quiz 5 Updates – 10/29</strong></h4>
-<p>Homework 2 has been graded and returned to you. Your resubmissions must be sent to your AI by Sunday 11/1 at midnight. Some feedback: - When getting confidence intervals, remember that you need to split the percentage into 2 for the upper and lower bound. So if it’s a 95% interval, you need the top 2.5% and the bottom 2.5%. How might this translate if you have a 99% CI? - Try to be precise by using a function in R rather than a rule of thumb.</p>
-<p>I am hoping to return Exam 1 by the end of the weekend.</p>
-<p>I know that I’ve been asking a lot of you this semester. To give y’all a break (and to give our wonderful AIs a break), I have decided to completely get rid of HW4 and Quiz 5. It’s too much. The downside is that this won’t give you much practice with calculating t-tests in R. However, you should have covered that in your bootcamp (it’s just 1 function), and Exam 2 will again be “by hand”. I have not decided how my grading rubric will change – either each quiz/HW will be worth 6% of your grade instead of 5% or I will give everyone “full credit” on the missing assignments. Either way though, you will not need to turn in anything for those (and I’ll update the schedule accordingly).</p>
-<p>Lastly, I have changed the due date of Quiz 4 to be Wednesday 11/4 at midnight. This is to encourage anyone that is an eligible US voter to go vote. Who knows how long the lines are going to be this year. I don’t want you abandoning your place in line just to make sure the quiz is finished on time. So I hope this added flexibility helps.</p>
-</div>
-<div id="nhst-slide-hw3-table-changes---1021" class="section level4">
-<h4><strong>NHST Slide &amp; HW3 Table Changes - 10/21</strong></h4>
-<p>I changed the table on slide 33 of the NHST slides as well as the table on HW3 ( <span class="math inline">\(1-\alpha\)</span> and <span class="math inline">\(1-\beta\)</span> were swapped).</p>
-</div>
-<div id="exam-1-policies-108" class="section level4">
-<h4><strong>Exam 1 Policies – 10/8</strong></h4>
-<p>Exam 1 is next week! There was a Zoom check-in today with me. I have recorded that check-in and posted it to the Lecture Videos page.</p>
-<p>Things to keep in mind regarding the exam itself:</p>
-<ul>
-<li><strong>This is a “hand written” exam.</strong> I know that’s kinda weird since we’re fully online and asynchronous. But it is important that you do NOT use R, Excel, SPSS, SAS, python, or any other program/programming language to complete the exam. You MAY use a calculator as you see fit. Options on how to complete the exam:
-<ul>
-<li>Download file from Canvas; print at home; write on exam in pencil/pen; scan at home; upload finished Canvas</li>
-<li>Download file from Canvas; use a stylus to “write” on the exam digitally; upload finished exam to Canvas</li>
-<li>Pick up a physical copy of the exam from the Psychology department between 8:30-9:30am on Tuesday; drop off the physical copy at the Psychology department between 8:30-9:30am on Thursday</li>
-<li><strong><em>If none of these options work, please contact me ASAP</em></strong></li>
-</ul></li>
-<li><p>The exam will cover all topics presented in the slides. Your textbook is just a supplement to this material – I will <em>not</em> test you material that is presented in the textbook that we do not talk about in the slides. Slides/videos are your #1 tool.</p></li>
-<li><p>There will be a combination of multiple choice questions, short answer questions, and actual problems to work through. There will be no R code, and you are not expected to open R at all for this exam (quite the opposite, in fact).</p></li>
-<li><p>You are not to work with anyone on this exam. This means you may NOT work with: peers, students (past or current), friends, family, tutors, etc. It must be YOUR OWN work. If it comes to my attention that you have been working with someone in the class, both parties will receive an automatic 0 and will not be able to retake the exam. If it comes up that you alone have been working with someone outside of the class, you will get an automatic 0 and will not be allowed to retake the exam.</p></li>
-<li><p>You will NOT be provided a formula sheet since this is an open note exam.</p></li>
-<li><p>We will be answering any clarifying questions about exam problems until <strong>Wednesday 10/14 at 5pm</strong>. We will do our best to answer your questions, however we will not give you any tips or hints as to how to solve it. To ask a question, please email all 3 of us (Jayde, April, and Shelly) – one of us will respond. After 5pm on Wednesday, the only questions we will answer will be regarding technical issues (e.g., you’re having trouble uploading to Canvas etc.).</p></li>
-</ul>
-</div>
-<div id="homework-1-notes-108" class="section level4">
-<h4><strong>Homework 1 Notes – 10/8</strong></h4>
-<p>Homework 1 will be returned today (via Canvas) and grades will post (also on Canvas). If you would like to resubmit your homework to try to earn points back, you must turn this in to your AI absolutely no later than <strong>Sunday 10/11 by midnight</strong>.</p>
-<p>Remember, there is NO PARTIAL CREDIT on homeworks. It’s all-or-nothing. If you don’t like your grade, you can turn in a resubmit to earn back points:</p>
-<ul>
-<li>If you got a low overall grade, it’s very, very likely that just a few minor tweaks will get you back on track.</li>
-<li>Before you get discouraged from a low score, please actually look at the document that was returned to you. You might find that you would get full points back for multiple questions with just 1 or 2 fixes here and there.</li>
-<li>Please directly email your resubmits to your AI – don’t go through Canvas.</li>
-</ul>
-<p>Here is some feedback for the entire class from April &amp; Jayde:</p>
-<ul>
-<li>Be sure to label figures informatively. This means including a title, axis labels, and labels for any lines added to the plot.</li>
-<li>Be sure to actually print your results! It’s great to save values to objects (e.g., <code>meanAge &lt;- mean(Age)</code>), but if you don’t actually print out <code>meanAge</code>, then we can’t see if it’s correct!</li>
-<li>After you knit your PDF, you should give it one last look through before you submit it. Make sure you can locate your own answers to each question. If you can’t find it in your own PDF, then neither can we. Try to distinguish your responses from the question text in some way.</li>
-<li>Include all your code or methods for answering questions. A few people did somehow find the names of the outlying countries, but did not indiciate <em>how</em> they figured that out, i.e., by providing the code or simply stating they visually searched and referenced the data.frame.</li>
-<li>Some of you presented answers very nicely and might be interested in <a href="https://bookdown.org/yihui/rmarkdown-cookbook/kable.html">checking out the <code>kable()</code> function in the <code>knitr</code> package</a>. It’s not at all required, though.</li>
-</ul>
-<p>If you earn points back with your resubmission, your AI will manually update your grade. Please get in touch with us if you have any questions.</p>
-</div>
-<div id="update-to-quiz-policy-929" class="section level4">
-<h4><strong>Update to Quiz Policy – 9/29</strong></h4>
-<p>Canvas sucks. It doesn’t let us program quizzes in a way that works with our current setup. As such, I am changing the policy on quizzes such that you will <strong><em>not</em></strong> be able to re-take quizzes as many times as you’d like before the due date. Instead, it will be like any other in-person quiz; you show up, take the quiz, and get a score. Quizzes will still be due by 9am on Tuesdays. Answers to the quizzes will appear on Canvas at 9:30am on Tuesdays, so you can always check your answers.</p>
-</div>
-</div>
-<div id="overview" class="section level1">
-<h1>Overview</h1>
-<p>This course is the first in a two-course sequence that introduces necessary skills and knowledge for carrying out statistical analyses in the social sciences. The course has an applied focus for psychological research, but theoretical details will be emphasized when they facilitate understanding of key concepts. In other words, we will strike a balance between learning how to do statistics and knowing why we are doing it a particular way. Mastering both will facilitate generalization to new problems and techniques. Topics to be covered this semester include probability theory, measurement scales, theoretical sampling distributions (e.g., binomial, <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(\chi^2\)</span>), measures of central tendency and variability, inferences about population means, confidence intervals, the pros and cons of null hypothesis testing, power, and effect sizes.</p>
-<div id="instructors" class="section level2">
-<h2>Instructors</h2>
 <p><strong>Shelly Cooper</strong> – <a href="mailto:shelly.cooper@wustl.edu">shelly.cooper@wustl.edu</a></p>
 <ul>
-<li>Office Hours: By appointment &amp; in “check-in” times</li>
+<li>Pronouns: she/her</li>
+<li>Office Hours: By appointment. <a href="https://calendly.com/shelly-cooper/30min">Make an appointment here</a>.</li>
 </ul>
-<p><strong>Jayde Homer</strong> – <a href="mailto:jaydehomer@wustl.edu">jaydehomer@wustl.edu</a></p>
+<p><strong>Chad Miller</strong> – <a href="mailto:mchad@wustl.edu">mchad@wustl.edu</a></p>
 <ul>
-<li>Office Hours: By appointment &amp; in “check-in” times</li>
+<li>Pronouns: he/him</li>
+<li>Office Hours: By appointment</li>
 <li><em>If you are in Psychology or Computational &amp; Data Sciences</em></li>
 </ul>
-<p><strong>April Yu</strong> – <a href="mailto:tianjiao.yu@wustl.edu">tianjiao.yu@wustl.edu</a></p>
+<p><strong>Alex Park</strong> – <a href="mailto:alexanderpark@wustl.edu">alexanderpark@wustl.edu</a></p>
 <ul>
-<li>Office Hours: By appointment &amp; in “check-in” times</li>
-<li><em>If you are in Business, Movement Science, PNP, Speech &amp; Hearing</em></li>
+<li>Pronouns: he/him</li>
+<li>Office Hours: By appointment</li>
+<li><em>If you are NOT in Psychology or Computational &amp; Data Sciences</em></li>
 </ul>
-</div>
-</div>
-<div id="materials" class="section level1">
-<h1>Materials</h1>
-<div id="textbook" class="section level2">
-<h2>Textbook</h2>
-<p>We will primarily be referring to chapters in <a href="https://learningstatisticswithr-bookdown.netlify.com/index.html"><em>Learning Statistics with R</em></a> by Danielle Navarro. This textbook is available for free online. You may choose to purchase a paper copy if you wish, but it is not required. Additional readings assignments will be posted here.</p>
-</div>
-<div id="r-and-rstudio" class="section level2">
-<h2>R and RStudio</h2>
-<p>Students must have the latest version of R, which can be downloaded <a href="https://ftp.osuosl.org/pub/cran/">here</a>. It is strongly recommended that students also download the RStudio GUI, available <a href="https://www.rstudio.com/products/rstudio/download/#download">here</a>. Both softwares are free.</p>
-</div>
-<div id="resources-for-r-and-rstudio" class="section level2">
-<h2>Resources for R and RStudio</h2>
-<p>While we will be covering the use of R and RStudio extensively, one of the key skills required to use R is the ability to find answers on the Internet. The R commmunity (sometimes referred to as the useR community) tends to be friendly and helpful and enjoys solving R-related problems in their spare time. For that reason, many common questions or problems have been posted to spaces online and answered by smart people. Finding and deciphering those answers is the key skill you should seek to hone this year. It’s much more important than remembering function names.</p>
-<p>Here are some sites where you can find the answers to many R questions and learn new tricks:</p>
-<div id="for-learning-the-basics" class="section level3">
-<h3>For learning the basics</h3>
-<ul>
-<li><a href="https://bookdown.org/ndphillips/YaRrr/"><em>YaRrr, the Pirate’s Guide to R</em></a> by Nathaniel Phillips</li>
-<li><a href="https://r4ds.had.co.nz/"><em>R for Data Science</em></a> by Hadley Wickham</li>
-<li><a href="http://www.cookbook-r.com/"><em>R Cookbook</em></a> by Winston Chang</li>
-<li><a href="http://www-bcf.usc.edu/~gareth/ISL"><em>An Introduction to Statistical Learning</em></a> by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani</li>
-</ul>
-</div>
-<div id="for-plotting" class="section level3">
-<h3>For plotting</h3>
-<ul>
-<li>The <a href="http://www.cookbook-r.com/Graphs/">Graphs chapter of <em>R Cookbook</em></a> by Winston Chang</li>
-</ul>
-</div>
-<div id="quick-resources" class="section level3">
-<h3>Quick resources</h3>
-<ul>
-<li><a href="https://www.rstudio.com/resources/cheatsheets">Cheat Sheets</a></li>
-<li><a href="https://www.statmethods.net">Quick-R</a></li>
-</ul>
-</div>
-<div id="online-forums" class="section level3">
-<h3>Online forums</h3>
-<ul>
-<li><a href="https://stackoverflow.com">Stack Overflow</a><br />
-</li>
-<li><a href="https://stats.stackexchange.com">Cross Validated</a></li>
-</ul>
-</div>
-</div>
-</div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -619,7 +396,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -637,39 +414,13 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

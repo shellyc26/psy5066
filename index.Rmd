@@ -1,149 +1,26 @@
 ---
 title: "Psych 5066: Quantitative Methods I"
 subtitle: "Department of Psychological & Brain Sciences, Washington University in St. Louis"
-author: "Fall 2020. Instructor: Shelly R. Cooper"
+author: "Fall 2021 | Somers Family Hall 216B"
+date: "Tue/Thur 9:30am - 10:50am"
 output: 
   html_document:
-    toc: TRUE
-    toc_depth: 2
-    toc_float: TRUE
     theme: cosmo
 ---
 
-# Announcements
-
-#### **Last Series of Announcements (hopefully!) -- 12/17**
-
-##### HW 5
-The resubmission for HW 5 is due *tomorrow*! Please note:
-
-- An effect size should be either Cohen's $d$ or $\eta^2$
-- When describing the restricted vs. full model, we are not looking for null and alternative hypotheses, per se. We want you to tell us what you expect of the restricted model vs. the full model. After that, if you want to weave in null and alternative hypotheses, that's OK. But think more about what you expect of the restricted model in terms of the error vs. what you expect of the full model in terms of the error.
-
-##### Exam 3 -- README
-Here are some tips for Exam 3:
-
-- It is primarily *not* cumulative. However, you still need to know some things from the past (for example, you still need to know what a confidence interval is). You also need to know all the different statistical tests we've talked about over the course of the semester. Good news is that we've mainly continued to talk about them in this last unit, but from the lens of the model comparison framework. 
-- I will ONLY test you on material from the slides/lecture videos. Your book should be considered a supplement. If I don't explain something as clearly as you'd like, you can consult the book for another way of framing it. However, I will **NOT** test you on anything from the book that I do NOT cover in the lectures. Put differently, the lectures should 100% be your main source of study material. Similarly, the internet can be misleading. We're testing you on the material covered in class. 
-- I strongly suggest preparing for this exam as though you were preparing for an in-class exam. **Don't rely on the open notes aspect**. The only real difference between these online exams and the ones I administer in person is that when it's in person, I give you a formula sheet. Online, you use the slides. So the more comfortable you are with the slides, the better off you'll be (and the easier it will be to find the information you're looking for). 
-- When I give this exam in person, I usually give students 2-3 hours to complete it. That's roughly how long it should take you to complete it at home, too. Hopefully this helps you gauge things. Instead, I'm giving you 50 hours (2 days + a 2 hour buffer for tech issues).
-- IF YOU HAVE A QUESTION ABOUT THE EXAM, PLEASE EMAIL ME AND ONLY ME. You do not need to include April and Jayde. They have worked really hard all semester long, and they deserve a break `r emo::ji("smile")`
-- To make the tech work, please watch the end of Lecture 22. In it I describe how you should use the Chrome web browser, turn off your ad blocker, and that you must hit the Submit button on Canvas in order for us to receive your exam file.
-
-#### **HW 5 Posted, Back On Our Grind -- 11/30**
-Hope you had a great break! We are now back in action and ready finish up this semester. Homework 5 has been posted. Homework 6 has been cancelled. 
-
-#### **HW2, HW4, & Quiz 5 Updates -- 10/29**
-Homework 2 has been graded and returned to you. Your resubmissions must be sent to your AI by Sunday 11/1 at midnight. Some feedback:
-  - When getting confidence intervals, remember that you need to split the percentage into 2 for the upper and lower bound. So if it's a 95% interval, you need the top 2.5% and the bottom 2.5%. How might this translate if you have a 99% CI?
-  - Try to be precise by using a function in R rather than a rule of thumb.
-
-I am hoping to return Exam 1 by the end of the weekend. 
-
-I know that I've been asking a lot of you this semester. To give y'all a break (and to give our wonderful AIs a break), I have decided to completely get rid of HW4 and Quiz 5. It's too much. The downside is that this won't give you much practice with calculating t-tests in R. However, you should have covered that in your bootcamp (it's just 1 function), and Exam 2 will again be "by hand". I have not decided how my grading rubric will change -- either each quiz/HW will be worth 6% of your grade instead of 5% or I will give everyone "full credit" on the missing assignments. Either way though, you will not need to turn in anything for those (and I'll update the schedule accordingly).
-
-Lastly, I have changed the due date of Quiz 4 to be Wednesday 11/4 at midnight. This is to encourage anyone that is an eligible US voter to go vote. Who knows how long the lines are going to be this year. I don't want you abandoning your place in line just to make sure the quiz is finished on time. So I hope this added flexibility helps. 
-
-#### **NHST Slide & HW3 Table Changes - 10/21**
-I changed the table on slide 33 of the NHST slides as well as the table on HW3 ( $1-\alpha$ and $1-\beta$ were swapped).
-
-#### **Exam 1 Policies -- 10/8**
-Exam 1 is next week! There was a Zoom check-in today with me. I have recorded that check-in and posted it to the Lecture Videos page.
-
-Things to keep in mind regarding the exam itself:
-
-- **This is a "hand written" exam.** I know that's kinda weird since we're fully online and asynchronous. But it is important that you do NOT use R, Excel, SPSS, SAS, python, or any other program/programming language to complete the exam. You MAY use a calculator as you see fit. Options on how to complete the exam:
-  - Download file from Canvas; print at home; write on exam in pencil/pen; scan at home; upload finished Canvas
-  - Download file from Canvas; use a stylus to "write" on the exam digitally; upload finished exam to Canvas
-  - Pick up a physical copy of the exam from the Psychology department between 8:30-9:30am on Tuesday; drop off the physical copy at the Psychology department between 8:30-9:30am on Thursday
-  - **_If none of these options work, please contact me ASAP_**
-
-- The exam will cover all topics presented in the slides. Your textbook is just a supplement to this material -- I will *not* test you material that is presented in the textbook that we do not talk about in the slides. Slides/videos are your #1 tool.
-
-- There will be a combination of multiple choice questions, short answer questions, and actual problems to work through. There will be no R code, and you are not expected to open R at all for this exam (quite the opposite, in fact).
-
-- You are not to work with anyone on this exam. This means you may NOT work with: peers, students (past or current), friends, family, tutors, etc. It must be YOUR OWN work. If it comes to my attention that you have been working with someone in the class, both parties will receive an automatic 0 and will not be able to retake the exam. If it comes up that you alone have been working with someone outside of the class, you will get an automatic 0 and will not be allowed to retake the exam. 
-
-- You will NOT be provided a formula sheet since this is an open note exam.
-
-- We will be answering any clarifying questions about exam problems until **Wednesday 10/14 at 5pm**. We will do our best to answer your questions, however we will not give you any tips or hints as to how to solve it. To ask a question, please email all 3 of us (Jayde, April, and Shelly) -- one of us will respond. After 5pm on Wednesday, the only questions we will answer will be regarding technical issues (e.g., you're having trouble uploading to Canvas etc.).
-
-#### **Homework 1 Notes -- 10/8**
-Homework 1 will be returned today (via Canvas) and grades will post (also on Canvas). If you would like to resubmit your homework to try to earn points back, you must turn this in to your AI absolutely no later than **Sunday 10/11 by midnight**.
-
-Remember, there is NO PARTIAL CREDIT on homeworks. It's all-or-nothing. If you don't like your grade, you can turn in a resubmit to earn back points:
-
-  - If you got a low overall grade, it's very, very likely that just a few minor tweaks will get you back on track.
-  - Before you get discouraged from a low score, please actually look at the document that was returned to you. You might find that you would get full points back for multiple questions with just 1 or 2 fixes here and there.
-  - Please directly email your resubmits to your AI -- don't go through Canvas.
-
-Here is some feedback for the entire class from April & Jayde:
-
-  - Be sure to label figures informatively. This means including a title, axis labels, and labels for any lines added to the plot.
-  - Be sure to actually print your results! It's great to save values to objects (e.g., `meanAge <- mean(Age)`), but if you don't actually print out `meanAge`, then we can't see if it's correct! 
-  - After you knit your PDF, you should give it one last look through before you submit it. Make sure you can locate your own answers to each question. If you can't find it in your own PDF, then neither can we. Try to distinguish your responses from the question text in some way.
-  - Include all your code or methods for answering questions. A few people did somehow find the names of the outlying countries, but did not indiciate *how* they figured that out, i.e., by providing the code or simply stating they visually searched and referenced the data.frame. 
-  - Some of you presented answers very nicely and might be interested in [checking out the `kable()` function in the `knitr` package](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html). It's not at all required, though. 
-
-If you earn points back with your resubmission, your AI will manually update your grade. Please get in touch with us if you have any questions.
-
-#### **Update to Quiz Policy -- 9/29**
-Canvas sucks. It doesn't let us program quizzes in a way that works with our current setup. As such, I am changing the policy on quizzes such that you will **_not_** be able to re-take quizzes as many times as you'd like before the due date. Instead, it will be like any other in-person quiz; you show up, take the quiz, and get a score. Quizzes will still be due by 9am on Tuesdays. Answers to the quizzes will appear on Canvas at 9:30am on Tuesdays, so you can always check your answers.
-
-# Overview
-
-This course is the first in a two-course sequence that introduces necessary skills and knowledge for carrying out statistical analyses in the social sciences. The course has an applied focus for psychological research, but theoretical details will be emphasized when they facilitate understanding of key concepts. In other words, we will strike a balance between learning how to do statistics and knowing why we are doing it a particular way. Mastering both will facilitate generalization to new problems and techniques. Topics to be covered this semester include probability theory, measurement scales, theoretical sampling distributions (e.g., binomial, $t$, $F$, $\chi^2$), measures of central tendency and variability, inferences about population means, confidence intervals, the pros and cons of null hypothesis testing, power, and effect sizes.
-
-## Instructors
-
 **Shelly Cooper** -- [shelly.cooper@wustl.edu](mailto:shelly.cooper@wustl.edu)
 
-- Office Hours: By appointment & in "check-in" times
+- Pronouns: she/her
+- Office Hours: By appointment. [Make an appointment here](https://calendly.com/shelly-cooper/30min). 
 
-**Jayde Homer** -- [jaydehomer@wustl.edu](mailto:jaydehomer@wustl.edu)
+**Chad Miller** -- [mchad@wustl.edu](mailto:mchad@wustl.edu)
 
-- Office Hours: By appointment & in "check-in" times
+- Pronouns: he/him
+- Office Hours: By appointment
 - *If you are in Psychology or Computational & Data Sciences*
 
-**April Yu** -- [tianjiao.yu@wustl.edu](mailto:tianjiao.yu@wustl.edu)
+**Alex Park** -- [alexanderpark@wustl.edu ](mailto:alexanderpark@wustl.edu)
 
-- Office Hours: By appointment & in "check-in" times
-- *If you are in Business, Movement Science, PNP, Speech & Hearing*
-
-# Materials
-
-## Textbook
-
-We will primarily be referring to chapters in [_Learning Statistics with R_](https://learningstatisticswithr-bookdown.netlify.com/index.html) by Danielle Navarro. This textbook is available for free online. You may choose to purchase a paper copy if you wish, but it is not required. Additional readings assignments will be posted here. 
-
-## R and RStudio
-
-Students must have the latest version of R, which can be downloaded [here](https://ftp.osuosl.org/pub/cran/). It is strongly recommended that students also download the RStudio GUI, available [here](https://www.rstudio.com/products/rstudio/download/#download). Both softwares are free. 
-
-## Resources for R and RStudio
-
-While we will be covering the use of R and RStudio extensively, one of the key skills required to use R is the ability to find answers on the Internet. The R commmunity (sometimes referred to as the useR community) tends to be friendly and helpful and enjoys solving R-related problems in their spare time. For that reason, many common questions or problems have been posted to spaces online and answered by smart people. Finding and deciphering those answers is the key skill you should seek to hone this year. It's much more important than remembering function names. 
-
-Here are some sites where you can find the answers to many R questions and learn new tricks:
-
-### For learning the basics
- - [_YaRrr, the Pirate's Guide to R_](https://bookdown.org/ndphillips/YaRrr/) by Nathaniel Phillips
- - [_R for Data Science_](https://r4ds.had.co.nz/) by Hadley Wickham
- - [_R Cookbook_](http://www.cookbook-r.com/) by Winston Chang
- - [_An Introduction to Statistical Learning_](http://www-bcf.usc.edu/~gareth/ISL) by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
-
-### For plotting
-
-  - The [Graphs chapter of _R Cookbook_](http://www.cookbook-r.com/Graphs/) by Winston Chang
-  
-### Quick resources
-
-  - [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets) 
-  - [Quick-R](https://www.statmethods.net) 
-  
-### Online forums
-  - [Stack Overflow](https://stackoverflow.com) \
-  - [Cross Validated](https://stats.stackexchange.com)
-
-
-
+- Pronouns: he/him
+- Office Hours: By appointment
+- *If you are NOT in Psychology or Computational & Data Sciences*
