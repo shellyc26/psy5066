@@ -14,7 +14,7 @@ navbar:
     - text: Homework
       href: homework.html
   right:
-    - text: Fall 2020
+    - text: Fall2020
       menu:
       - text: "1-Introduction"
         href: "lectures2020/1-intro.html"
