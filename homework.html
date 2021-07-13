@@ -13,12 +13,22 @@
 
 <title>Homework Assignments</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,12 +36,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -79,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -324,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -363,89 +333,109 @@ div.tocify {
     <li>
       <a href="lectures/2-measurement.html">2-Measurement</a>
     </li>
-    <li>
-      <a href="lectures/3-describing-data.html">3-Describing Data Part 1</a>
-    </li>
-    <li>
-      <a href="lectures/4-describing_data.html">4-Describing Data Part 2</a>
-    </li>
-    <li>
-      <a href="lectures/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
-    </li>
-    <li>
-      <a href="lectures/6-binomial.html">6a-Binomial</a>
-    </li>
-    <li>
-      <a href="lectures/6-normal.html">6b-Normal</a>
-    </li>
-    <li>
-      <a href="lectures/7-bayes.html">7-Bayes</a>
-    </li>
-    <li>
-      <a href="lectures/8-sampling.html">8-Sampling</a>
-    </li>
-    <li>
-      <a href="lectures/9-nhst.html">9-NHST 1</a>
-    </li>
-    <li>
-      <a href="lectures/10-nhst.html">10-NHST 2</a>
-    </li>
-    <li>
-      <a href="lectures/11-critiques.html">11-Critiques</a>
-    </li>
-    <li>
-      <a href="lectures/12-open_science.html">12-Open Science</a>
-    </li>
-    <li>
-      <a href="lectures/13-chisq.html">13-Chi Square</a>
-    </li>
-    <li>
-      <a href="lectures/14-one_sample.html">14-One Sample</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_I.html">15a-Comparing Means I</a>
-    </li>
-    <li>
-      <a href="lectures/15-two_means_II.html">15b-Comparing Means II</a>
-    </li>
-    <li>
-      <a href="lectures/16-two_means_III.html">16-Comparing Dependent Means</a>
-    </li>
-    <li>
-      <a href="lectures/17-modelcomparison.html">17-Model Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/18-onewayanova.pdf">18-Oneway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/21-twowayWithInteraction.pdf">21-Interactions</a>
-    </li>
-    <li>
-      <a href="lectures/22-within.html">22-Within Subjects</a>
-    </li>
   </ul>
-</li>
-<li>
-  <a href="lectureVideos.html">Lecture Videos</a>
 </li>
 <li>
   <a href="homework.html">Homework</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/shellyc26/psy5066">GitHub</a>
+</li>
+<li>
+  <a href="https://gradstats-ps5066.slack.com/">Slack</a>
+</li>
+<li>
+  <a href="https://wustl.instructure.com/courses/72732">Canvas</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Fall2020
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures2020/1-intro.html">1-Introduction</a>
+    </li>
+    <li>
+      <a href="lectures2020/2-measurement.html">2-Measurement</a>
+    </li>
+    <li>
+      <a href="lectures2020/3-describing-data.html">3-Describing Data Part 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/4-describing_data.html">4-Describing Data Part 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-binomial.html">6a-Binomial</a>
+    </li>
+    <li>
+      <a href="lectures2020/6-normal.html">6b-Normal</a>
+    </li>
+    <li>
+      <a href="lectures2020/7-bayes.html">7-Bayes</a>
+    </li>
+    <li>
+      <a href="lectures2020/8-sampling.html">8-Sampling</a>
+    </li>
+    <li>
+      <a href="lectures2020/9-nhst.html">9-NHST 1</a>
+    </li>
+    <li>
+      <a href="lectures2020/10-nhst.html">10-NHST 2</a>
+    </li>
+    <li>
+      <a href="lectures2020/11-critiques.html">11-Critiques</a>
+    </li>
+    <li>
+      <a href="lectures2020/12-open_science.html">12-Open Science</a>
+    </li>
+    <li>
+      <a href="lectures2020/13-chisq.html">13-Chi Square</a>
+    </li>
+    <li>
+      <a href="lectures2020/14-one_sample.html">14-One Sample</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_I.html">15a-Comparing Means I</a>
+    </li>
+    <li>
+      <a href="lectures2020/15-two_means_II.html">15b-Comparing Means II</a>
+    </li>
+    <li>
+      <a href="lectures2020/16-two_means_III.html">16-Comparing Dependent Means</a>
+    </li>
+    <li>
+      <a href="lectures2020/17-modelcomparison.html">17-Model Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/18-onewayanova.pdf">18-Oneway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
+    </li>
+    <li>
+      <a href="lectures2020/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
+    </li>
+    <li>
+      <a href="lectures2020/21-twowayWithInteraction.pdf">21-Interactions</a>
+    </li>
+    <li>
+      <a href="lectures2020/22-within.html">22-Within Subjects</a>
+    </li>
+  </ul>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -459,46 +449,48 @@ div.tocify {
 <h2>Homework 1</h2>
 <ul>
 <li><a href="homework/homework_1.html">Homework 1 is here</a></li>
-<li>Due on 9/29 by 9am</li>
+<li>Due on <strong>9/14 by 9:30am</strong></li>
+<li>Peer Review of Homework 1 due <em>9/17 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-2" class="section level2">
 <h2>Homework 2</h2>
 <ul>
-<li><a href="homework/homework_2.html">Homework 2 is here</a></li>
-<li>Due on 10/13 by 9am</li>
+<li>Not posted yet</li>
+<li>Due on <strong>9/23 by 9:30am</strong></li>
+<li>Peer Review of Homework 2 due <em>9/26 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-3" class="section level2">
 <h2>Homework 3</h2>
 <ul>
-<li><a href="homework/homework_3.html">Homework 3 is here</a></li>
-<li>Due on 10/27 by 9am</li>
-</ul>
-</div>
-<div id="quiz-3" class="section level2">
-<h2>Quiz 3</h2>
-<ul>
-<li><a href="homework/quiz3AnswerKey.html">Quiz 3 Answer Key</a></li>
+<li>Not posted yet</li>
+<li>Due on <strong>10/21 by 9:30am</strong></li>
+<li>Peer Review of Homework 3 due <em>10/24 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-4" class="section level2">
 <h2>Homework 4</h2>
 <ul>
-<li>CANCELLED!</li>
+<li>Not posted yet!</li>
+<li>Due on <strong>11/4 by 9:30am</strong></li>
+<li>Peer Review of Homework 4 due <em>11/7 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-5" class="section level2">
 <h2>Homework 5</h2>
 <ul>
-<li><a href="homework/homework-5.html">Homework 5 is here</a></li>
-<li>Due on 12/8 by 9am</li>
+<li>Not posted yet</li>
+<li>Due on <strong>11/23 by 9:30am</strong></li>
+<li>Peer Review of Homework 5 due <em>11/26 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-6" class="section level2">
 <h2>Homework 6</h2>
 <ul>
-<li>CANCELLED!</li>
+<li>Not posted yet</li>
+<li>Due on <strong>12/7 by 9:30am</strong></li>
+<li>Peer Review of Homework 6 due <em>12/10 by 9:30am</em></li>
 </ul>
 </div>
 
@@ -513,7 +505,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -531,7 +523,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -540,6 +532,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
@@ -552,7 +547,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

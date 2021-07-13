@@ -7,24 +7,13 @@ output:
 
 # Instructions
 
-Please complete this assignment using the RMarkdown file provided (<a href="homework_1.Rmd" download="homework_1.Rmd">download here</a>). Be sure to (1) include your name in the preamble, (2) save the file, including your last name **AND THE NAME OF YOUR AI** (e.g., "cooper_jayde_homework_1.Rmd"). When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files.
-
-  - If you are in Psychology or Computational & Data Sciences: your AI is Jayde
-  - If you are in any of the other programs: your AI is April
+Please complete this assignment using the RMarkdown file provided (<a href="homework_1.Rmd" download="homework_1.Rmd">download here</a>). Be sure to include your name in the preamble. When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files. Please turn in both documents to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
 
 There will be empty gray sections below each question. Please put all R `CODE` within these gray chunks. They will behave as normal R code. If you are asked to explain something or write a few sentences, please do that *outside* of the gray chunks. That way, when you knit, your sentences will show up as normal text, but all of your code will be in a designated code chunk.
 
-You will be able to retry questions to earn full credit, but here are some things to keep in mind:
+You are allowed to Google things. *However*, if you use code from an outside source (meaning not the lecture slides or the R help documentation), then you must provide a **working link** to the website you used. You don't need to use APA formatting or anything. Just a working url. You may discuss homework assignments with your classmates; however, it is important that you complete each assignment on your own and **do not simply copy someone else’s code**. If we believe one student has copied another’s work, both students will receive a 0 on the homework assignment. Please also list at the top of the document who you worked with. 
 
-1. You can only do this for questions that you attempted on the first try. If you skip a question, you will not be able to resubmit for full credit. 
-
-2. For each question, the points are all-or-nothing, meaning you cannot receive partial credit if you correctly answer only some of the question (this includes the description/explanation of results).
-
-3. Late assignments will receive 50% of the points earned, with no opportunity to resubmit your answers for a higher grade (unless otherwise discussed with Dr. Cooper, Jayde, or April). For example, if you correctly answer questions and earn 10 points but submit the assignment late, you will receive 5 points for the assignment. 
-
-4. You are allowed to Google things. *However*, if you use code from an outside source (meaning not the lecture slides or the R help documentation), then you must provide a **working link** to the website you used. You don't need to use APA formatting or anything. Just a working url. You may discuss homework assignments with your classmates; however, it is important that you complete each assignment on your own and **do not simply copy someone else’s code**. If we believe one student has copied another’s work, both students will receive a 0 on the homework assignment and will not be allowed to resubmit the assignment for points.
-
-5. In the instructions, when it says **_by hand_**, what we mean is that you should not use a function that is built into R to complete the task. For example, if I ask you to find the mean *by hand*, you should **not** use the `mean()` function. However, you can (and should!) use your variables. So for instance, if I ask you to find the `mean()` by hand, you may do something like `sum(variableX)/length(variableX)`. This would be an appropriate *by hand* calculation. (You don't need to type `(3 + 5 + 5 + 17) / 4`...you can still use your variables). 
+In the instructions, when it says **_by hand_**, what we mean is that you should not use a function that is built into R to complete the task. For example, if I ask you to find the mean *by hand*, you should **not** use the `mean()` function. However, you can (and should!) use your variables. So for instance, if I ask you to find the `mean()` by hand, you may do something like `sum(variableX)/length(variableX)`. This would be an appropriate *by hand* calculation. (You don't need to type `(3 + 5 + 5 + 17) / 4`...you can still use your variables). 
 
 **Data:** We will use the dataset referred to as [`homework-world`](../data/homework-world.csv). This dataset is similar to one you've seen in class and contains a new variable called `World`. So-called "first world" countries (coded 1) are those that were aligned with the United States after World War II (e.g., members of NATO) or were considered to be clearly in the U.S. sphere of influence. "Second world" countries (coded 2) are former members of the Soviet Union or countries considered to have been clearly in the Soviet Union’s sphere of influence. "Third world" countries (coded 3) include those considered by the United Nations to be among the least developed countries in the world. The remaining countries are coded 4 for this variable.
 
@@ -33,7 +22,7 @@ Good luck!
 ## Setup
 In the code chunk below, please import the `homework-world.csv` file. Name the data.frame whatever you want. If you would like to recode any variables, do it here (not necessary, but might make your life easier). Finally, make sure that all variables that ought to be factors are treated as such.
 
-Additionally, I have provided code for specific R packages. You need to first make sure that you have these installed. If not, please install them. The code I provide will load the packages. Do not change this code. (This question is not worth any points, but you need to get it right in order to complete the assignment.)
+Additionally, I have provided code for specific R packages. You need to first make sure that you have these installed. If not, please install them. The code I provide will load the packages, and you don't need to modify those. 
 
 ```{r setup, warning=FALSE, message=FALSE}
 library(psych)
@@ -44,8 +33,8 @@ library(tidyverse)
 ```
 
 
-## Question 1 (1pt)
-Calculate descriptive statistics separately for each of the 4 `World` groups. This should include (it's OK if more are included, but at least these): 
+## Question 1
+Calculate descriptive statistics for each of the 4 `World` groups. That is, you should get the mean `GDP` for countries that are coded as 1 in the `World` variable, mean `GDP` for countries coded as 2 in the `World` variable etc. This should include (it's OK if more are included, but at least these): 
 
 - mean
 - median
@@ -54,18 +43,20 @@ Calculate descriptive statistics separately for each of the 4 `World` groups. Th
 - standard deviation
 - skew & kurtosis
 
+*Hint: look at the slides; there are easy ways to do this!*
+
 ```{r q1}
 
 ```
 
-## Question 2 (2pts)
+## Question 2
 Standardize all numeric variables in the dataset, and re-run your descriptive statistics. Are there any variables that you would be concerned about? If so, which ones and why? If not, why are you not concerned?
 
 ```{r q2}
 
 ```
 
-## Question 3 (3pts)
+## Question 3
 Calculate the population variance and standard deviations *by hand* (aka don't use a particular variance or standard deviation function) for any 3 numeric variables.
 
 Note that I have included a line of code that uses the `na.omit()` function. This will get rid of any `NA` values, and make your calculations easier. This will get rid of the values of your original data.frame (`originalData`). You need to replace `originalData` with whatever you called your actual data.frame. Make sure to answer this question using the newly created `cleanedData` object.
@@ -80,7 +71,7 @@ cleanedData <- na.omit(originalData)
 
 ```
 
-## Question 4 (2pts)
+## Question 4
 Create a boxplot graph for the `Corruption` variable, with separate boxplots for the four groups defined by the new variable, `World.` What does this graph tell you, in broad strokes, about:
 
   - group differences in corruption central tendency?
@@ -91,7 +82,7 @@ Create a boxplot graph for the `Corruption` variable, with separate boxplots for
 
 ```
 
-## Question 5 (3pts)
+## Question 5
 Create a histogram of the life expectancy variable (`Life`) that includes the following:
 
   - a vertical line at the mean
@@ -104,14 +95,14 @@ Create a histogram of the life expectancy variable (`Life`) that includes the fo
 ```
 
 ## Question 6
-#### Part A (2pts)
+#### Part A
 Calculate the correlation *by hand* for `Happiness` & `Freedom`, `Happiness` & `Support`, and finally `Freedom` & `Support`. 
 
 ```{r q6a}
 
 ```
 
-#### Part B (3pts)
+#### Part B
 Now make a scatterplot for each of these 3 relationships. Include a linear best fit line (a straight line). (You might need to consult the help page for a particular function -- or Google things.)
 
    - Do the angles of the best fit lines correspond to the correlations that you got in Part A of this question? Why or why not?
@@ -124,7 +115,7 @@ Now make a scatterplot for each of these 3 relationships. Include a linear best 
 
 ```
 
-## Question 7 (4pts)
+## Question 7
 Using a function (aka not by hand) get the correlation between average perception of freedom in a country and typical generosity of its citizens. 
 
   - Create a scatterplot showing the relationship between freedom and generosity
