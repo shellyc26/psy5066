@@ -7,3 +7,11 @@
 
 .large { font-size: 130% }
 .small { font-size: 70% }
+
+.img_top_right {
+  position: absolute;
+  width: 100px;
+  top: 0;
+  right: 0;
+}
+.img_top_right p{margin: 0;}

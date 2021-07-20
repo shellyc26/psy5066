@@ -8,9 +8,9 @@ navbar:
     - text: Lecture Slides
       menu:
       - text: "1-Introduction"
-        href: "lectures/1-intro.html"
+        href: "lectures2020/1-intro.html"
       - text: "2-Measurement" 
-        href: "lectures/2-measurement.html"
+        href: "lectures2020/2-measurement.html"
     - text: Homework
       href: homework.html
   right:
