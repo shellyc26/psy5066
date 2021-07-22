@@ -1,5 +1,5 @@
 ---
-title: 'Describing Data I'
+title: 'Describing Data Part 1'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -13,6 +13,7 @@ output:
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse) # for pipes and plots
 library(lsr) # for mode and maxFreq functions
+
 ```
 
 
@@ -30,7 +31,7 @@ library(lsr) # for mode and maxFreq functions
 
 Examples today are based on data from the [2015 World Happiness Report](https://worldhappiness.report/ed/2015/), which is an annual survey part of the [Gallup World Poll](https://www.gallup.com/178667/gallup-world-poll-work.aspx). 
 
-The dataset is available on the Lecture Videos page under the link to the Describing Data Part 1 video, for those who want to play along at home.
+The dataset is available on our GitHub site in the `data` folder, for those who want to play along at home.
 
 ---
 
@@ -60,9 +61,10 @@ names(world)
 
 **Freedom**: “Are you satisfied or dissatisfied with your freedom to choose what you do with your life?”
 
+**Generosity**: “Have you donated money to a charity in the past month?” (residual, adjusting for GDP)
+
 **Corruption**: “Is corruption widespread throughout the government or not” and “Is corruption widespread within businesses or not?” (average of 2 questions)
 
-**Generosity**: “Have you donated money to a charity in the past month?” (residual, adjusting for GDP)
 ]
 
 ---
@@ -189,6 +191,7 @@ x - mean(x)
 sum(x - mean(x))
 sum(x - mean(x))/length(x)
 ```
+
 ---
 
 ## Sums of squares
@@ -202,14 +205,8 @@ deviation = x - mean(x)
 deviation^2
 sum(deviation^2)
 ```
-The sum of squared deviations is referred to as **the Sum of Squares (SS)**. 
 
-
-???
-
-For those familiar with ANOVA (PSY 612), sums of squares may sound familiar.
-
-As we talk about total variability in a construct, this will be our measure. 
+The sum of squared deviations is referred to as **the Sum of Squares (SS)** 
 
 ---
 
@@ -225,14 +222,14 @@ sum((x - mean(x))^2)/length(x)
 
 ## Variance
 
-###Good things about variance:
+### Good things about variance:
 - It's additive.
   - Given two variables X and Y, if I create $Z = X + Y$ then $Var(Z) = Var(X) + Var(Y)$
 - Represents all values in a dataset
 
 --
 
-###Bad things about variance:
+### Bad things about variance:
 - What the heck does it mean?
 
 ---
@@ -246,42 +243,58 @@ sqrt(sum(deviation^2)/length(deviation))
 
 --
 
-![](images/sdVariants.png)
+<img src="images/sdVariants.png" style="width:70%">
+
 
 ???
 We'll get to expected values when we talk about probability distributions, but for now, treat the expected value as the mean of a continuous variable.
 
 ---
-  
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+
+.pull-left-small[
+.code-small[
+```{r, eval = FALSE, warning = FALSE, message = FALSE}
 world %>% ggplot(aes(x = Happiness)) + 
-  geom_histogram(fill = "gray") +
+  geom_bar(fill = "gray") +
+  scale_x_binned() +
   geom_vline(aes(xintercept = mean(Happiness))) +
   geom_vline(aes(xintercept = median(Happiness))) + 
   geom_label(aes(x = mean(Happiness), y = maxFreq(Happiness)), label = "mean") +
   geom_label(aes(x = median(Happiness), y = maxFreq(Happiness)*2), label = "median") +
+  labs(y = "Frequency of Happiness") +
   theme_bw()
 ```
+  ]
+]
+
+.pull-right-large[
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+world %>% ggplot(aes(x = Happiness)) + 
+  geom_bar(fill = "gray") +
+  scale_x_binned() +
+  geom_vline(aes(xintercept = mean(Happiness, na.rm=T))) +
+  geom_vline(aes(xintercept = median(Happiness, na.rm=T))) + 
+  geom_label(aes(x = mean(Happiness, na.rm=T), y = maxFreq(Happiness, na.rm=T)), label = "mean") +
+  geom_label(aes(x = median(Happiness, na.rm=T), y = maxFreq(Happiness, na.rm=T)*2), label = "median") +
+  labs(y = "Frequency of Happiness") +
+  theme_bw()
+```
+
+]
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 In a normal distribution, the mean, median, and mode are all relatively equal. 
 
 ---
   
-  ```{r, echo = FALSE, warning = FALSE, message = FALSE}
-world %>% ggplot(aes(x = Corruption)) + 
-  geom_histogram(fill = "gray") +
-  geom_vline(aes(xintercept = mean(Corruption, na.rm=T))) +
-  geom_vline(aes(xintercept = median(Corruption, na.rm=T))) + 
-  geom_label(aes(x = mean(Corruption, na.rm=T), y = maxFreq(Corruption)), label = "mean") +
-  geom_label(aes(x = median(Corruption, na.rm=T), y = maxFreq(Corruption)*2), label = "median") +
-  theme_bw()
-```
-
-In a skewed distribution, both the mean and median get pulled away from the mode. The mean is pulled further.  
-
----
-  
-  ## Skew and Kurtosis
+## Skew and Kurtosis
   
   Moments 3 and 4 of a distribution are **skew** and **kurtosis**.
 
@@ -301,9 +314,21 @@ Most inferential statistics assume distributions are not skewed and are mesokurt
 leptokurtic: too pointy, positive kurtosis
 
 ---
-  ```{r, echo = FALSE, warning = FALSE, message=FALSE}
-world %>% ggplot(aes(Corruption)) + geom_histogram() + ggtitle("Negative skew") + theme_bw()
+
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
+world %>% 
+  ggplot(aes(x = Corruption)) + 
+  geom_bar(fill = "gray") +
+  scale_x_binned() +
+  geom_vline(aes(xintercept = mean(Corruption, na.rm=T))) +
+  geom_vline(aes(xintercept = median(Corruption, na.rm=T))) + 
+  geom_label(aes(x = mean(Corruption, na.rm=T), y = maxFreq(Corruption, na.rm=T)), label = "mean") +
+  geom_label(aes(x = median(Corruption, na.rm=T), y = maxFreq(Corruption, na.rm=T)*2), label = "median") +
+  labs(y = "Frequency of Corruption") +
+  theme_bw()
 ```
+
+In a skewed distribution, both the mean and median get pulled away from the mode. The mean is pulled further.  
 
 ---
 
@@ -332,22 +357,22 @@ psych::describe(world)
 How do we know if there is a problem and what should we do?
   
 ---
-## problems
+## Problems
 
 ```{r ref.label="describe", highlight.output = c(9,18)}
 
 ```
 
 
-???
-  Draw attention to corruption
+--
+
 - mean and median are very different
 - skew and kurtosis are large (|value| > 1)
 
 
 ---
   
-  There are several approaches that could be taken to detecting and dealing with non-normality:
+There are several approaches that could be taken to detecting and dealing with non-normality:
   
   - Overall tests of normality (e.g., Kolmogorov-Smirnov, Shapiro-Wilk tests)
 - Tests of extremity for a particular moment 
@@ -361,19 +386,19 @@ The mean is more affected than the median by extreme values.  If the data are se
   
   - Transform the data 
 
-  - Exclude the outliers
+  - Exclude the outliers 
 
   - Use a trimmed mean (e.g., eliminate upper and lower 10%; “robust statistics”)
 
   - Use the median (not susceptible to extreme values)
 
-What are the pros and cons of these approaches?  What justifies their use?
+Pros & Cons to each of these; **be careful**
   
 ---
 
-class: inverse
+class: inverse, center
 
-#Bias and efficiency
+# Bias and efficiency
 
 ---
 
@@ -420,14 +445,14 @@ var(x)
 Robust statistics sacrifice efficiency to control possible bias.
 
 Variance (and standard deviation) are *biased* estimators when applied to samples. 
-- Using the formulas we've described, these statistics will underestimate variability in the population. 
+- Using the formulas we've described, these statistics will *underestimate* variability in the population. 
   
 ---
 
 ## Population versus sample
 
 .pull-left[
-###Variance
+### Variance
 
 *Population*
 $$\sigma^2 = \frac{\Sigma(X_i-\mu)^2}{N}$$
@@ -436,7 +461,7 @@ $$\sigma^2 = \frac{\Sigma(X_i-\mu)^2}{N}$$
 $$s^2 = \hat{\sigma}^2 = \frac{\Sigma(X_i-\bar{X})^2}{N-1}$$]
 
 .pull-right[
-###Standard Deviation
+### Standard Deviation
 
 *Population*
 $$\sigma = \sqrt{\frac{\Sigma(X_i-\mu)^2}{N}}$$
@@ -445,6 +470,7 @@ $$\sigma = \sqrt{\frac{\Sigma(X_i-\mu)^2}{N}}$$
 $$s = \hat{\sigma} = \sqrt{\frac{\Sigma(X_i-\bar{X})^2}{N-1}}$$]
 
 ---
+## Simulation
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE, fig.width=15, fig.height=10}
 set.seed(100917) #so everyone gets same random draws
@@ -492,7 +518,7 @@ var_estimates %>%
 
 
 ---
-class: inverse
+class: inverse, center
 
 # Standardized scores
 

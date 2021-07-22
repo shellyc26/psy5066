@@ -11,6 +11,8 @@ navbar:
         href: "lectures2020/1-intro.html"
       - text: "2-Measurement" 
         href: "lectures2020/2-measurement.html"
+      - text: "3-Describing Data 1"
+        href: "lectures2020/3-describing_data.html"
     - text: Homework
       href: homework.html
   right:
