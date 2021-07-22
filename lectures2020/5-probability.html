@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Fisher Tradition &amp; Probability</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Fisher Tradition &amp; Probability
+
+---
+
+
+## "Fisher" tradition
+
+.pull-left-small[
+![](images/ronaldfisher.jpeg)
+]
+
+
+.pull-right-large[
+- Set up a statistical null hypothesis (note that null does NOT mean "nil")
+- Report the exact level of significance
+- Do not use a "conventional" level, do not talk about accepting/rejecting hypotheses, do not pass GO, and do not collect $200
+- Use this procedure *only* if you know very little about the problem at hand
+]
+
+---
+
+## Neyman-Pearson
+
+.pull-left-small[
+![](images/neymanpearson.jpeg)
+]
+
+.pull-right-large[
+- Set up 2 hypotheses, and design a study based no the "rejection region" for each hypothesis
+- If data is within the rejection range for H1, accept H2. Otherwise, accept H1. Note that accepting it doesn't mean you *believe* it...just that you act as though it was so
+- Utility is limited to situations where there is a clear difference in hypotheses, when you can make a rational decision about when to accept vs. when to reject H1 and H2
+]
+
+
+???
+Jerzy Neyman and Egon Pearson
+
+---
+
+## So who won?
+
+The two ideas melded together somehow into something that neither camp would be too excited by:
+  1) Set up a null hypothesis, where null almost always means "chance"
+  2) Make a yes-no decision about that hypothesis
+  3) Repeat
+
+--
+
+We want to know:
+  - what is the probability that we would get the values evidenced (*or those more extreme*) given our null hypothesis
+  - ☝️ `\(P(Data + | H_0)\)` aka a **p-value**
+  - assumes, among other things, that the null hypothesis is *exactly* true, that you have a random sample, and that the scores are independent
+
+
+---
+
+class: inverse, center
+
+## Probability
+
+&lt;img src='images/clue.jpeg' style='width:50%'&gt;
+
+---
+
+## Sample Space &amp; Assumptions
+
+Our sample space is the range of possible values for a random variable. 6 Clue characters.
+
+--
+
+Assumption 1) Sum of all the probabilities of all outcomes needs to equal 1. `\(P(S) = 1\)`
+
+--
+
+Assumption 2) The probability of an event occurring must be between 0 and 1. `\(0 \leq P(event) \leq 1\)`
+
+---
+
+## P(Miss Scarlet)
+
+&lt;center&gt;
+&lt;img src='images/clue.jpeg' style='width:50%'&gt;
+&lt;/center&gt;
+
+--
+
+- P(Miss Scarlet) = N of events / sample size
+- P(Miss Scarlet) = 1 Miss Scarlet / 6 characters
+- P(Miss Scarlet) = 1/6
+
+---
+
+## P(Female)
+
+&lt;center&gt;
+&lt;img src='images/clue.jpeg' style='width:50%'&gt;
+&lt;/center&gt;
+
+
+--
+
+- P(Female) = N of events / sample size
+- P(Female) = 3 females / 6 characters
+- P(Female) = 3/6 = .5
+
+---
+
+## Complement
+
+- The probability that the event does *not* occur
+
+- `\(1-P(event)\)`
+
+---
+
+## P(NOT Female)
+
+&lt;center&gt;
+&lt;img src='images/clue.jpeg' style='width:50%'&gt;
+&lt;/center&gt;
+
+--
+
+- P(NOT Female) = N of events / sample size
+- P(NOT Female) = 3 not females / 6 characters
+- P(NOT Female) = 3/6 = .5
+
+---
+
+## Unions
+
+- The possbility of A _**or**_ B occurring
+- All elements that are in one of A or B
+- `\(P(A \cup B)\)`
+
+&lt;center&gt;
+&lt;img src='images/union.png' style='width:50%'&gt;
+&lt;/center&gt;
+
+
+--
+
+- `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`
+
+---
+
+
+## P(Female or Holding Something)
+
+&lt;center&gt;
+&lt;img src='images/clue.jpeg' style='width:50%'&gt;
+&lt;/center&gt;
+
+
+---
+## P(Female or Holding Something)
+
+**P(Female)**
+- P(Female) = 3/6
+
+--
+
+**P(Holding Something)**
+- P(Holding Something) = 4/6
+
+--
+
+**P(Female &amp; Holding Something)**
+- P(Female &amp; Holding Something) = 2 females with stuff / 6 characters
+- P(Female &amp; Holding Something) = 2/6
+
+--
+
+**P(Female OR Holding Something)**
+- P(Female or Holding Something) = 3/6 + 4/6 - 2/6
+- P(Female or Holding Something) = **5/6**
+
+---
+
+## Intersection
+
+- The probability of A *and* B occurring
+- `\(P(A \cap B) = P(A) \times P(B | A)\)`
+
+&lt;center&gt;
+&lt;img src='images/union.png' style='width:50%'&gt;
+&lt;/center&gt;
+
+--
+
+**P(Baker &amp; Female)**
+- P(Baker) = 1/6
+- P(Female GIVEN there is a baker) = 1 baker that's female = 1
+- P(Baker &amp; Female) = 1/6 * 1 = 1/6
+
+---
+
+## Intersection
+
+- The probability of A *and* B occurring
+- `\(P(A \cap B) = P(A) \times P(B | A)\)`
+- P(Baker &amp; Female) has *dependent events*; the occurrence of Event A changes the probability of Event B
+- *Independent* events would be that the occurence of Event A does NOT impact the occurence of Event B
+- *If independent*, `\(P(A \cap B) = P(A) \times P(B)\)`
+
+**Independence of observations is one of the criteria for having interpretable `\(p\)`-values!**
+
+--
+
+- Half the class plays Clue in this room, other half plays in another room
+- Finding the murderer for game 1 doesn't help you find the murderer for game 2
+- P(Murderer in Game 1 &amp; Murderer in Game 2) = 1/6 * 1/6 = **1/36**
+
+---
+
+## Permutations
+All the ways `\(n\)` objects can be arranged
+
+`\(N = 2\)`
+
+
+```
+##   O1 O2
+## 1  b  a
+## 2  a  b
+```
+---
+## Permutations
+All the ways `\(n\)` objects can be arranged
+
+`\(N = 3\)`
+
+
+```
+##   O1 O2 O3
+## 1  c  b  a
+## 2  b  c  a
+## 3  c  a  b
+## 4  a  c  b
+## 5  b  a  c
+## 6  a  b  c
+```
+---
+## Permutations
+
+`\(N = 4\)`
+
+
+```
+##    O1 O2 O3 O4
+## 1   d  c  b  a
+## 2   c  d  b  a
+## 3   d  b  c  a
+## 4   b  d  c  a
+## 5   c  b  d  a
+## 6   b  c  d  a
+## 7   d  c  a  b
+## 8   c  d  a  b
+## 9   d  a  c  b
+## 10  a  d  c  b
+## 11  c  a  d  b
+## 12  a  c  d  b
+## 13  d  b  a  c
+## 14  b  d  a  c
+## 15  d  a  b  c
+## 16  a  d  b  c
+## 17  b  a  d  c
+## 18  a  b  d  c
+## 19  c  b  a  d
+## 20  b  c  a  d
+## 21  c  a  b  d
+## 22  a  c  b  d
+## 23  b  a  c  d
+## 24  a  b  c  d
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
