@@ -10,6 +10,10 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r, warning = FALSE, message = FALSE, include = FALSE}
+library(tidyverse)
+```
+
 ## "Fisher" tradition
 
 .pull-left-small[
@@ -254,3 +258,319 @@ perms <- all[apply(all, 1, function(x) {length(unique(x)) == 4}),]
 row.names(perms) = NULL
 perms
 ```
+
+---
+## Permutations
+
+The number of permutations for $n$ objects is:
+
+$$ n! = n(n-1)(n-2)... $$
+
+--
+
+BUT, if you're looking for the number of $r$ choices from $n$:
+
+$$ \frac{n!}{(n-r)!} $$
+
+--
+
+There are 6 Clue characters, but we are now 100% sure that 2 of them are the culprits. How many possibilities are there?
+
+- $n$ = 6, $r$ = 2
+- $\frac{6!}{(6-2)!} = \frac{6!}{4!}$
+- $\frac{720}{24} = 30$
+
+---
+
+## Combinations
+1 Permutation = Miss Scarlet & Professor Plum. Another permutation is Professor Plum and Miss Scarlet. What if we don't care who comes first and who comes second? The paring of Plum/Scarlet should be good enough!
+
+--
+
+When order doesn't matter, we count the number of **combinations**
+
+$$ \frac{n!}{(n-r)!r!} $$
+
+--
+
+- $n$ = 6, $r = 2$
+- $\frac{6!}{(6-2)!2!} = \frac{6!}{4!2!}$
+- $\frac{720}{24 * 2} = \frac{720}{48} = 15$
+- We have a 1/15 chance of getting the correct 2 culprits out of 6 characters
+
+---
+## Combinations on Combinations
+
+We split up the class into 2 different games of Clue. In the first game, we assume 2 culprits. In the second game, we assume 3 culprits. The intersection of these combinations is the probability that we get both the 2 culprits correct in game 1 and the 3 culprits correct in game 2.
+
+--
+
+.pull-left[
+#### Game 1
+- $n$ = 6, $r = 2$
+- $\frac{6!}{(6-2)!2!} = \frac{6!}{4!2!}$
+- $\frac{720}{24 * 2} = \frac{720}{48} = 15$
+- 1/15
+]
+
+.pull-right[
+#### Game 2
+- $n$ = 6, $r = 3$
+- $\frac{6!}{(6-3)!3!} = \frac{6!}{3!3!}$
+- $\frac{720}{6 * 6} = \frac{720}{36} = 20$
+- 1/20
+]
+
+--
+
+<center>
+$\frac{1}{15} \times \frac{1}{20} = \frac{1}{300}$
+
+---
+
+## Bernoulli Trials
+- Exactly 2 possibilities, success or failure
+- Flipping a coin. Heads = Success, Tails = Failure
+- Let's say we flip a coin twice. Our possibilities are: TT, TH, HT, HH 
+
+--
+
+**How many ways are there to get 0 Heads out of 2 coin flips?**
+- $\frac{2!}{(2-0)!0!} = 1$
+
+--
+
+**How many ways are there to get 1 Heads out of 2 coin flips?**
+- $\frac{2!}{(2-1)!1!} = 2$
+
+--
+
+**How many ways are there to get 2 Heads out of 2 coin flips?**
+- $\frac{2!}{(2-2)!2!} = 1$
+
+---
+## Bernoulli Trials
+
+.pull-left-small[
+**How many outcomes are there total?**
+- 1 + 2 + 1 = 4
+- Probabilities = 1/4, 2/4, 1/4
+]
+
+--
+
+.pull-right-large[
+```{r, echo = FALSE}
+data.frame(heads = 0:2, prob = dbinom(x = 0:2, size = 2, prob = .5)) %>% 
+  ggplot(aes(x = factor(heads), y = prob)) +
+  geom_col(fill = "#562457") +
+  geom_text(aes(label = round(prob, 2), y = prob + .01),
+            position = position_dodge(.9),
+            size = 5, 
+            vjust = 0) +
+  labs(title = "Probability of Heads",
+       subtitle = "Two Flips",
+       x = "Number of Successes (Heads)",
+       y = "Probability(Successes)") +
+  theme_classic(base_size = 16)
+```
+]
+
+---
+## Bernoulli Trials
+
+.pull-left-small[
+Three coin flips?
+- TTT, TTH, THT, THH, HTT, HTH, HHT, HHH
+]
+
+--
+
+.pull-right-large[
+```{r, echo = FALSE}
+data.frame(heads = 0:3, prob = dbinom(x = 0:3, size = 3, prob = .5)) %>% 
+  ggplot(aes(x = factor(heads), y = prob)) +
+  geom_col(fill = "#562457") +
+  geom_text(aes(label = round(prob, 2), y = prob + .01),
+            position = position_dodge(.9),
+            size = 5, 
+            vjust = 0) +
+  labs(title = "Probability of Heads",
+       subtitle = "Three Flips",
+       x = "Number of Successes (Heads)",
+       y = "Probability(Successes)") +
+  theme_classic(base_size = 16)
+```
+]
+
+---
+## Bernoulli Trials
+
+.pull-left-small[
+Four coin flips?
+]
+
+--
+
+.pull-right-large[
+```{r, echo = FALSE}
+data.frame(heads = 0:4, prob = dbinom(x = 0:4, size = 4, prob = .5)) %>% 
+  ggplot(aes(x = factor(heads), y = prob)) +
+  geom_col(fill = "#562457") +
+  geom_text(aes(label = round(prob, 2), y = prob + .01),
+            position = position_dodge(.9),
+            size = 5, 
+            vjust = 0) +
+  labs(title = "Probability of Heads",
+       subtitle = "Four Flips",
+       x = "Number of Successes (Heads)",
+       y = "Probability(Successes)") +
+  theme_classic(base_size = 16)
+```
+]
+
+--
+
+**Probability Mass Function**
+
+---
+
+## Counting Rule: Combinations
+
+- Previous we used $r$ for choices. Let's be more specific. Let $k$ be the number of *successes*
+- Total number of ways of getting $k$ successes out of $n$ trials, irrespective of order:
+
+$$ \Large \frac{n!}{k!(n-k)!} = \binom{n}{k}$$
+
+- Called **binomial coefficient**
+- Go back a few slides...we just did this...a lot
+
+---
+
+## Developing a Probability Distribution
+
+Step 1: Get number of ways to get $k$ successes
+- We know this already. It's our binomial coefficient
+- $\frac{n!}{k!(n-k)!} = \binom{n}{k}$
+
+--
+
+Step 2: Get probability of $k$ successes in any order out of $n$ trials
+
+- For $n$ trials, we only need to know 2 *parameters*:
+  - $k$ the number of successes
+  - $p$ the probability of a success
+  - $q$ is the probability of NOT a success; probability of failure
+  
+$$p^{k}q^{n-k}$$
+
+$$p^{k}(1-p)^{n-k}$$
+
+---
+## Developing a Probability Distribution
+
+Step 3: Combine Steps 1 and 2
+
+$$ 
+P(Success) = \binom{n}{k}p^{k}(1-p)^{n-k}
+$$
+- $k \geq 0$
+- Takes into account all of the possibilities! 
+---
+
+## What is the probability of getting 3 heads out of 5 coin flips?
+
+Step 1: Binomial Coefficient for combinations
+
+$$
+\begin{gather*}
+\frac{n!}{k!(n-k)!} \\[8pt]
+\frac{5!}{3!(5-3)!} \\[8pt]
+\frac{5!}{3!2!} \\[8pt]
+\frac{120}{12} \\[8pt]
+10
+\end{gather*}
+$$
+
+---
+## What is the probability of getting 3 heads out of 5 coin flips?
+
+Step 2: Associate probabilities 
+$$ 
+\begin{gather*}
+\Large p^{k}(1-p)^{n-k} \\[8pt]
+\Large .5^{3}(1-.5)^{5-3} \\[8pt]
+\Large .5^{3}(.5)^{2} \\[8pt]
+\Large (.125)(.25) \\[8pt]
+\Large .03125
+\end{gather*}
+$$
+---
+## What is the probability of getting 3 heads out of 5 coin flips?
+
+Step 3: Combine these
+
+$$ 
+\begin{gather*}
+P(Success) = \binom{5}{3}p^{k}(1-p)^{n-k} \\
+P(Success) = \binom{5}{3}.5^{3}(1-.5)^{5-3} \\
+P(Success) = 10 * .03125 \\
+P(Success = 3_5) = .3125
+\end{gather*}
+$$
+
+--
+
+Or in `R`
+```{r}
+dbinom(x = 3, size = 5, prob = .5)
+```
+
+---
+## Binomial Distribution
+
+$$
+\Large p(X=k); n, p = \binom{n}{k}p^k(1-p)^{n-k}
+$$
+
+- Parameters of this distribution are $n$ and $p$
+- If we change the parameters, we change the distribution
+- **Family** of distributions
+
+---
+
+## Family of Distributions
+
+.pull-left[
+```{r, echo = FALSE}
+data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = .5)) %>% 
+  ggplot(aes(x = factor(heads), y = prob)) +
+  geom_col(fill = "#562457") +
+  geom_text(aes(label = round(prob, 2), y = prob + .01),
+            position = position_dodge(.9),
+            size = 5, 
+            vjust = 0) +
+  labs(title = "Binomial Distribution of Coin Flips",
+       subtitle = "n = 10, p = .5",
+       x = "Number of Successes (Heads)",
+       y = "Probability(Successes)") +
+  theme_classic(base_size = 16)
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>% 
+  ggplot(aes(x = factor(heads), y = prob)) +
+  geom_col(fill = "#562457") +
+  geom_text(aes(label = round(prob, 2), y = prob + .01),
+            position = position_dodge(.9),
+            size = 5, 
+            vjust = 0) +
+  labs(title = "Binomial Distribution of Dice Rolls",
+       subtitle = "n = 10, p = 1/6",
+       x = "Number of Successes (Rolling a 4)",
+       y = "Probability(Successes)") +
+  theme_classic(base_size = 16)
+```
+]
