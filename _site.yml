@@ -14,7 +14,11 @@ navbar:
       # - text: "3-Describing Data 1"
       #   href: "lectures2020/3-describing_data.html"
       # - text: "4-Describing Data 2"
-      #   href: "lectures2020-4-describing_data.html"
+      #   href: "lectures2020/4-describing_data.html"
+      # - text: "5-Probability"
+      #   href: "lectures2020/5-probability.html"
+      # - text: "6-Binomial"
+      #   href: "lectures2020/6-binomial.html"
     - text: Homework
       href: homework.html
   right:

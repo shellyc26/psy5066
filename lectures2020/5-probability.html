@@ -226,7 +226,7 @@ Assumption 2) The probability of an event occurring must be between 0 and 1. `\(
 
 - Half the class plays Clue in this room, other half plays in another room
 - Finding the murderer for game 1 doesn't help you find the murderer for game 2
-- P(Murderer in Game 1 &amp; Murderer in Game 2) = 1/6 * 1/6 = **1/36**
+- P(Murderer in Game 1 &amp; Murderer in Game 2) = `\(\frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\)`
 
 ---
 
@@ -440,77 +440,81 @@ $$ \Large \frac{n!}{k!(n-k)!} = \binom{n}{k}$$
 
 ---
 
-## Developing a Probability Distribution
+## What is the probability of getting 3 heads out of 5 coin flips?
 
-Step 1: Get number of ways to get `\(k\)` successes
-- We know this already. It's our binomial coefficient
-- `\(\frac{n!}{k!(n-k)!} = \binom{n}{k}\)`
+
+```r
+Tails Heads Heads Tails Heads
+```
+
+This can be represented in binomial form. First, we need to choose which value represents a "success". Here, we'll use **Heads**.
+
+
+```r
+NotHeads Heads Heads NotHeads Heads
+```
+
+The probability of that particular sequence is:
+
+`$$P(NotHeads)P(Heads)P(Heads)P(NotHeads)P(Heads)$$`
 
 --
 
-Step 2: Get probability of `\(k\)` successes in any order out of `\(n\)` trials
-
-- For `\(n\)` trials, we only need to know 2 *parameters*:
-  - `\(k\)` the number of successes
-  - `\(p\)` the probability of a success
-  - `\(q\)` is the probability of NOT a success; probability of failure
-  
-`$$p^{k}q^{n-k}$$`
-
-`$$p^{k}(1-p)^{n-k}$$`
+`$$P(Heads)^3P(NotHeads)^2 = (\frac{1}{2})^3(\frac{1}{2})^2 = 0.03125$$`
 
 ---
-## Developing a Probability Distribution
-
-Step 3: Combine Steps 1 and 2
-
-$$ 
-P(Success) = \binom{n}{k}p^{k}(1-p)^{n-k}
-$$
-- `\(k \geq 0\)`
-- Takes into account all of the possibilities! 
----
-
 ## What is the probability of getting 3 heads out of 5 coin flips?
 
-Step 1: Binomial Coefficient for combinations
+But a specific sequence of independent outcomes is just one way we could have X successful trials out of N
+
+- We need to know **how many possible ways** we could get X successes in N trials
+  - HHHTT, HTHTH, TTHHH etc...
+
+Remaining part of the equation is the combination rule fro probability theory, `\(\bigg(\frac{N}{k}\bigg)\)`, it tells us how many different ways this can happen
+
+---
+
+.pull-left[
+
+```r
+H H H T T
+H T H H T
+H T H T H
+H H T H T
+H H T T H
+```
+]
+
+.pull-right[
+
+```r
+T T H H H
+T H T H H
+T H H T H
+T H H H T
+H T T H H
+```
+]
+
+-- 
 
 $$
 `\begin{gather*}
-\frac{n!}{k!(n-k)!} \\[8pt]
-\frac{5!}{3!(5-3)!} \\[8pt]
-\frac{5!}{3!2!} \\[8pt]
-\frac{120}{12} \\[8pt]
-10
+\frac{n!}{k!(n-k)!} = \frac{5!}{3!(5-3)!} \\[8pt]
+\frac{5!}{3!2!} = \frac{120}{12} = 10 
 \end{gather*}`
 $$
 
 ---
 ## What is the probability of getting 3 heads out of 5 coin flips?
 
-Step 2: Associate probabilities 
-$$ 
-`\begin{gather*}
-\Large p^{k}(1-p)^{n-k} \\[8pt]
-\Large .5^{3}(1-.5)^{5-3} \\[8pt]
-\Large .5^{3}(.5)^{2} \\[8pt]
-\Large (.125)(.25) \\[8pt]
-\Large .03125
-\end{gather*}`
-$$
----
-## What is the probability of getting 3 heads out of 5 coin flips?
+Putting the pieces together:
 
-Step 3: Combine these
-
-$$ 
-`\begin{gather*}
-P(Success) = \binom{5}{3}p^{k}(1-p)^{n-k} \\
-P(Success) = \binom{5}{3}.5^{3}(1-.5)^{5-3} \\
-P(Success) = 10 * .03125 \\
-P(Success = 3_5) = .3125
-\end{gather*}`
-$$
+`$$\large P(X = \text{a }head, \text{three times}|p_2, n= 5)\\
+= \frac{n!}{k!(n-k)!}p^k(1-p)^{n-k}\\=
+\frac{5!}{3!(5-3)!}(\frac{1}{2})^3(\frac{1}{2})^2\\
+= (10)(.03125) \\
+=.3125$$`
 
 --
 
@@ -525,27 +529,35 @@ dbinom(x = 3, size = 5, prob = .5)
 ```
 
 ---
-## Binomial Distribution
 
-$$
-\Large p(X=k); n, p = \binom{n}{k}p^k(1-p)^{n-k}
-$$
+.pull-left-small[
 
-- Parameters of this distribution are `\(n\)` and `\(p\)`
-- If we change the parameters, we change the distribution
-- **Family** of distributions
+```r
+data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5))
+```
 
+```
+##   heads    prob
+## 1     0 0.03125
+## 2     1 0.15625
+## 3     2 0.31250
+## 4     3 0.31250
+## 5     4 0.15625
+## 6     5 0.03125
+```
+]
+
+
+
+.pull-right-large[
+![](5-probability_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
 ---
+class: inverse
 
-## Family of Distributions
+## Next time...
 
-.pull-left[
-![](5-probability_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
-]
-
-.pull-right[
-![](5-probability_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
-]
+Continuing with the Binomial Distribution
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
