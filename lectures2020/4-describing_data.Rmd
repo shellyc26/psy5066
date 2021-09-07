@@ -1,5 +1,5 @@
 ---
-title: 'Describing Data Part 2'
+title: 'Describing Data II'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -83,7 +83,7 @@ $$s_{XY} = cov_{XY} =\frac{\Sigma(X_i−\bar{X})(Y_i−\bar{Y})}{N-1}$$
 
 
 .large[
-$$\mathbf{K_{XX}} = \left[\begin{array}
+$$\Large \mathbf{K_{XX}} = \left[\begin{array}
 {rrr}
 \sigma^2_X & cov_{XY} & cov_{XZ} \\
 cov_{YX} & \sigma^2_Y & cov_{YZ} \\
@@ -91,27 +91,15 @@ cov_{ZX} & cov_{ZY} & \sigma^2_Z
 \end{array}\right]$$
 ]
 
+???
+Point out that $cov_{xy}$ is the same as $cov_{yx}$
 
-$cov_{xy} = cov_{yx}$ 
+**Write on board:**
 
----
-## Covariance table
+$cov_{xy} = 126.5$
+$cov_{xz} = 5.2$
 
-
-.large[
-$$\mathbf{K_{XX}} = \left[\begin{array}
-{rrr}
-\sigma^2_X & 126.5 & 5.2 \\
-126.5 & \sigma^2_Y & cov_{YZ} \\
-5.2 & cov_{ZY} & \sigma^2_Z
-\end{array}\right]$$
-]
-
-
-Which variable, $Y$ or $Z$, does $X$ have greater relationship with?
-
---
-
+Which variable, Y or Z, does X have greater relationship with?
 Can't know because you don't know what units they're measured in!
 
 ---
@@ -155,14 +143,13 @@ data = as.data.frame(data)
 colnames(data) = c("x", "y")
 ```
 
-```{r, out.width='50%'}
+```{r}
 data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = `r round(cor(data$x, data$y),2)`
 
 ---
@@ -175,14 +162,13 @@ data = as.data.frame(data)
 colnames(data) = c("x", "y")
 ```
 
-```{r, out.width='50%'}
+```{r}
 data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = `r round(cor(data$x, data$y),2)`
 
 ---
@@ -195,14 +181,13 @@ data = as.data.frame(data)
 colnames(data) = c("x", "y")
 ```
 
-```{r, out.width='50%'}
+```{r}
 data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = `r round(cor(data$x, data$y),2)`
 
 ---
@@ -324,8 +309,7 @@ data %>% ggplot(aes(x=x, y=y)) + geom_point()
 
 ## Outliers
 
-.pull-left-small[
-.code-small[
+.pull-left[
 ```{r, eval=FALSE, message = FALSE, warning = FALSE}
 data %>% ggplot(aes(x=x, y=y)) +
   geom_point() +
@@ -337,9 +321,8 @@ data %>% ggplot(aes(x=x, y=y)) +
               se = FALSE)
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ```{r, echo=FALSE, message = FALSE, warning = FALSE}
 data %>% ggplot(aes(x=x, y=y)) +
   geom_point() +
@@ -367,8 +350,7 @@ real_data = data
 data = filter(data, x >100 & x < 101)
 ```
 
-.pull-left-small[
-.code-small[
+.pull-left[
 ```{r, eval = FALSE, message = FALSE, warning = FALSE}
 data %>%
 ggplot(aes(x=x, y=y)) +
@@ -378,9 +360,8 @@ ggplot(aes(x=x, y=y)) +
               color = "red")
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
@@ -394,9 +375,7 @@ What if I told you there were scores on X could range from 97 to 103?
 
 ## Restriction of range
 
-.pull-left-small[
-.code-small[
-
+.pull-left[
 ```{r, eval = FALSE, warning=F, message=F}
 data %>%
 ggplot(aes(x=x, y=y)) +
@@ -411,9 +390,8 @@ ggplot(aes(x=x, y=y)) +
               color = "blue")
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ```{r, echo = FALSE, warning=F, message=F}
 data %>%
 ggplot(aes(x=x, y=y)) +
@@ -446,7 +424,7 @@ y = x^2 +rnorm(n = 150, sd = .5)
 data = data.frame(x,y)
 ```
 
-```{r, fig.height = 5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r, fig.height = 5, warning=FALSE, message=FALSE}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
@@ -486,7 +464,7 @@ f_data$gender = "female"
 data = rbind(m_data, f_data)
 ```
 
-```{r, fig.height = 5, message=F, warning=F, echo=FALSE}
+```{r, fig.height = 5, message=F, warning=F}
 data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
@@ -494,13 +472,9 @@ data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = 
 
 ## Multiple groups
 
-```{r, fig.height = 5, message=F, warning=F, echo=FALSE}
+```{r, fig.height = 5, message=F, warning=F}
 data %>% ggplot(aes(x=x, y=y, color = gender)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + guides(color = F)
 ```
-
---
-
-Known as **Simpson's Paradox**
 ---
 
 ### Special cases of the Pearson correlation

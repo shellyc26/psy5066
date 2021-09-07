@@ -1,5 +1,5 @@
 ---
-title: 'Real Intro & Measurement Scales'
+title: 'Overview & Measurement Scales'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -11,118 +11,46 @@ output:
       countIncrementalSlides: false
 ---
 
-## Goals of this sequence
+## Kinds of statistics
 
-- Develop the basic quantitative skills necessary to be a research scientist
-    - Not all the skills you will need (not the only courses you need)
-    - Foundations of statistics, methods, and data science
+- Descriptive
+- Inferential
 
-- Contextualize those skills
-    - Building a toolbox, not a cookbook
-    - How can I use this? Under what circumstances? When should I not use this?
-    
-.small[ - Sequence
-  - **5066**: Tools of statistics (distilling lots of data to interpretable numbers, sampling, hypothesis testing)
-  - **5067**: Building models (how do translate our theory into testable relationships using the tools of 5066)
-]
----
+???
+Which is more important? -- Neither
 
-## Goals of this course
-
-  - Conceptualize __statistics__ as a method for specifying and testing a model of how the world works
-  
-  - Execute and understand of the use and limitations of null hypothesis significance testing
-  
-  - Summarize, test, and display data using `R`
-  
-  - *Ideally* everyone will learn at least one thing they can use in their research this term.
-
----
-
-## Challenges
-
-Many basic statistical tests were developed a century ago. Your goal should not be to just do the test. It should be to understand what the test does, why you might want to use it, and how you can avoid abusing it
-
---
-
-I'm a Psychologist and Neuroscientist. This class is in the Psychology department. It's goal is to train the next generation of Psychologists. Examples will primarily be in Psychology (occasionally some pop culture for funzies). 
----
-
-## Setting Expectations
-
-My job is to balance theory and application. Everyone is coming here with *extremely* different backgrounds. The course evals are always...mixed. 
-
---
-
-**too fast?** - COME TALK TO ME. Also, spend lots of time outside of class; learning takes time.
-
---
-
-**too slow?** - COME TALK TO ME. There are lots of extensions to these concepts. I can give you extra readings, point you in interesting directions, or provide resources for improving your `R` code
-
----
-
-## Important Links
-
-[Class Website](https://shellyc26.github.io/psy5066/index.html) -- syllabus, lecture slides, homeworks etc. 
-
-[Slack Workspace](https://gradstats-ps5066.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
-
-[Canvas](https://wustl.instructure.com/courses/72732) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
-
-Data from class examples can be found on our [GitHub](https://github.com/shellyc26/psy5066) site in the `data` folder
-
-[Learning Statistics with `R`](https://learningstatisticswithr.com/) -- textbook by Danielle Navarro
-
----
-
-## Important Info
-
-- **Most important information is on the slides**
-
-- Readings serve to *supplement* and enhance
-
-- Important equations will be presented in the slides
-
----
-
-# Questions?
-
-For the rest of today:
-- Data Types
-- (if time) Setting up your computer to play nicely using `RProjects`
+Descriptive -- about the data
+Inferential -- about the world
+- assessing risk or uncertainty. How likely?
 
 ---
 
 ## Kinds of statistics
 
-- Descriptive (about the data)
-- Inferential (about the world)
+- Exploratory
+- Confirmatory
 
 --
 
-**Neither is more important than the other!!**
 
----
-
-## Kinds of statistics
-
-- Exploratory (I don't have a hypothesis or theory. I don't know what's going to happen)
-- Confirmatory (If theory X is true, then the data I collect should look like Y)
-
---
-
-**Neither is more important than the other!!**
 
 
 .center[Exploratory ---------------------------------------- Confirmatory]
+
+???
+Which is more important? -- Neither
+
+Exploratory -- I don't have a hypothesis or theory. I don't know what's going to happen
+Confirmatory -- if theory X is true, then data should look like Y
+
+Really more of a continuum
 
 ---
 
 ## Kinds of research
 
-- Experimental (we introduce an intervention and look at the effects; researcher introduced assignment)
-- Observational (we measure/survey our participants without trying to affect them; no researcher-introduced assignment)
+- Experimental
+- Observational
 
 --
 
@@ -136,222 +64,132 @@ In reality, most statistical tests can be used with most kinds of research. It's
 - Let's discuss variables now
 
 ---
-class: center
 
-## Scales of measurement (Data types)
+## Scales of measurement
 
-![](images/alldataTypes_gray.png)
+Four scales
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
+
 ---
-## Qualitative vs. Quantitative
 
-<img src='images/quantvqual.png' class='img_top_right' style='width:200px;'/>
+## Nominal
+
+- response options are groups
+- no specific order
+- example: What is your favorite fruit? Blueberries, apples, coconuts
+
+
+---
+
+## Ordinal
+
+- response options are ordered
+- no consistent distance between possible scores
+- example: List the following fruits in order of preference: peaches, grapes, raspberries
+
+---
+
+## Interval
+
+- response options are ordered
+- distance between response options is the same
+- no meaningful 0 
+- example: On a scale from 0-5, how much do you like bananas?
+
+
+---
+
+## Ratio
+
+- response options are ordered
+- distance between response options is the same
+- 0 indicates an _absence_ of something
+- example: how many times have you eaten watermelon in the last 6 months?
+
+
+---
+
+## Scales of measurement
 
 .pull-left[
-**Qualitative**:
-
-- aka categorical, factors
-- "not numeric", as in numbers serve as labels, not as things to add or subtract
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
 ]
 
 --
 
-.pull-right[
-**Quantitative**:
-
-- reflects magnitude
-- values are actually numbers you can add/subtract
-]
-
-
----
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-<img src='images/qualdata.png' class='img_top_right' style='width:200px;'/>
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: <span style="color: red;">1</span>
-    - blackberries: <span style="color: red;">2</span>
-    - coconut: <span style="color: red;">3</span>
-]
 
 .pull-right[
-![](images/nom.png)
-]
----
+- **Why does this matter?**
 
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-<img src='images/qualdata.png' class='img_top_right' style='width:200px;'/>
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: <span style="color: green;">3</span>
-    - blackberries: <span style="color: green;">1</span>
-    - coconut: <span style="color: green;">2</span>
-]
-
-.pull-right[
-![](images/nom.png)
-]
+  - Different amounts of information
+  - Different mathematical properties
+      - Example: Bobby scores 6 and Megan scores 3. If the scale is interval, can we say Bobby scored twice as high as Megan?]
 
 ---
 
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-<img src='images/qualdata.png' class='img_top_right' style='width:200px;'/>
+## Scales of measurement
 
 .pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: <span style="color: blue;">312</span>
-    - blackberries: <span style="color: blue;">19</span>
-    - coconut: <span style="color: blue;">999</span>
-]
+- Nominal
+- Ordinal
+- Interval 
+- Ratio]
 
 .pull-right[
-![](images/nom.png)
-]
+**You try!**
+
+- "On a scale from 1 to 6, how much does the word *outgoing* describe you?"]
 
 ---
 
-## Qualitative Variables
-#### Nominal vs. Ordinal
+## Scales of measurement
 
-<img src='images/qualdata.png' class='img_top_right' style='width:200px;'/>
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: 1
-    - blackberries: 2
-    - coconut: 3
-]
-
-.pull-right[
-**Ordinal**:
-
-- Response options are *ordered*
-- No consistent distance between possible scores
-- Example -- List the following fruits in order of preference
-    - apples: 2
-    - blackberries: 1
-    - coconuts: 3
-]
+Two types
+- Categorical
+- Continuous
 
 ---
 
-## Quantitative Variables
-#### Discrete vs. Continuous
-
-<img src='images/quantdata.png' class='img_top_right' style='width:200px;'/>
+## Scales of measurement
 
 .pull-left[
-**Discrete**:
-
-- Takes numeric values that are countable
-- Must be finite number of possibilities
-- Examples
-    - Number of children/family
-    - Number of students/class
-- Often confused with categorical; context matters
-
+- Nominal
+- Ordinal
+- Interval 
+- Ratio
 ]
+
+.pull-right[
+- Categorical
+- Continuous
+]
+
+How do these two methods of describing scales match up?
 
 --
 
-.pull-right[
-**Continuous**
-
-- Takes numeric values that are not necessarily countable
-- Infinite number of possibilities
-- Examples
-    - Age
-    - Height/weight
-- AKA "scale" variables
-]
-
----
-## Quantitative Variables
-#### Continuous
-
-<img src='images/quantdata.png' class='img_top_right' style='width:200px;'/>
-
-.pull-left[
-**Interval**:
-
-- Responses are ordered (like ordinal)
-- Distance between responses is the same (unlike ordinal)
-- No meaningful 0
-- Examples
-    - temp in Farenheit
-- In my experience, not as common unless you treat Likert scale as interval (though it is technically ordinal)
-
-]
+  - Nominal & ordinal variables will always be categorical
 
 --
 
-.pull-right[
-**Ratio**
-
-- Same as interval, but now with a meaningful 0
-- 0 indicates the absence of something
-- Example
-    - How many words did you recall on a memory test?
-    - 0 words recalled is meaningful!
-
-]
-
----
-
-class: center
-
-## Pitfalls?
-
-![](images/alldataTypes_colors.png)
-
----
-## Pitfalls
-
-Confusing Nominal and Ordinal
-  - lose information about order you might want
-  - or maybe you don't care and it doesn't matter
+  - Interval and ratio variables will *usually* be continuous, but they can sometimes be discrete, too.
 
 --
 
-Confusing Interval and Ratio
-  - lots of stats are interpreted in regards to 0
-  - if there is no meaningful 0, how do you interpret?
-
---
-
-Confusing Qualitative and Quantitative
-  - happens more than you think; esp in the machine learning world
-  - can straight up get the wrong numbers (will come back to this with correlation!)
-  
+  - Height
+    - inches/cm ---> RATIO
+    - what shelf can you reach in the pantry? ---> INTERVAL
+    - rank from tallest to shortest ---> ORDINAL
+      
 ---
-
 class: inverse 
 
 ## Next time
 
 Measurement validity
-
-Remainder of class (if time)...`Rprojects`

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Describing Data Part 2</title>
+    <title>Describing Data II</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Describing Data Part 2
+# Describing Data II
 
 ---
 
@@ -86,7 +86,7 @@ Sort of like the variance of two variables
 
 
 .large[
-`$$\mathbf{K_{XX}} = \left[\begin{array}
+`$$\Large \mathbf{K_{XX}} = \left[\begin{array}
 {rrr}
 \sigma^2_X &amp; cov_{XY} &amp; cov_{XZ} \\
 cov_{YX} &amp; \sigma^2_Y &amp; cov_{YZ} \\
@@ -94,27 +94,15 @@ cov_{ZX} &amp; cov_{ZY} &amp; \sigma^2_Z
 \end{array}\right]$$`
 ]
 
+???
+Point out that `\(cov_{xy}\)` is the same as `\(cov_{yx}\)`
 
-`\(cov_{xy} = cov_{yx}\)` 
+**Write on board:**
 
----
-## Covariance table
+`\(cov_{xy} = 126.5\)`
+`\(cov_{xz} = 5.2\)`
 
-
-.large[
-`$$\mathbf{K_{XX}} = \left[\begin{array}
-{rrr}
-\sigma^2_X &amp; 126.5 &amp; 5.2 \\
-126.5 &amp; \sigma^2_Y &amp; cov_{YZ} \\
-5.2 &amp; cov_{ZY} &amp; \sigma^2_Z
-\end{array}\right]$$`
-]
-
-
-Which variable, `\(Y\)` or `\(Z\)`, does `\(X\)` have greater relationship with?
-
---
-
+Which variable, Y or Z, does X have greater relationship with?
 Can't know because you don't know what units they're measured in!
 
 ---
@@ -156,12 +144,11 @@ Moment = variance is the second moment of a distribution
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="4-describing_data_files/figure-html/unnamed-chunk-3-1.png" width="50%" /&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = 0.68
 
 ---
@@ -172,12 +159,11 @@ Correlation = 0.68
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="4-describing_data_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = -0.41
 
 ---
@@ -188,12 +174,11 @@ Correlation = -0.41
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="4-describing_data_files/figure-html/unnamed-chunk-7-1.png" width="50%" /&gt;
+![](4-describing_data_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 What is the correlation between these two variables?
 
---
-
+???
 Correlation = 0
 
 ---
@@ -305,8 +290,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) + geom_point()
 
 ## Outliers
 
-.pull-left-small[
-.code-small[
+.pull-left[
 
 ```r
 data %&gt;% ggplot(aes(x=x, y=y)) +
@@ -319,9 +303,8 @@ data %&gt;% ggplot(aes(x=x, y=y)) +
               se = FALSE)
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ![](4-describing_data_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ]
 
@@ -331,8 +314,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) +
 
 
 
-.pull-left-small[
-.code-small[
+.pull-left[
 
 ```r
 data %&gt;%
@@ -343,9 +325,8 @@ ggplot(aes(x=x, y=y)) +
               color = "red")
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ![](4-describing_data_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 
@@ -357,9 +338,7 @@ What if I told you there were scores on X could range from 97 to 103?
 
 ## Restriction of range
 
-.pull-left-small[
-.code-small[
-
+.pull-left[
 
 ```r
 data %&gt;%
@@ -375,9 +354,8 @@ ggplot(aes(x=x, y=y)) +
               color = "blue")
 ```
 ]
-]
 
-.pull-right-large[
+.pull-right[
 ![](4-describing_data_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 ]
 
@@ -393,6 +371,11 @@ My idea: that many psychology studies only look at undergraduates (restricted ag
 ## Nonlinearity
 
 
+
+
+```r
+data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+```
 
 ![](4-describing_data_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
@@ -414,17 +397,23 @@ Sometimes issues that affect correlations won't appear in your graph, but you st
 
 
 
+
+```r
+data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+```
+
 ![](4-describing_data_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
 ## Multiple groups
 
+
+```r
+data %&gt;% ggplot(aes(x=x, y=y, color = gender)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + guides(color = F)
+```
+
 ![](4-describing_data_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
-
---
-
-Known as **Simpson's Paradox**
 ---
 
 ### Special cases of the Pearson correlation

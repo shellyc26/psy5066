@@ -3,6 +3,7 @@
   <head>
     <title>Binomial Distribution</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -68,7 +69,7 @@ The probability mass function tells us what to expect for any particular value o
 
 The probability distribution for X is defined by the following **probability mass function**: 
 
-`$$\Large P(X = r|N,p) = \bigg(\frac{N}{r}\bigg)p^r(q)^{N-r}$$`
+`$$\Large P(X = k|n,p) = \bigg(\frac{n}{k}\bigg)p^k(q)^{n-k}$$`
 
 This is the same exact thing as previous slide! 
 
@@ -86,7 +87,7 @@ All theoretical distributions have a mass function (if discrete) or a density fu
 
 `\(\mathbf{P(X|\theta,N)}\)` is a conditional probability: the probability of X **given** `\(\theta\)` and `\(N\)`.
 
-- X is the number of successful trials (in our other formula this is r -- as in r correct "choices")
+- X is the number of successful trials (in our other formula this is k -- as in r correct "choices")
 
 - N is the number of trials; must be independent
 
@@ -111,133 +112,70 @@ The probability mass function tells us what to expect for any particular value o
 - Note that this form of the rule assumes *independent events*.
 
 ---
-For example, let's examine a sequence of 5 independent rolls of a fair die:
 
-`3  6  6  1  6`
+## Binomial Distribution
 
---
+$$
+\Large p(X=k); n, p = \binom{n}{k}p^k(1-p)^{n-k}
+$$
 
-
-This can be represented in binomial form. First we have to choose the value that represents "success." Here, we'll use 6. 
-
-`Not6  6  6  Not6  6`
-
---
-
-The probability of that particular sequence is then:
-
-`$$P(Not6)P(6)P(6)P(Not6)P(6)$$`
-
---
-
-`$$P(6)^3P(Not6)^2 = (\frac{1}{6})^3(\frac{5}{6})^2 = 0.0027$$`
----
-
-But a specific sequence of independent outcomes is just one way we could have X successful trials out of N. 
-
-- We need to know **how many possible ways** we could get X successes in N trials.
-  - 66612, 61626, 12666, etc...
-
-The remaining part of the equation -- the combination rule from probability theory, `\(\bigg(\frac{N}{r}\bigg)\)` --, tells us how many different ways that can happen.
+- Parameters of this distribution are `\(n\)` and `\(p\)`
+- If we change the parameters, we change the distribution
+- **Family** of distributions
 
 ---
 
-`$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
-
-***
-
-`\(\mathbf{\frac{N!}{X!(N-X)!}}\)` is the number of distinct combintions of N objects, irrespective of order
-
----
-
-Returning to our dice example, how many ways are there to roll a six 3 times out of 5?
-
---
+## Family of Distributions
 
 .pull-left[
-
-`6  6  6  Not6 Not6`
-
-
-
-`6  6  Not6  6 Not6`
-
-
-
-`6  6  Not6  Not6 6`
-
-`6  Not6  6  6  Not6`
-
-`6  Not6  6  Not6  6`
+![](6-binomial_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
-
-`6  Not6  Not6  6  6`
-
-`Not6  6  6  6  Not6`
-
-`Not6  6  6  Not6  6`
-
-`Not6  6  Not6  6  6`
-
-`Not6  Not6  6  6  6`
+![](6-binomial_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
-
-
---
-
-`$$\large \frac{5!}{3!(5-3)!} = \frac{5\times4\times3\times2\times1}{3\times2\times1(2\times1)}=10$$`
----
-Putting the pieces together:
-
-`$$\large P(X = \text{a }6, \text{three times}|\theta_6, N= 5)\\
-= \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}\\=
-\frac{5!}{3!(5-3)!}(\frac{1}{6})^3(\frac{5}{6})^2\\
-= (10)(.0032) \\
-=.032$$`
-
-The probability of rolling a 6 on a fair die 3 times out of 5 rolls is .032
-
 ---
 
-What does the Law of Total Probability require to be true?
+## Parameters
 
-.pull-left[
+Every probability distribution has an **expected value**.
+  - EV is essentially the average value if you repeated the experiment...a lot
+  - Most likely result of the probability function
+  - The thing we would expect to happen if we have no other information than the parameters of the distribution
+  - The *long-run* average over an infinite amount of trials or samplings
 
-```
-##   num     p
-## 1   0 0.402
-## 2   1 0.402
-## 3   2 0.161
-## 4   3 0.032
-## 5   4 0.003
-## 6   5 0.000
-```
-]
-
-.pull-right[
-![](6-binomial_files/figure-html/binom-plot-1.png)&lt;!-- --&gt;
-
-
+---
+## Averages vs. EV
+.pull-left-small[
 
 ```r
-data.frame(num = 0:5, p = dbinom(x = 0:5, size = 5, prob = 1/6), three = as.factor(c(0,0,0,1,0,0))) %&gt;% ggplot(aes(x=num, y=p, fill = three)) + geom_bar(stat="identity") + scale_x_continuous("Number of sixes (X) in five rolls (N)", breaks=c(0:5)) +scale_y_continuous("Probability")+ guides(fill = F) + ggtitle("Binomial Probability Distribution")
+data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5)) %&gt;% summarize(mean(prob))
+```
+
+```
+##   mean(prob)
+## 1  0.1666667
 ```
 ]
-???
 
-Independent rolls!
+.pull-right-large[
+![](6-binomial_files/figure-html/binom-plot-1.png)&lt;!-- --&gt;
+]
 
 ---
+
+## Parameters
+
 
 Every probability distribution has an **expected value**. 
 
 For the binomial distribution:
 
 `$$E(X) = N\theta$$`
+For 3 Heads out of 5 flips, `\(E(X) = 5 \times .5 = 2.5\)`
 
 --
+
 Each probability distribution also has a variance. For the binomial:
 
 `$$Var(X) = N\theta(1-\theta)$$`
@@ -262,22 +200,16 @@ $$
 
 --
 
-If q = 1, then `\(E(X) = Var(X)\)`
-Else, `\(E(X) &gt; Var(X)\)` 
-
-???
-
-Expected value = most likely result of the probability function,
-* the thing we would expect to happen if we have no other information than the parameters of the distribution. 
-*the long run average over an infinite amount of trials or samplings
+- If q = 1, then `\(E(X) = Var(X)\)` 
+- Else, `\(E(X) &gt; Var(X)\)` 
 
 ---
 
 .left-column[
-The mean, .835, does not exist in the sample space, and rounding up to 1 and claiming that to be the most typical outcome is not quite right either. 
+The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome is not quite right either.
 ]
 
-![](6-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 - If you have a discrete distribution with a small N, these estimates may not have a sensible meaning
 ---
@@ -288,19 +220,22 @@ The **probability mass (density) function** allows us to answer other questions 
 
 --
 
-I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.  "At or below what outcome in the sample space do .75 of the outcomes fall?"  This is a **percentile or quantile** question. 
+I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.
+ &gt; "At or below what outcome in the sample space do .75 of the outcomes fall?"
+
+This is a **percentile or quantile** question. 
 
 --
 
 I might want to know the proportion of outcomes in the sample space that fall at or below a particular outcome. This is a **cumulative proportion** question.
 
 ---
-At or below what outcome in the sample space do .75 of the outcomes fall?
+At or below what outcome in the sample space do 75% of the outcomes fall? What is the outcome? Providing the `75%`, trying to find the `2`...
 
-![](6-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
 
 ---
-What proportion of outcomes in the sample space that fall at or below a given outcome?
+What proportion of outcomes in the sample space that fall at or below a given outcome? What percentage of outcomes fall at or below 2? Providing the `2`, looking for the `75%`
 
 .pull-left[
 ![](6-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
@@ -328,7 +263,7 @@ For example, suppose I give a 40-item multiple choice test, with each question h
 
 ---
 
-![](6-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
+![](6-binomial_files/figure-html/binom-plot3-1.png)&lt;!-- --&gt;
 
 ???
 I could use this distribution to help me decide if a given student is consistent with a guessing model.
@@ -381,7 +316,7 @@ Cumulatively, what proportion of guessers will fall below each score?
 Seems safe to assume that, practically speaking, all guessers will fall below the minimally passing score.
 
 ---
-###There’s always a but
+## There’s always a but
 
 But, what assumptions are we making and what consequences will they have?
 

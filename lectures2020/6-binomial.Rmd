@@ -64,7 +64,7 @@ The probability mass function tells us what to expect for any particular value o
 
 The probability distribution for X is defined by the following **probability mass function**: 
 
-$$\Large P(X = k|n,p) = \bigg(\frac{n}{k}\bigg)p^k(q)^{n-k}$$
+$$\Large P(X = r|N,p) = \bigg(\frac{N}{r}\bigg)p^r(q)^{N-r}$$
 
 This is the same exact thing as previous slide! 
 
@@ -82,7 +82,7 @@ $$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$
 
 $\mathbf{P(X|\theta,N)}$ is a conditional probability: the probability of X **given** $\theta$ and $N$.
 
-- X is the number of successful trials (in our other formula this is k -- as in r correct "choices")
+- X is the number of successful trials (in our other formula this is r -- as in r correct "choices")
 
 - N is the number of trials; must be independent
 
@@ -107,106 +107,129 @@ $$A \text{ and } B = P(A \cap B) = P(A)P(B)$$
 - Note that this form of the rule assumes *independent events*.
 
 ---
+For example, let's examine a sequence of 5 independent rolls of a fair die:
 
-## Binomial Distribution
+`3  6  6  1  6`
 
-$$
-\Large p(X=k); n, p = \binom{n}{k}p^k(1-p)^{n-k}
-$$
+--
 
-- Parameters of this distribution are $n$ and $p$
-- If we change the parameters, we change the distribution
-- **Family** of distributions
+
+This can be represented in binomial form. First we have to choose the value that represents "success." Here, we'll use 6. 
+
+`Not6  6  6  Not6  6`
+
+--
+
+The probability of that particular sequence is then:
+
+$$P(Not6)P(6)P(6)P(Not6)P(6)$$
+
+--
+
+$$P(6)^3P(Not6)^2 = (\frac{1}{6})^3(\frac{5}{6})^2 = `r round(((1/6)^3)*((5/6)^3), 4)`$$
+---
+
+But a specific sequence of independent outcomes is just one way we could have X successful trials out of N. 
+
+- We need to know **how many possible ways** we could get X successes in N trials.
+  - 66612, 61626, 12666, etc...
+
+The remaining part of the equation -- the combination rule from probability theory, $\bigg(\frac{N}{r}\bigg)$ --, tells us how many different ways that can happen.
 
 ---
 
-## Family of Distributions
+$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$
+
+***
+
+$\mathbf{\frac{N!}{X!(N-X)!}}$ is the number of distinct combintions of N objects, irrespective of order
+
+---
+
+Returning to our dice example, how many ways are there to roll a six 3 times out of 5?
+
+--
 
 .pull-left[
-```{r, echo = FALSE}
-data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = .5)) %>% 
-  ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(fill = "#562457") +
-  geom_text(aes(label = round(prob, 2), y = prob + .01),
-            position = position_dodge(.9),
-            size = 5, 
-            vjust = 0) +
-  labs(title = "Binomial Distribution of Coin Flips",
-       subtitle = "n = 10, p = .5",
-       x = "Number of Successes (Heads)",
-       y = "Probability(Successes)") +
-  theme_classic(base_size = 16)
+
+`6  6  6  Not6 Not6`
+
+
+
+`6  6  Not6  6 Not6`
+
+
+
+`6  6  Not6  Not6 6`
+
+`6  Not6  6  6  Not6`
+
+`6  Not6  6  Not6  6`
+]
+
+.pull-right[
+
+`6  Not6  Not6  6  6`
+
+`Not6  6  6  6  Not6`
+
+`Not6  6  6  Not6  6`
+
+`Not6  6  Not6  6  6`
+
+`Not6  Not6  6  6  6`
+]
+
+
+--
+
+$$\large \frac{5!}{3!(5-3)!} = \frac{5\times4\times3\times2\times1}{3\times2\times1(2\times1)}=10$$
+---
+Putting the pieces together:
+
+$$\large P(X = \text{a }6, \text{three times}|\theta_6, N= 5)\\
+= \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}\\=
+\frac{5!}{3!(5-3)!}(\frac{1}{6})^3(\frac{5}{6})^2\\
+= (10)(.0032) \\
+=.032$$
+
+The probability of rolling a 6 on a fair die 3 times out of 5 rolls is .032
+
+---
+
+What does the Law of Total Probability require to be true?
+
+.pull-left[
+```{r, echo=FALSE}
+x = data.frame(num = 0:5, p = dbinom(x = 0:5, size = 5, prob = 1/6))
+x$p = round(x$p, digits = 3)
+x
 ```
 ]
 
 .pull-right[
-```{r, echo = FALSE}
-data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>% 
-  ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(fill = "#562457") +
-  geom_text(aes(label = round(prob, 2), y = prob + .01),
-            position = position_dodge(.9),
-            size = 5, 
-            vjust = 0) +
-  labs(title = "Binomial Distribution of Dice Rolls",
-       subtitle = "n = 10, p = 1/6",
-       x = "Number of Successes (Rolling a 4)",
-       y = "Probability(Successes)") +
-  theme_classic(base_size = 16)
-```
-]
----
-
-## Parameters
-
-Every probability distribution has an **expected value**.
-  - EV is essentially the average value if you repeated the experiment...a lot
-  - Most likely result of the probability function
-  - The thing we would expect to happen if we have no other information than the parameters of the distribution
-  - The *long-run* average over an infinite amount of trials or samplings
-
----
-## Averages vs. EV
-.pull-left-small[
-```{r}
-data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5)) %>% summarize(mean(prob))
-
-```
-]
-
-.pull-right-large[
 ```{r binom-plot, echo = FALSE}
-data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5),
-           correct = c("not", "not", "not", "yes", "not", "not")) %>% 
-  ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(aes(fill = correct), show.legend=FALSE) +
-  geom_text(aes(label = round(prob, 2), y = prob + .01),
-            position = position_dodge(.9),
-            size = 5, 
-            vjust = 0) +
-  labs(title = "Probability of Heads",
-       subtitle = "Five Flips",
-       x = "Number of Successes (Heads)",
-       y = "Probability(Successes)") +
-  theme_classic(base_size = 16) +
-  scale_fill_manual(values = c("#562457","#4BB149"))
+data.frame(num = 0:5, p = dbinom(x = 0:5, size = 5, prob = 1/6), three = as.factor(c(0,0,0,1,0,0))) %>% ggplot(aes(x=num, y=p, fill = three)) + geom_bar(stat="identity") + scale_x_continuous("Number of sixes (X) in five rolls (N)", breaks=c(0:5)) +scale_y_continuous("Probability")+ guides(fill = F) + ggtitle("Binomial Probability Distribution")
+```
+
+
+```{r ref.label = 'binom-plot', eval = FALSE}
+
 ```
 ]
+???
+
+Independent rolls!
 
 ---
-
-## Parameters
-
 
 Every probability distribution has an **expected value**. 
 
 For the binomial distribution:
 
 $$E(X) = N\theta$$
-For 3 Heads out of 5 flips, $E(X) = 5 \times .5 = 2.5$
 
 --
-
 Each probability distribution also has a variance. For the binomial:
 
 $$Var(X) = N\theta(1-\theta)$$
@@ -231,13 +254,19 @@ $$
 
 --
 
-- If q = 1, then $E(X) = Var(X)$ 
-- Else, $E(X) > Var(X)$ 
+If q = 1, then $E(X) = Var(X)$
+Else, $E(X) > Var(X)$ 
+
+???
+
+Expected value = most likely result of the probability function,
+* the thing we would expect to happen if we have no other information than the parameters of the distribution. 
+*the long run average over an infinite amount of trials or samplings
 
 ---
 
 .left-column[
-The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome is not quite right either.
+The mean, .835, does not exist in the sample space, and rounding up to 1 and claiming that to be the most typical outcome is not quite right either. 
 ]
 
 ```{r ref.label = 'binom-plot', echo = FALSE}
@@ -253,50 +282,31 @@ The **probability mass (density) function** allows us to answer other questions 
 
 --
 
-I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.
- > "At or below what outcome in the sample space do .75 of the outcomes fall?"
-
-This is a **percentile or quantile** question. 
+I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.  "At or below what outcome in the sample space do .75 of the outcomes fall?"  This is a **percentile or quantile** question. 
 
 --
 
 I might want to know the proportion of outcomes in the sample space that fall at or below a particular outcome. This is a **cumulative proportion** question.
 
 ---
-At or below what outcome in the sample space do 75% of the outcomes fall? What is the outcome? Providing the `75%`, trying to find the `2`...
+At or below what outcome in the sample space do .75 of the outcomes fall?
 
-```{r binom-plot2, echo = FALSE}
-data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>% 
-  ggplot(aes(x = heads, y = prob)) +
-  geom_col(fill = "#562457") +
-  geom_vline(aes(xintercept = 2),
-             color = "#4BB149") +
-  labs(title = "Probability Mass Distribution of Dice Rolls",
-       subtitle = "n = 10, p = 1/6",
-       x = "Number of Successes (Rolling a 4)",
-       y = "Probability(Successes)") +
-  theme_classic(base_size = 16) +
-  scale_x_continuous(breaks = c(0:10))
+```{r echo = FALSE}
+data.frame(num = 0:5, p = dbinom(x = 0:5, size = 5, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity") + geom_vline(aes(xintercept = qbinom(p = .75, size = 5, prob = 1/6)), color = "red") +scale_x_continuous("Number of sixes (X) in five rolls (N)", breaks=c(0:5)) +scale_y_continuous("Probability")+ggtitle("Binomial Probability Distribution")
 ``` 
 
 ---
-What proportion of outcomes in the sample space that fall at or below a given outcome? What percentage of outcomes fall at or below 2? Providing the `2`, looking for the `75%`
+What proportion of outcomes in the sample space that fall at or below a given outcome?
 
 .pull-left[
-```{r ref.label = 'binom-plot2', echo = FALSE}
+```{r ref.label = 'binom-plot', echo = FALSE}
 
 ```
 
 ]
 .pull-right[
 ```{r echo = FALSE}
-data.frame(num = 0:10, p = pbinom(q = 0:10, size = 10, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity", fill = "#562457") + 
-  labs(title = "Cumulative Distribution of Dice Rolls",
-       subtitle = "n = 10, p = 1/6",
-       x = "Number of Successes (Rolling a 4) in 10 rolls (N)",
-       y = "Cumulative Proportion") +
-  theme_classic(base_size = 16) +
-  scale_x_continuous(breaks = c(0:10))
+data.frame(num = 0:5, p = pbinom(q = 0:5, size = 5, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity") + scale_x_continuous("Number of sixes (X) in five rolls (N)", breaks=c(0:5)) +scale_y_continuous("Probability")+ggtitle("Cumulative Distribution")
 ``` 
 ]
 
@@ -318,7 +328,7 @@ For example, suppose I give a 40-item multiple choice test, with each question h
 
 ---
 
-```{r binom-plot3, echo = F}
+```{r binom-plot2, echo = F}
 limit = 30
 data.frame(num = 0:limit, p = dbinom(x = 0:limit, size = 40, prob = .25)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity") + scale_x_continuous("Test Score (0-40) Under a Guessing Model", breaks=seq(0,limit,2)) +scale_y_continuous("Probability")+ggtitle("Binomial Probability Distribution")
 ```
@@ -367,7 +377,7 @@ data.frame(num = 0:limit, p = pbinom(q = 0:limit, size = 40, prob = .25)) %>% gg
 Seems safe to assume that, practically speaking, all guessers will fall below the minimally passing score.
 
 ---
-## There’s always a but
+###There’s always a but
 
 But, what assumptions are we making and what consequences will they have?
 
