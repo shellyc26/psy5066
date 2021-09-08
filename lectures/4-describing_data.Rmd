@@ -241,10 +241,24 @@ From Ozer & Funder (2019)
 - People attribute failures to bad luck $r = .10$
 - Communicators perceived as more credible are more persuasive $r = .10$
 - People in a bad mood are more aggressive $r = .41$
-- Antihistomine and symptom relief $r = .11$
+- Antihistamine and symptom relief $r = .11$
 - Ibuprofen and pain relief $r = .14$
 - Height and weight $r = .44$
 
+---
+
+## What are good benchmarks? 
+
+**Implications**
+- Don't dismiss small effects
+- Be skeptical of large effects
+
+**Recommendations**
+- Report effect sizes 
+- Use large samples -- remember bias?
+- Report effect sizes in context
+- Stop using empty terminology
+- Revise guidelines
 
 ???
 **What are good benchmarks?**
@@ -261,16 +275,6 @@ From Ozer & Funder (2019)
 - High elevations have lower annual temps: $r = .34$
 - Height and weight $r = .44$
 
-**Implications**
-- Don't dismiss small effects
-- Be skeptical of large effects
-
-**Recommendations**
-- Report effect sizes 
-- Use large samples -- remember bias?
-- Report effect sizes in context
-- Stop using empty terminology
-- Revise guildelines
 ---
 
 ## What affects correlations?
