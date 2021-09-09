@@ -1,6 +1,6 @@
 ---
 title: 'Psych 5066: Homework #1'
-author: YOUR NAME HERE
+author: 'YOUR NAME HERE'
 output: 
   html_document
 ---
