@@ -21,6 +21,8 @@ navbar:
         href: "lectures/5-probability.html"
       - text: "6-Binomial"
         href: "lectures/6-binomial.html"
+      - text: "6-Normal"
+        href: "lectures/6-normal.html"
     - text: Homework
       href: homework.html
   right:

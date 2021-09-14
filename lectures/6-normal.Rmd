@@ -225,9 +225,7 @@ These benchmarks are convenient for determining if a score (and later, a mean) i
 
 The normal distribution with $\mu$=0 and $\sigma$=1 is called standard normal.  
 
-Variables with quite different means and standard deviations can be standardized so that they can be compared in the same metric (standard deviation units). This allows statements such as "relative to the mean, I am more conscientious (e.g., $Z=2$) than I am extraverted (e.g., $Z=1$)."
-
-I could not say, however, that I am twice as conscientious as I am extraverted.
+Variables with quite different means and standard deviations can be standardized so that they can be compared in the same metric (standard deviation units). This allows statements such as "relative to the mean, I am more conscientious (e.g., $Z=2$) than I am extroverted (e.g., $Z=1$)."
 
 --
 
@@ -438,5 +436,4 @@ class: inverse
 
 ## Next time...
 
-- A quick side track to Bayesian frameworks
 - Sampling distributions and expansions of the normal distribution

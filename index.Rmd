@@ -17,10 +17,10 @@ output:
 
 - Pronouns: he/him
 - Office Hours: By appointment
-- *If you are in Psychology or Computational & Data Sciences*
+- *If you are in Psychology*
 
 **Alex Park** -- [alexanderpark@wustl.edu ](mailto:alexanderpark@wustl.edu)
 
 - Pronouns: he/him
 - Office Hours: By appointment
-- *If you are NOT in Psychology or Computational & Data Sciences*
+- *If you are NOT in Psychology*
