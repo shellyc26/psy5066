@@ -41,7 +41,7 @@ We know that our estimates will vary from sample to sample
 
 We're using our sample as an estimate
   - Sample mean $\bar{X}$ is an **_estimator_**
-  - A specific sample is an **_estiamte_**
+  - A specific sample is an **_estimate_**
 
 ---
 
@@ -91,7 +91,6 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x), geom = "area") +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density") +
-  labs(title = expression(Population~mu*"=0"~sigma~"=1"))+
   theme(text = element_text(size = 20))
 
 ```
@@ -136,7 +135,7 @@ here, the sample sizes is 30 fo each of these 4 graphs. each of theses is a samp
 
 .left-column[
 .small[
-A statistic (e.g., mean) from a large number of samples also have a distribution: the **samplING distribution**.
+A statistic (e.g., mean) from a large number of samples also has a distribution: the **sampling distribution**.
 
 The mean of the **sampling distribution** converges on $\mu$
 
@@ -430,9 +429,9 @@ $$CI_{95} = \bar{X} \pm [1.96\frac{\hat{\sigma}}{\sqrt{N}}]$$
 
 .left-column[
 .small[
-What if N is not “sufficiently large?”  The normal distribution assumes we know the population mean and standard deviation. But we don’t. We only know the sample mean and standard deviation, and those have some uncertainty about them. 
+If N is not “sufficiently large?”  The normal assumes we know the population mean and standard deviation. But we don’t. We only know the sample mean and sd, and those have some uncertainty about them. 
 
-That uncertainty is reduced with large samples, so that the normal is “close enough.”  In small samples, the $t$ distribution provides a better approximation.
+This is reduced with large samples, so that the normal is “close enough.”  In small samples, the $t$ dist has a better approximation.
 ]
 ]
 
@@ -613,7 +612,9 @@ class:inverse
 
 ## Next time...
 
-Exam 1 
+Exam 1 Review
+
+Exam 1
 
 
 (ahhhhhhhhhhh!)
