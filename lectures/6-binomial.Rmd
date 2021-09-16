@@ -167,15 +167,10 @@ Every probability distribution has an **expected value**.
 
 ---
 ## Averages vs. EV
-.pull-left-small[
-```{r}
-data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5)) %>% summarize(mean(prob))
 
-```
-]
+What is the average number of successes out of 5 flips? 
 
-.pull-right-large[
-```{r binom-plot, echo = FALSE}
+```{r binom-plot, echo = FALSE, out.width="50%"}
 data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5),
            correct = c("not", "not", "not", "yes", "not", "not")) %>% 
   ggplot(aes(x = factor(heads), y = prob)) +
@@ -191,7 +186,6 @@ data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5),
   theme_classic(base_size = 16) +
   scale_fill_manual(values = c("#562457","#4BB149"))
 ```
-]
 
 ---
 
