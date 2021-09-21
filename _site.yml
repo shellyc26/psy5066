@@ -7,22 +7,24 @@ navbar:
       href: schedule.html
     - text: Lecture Slides
       menu:
-      - text: "1-Introduction"
+      - text: "Introduction"
         href: "lectures/1-intro.html"
-      - text: "2-Measurement"
+      - text: "Measurement"
         href: "lectures/2-measurement.html"
-      - text: "3-Describing Data 1"
+      - text: "Describing Data 1"
         href: "lectures/3-describing_data.html"
       - text: "RMarkdown"
         href: "lectures/RMarkdown.pdf"
-      - text: "4-Describing Data 2"
+      - text: "Describing Data 2"
         href: "lectures/4-describing_data.html"
-      - text: "5-Probability"
+      - text: "Probability"
         href: "lectures/5-probability.html"
-      - text: "6-Binomial"
+      - text: "Binomial"
         href: "lectures/6-binomial.html"
-      - text: "6-Normal"
+      - text: "Normal"
         href: "lectures/6-normal.html"
+      - text: "Sampling"
+        href: "lectures/8-sampling.html"
     - text: Homework
       href: homework.html
   right:
