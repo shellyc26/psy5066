@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Exam 1 Practice Problems</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Exam 1 Practice Problems
+
+---
+
+
+
+
+# Penguins are cute
+
+&lt;img src="images/penguins.png", width="100%"&gt;
+
+package: `palmerpenguins`
+
+---
+# Question Set 1
+
+Convert this correlation matrix into a covariance matrix using the information below. Round to 2 digits at each step. 
+
+
+```
+##                   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+## bill_length_mm              1.00         -0.24              0.66        0.60
+## bill_depth_mm              -0.24          1.00             -0.58       -0.47
+## flipper_length_mm           0.66         -0.58              1.00        0.87
+## body_mass_g                 0.60         -0.47              0.87        1.00
+```
+
+```
+## [1] "The standard deviation of bill length is 5.46"
+```
+
+```
+## [1] "The standard deviation of bill depth is 1.97"
+```
+
+```
+## [1] "The standard deviation of flipper length is 14.06"
+```
+
+```
+## [1] "The standard deviation of body mass is 801.95"
+```
+
+---
+
+# Question Set 2
+
+- Scientists have discovered that 14% of Adelie penguins have a genetic condition that prevents them from being able to reproduce. If 40 Adelie penguins are selected at random from any of the 3 islands, how many penguins could be expected to be able to reproduce?
+
+- Say that someone ran this analysis and published it with the conclusion that this genetic condition is leading to a decline in Adelie penguins on the Biscoe island. How would you respond to this claim? Do you believe it? What aspects would you be concerned with, in regards to what we discussed with validity? 
+
+
+```
+##            
+##             Biscoe Dream Torgersen
+##   Adelie        44    56        52
+##   Chinstrap      0    68         0
+##   Gentoo       124     0         0
+```
+
+
+---
+
+# Question Set 3
+
+- Get the z-scores of the `body_mass_g` variable "by hand" meaning do not use a `R` function
+- Which value is furthest away from the mean? Which is closest?
+- Interpret the 10th z-score
+- Which of these is an outlier? How do you propose to deal with this outlier?
+
+
+```
+## # A tibble: 10 × 4
+##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7               181        3750
+##  2           39.5          17.4               186        3800
+##  3           40.3          18                 195        3250
+##  4           36.7          19.3               193        3450
+##  5           39.3          20.6               190        3650
+##  6           38.9          17.8               181        3625
+##  7           39.2          19.6               195        4675
+##  8           34.1          18.1               193        3475
+##  9           42            20.2               190        4250
+## 10           37.8          17.1               186        3300
+```
+
+---
+
+# Question Set 4
+
+- Which of these variables are qualitative? Quantitative?
+- Which variable would be appropriate for a binomial question?
+- Which variable do you assume is normally distributed? `\(t\)` distributed?
+- Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
+
+
+```
+## # A tibble: 10 × 4
+##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7               181        3750
+##  2           39.5          17.4               186        3800
+##  3           40.3          18                 195        3250
+##  4           36.7          19.3               193        3450
+##  5           39.3          20.6               190        3650
+##  6           38.9          17.8               181        3625
+##  7           39.2          19.6               195        4675
+##  8           34.1          18.1               193        3475
+##  9           42            20.2               190        4250
+## 10           37.8          17.1               186        3300
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
