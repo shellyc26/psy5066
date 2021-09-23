@@ -79,8 +79,11 @@ tinyp
 - Which variable do you assume is normally distributed? $t$ distributed?
 - Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
 
+.code-small[
 ```{r, echo=FALSE}
-tinyp = penguins[c(1:3, 5:11),3:6]
+tinyp = penguins[c(1:3, 5:11),]
 tinyp
 ```
+
+]
 

@@ -109,22 +109,26 @@ Convert this correlation matrix into a covariance matrix using the information b
 - Which variable do you assume is normally distributed? `\(t\)` distributed?
 - Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
 
+.code-small[
 
 ```
-## # A tibble: 10 × 4
-##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-##  1           39.1          18.7               181        3750
-##  2           39.5          17.4               186        3800
-##  3           40.3          18                 195        3250
-##  4           36.7          19.3               193        3450
-##  5           39.3          20.6               190        3650
-##  6           38.9          17.8               181        3625
-##  7           39.2          19.6               195        4675
-##  8           34.1          18.1               193        3475
-##  9           42            20.2               190        4250
-## 10           37.8          17.1               186        3300
+## # A tibble: 10 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           34.1          18.1               193        3475
+##  9 Adelie  Torgersen           42            20.2               190        4250
+## 10 Adelie  Torgersen           37.8          17.1               186        3300
+## # … with 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
+
+]
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
