@@ -117,7 +117,7 @@ data.frame(men = men, d = dbinom(men, size = 10, prob = .5),
            color = ifelse(men == 9, "1", "2")) %>%
   ggplot(aes(x = men, y = d, fill = color)) +
   geom_bar(stat = "identity") + 
-  guides(fill = F)+
+  guides(fill = "none")+
   scale_x_continuous("Number of men hired", breaks = c(0:10))+
   scale_y_continuous("Probability of X men hired") +
   theme(text = element_text(size = 20))
@@ -159,7 +159,7 @@ data.frame(men = men, d = dbinom(men, size = 10, prob = .5),
            color = ifelse(men %in% c(0,1, 9,10), "1", "2")) %>%
   ggplot(aes(x = men, y = d, fill = color)) +
   geom_bar(stat = "identity") + 
-  guides(fill = F)+
+  guides(fill = "none")+
   scale_x_continuous("Number of men hired", breaks = c(0:10))+
   scale_y_continuous("Probability of X men hired") +
   theme(text = element_text(size = 20))
@@ -180,7 +180,7 @@ data.frame(men = 0:20,
            d = dbinom(0:20, size = 20, prob = .5), color = ifelse(0:20 %in% c(0:4, 16:20), "1", "2")) %>%
   ggplot(aes(x = men, y = d, fill = color)) +
   geom_bar(stat = "identity") + 
-  guides(fill = F)+
+  guides(fill = "none")+
   scale_x_continuous("Number of men hired", breaks = c(0:20))+
   scale_y_continuous("Probability of X men hired") +
   theme(text = element_text(size = 20))
@@ -201,7 +201,7 @@ data.frame(men = 0:30,
            d = dbinom(0:30, size = 30, prob = .5), color = ifelse(0:30 %in% c(0:9, 21:30), "1", "2")) %>%
   ggplot(aes(x = men, y = d, fill = color)) +
   geom_bar(stat = "identity") + 
-  guides(fill = F)+
+  guides(fill = "none")+
   scale_x_continuous("Number of men hired", breaks = c(0:30))+
   scale_y_continuous("Probability of X men hired") +
   theme(text = element_text(size = 20))
