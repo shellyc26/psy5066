@@ -27,6 +27,8 @@ navbar:
         href: "lectures/8-sampling.html"
       - text: "Exam 1 Practice Qs"
         href: "lectures/exam1review.html"
+      - text: "NHST 1"
+        href: "lectures/9-nhst.html"
     - text: Homework
       href: homework.html
   right:

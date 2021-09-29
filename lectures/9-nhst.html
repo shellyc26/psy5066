@@ -238,15 +238,15 @@ For now, we'll work through an example using the standard normal distribution.
 
 ## Example #2 
 
-University X has been around for 150 years, and so has 150 years worth of ratings of male applicants. You pay an undergrad dig through all the old university files and calculate the average rating of male applicants (5.3 out of 10) and also the standard deviation of those ratings (3.3). 
+University X has been around for 150 years, and so has 150 years worth of ratings of applicants. You pay an undergrad dig through all the old university files and calculate the average rating of productivity for the job applicants (5.3 out of 10) and also the standard deviation of those ratings (3.3). 
 
-You then collect the ratings of 9 female applicants in 2018 and calculate their average rating (2.9) and also the standard deviation of their rating (3.1)
+You are interested in if the pandemic contributed to productivity declines. You then collect the ratings of 9 very recent applicants from 2020, and you calculate their average rating (2.9). 
 
 How do you generate the sampling distribution around the null?
 
 ???
 
-Null: distribution of men's scores -- you know this population, trying to see if ratings of female applicants come from the same distribution of scores
+Null: dist of all scores over 150 years!
 
 
 ---
@@ -262,12 +262,13 @@ The standard deviation of the sampling distribution:
 
 ]
 
-![](9-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](9-nhst_files/figure-html/sampling-1.png)&lt;!-- --&gt;
 
 
 ???
-Pop mean (male) = 5.3
-SD populataion (males) = 3.3
+Pop mean (apps pre 2020) = 5.3
+SD populataion (apps pre 2020) = 3.3
+SEM = sd/sqrt(N), N = 9, SEM = 1.1
 construct it around the null
 
 ##What must we assume in order to use the SEM?
@@ -289,10 +290,10 @@ The standard deviation of the sampling distribution:
 
 ]
 
-![](9-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](9-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ???
-Now, we're trying to decide if given this null hypothesis, that has a distribution that looks like so, is it likely that our females come from this same distribution. the females had a mean of 2.9, so our purple line moves over. The standard deviation of our sampling distribution here is our standard error of the mean. to caluclate that we take our population standard deviation, sigma, and divide by the square root of N. we had 9 females, so square root of 9. this turns out to be 1.1. Even though we're only talking about this tail at the moment, i've plotted out the equivalent tail on the other side. 
+Now, we're trying to decide if given this null hypothesis, that has a distribution that looks like so, is it likely that our recent applicatins come from this same distribution. the recent apps had a mean of 2.9, so our purple line moves over. The standard deviation of our sampling distribution here is our standard error of the mean. to caluclate that we take our population standard deviation, sigma, and divide by the square root of N. we had 9 recent apps, so square root of 9. this turns out to be 1.1. Even though we're only talking about this tail at the moment, i've plotted out the equivalent tail on the other side. 
 
 Calculate SEM on board.
 
@@ -302,41 +303,8 @@ Calculate SEM on board.
 
 ---
 
-All well and good. 
-
-But rarely will you have access to all the data in your population, so you won't be able to calculate the population standard deviation. What will you do?
-
---
-
-`$$SEM = \frac{\hat{\sigma}}{\sqrt{N}} = \frac{s}{\sqrt{N}}$$`
-
-So long as your estimate of the standard deviation is already corrected for bias (you've divided by `\(N-1\)` ), then you can swap in your sample SD.
-
-
----
-
-.left-column[
-
-.small[
-If you didn't know the population (male's) standard deviation, you would use the sample of females to estimate the population standard deviation.
-
-`$$SEM = \frac{\hat{\sigma}}{\sqrt{N}}$$`]
-]
-
-![](9-nhst_files/figure-html/sampling-1.png)&lt;!-- --&gt;
-
-???
-
-Calculate SEM on board.
-
-`\(\hat{\sigma} = 3.1\)`
-
-`\(N = 9\)`
-
----
-
 .pull-left[
-![](9-nhst_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](9-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -344,34 +312,103 @@ Calculate SEM on board.
 
 
 
-
-We have a normal distribution for which we know the mean (M), the standard deviation (SEM), and a score of interest ( `\(\bar{X}\)` ). 
+We have a normal distribution for which we have a score of interest (new applicant, `\(\bar{X}\)` ), we know the mean of the population (the before times, M), the standard deviation of the before times, so we can get the standard deviation (SEM). 
 
 We can use this information to calculate a Z-score; in the context of comparing one mean to a sampling distribution of means, we call this a **Z-statistic**. 
 ]
 
-`$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.03} = -2.32$$`
+`$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} = -2.18$$`
 
 ???
 The z here isn't a z-score bc indtrsf we’re calculating standardised version of a sample mean,
 not a standardised version of a single observation, which is what a z-score usually refers to)
 
-let's just recap. our null hypothesis was that the mean of females equaled the mean of females in their applicaton ratings. the alternative is that these means are different. That is, the null is that males and females come from the same population dist, and the alternative is that the females do not come from the same population dist as the males. the population mean of the males, 5.3, was used to derive the null distribution. then we used our sample estimate of the standard deviation from the females as a way of approximating the male population standard deviation (we're pretending we didn't know that). We used this to get a standard error of the mean, and we put it all together to get this z-statistic. the z tells us the number of standard errors that separate the observed sample mean from our population mean, that's predicted by our null hypothesis. 
+let's just recap. our null hypothesis was that the mean of apps pre 2020 equaled the mean of apps post 2020. the alternative is that these means are different. That is, the null is that this current crop of applicants comes from the same pool as the population of applicants as measured over 150 years from University X. The alternative is that the current crop of applicants do not come from the same population dist as their predescesors (decline in productivity). the population mean of the pre-pandemic, 5.3, was used to derive the null distribution. then we used our population standard deviation and study sample size to define how fat or skinny that distribution truly is. We used this to get a standard error of the mean, and we put it all together to get this z-statistic. the z tells us the number of standard errors that separate the observed sample mean from our population mean, that's predicted by our null hypothesis. 
 ---
 
-`$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.03} = -2.32$$`
+`$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} = -2.18$$`
 
 
 And here's where we use the properties of the Standard Normal Distribution to calculate probabilities, specifically the probability of getting a score this far away from `\(\mu\)` or more extreme:
 
 
 ```r
-pnorm(-2.32) + pnorm(2.32, lower.tail = F)
+pnorm(-2.18) + pnorm(2.18, lower.tail = F)
 ```
 
 ```
-## [1] 0.02034088
+## [1] 0.02925746
 ```
+
+```r
+pnorm(-2.18)*2
+```
+
+```
+## [1] 0.02925746
+```
+
+The probability that the average current applicant's score would be at least 2.18 units away from the average score of the population of applicants is 0.029.
+
+--
+
+0.029 is our `\(p\)`-value!
+---
+class: inverse, center
+
+# Congrats! 🎉
+
+You just ran your first `\(z\)`-test.
+
+It's useless.
+
+We use it when we want to know if our mean is the same or different from a population mean. 
+
+---
+
+The probability that the average post-pandemic applicant's score would be at least 2.18 units away from the average score is 0.029.
+
+0.029 is our p-value. 
+
+### A p-value DOES NOT:
+
+- Tell you that the probability that the null hypothesis is true. 
+
+- Prove that the alternative hypothesis is true. 
+    
+- Tell you anything about the size or magnitude of any observed difference in your data. 
+
+---
+## Again, but with a twist...
+
+All well and good. 
+
+But rarely will you have access to all the data in your population, so you won't be able to calculate the population standard deviation. What will you do? We still have our population mean of 5.3, but now let's say we *only* have the **sample** standard deviation...
+
+--
+
+`$$SEM = \frac{\hat{\sigma}}{\sqrt{N}} = \frac{s}{\sqrt{N}}$$`
+
+So long as your estimate of the standard deviation is already corrected for bias (you've divided by `\(N-1\)` ), then you can swap in your sample SD.
+
+---
+
+.left-column[
+
+.small[
+If you didn't know the population standard deviation, you would use the sample of post-pandemic applicants to estimate the population standard deviation.
+
+`$$SEM = \frac{\hat{\sigma}}{\sqrt{N}}$$`]
+]
+
+![](9-nhst_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
+
+---
+## Again, but with a twist...
+
+
+`$$t = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.03} = -2.32$$`
+
 
 ```r
 pnorm(-2.32)*2
@@ -381,27 +418,29 @@ pnorm(-2.32)*2
 ## [1] 0.02034088
 ```
 
-The probability that the average female applicant's score would be at least 2.32 units away from the average male score is 0.02.
+```r
+pt(-2.32, df = N-1)*2
+```
 
-This whole process is called the `\(z\)`-test. It's almost never used IRL, but it's a useful tool in terms of understanding what's happening. We use it when we want to know if our mean is the same or different from a population mean. 
+```
+## [1] 0.04891943
+```
 
 ---
+class: inverse, center
 
-The probability that the average female applicant's score would be at least 2.32 units away from the average male score is 0.02.
+# Congrats! 🎉
 
-0.02 is our p-value. 
+You just ran your first `\(t\)`-test.
 
-### A p-value DOES NOT:
+It's extremely useful
 
-- Tell you that the probability that the null hypothesis is true. 
+We use it when we want to know if our mean is the same or different from a population mean, but we don't have the population variance. Most of the time (not always, but most), we use this in the context of "is some value different from 0". 
 
-- Prove that the alternative hypothesis is true. 
-    
-- Tell you anything about the size or magnitude of any observed difference in your data. 
-    
+.small[Note, this is specifically called a "one sample t-test" but we'll talk more about that in a bit]
+
 ---
-
-`$$p = 0.02$$` 
+## `\(.029, .020, .049\)`
 
     
 Is that a really low probability?
@@ -423,8 +462,6 @@ Historically, psychologists have chosen to set their `\(\alpha\)` level at .05, 
 This means that, among the times we examine a relationship that is truly null, we will reject the null 1 in 20 times. 
 
 Some have argued that this is not conservative enough and we should use `\(\alpha &lt; .005\)` ([Benjamin et al., 2018](../readings/Benjamin_etal_2018.pdf)).
-
-
 ---
 
 ## NHST Steps
@@ -452,10 +489,6 @@ class: inverse
 .center[
 &lt;img src="images/halloween.jpeg" width="60%" /&gt;
 ]
-???
-
-next week office hours....
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
