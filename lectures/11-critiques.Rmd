@@ -169,9 +169,19 @@ from Simmons et al: The table reports the percentage of 15,000 simulated samples
 
 ---
 
-## $p$-hacking
+## Questionable Research Practices (QRPs)
 
-**p-hacking:** collecting or selecting data or statistical analyses until non-significant results become significant. 
+.pull-left[
+
+- ** $p$-hacking**
+- HARKing
+- cherry picking
+- fishing
+- data dredging
+]
+
+.pull-right[
+Collecting data or analyzing your data in different ways until non-significant results become significant.
 
 Prior to 2011, this was common practice. In fact, it was often taught as best practices.
 
@@ -179,7 +189,107 @@ Prior to 2011, this was common practice. In fact, it was often taught as best pr
   - "Understand your data."
   - "Test sensitivity..."
   
+What's wrong with this? 
+
+]
+
+???
 We should recognize now that this inflates Type I error. 
+---
+## Questionable Research Practices (QRPs)
+
+.pull-left[
+
+- $p$-hacking
+- **HARKing**
+- cherry picking
+- fishing
+- data dredging
+
+]
+
+.pull-right[
+*H*ypothesizing *A*fter the *R*esults are *K*nown
+
+You analyze data and find a significant result (might be unexpected), and post-hoc come up with a hypothesis. Importantly, you then *report* the findings as though this has been the case all along.
+
+What's wrong with this? 
+]
+
+???
+it's fine to get lucky and notice something weird. but present it as exploratory! the null is so damn specific... could be a chance finding!
+
+---
+## Questionable Research Practices (QRPs)
+
+.pull-left[
+
+- $p$-hacking
+- HARKing
+- **cherry picking**
+- fishing
+- data dredging
+
+]
+
+.pull-right[
+Select/report only data/findings that support your hypothesis. If your data/findings do not support it, you hide it away in the "file drawer"
+
+What's wrong with this? 
+]
+
+???
+over-inflated effect sizes in the literature. we might believe it when in fact we shouldn't
+
+---
+## Questionable Research Practices (QRPs)
+
+.pull-left[
+
+- $p$-hacking
+- HARKing
+- cherry picking
+- **fishing**
+- data dredging
+
+
+]
+
+.pull-right[
+
+Look at a ton of different combinations of variables to find something significant.
+
+What's wrong with this?
+
+]
+
+???
+the large number of statistical tests leads to a high risk of false positive findings.
+
+---
+## Questionable Research Practices (QRPs)
+
+.pull-left[
+
+- $p$-hacking
+- HARKing
+- cherry picking
+- fishing
+- **data dredging**
+
+
+]
+
+.pull-right[
+
+Takes fishing to an extreme, but usually more synonymous with "data mining". Usually no hypothesis in mind. Just go crazy in some database or "big data" set, looking for things that pop up as significant. 
+
+What's wrong with this?
+
+]
+
+???
+the large number of statistical tests leads to a high risk of false positive findings. it's ok to data mine. just be careful and present it as such!
 
 ---
 
@@ -272,19 +382,21 @@ As data, the replication crisis, it is potentially quite informative and suggest
 At a minimum, it tells us we don’t understand a phenomenon as well as we think we do.  That is hardly a failure of science, unless we don’t take the next steps to resolve our ignorance.
 
 ---
-## Is Psych bullshit?
+## Can science progress?
 
 Failures to replicate are surprising, even troubling. We think of them as unfortunate occurrences. Bad luck even.  But should they be viewed that way?  
 
 Surprises in science have a long history of playing a key role in scientific progress.   
 
 ---
+class: center, middle
 
 What can (or should) failures to replicate tell us? 
 
 > A good laboratory, like a good bank or corporation or government, has to run like a computer. Almost everything is done flawlessly, by the book, and all the numbers add up to the predicted sums. The days go by. And then, if it is a lucky day, and a lucky laboratory, somebody makes a mistake . . . something is obviously screwed up, and then the action can begin. The next step is the crucial one. If the investigator can bring himself to say, "But even so, look at that!" then the new finding, whatever it is, is ready for the snatching. What is needed for progress to be made, is the move based on the error . . . The capacity to leap across mountains of information to land lightly on the wrong side represents the highest of human endowments.	--Lewis Thomas (1974) *The Medusa and the Snail*
 
 ---
+class: center, middle
 
 A failure to replicate should be viewed as particularly interesting.
 
@@ -302,12 +414,27 @@ class: middle, center
 
 > “The most exciting phrase to hear in science, the one that heralds new discoveries, is not ‘Eureka!’, but ‘That’s funny...” -Isaac Asimov
 
---
+---
+class: center, middle
 
 > [Science] needs a better word for "error" . . . Or maybe "error" will do after all, when you remember that it came from an old root meaning to wander about, looking for something. -Lewis Thomas
 
 ---
 
+## Wrapping Up
+
+- You can't solve all jobs with a wrench
+
+--
+
+- NHST is just one of the tools in your toolbelt. 
+
+- Effect sizes, confidence intervals, replications are all also tools to help give us a clearer picture.
+
+--
+
+![](images/pvaldiscussion.png)
+---
 class: inverse
 
 ## Next time...
