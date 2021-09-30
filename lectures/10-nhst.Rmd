@@ -15,13 +15,8 @@ library(tidyverse)
 library(pwr)
 ```
 
-class: inverse
 
-*Note: slide 33 changed on 10/21*
-
----
-
-## Review of key Points
+## Review
 
 - The null hypothesis ( $H_0$ ) is a claim about the particular value that a population parameter takes.
 
@@ -33,17 +28,17 @@ class: inverse
 
 ---
 
-### Review
+## Review
 
 - If we do not reject $H_0$, that does not mean that we accept it.  We have simply failed to reject it. It lives to fight another day.
 
-- A Z-statistic summarizes how unusual the sample estimate of a mean compared to the value of the mean as specified by the null hypothesis.
+- A $z$-statistic or $t$-statistic summarizes how unusual the sample estimate of a mean compared to the value of the mean as specified by the null hypothesis.
 
   - More broadly, we refer to the **test statistic** as the statistic that summarizes how unusual the sample estimate of a parameter is from the point value specified by the null hypothesis.
   
 ---
 
-### Review
+## Review
   
 - The test statistic is derived from a probability distribution that represents the likelihood of any sample estimated given that the null hypothesis is true.
 
@@ -51,9 +46,9 @@ class: inverse
 
 ---
 
-### Review
+## Review
 
-- We summarize the probability of the sample data (or even more extreme data), assuming the null is true, by the ** $p$-value** (signified by $p$). This value is the proportion of the sampling distribution of the test statistic that is as extreme, or more extreme, as the test statistic value.
+We summarize the probability of the sample data (or even more extreme data), assuming the null is true, by the ** $p$-value** (signified by $p$). This value is the proportion of the sampling distribution of the test statistic that is as extreme, or more extreme, as the test statistic value.
 
 If $p$ is small, the observed data are unusual *if the null hypothesis is true*.
 
@@ -63,7 +58,7 @@ If $p$ is sufficiently small ( $p < .05$ ), we may choose to reject the null hyp
 
 ## $p$-values
 
-- Fisher established (rather arbitrarily) the sanctity of the .05 and .01 significance levels during his work in agriculture, including work on the effectiveness of fertilizer.  A common source of fertilizer is cow manure. Male cattle are called bulls.  
+Fisher established (rather arbitrarily) the sanctity of the .05 and .01 significance levels during his work in agriculture, including work on the effectiveness of fertilizer.  A common source of fertilizer is cow manure. Male cattle are called bulls...  
 
 A common misinterpretation of the p value ( $\alpha$ ) is that it is the probability of the null hypothesis being wrong.
 
@@ -71,11 +66,29 @@ Another common misunderstanding is that $1-\alpha$ is the probability that resul
 
 ---
 
-- In most research, the probability that the null hypothesis is true is very small.  If the null hypothesis is false, then the only mistake to be made is a failure to detect a real effect -- a Type II error.
+## Mistakes we make
+In most research, the probability that the null hypothesis is true is very small. If the null hypothesis is false IRL, then the only mistake to be made is a *failure to detect a real effect* -- a **Type II error**.
 
-If-  the null hypothesis is false, then the significance test is akin to a test of whether the sample size was large enough.
+--
 
-- Because Null Hypothesis Significance Testing (NHST) is beginning to seem like a bit of a sham, some have suggested we start calling it Statistical Hypothesis Inference Testing.
+If the null hypothesis is false, then the significance test is akin to a test of whether the sample size was large enough.
+
+--
+
+Because Null Hypothesis Significance Testing (NHST) is beginning to seem like a bit of a sham, some have suggested we start calling it Statistical Hypothesis Inference Testing.
+
+---
+
+## Errors
+
+In hypothesis testing, we can make two kinds of errors.
+
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
+
+Falsely rejecting the null hypothesis is a **Type I error**.  Traditionally this has been viewed as particularly important to control at a low level (akin to avoiding false conviction of an innocent defendant). False Positive!
+.tiny[https://www.simplypsychology.org/type_I_and_type_II_errors.html]
 
 ---
 
@@ -84,26 +97,9 @@ If-  the null hypothesis is false, then the significance test is akin to a test 
 In hypothesis testing, we can make two kinds of errors.
 
 
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   Type I Error   | Correct decision |
-| $H_0$ False | Correct decision |   Type II Error  |
-
-
-Falsely rejecting the null hypothesis is a **Type I error**.  Traditionally this has been viewed as particularly important to control at a low level (akin to avoiding false conviction of an innocent defendant). 
-
----
-
-## Errors
-
-In hypothesis testing, we can make two kinds of errors.
-
-
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   Type I Error   | Correct decision |
-| $H_0$ False | Correct decision |   Type II Error  |
-
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
 
 Failing to reject the null hypothesis when it is false is a **Type II error**.  This is sometimes viewed as a failure in signal detection.
 
@@ -113,14 +109,11 @@ Failing to reject the null hypothesis when it is false is a **Type II error**.  
 
 In hypothesis testing, we can make two kinds of errors.
 
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
 
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   Type I Error   | Correct decision |
-| $H_0$ False | Correct decision |   Type II Error  |
-
-
-Null hypothesis testing is designed to make it easy to control Type I errors.  We set a minimum proportion of such errors that we would be willing to tolerate in the long run.  This is the significance level ( $\alpha$ ).  By tradition this is no greater than .05.
+NHST is designed to make it easy to control *Type I errors*.  We set a minimum proportion of such errors that we would be willing to tolerate in the long run. This is the significance level ( $\alpha$ ). By tradition this is no greater than .05.
 
 ---
 
@@ -128,13 +121,25 @@ Null hypothesis testing is designed to make it easy to control Type I errors.  W
 
 In hypothesis testing, we can make two kinds of errors.
 
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
 
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   Type I Error   | Correct decision |
-| $H_0$ False | Correct decision |   Type II Error  |
+Controlling Type II errors is more challenging because it depends on several factors.  But, *we usually DO want to control these errors*.  Some argue that the null hypothesis is usually false, so the only error we can make is a Type II error -- a failure to detect a signal that is present.
 
-Controlling Type II errors is more challenging because it depends on several factors.  But, we usually DO want to control these errors.  Some argue that the null hypothesis is usually false, so the only error we can make is a Type II error -- a failure to detect a signal that is present.  **Power** is the probability of correctly rejecting a false null hypothesis. 
+---
+
+## Statistical Power
+
+In hypothesis testing, we can make two kinds of errors.
+
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
+
+The complement of a Type II error is statistical power!
+
+Power is the probability of correctly rejecting a false null hypothesis. It is the ability to detect an effect, if an effect is truly there. 
 
 ---
 
@@ -150,6 +155,8 @@ Note that all these probability statements are being made in the frequentist sen
 
 ---
 
+## Power
+
 Controlling Type II errors is the goal of power analysis and must contend with four quantities that are interrelated:
 
 - Sample size
@@ -163,6 +170,8 @@ We must specify a specific value for the alternative hypothesis to estimate and 
 
 ---
 
+## Power
+
 Suppose we have a measure of social sensitivity that we have administered to a random sample of 20 psychology students.  This measure has a population mean ( $\mu$ ) of 100 and a standard deviation ( $\sigma$ ) of 20.  We suspect that psychology students are more sensitive to others than is typical and want to know if their mean, which is 110, is sufficient evidence to reject the null hypothesis that they are no more sensitive than the rest of the population.
 
 We would also like to know how likely it is that we could make a mistake by concluding that psychology students are not different when they really are: A Type II error.
@@ -171,7 +180,9 @@ We would also like to know how likely it is that we could make a mistake by conc
 
 .left-column[
 .small[
-We begin by defining the location in the null hypothesis distribution beyond which empirical results would be considered sufficiently unusual  to lead us to reject the null hypothesis.  We control these mistakes (Type I errors) at the chosen level of significance ( $\alpha = .05$ ). 
+We need to define the location in the null hypothesis distribution beyond which empirical results would be considered sufficiently unusual  to lead us to reject the null hypothesis.
+
+This location is called the **critical value**.
 ]
 ]
 
@@ -186,14 +197,15 @@ cv = qnorm(mean = mu, sd = sem, p = .05, lower.tail = F)
 ggplot(data.frame(x = seq(70, 130)), aes(x)) +
   stat_function(fun = function(x) dnorm(x, m = mu, sd = sem)) +
   stat_function(fun = function(x) dnorm(x, m = mu, sd = sem),
-                geom = "area", xlim = c(cv, 130), fill = "red") +
-  geom_vline(aes(xintercept = cv), color = "red")+
+                geom = "area", xlim = c(cv, 130), fill = "#00BA38",
+                alpha = .5) +
+  geom_vline(aes(xintercept = cv), color = "#00BA38")+
   geom_vline(aes(xintercept = mu))+
   geom_hline(aes(yintercept = 0))+
   scale_x_continuous("Means", breaks = seq(70,130,10)) +
   scale_y_continuous(NULL, breaks = NULL)+
-  theme(text = element_text(size = 20))
-
+  theme(text = element_text(size = 20)) +
+  theme_classic()
 ```
 ???
 
@@ -219,31 +231,75 @@ qnorm(.95)
 ```
 
 $$\text{Critical Value} = 100 + 1.645\frac{20}{\sqrt{20}} = 107.4$$
+Green = $\alpha$
 
+White = $1-\alpha$
 
-What if the null hypothesis is false?  How likely are we to correctly reject the null hypothesis in the long run?
+Draw the line at the critical value
 ]
 
-.pull-right[
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-```{r ref.label="student null", echo = F, fig.height=6}
+
+.pull-left[
+```{r ref.label="student null", echo = F, fig.height=4.5}
 
 ```
 ]
 
 
 ---
+.left-column[
+.small[
+To get the probability of a Type II error we must specify a value for the alternative hypothesis. We will use the sample mean of $110$.
+
+The critical value under the null will also fall under the alternative...
+
+Blue = $\beta$
+
+Red = $1-\beta$
+]
+]
+
+
+```{r student alt, echo = F}
+mu = 100
+x = 110
+s = 20
+n = 20
+mean = 110
+
+sem = s/sqrt(n)
+cv = qnorm(mean = mu, sd = sem, p = .05, lower.tail = F)
+
+ggplot(data.frame(x = seq(80, 140)), aes(x)) +
+  stat_function(fun = function(x) dnorm(x, m = mean, sd = sem)) +
+  stat_function(fun = function(x) dnorm(x, m = mean, sd = sem),
+                geom = "area", xlim = c(80, cv), fill = "#619CFF",
+                alpha = .5) +
+  stat_function(fun = function(x) dnorm(x, m = mean, sd = sem),
+                geom = "area", xlim = c(cv, 140), fill = "#F8766D",
+                alpha = .5) +
+  geom_vline(aes(xintercept = cv), color = "#619CFF")+
+  geom_vline(aes(xintercept = 110))+
+  geom_hline(aes(yintercept = 0))+
+  scale_x_continuous("Means", breaks = seq(80,140,10)) +
+  scale_y_continuous(NULL, breaks = NULL)+
+  theme(text = element_text(size = 20)) +
+  theme_classic()
+
+```
+
+---
 
 .left-column[
 .small[
-To determine the probability of a Type II error we must specify a value for the alternative hypothesis.  We will use the sample mean of 110.
+**Type I Error** is when the null is TRUE, but we reject it in favor of the alternative. A false positive.
 
-In the long run, if psychology samples have a mean of 110 ( $\sigma = 20$, $N = 20$ ), we will correctly reject the null with probability of .72 (power).  We will incorrectly fail to reject the
-null with probability of .28 ( $\beta$ ).
+It occurs 5% of time ( $\alpha$ ). It falls under the **null** distribution
 
 ]
 ]
@@ -281,12 +337,59 @@ ggplot(data.frame(x = seq(70, 130)), aes(x)) +
   scale_y_continuous(NULL, breaks = NULL) + 
   theme( text = element_text(size = 20),
     legend.position = "bottom") +
-  labs(fill = "")
+  labs(fill = "") +
+  theme_classic()
 
 ```
 
 ---
 
+.left-column[
+.small[
+
+**Type II error** is when the null is truly false (aka the alternative is better), but it is still less than our critical value, so we *incorrectly* retain the null when in fact we should reject it. A false negative. 
+
+It occurs under the **alternative** distribution, and occurs $\beta$ % of the time.
+]
+]
+
+```{r ref.label="student null and alt", fig.height=6, echo = F, warning=FALSE, message=FALSE}
+
+```
+
+---
+
+.left-column[
+.small[
+
+**Power** is the remainder of the **alternative**. It is when the null should be rejected, and we do in fact *correctly* reject it. Our ability to detect an effect, if one is there. 
+
+It is given by $1-\beta$.
+]
+]
+
+```{r ref.label="student null and alt", fig.height=6, echo = F, warning=FALSE, message=FALSE}
+
+```
+
+
+---
+
+.left-column[
+.small[
+
+In the long run, if psychology samples have a mean of $110$ ( $\sigma = 20$, $N = 20$ ), we will correctly reject the null with probability of .72 (power).  We will incorrectly fail to reject the
+null with probability of .28 ( $\beta$ ).
+
+**how do we get these numbers?**
+]
+]
+
+```{r ref.label="student null and alt", fig.height=6, echo = F, warning=FALSE, message=FALSE}
+
+```
+
+---
 
 .pull-left[
 ```{r ref.label="student null and alt", fig.height=6, echo = F, warning=FALSE, message=FALSE}
@@ -367,7 +470,8 @@ ggplot(data.frame(x = seq(70, 130)), aes(x)) +
   scale_x_continuous("Means", breaks = seq(70,130,10)) +
   scale_y_continuous(NULL, breaks = NULL) + 
   theme( text = element_text(size = 20),
-    legend.position = "bottom")
+    legend.position = "bottom") +
+  labs(fill = "") 
 
 
 ```
@@ -564,7 +668,7 @@ means %>%
 
 ---
 
-### How can power be increased?
+## How can power be increased?
 
 
 .pull-left[
@@ -576,8 +680,8 @@ means %>%
 .pull-right[
 $$Z_1 = \frac{CV_0 - \mu_1}{\frac{\sigma}{\sqrt{N}}}$$
 
-- increase $\mu_1$
-- decrease $CV_0$
+- increase $\mu_1$ for a larger effect size
+- increase your alpha, which decreases your $CV_0$
 - increase $N$
 - reduce $\sigma$
 ]
@@ -599,31 +703,17 @@ Often the most challenging part of a power analysis is to settle on an effect si
     - Complicating these choices, effect sizes come in a variety of metrics.
     
 ---
-### Prevalence of false positives
+## Prevalence of false positives
 
 Consider where $\alpha$, $\beta$ and power fall in this grid. 
 
 
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   Type I Error   | Correct decision |
-| $H_0$ False | Correct decision |   Type II Error  |
+<center>
+<img src='images/errors.jpg', width = 55%>
+</center>
 
 ---
-### Prevalence of false positives
-
-Consider where $\alpha$, $\beta$ and power fall in this grid. 
-
-
-|             |   Reject $H_0$   |   Do not reject  |
-|------------:|:----------------:|:----------------:|
-|  $H_0$ True |   $\alpha$   | $1-\alpha$ |
-| $H_0$ False | $1-\beta$ |   $\beta$  |
-
-What is the sum of these cells?
-
----
-### Prevalence of false positives
+## Prevalence of false positives
 
 Figuring out how common Type I and Type II errors are in a literature requires an additional piece of information:
 
@@ -705,4 +795,4 @@ class: inverse
 
 ## Next time...
 
-critiques of NHST
+Critiques of NHST
