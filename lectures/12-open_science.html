@@ -3,6 +3,7 @@
   <head>
     <title>Open Science</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -29,7 +30,7 @@ Within psychology, much of the force behind this movement has been driven by soc
   
 ---
 
-### Dates
+## Dates
 
 2011-2012 -- Bem ESP paper, False Positive Psychology paper, [Diederik Stapel fraud case](https://www.apa.org/science/about/psa/2011/12/diederik-stapel), [Hauser fraud case](https://www.sciencemag.org/news/2012/09/harvard-psychology-researcher-committed-fraud-us-investigation-concludes), [Sanna fraud case](https://www.nature.com/news/uncertainty-shrouds-psychologist-s-resignation-1.10968), [Smeesters fraud case](https://www.sciencemag.org/news/2012/06/rotterdam-marketing-psychologist-resigns-after-university-investigates-his-data). 
 
@@ -39,7 +40,7 @@ Within psychology, much of the force behind this movement has been driven by soc
 
 ---
 
-### Goals of open science
+## Goals of open science
 
 * Change incentive structure
 
@@ -59,7 +60,7 @@ Within psychology, much of the force behind this movement has been driven by soc
 
 class:inverse
 
-### Open science values
+## Open science values
 
 Tal Yarkoni (July 13, 2019)
 
@@ -95,7 +96,7 @@ Tal Yarkoni (July 13, 2019)
 
 --
 
-* **Diversity/equity and inclusion** -- Are there barriers to being a scientist, reading science, being helped by science?
+* **Diversity, equity, and inclusion** -- Are there barriers to being a scientist, reading science, being helped by science?
 
 --
 
@@ -103,7 +104,7 @@ Tal Yarkoni (July 13, 2019)
 
 ---
 
-### Reproducibility vs Replicability
+## Reproducibility vs Replicability
 
 .small[Condon, Graham, &amp; Mroczek, 2018; [psyarxiv.com/2fn5x](https://psyarxiv.com/2fn5x/)]
 
@@ -122,7 +123,7 @@ Let's discuss some new(ish) tools for ensuring your work is reproducible and rob
 
 ---
 
-### R (not new)
+## R (not new)
 
 .pull-left[
 * Use of scripts -- data analysis is **reproducible**
@@ -137,12 +138,12 @@ Let's discuss some new(ish) tools for ensuring your work is reproducible and rob
 ]
 
 .pull-right[
-![](images/Rconsole.png)
+![](images/newR.png)
 ]
     
 ---
 
-### RMarkdown (Not that new)
+## RMarkdown (Not that new)
 
 Combination of two languages: **R** and Markdown.
 
@@ -160,16 +161,17 @@ what you see is what you get editor
 
 ---
 
-### Git (not new)
+## Git (not new)
 
 **Git** is a version control system. Think Microsoft Track Changes for your code. 
 
 ![](images/github.png)
-* Additionally allows multiple collaborators to contribute code to the same project.
-
+* Allows multiple collaborators to contribute code to the same project
+* If you want to go into industry, you 100% need to know this
+* Want to learn more? [Oh Shit, Git](https://twitter.com/icymi_r/status/1439936941550669825)
 ---
 
-### GitHub (also not new)
+## GitHub (also not new)
 
 * GitHub is one site that facilitates the use of Git. (Others exist. But they don't have OctoCat.)
 
@@ -185,7 +187,7 @@ what you see is what you get editor
 
 ---
 
-### Open Science Framework (OSF.io)
+## Open Science Framework (OSF.io)
 
 * Another repository, also includes version control
   * Reproducibility
@@ -205,7 +207,7 @@ class: center
 
 ![](images/osf.png)
 ---
-### PsyArXiv
+## PsyArXiv
 
 .pull-left[
 ![](images/psyarxiv.png)
@@ -229,7 +231,7 @@ OSF connects to PsyArXiv, which is the primary preprint server for psychology
 
 ---
 
-### Preregistration
+## Preregistration
 
 OSF also allows you to preregister a project. 
 
@@ -242,14 +244,14 @@ OSF also allows you to preregister a project.
 ### Preregistration
 
 
-#### Goal: deter p-hacking and harking
+#### Goal: deter `\(p\)`-hacking and harking
   * Did the researcher preregister 3 outcome variables and only report one? 
   * Did the research *actually* believe this correlation would be significant?
   
 --
   
 #### Goal: distinguish data-driven choices from theory based choices
-  * Was the covariate included because of theory or based on descriptives?
+  * Was some other variable included because of theory or based on descriptives?
   
 --
 
@@ -259,7 +261,7 @@ OSF also allows you to preregister a project.
   
 ---
 
-### Preregistration
+## Preregistration
 
 The point of preregistration is not to tie your hands -- there are often many reasons for deviating from a preregistration. 
 
@@ -277,7 +279,15 @@ Enhances the reproducibility, replicability, and transparency of research.
 
 ---
 
-### Registered reports
+## Preregistration
+
+Preregistration is great. But it's not a blanket protection. Crappy science can still be preregistered. Really good science doesn't have to be preregistered. It's a tool in your toolbelt.
+
+The most important aspect is **TRANSPARENCY**. That's it. It can come in the form of any of the tools we've just talked about, ideally some combination of those. It can also be a well-maintained lab notebook. As long as you are transparent, you're doing your best. 
+
+---
+
+## Registered reports
 
 **Registered reports (RR)** are a special kind of journal article
 
@@ -287,7 +297,7 @@ Enhances the reproducibility, replicability, and transparency of research.
 
 ---
 
-### Registered reports
+## Registered reports
 
 #### Goal: uncouple incentive (publication) from study result
 * New incentive is now doing a high-quality study
@@ -300,6 +310,7 @@ Many journals now allow RRs, and even RRR (registered **replication** reports)
 
 
 ---
+## Challenges
 
 **Some challenges with preregistration and registered reports:**
 
@@ -311,7 +322,7 @@ Many journals now allow RRs, and even RRR (registered **replication** reports)
 
 ---
 
-### Meta-science tools
+## Meta-science tools
 
 New methods of conducting science on science -- often developed to find fraud, but super useful for detecting errors
 
@@ -365,6 +376,8 @@ Example: ["Preregistration is redundant, at best." (Oct 31, 2019). Szollosi et a
 class: inverse
 
 ## Next time...
+
+All that being said, we're still going to use NHST for most of this sequence and most of your stats journey will include NHST. 🤷
 
 Chi-squared tests
     </textarea>

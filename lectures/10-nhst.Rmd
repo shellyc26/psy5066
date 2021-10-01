@@ -54,6 +54,8 @@ If $p$ is small, the observed data are unusual *if the null hypothesis is true*.
 
 If $p$ is sufficiently small ( $p < .05$ ), we may choose to reject the null hypothesis as a description of the data.
 
+Need it in Twitter/meme format? See [here](https://twitter.com/ChelseaParlett/status/1412470941817315335)
+
 ---
 
 ## $p$-values
