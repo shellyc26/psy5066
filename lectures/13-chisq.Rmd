@@ -17,9 +17,6 @@ library(knitr)
 
 ## Recap
 
-*Note: Slide 32 was updated on 11/13/2020*
-
-
 Typically, the probability distribution function for a distribution is regulated by two parameters:
 
  - mean
@@ -68,9 +65,9 @@ ggplot(data.frame(x = seq(0, 50)), aes(x)) +
 ![](images/animal.png)
 
 ---
-class: inverse
+class: inverse, center, middle
 
-If a tree falls in the forest, and no one is around, does it make a sound?
+## If a tree falls in the forest, and no one is around, does it make a sound?
 
 ---
 
