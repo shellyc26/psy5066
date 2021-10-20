@@ -3,6 +3,7 @@
   <head>
     <title>One-sample hypothesis tests</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -71,8 +72,9 @@ One-sample tests compare your given sample with a "known" population.
 
 
 ---
+## Example
 
-The [sample data](../data/census_at_school.csv) were obtained from Census at School, a website developed by the American Statistical Association to help students in the 4th through 12th grades understand statistical problem-solving. 
+The [sample data](../data/cenus_at_school_missouri.csv) were obtained from Census at School, a website developed by the American Statistical Association to help students in the 4th through 12th grades understand statistical problem-solving. 
 
   * The site sponsors a survey that students can complete and a database that students and instructors can use to illustrate principles in quantitative methods.  
   * The database includes students from all 50 states, from grade levels 4 through 12, both boys and girls,  who have completed the survey dating back to 2010.  
@@ -81,7 +83,7 @@ The [sample data](../data/census_at_school.csv) were obtained from Census at Sch
 
 ---
 
-### Comparing Means
+## Comparing Means
 
 Comparing means is usually done with the *t*-test, of which there are several forms.
 
@@ -92,7 +94,7 @@ The heavier tails of the t-distribution, especially for small N, are the penalty
 
 ---
 
-### One-sample *t*-tests
+## One-sample *t*-tests
 
 *t*-tests were developed by William Sealy Gosset, who was a chemist studying the grains used in making beer. (He worked for Guinness.)
 
@@ -106,9 +108,7 @@ The heavier tails of the t-distribution, especially for small N, are the penalty
 
 ---
 
-### One-sample *t*-tests
-
-We've already been covering one-sample *t*-tests, but let's formally walk through some of the steps and how this differs from a z-test.
+## One-sample *t*-tests
 
 | | Z-test | *t*-test |
 | --|--------|--------|
@@ -122,23 +122,50 @@ We've already been covering one-sample *t*-tests, but let's formally walk throug
 
 ---
 
-### When you assume...
+## Always Assuming...
 
-...you can run a parametric statistical test!
+**Normality.** We assume the sampling distribution of the mean is normally distributed.
 
-**Assumptions of the one-sample *t*-test**
-
-**Normality.** We assume the sampling distribution of the mean is normally distributed. Under what two conditions can we be assured that this is true?
-
-**Independence.** Observations in the dataset are not associated with one another. Put another way, collecting a score from Participant A doesn't tell me anything about what Participant B will say. How can we be safe in this assumption?
+**Independence.** Observations in the dataset are not associated with one another. Put another way, collecting a score from Participant A doesn't tell me anything about what Participant B will say.
 
 ---
 
-### A brief example
+## A brief example
 
-Using the same Census at School data, we find that Oregon students who participated in a memory game ( `\(N = 197\)` ) completed the game in an average time of 49.1 seconds ( `\(s = 13.4\)` ). We know that the average US student completed the game in 45.04 seconds. How do our students compare?
+Using the same Census at School data, we find that Oregon students who participated in a memory game ( `\(N = 51\)` ) completed the game in an average time of `\(45.93\)` seconds ( `\(s = 13.05\)` ). We know that the average US student completed the game in `\(45.04\)` seconds. How do our students compare?
 
---
+.tiny[We're using data from Missouri in 2021 only]
+
+
+```r
+library(tidyverse)
+school %&gt;% 
+  summarize(meanMemory = mean(Score_in_memory_game),
+            sdMemory = sd(Score_in_memory_game))
+```
+
+```
+##   meanMemory sdMemory
+## 1   45.93098 13.05054
+```
+
+```r
+nrow(school)
+```
+
+```
+## [1] 51
+```
+
+
+---
+
+## A brief example
+
+Using the same Census at School data, we find that Oregon students who participated in a memory game ( `\(N = 51\)` ) completed the game in an average time of `\(45.93\)` seconds ( `\(s = 13.05\)` ). We know that the average US student completed the game in `\(45.05\)` seconds. How do our students compare?
+
+.tiny[We're using data from Missouri in 2021 only]
+
 
 **Hypotheses**
 
@@ -150,11 +177,11 @@ Using the same Census at School data, we find that Oregon students who participa
 
 `$$\mu = 45.05$$`
 
-`$$N = 197$$`
+`$$N = 51$$`
 
-$$ \bar{X} = 49.1 $$
+$$ \bar{X} = 45.93 $$
 
-$$ s = 13.4 $$
+$$ s = 13.05 $$
 
 
 
@@ -171,13 +198,13 @@ t.test(x = school$Score_in_memory_game, mu = 45.05,
 ## 	One Sample t-test
 ## 
 ## data:  school$Score_in_memory_game
-## t = 4.2652, df = 196, p-value = 3.104e-05
+## t = 0.48208, df = 50, p-value = 0.6318
 ## alternative hypothesis: true mean is not equal to 45.05
 ## 95 percent confidence interval:
-##  47.24269 51.01427
+##  42.26046 49.60150
 ## sample estimates:
 ## mean of x 
-##  49.12848
+##  45.93098
 ```
 
 
@@ -190,11 +217,6 @@ lsr::oneSampleTTest(x = school$Score_in_memory_game,
 ```
 
 ```
-## Warning in lsr::oneSampleTTest(x = school$Score_in_memory_game, mu = 45.05, : 3
-## case(s) removed due to missingness
-```
-
-```
 ## 
 ##    One sample t-test 
 ## 
@@ -202,26 +224,26 @@ lsr::oneSampleTTest(x = school$Score_in_memory_game,
 ## 
 ## Descriptive statistics: 
 ##             Score_in_memory_game
-##    mean                   49.128
-##    std dev.               13.421
+##    mean                   45.931
+##    std dev.               13.051
 ## 
 ## Hypotheses: 
 ##    null:        population mean equals 45.05 
 ##    alternative: population mean not equal to 45.05 
 ## 
 ## Test results: 
-##    t-statistic:  4.265 
-##    degrees of freedom:  196 
-##    p-value:  &lt;.001 
+##    t-statistic:  0.482 
+##    degrees of freedom:  50 
+##    p-value:  0.632 
 ## 
 ## Other information: 
-##    two-sided 95% confidence interval:  [47.243, 51.014] 
-##    estimated effect size (Cohen's d):  0.304
+##    two-sided 95% confidence interval:  [42.26, 49.602] 
+##    estimated effect size (Cohen's d):  0.068
 ```
 
 ---
 
-# Cohen's D
+## Cohen's D
 
 Cohen suggested one of the most common effect size estimates—the standardized mean difference—useful when comparing a group mean to a population mean or two group means to each other. 
 
@@ -229,31 +251,235 @@ Cohen suggested one of the most common effect size estimates—the standardized 
 
 --
 
-Cohen’s d is in the standard deviation (Z) metric.
+Cohen’s d is in the standard deviation (Z) metric. Why does this matter?
 
 
 ---
+## Cohen's D
 
-Cohens’s d for these data is .30.  In other words, the sample mean differs from the population mean by .30 standard deviation units. 
+Cohens’s d for these data is .068.  In other words, the sample mean differs from the population mean by .068 standard deviation units. 
 
 Cohen (1988) suggests the following guidelines for interpreting the size of d:
 
-.large[
 
-- 	.2 = Small
+- .2 = Small
 
-- 	.5 = Medium
+- .5 = Medium
 
-- 	.8 = Large	
+- .8 = Large	
 
-]
-.small[Cohen, J. (1988), Statistical power analysis for the behavioral sciences (2nd Ed.). Hillsdale: Lawrence Erlbaum.]
+.tiny[Cohen, J. (1988), Statistical power analysis for the behavioral sciences (2nd Ed.). Hillsdale: Lawrence Erlbaum.]
+
+--
+
+Not bounded by 1 the way a correlation is bounded
 ---
 
 Another useful metric is the overlap between the two distributions -- the smaller the overlap, the farther apart the distributions
 
-![](14-one_sample_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](14-one_sample_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
+---
+
+## You Try!
+
+Download the data: [sample data](../data/cenus_at_school_missouri.csv)
+
+
+```r
+library(tidyverse)
+school_pollution = read.csv(here("data/cenus_at_school_missouri.csv"))
+school_pollution = school %&gt;%
+  filter(!is.na(Importance_reducing_pollution))
+```
+
+.small[ You'll need to change the working directory to wherever you downloaded the file]
+
+---
+
+## You Try!
+
+Students were asked the following: *"How important is reducing pollution to you?"*. They were give options of 0 (not important) to 1000 (very important). 
+
+The average rating across the nation is `\(762.52\)`. 
+
+---
+## You Try!
+
+Using the same data:
+
+**Group 1**: Calculate the `\(t\)` statistic "by hand".
+
+--
+
+**Group 2**: Calculate the `\(p\)`-value and 95% CI. Interpret! Use `R` to get the `\(p\)`-value, but calculate 95% CI "by hand".
+
+--
+
+**Group 3**: Calculate Cohen's D "by hand". Interpret!
+
+---
+### Let's do it together
+
+**Step 1**: Get the test statistic
+
+
+```r
+school_pollution %&gt;% 
+  summarize(meanPollution = round(mean(Importance_reducing_pollution),
+                                  digits = 3),
+            sdPollution = round(sd(Importance_reducing_pollution),
+                                digits = 3))
+```
+
+```
+##   meanPollution sdPollution
+## 1       718.673     297.403
+```
+
+```r
+nrow(school_pollution)
+```
+
+```
+## [1] 49
+```
+
+--
+
+$$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
+
+--
+
+
+```r
+(718.673 - 762.52) / (297.403/sqrt(49))
+```
+
+```
+## [1] -1.032031
+```
+
+---
+
+## Let's do it together
+
+**Step 2a**: Get the `\(p\)`-value. Interpret
+
+
+```r
+t = (718.673 - 762.52) / (297.403/sqrt(49))
+N = nrow(school_pollution)
+2 * pt(q = t, df = N-1, lower.tail = TRUE)
+```
+
+```
+## [1] 0.3072299
+```
+
+--
+
+The probability of obtaining a test statistic of -1.032 or more extreme, given the null hypothesis is true is .307. This is above our standard threshold of .05. We therefore cannot reject the null hypothesis. We retain the null hypothesis that states that our sample mean and population mean are the same. 
+
+---
+**Step 2b**: Get the 95% CIs. Interpret
+
+`\(\bar{X} \pm [t_{.975, df}\frac{\hat{\sigma}}{\sqrt{N}}]\)`
+
+
+```r
+# we have N stored from previous slide
+xbar = 718.673
+sem = 297.403/sqrt(49)
+
+ci_lb_t = xbar - sem * qt(p = .975, df = N-1)
+ci_ub_t = xbar + sem * qt(p = .975, df = N-1)
+
+ci_lb_t
+```
+
+```
+## [1] 633.2489
+```
+
+```r
+ci_ub_t
+```
+
+```
+## [1] 804.0971
+```
+
+--
+
+If we carried out random sampling from the population a large number of times, and each time we calculated the 95% confidence interval, we would expect 95% of those intervals to contain the true population mean, which is likely somewhere between 633.249 and 804.097
+
+--
+
+$$ t(48) = -1.032 \\
+CI_{95}[633.249, 804.097] $$
+
+---
+**Step 3**: Get Cohen's *d*. Interpret
+
+`$$d = \frac{\bar{X}-\mu}{\hat{\sigma}}$$`
+
+```r
+# we have xbar from before
+stdev = 297.403
+mu = 762.52
+
+d = abs((xbar - mu) / stdev)
+d
+```
+
+```
+## [1] 0.1474329
+```
+
+--
+
+`$$t(48) = -1.032 \\ 
+CI_{95}[633.249, 804.097] \\
+\text{Cohen's d} = 0.147$$`
+
+--
+
+The standardized difference in means is quite small, with a Cohen's *d* equal to 0.147. According to Cohen (1988), this is considered a small effect size. 
+
+---
+
+
+
+```r
+lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution, 
+                    mu = 762.52, one.sided = FALSE)
+```
+
+```
+## 
+##    One sample t-test 
+## 
+## Data variable:   school_pollution$Importance_reducing_pollution 
+## 
+## Descriptive statistics: 
+##             Importance_reducing_pollution
+##    mean                           718.673
+##    std dev.                       297.403
+## 
+## Hypotheses: 
+##    null:        population mean equals 762.52 
+##    alternative: population mean not equal to 762.52 
+## 
+## Test results: 
+##    t-statistic:  -1.032 
+##    degrees of freedom:  48 
+##    p-value:  0.307 
+## 
+## Other information: 
+##    two-sided 95% confidence interval:  [633.249, 804.097] 
+##    estimated effect size (Cohen's d):  0.147
+```
 
 ---
 
@@ -265,11 +491,13 @@ How often will you conducted a one-sample *t*-test on raw data?
 
 * (Probably) never
 
+--
+
 How often will you come across one-sample *t*-tests?
 
 --
 
-* (Probably) a lot!
+* A lot!
 
 The one-sample *t*-test is used to test coefficients in a model. 
 
@@ -305,9 +533,21 @@ summary(model)
 
 ---
 
+## If time...
+
+Accessing your results in `R`
+
+- Go through list objects
+- Go through `broom`
+
+---
+
+class: inverse
 # Next time...
 
 Comparing two means
+
+![](images/jolo.png)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

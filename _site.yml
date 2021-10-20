@@ -37,6 +37,8 @@ navbar:
         href: "lectures/12-open_science.html"
       - text: "Chi-Square"
         href: "lectures/13-chisq.html"
+      - text: "One Sample Tests"
+        href: "lectures/14-one_sample.html"
     - text: Homework
       href: homework.html
   right:
