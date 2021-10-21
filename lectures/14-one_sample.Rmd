@@ -58,13 +58,21 @@ One-sample tests compare your given sample with a "known" population.
 
 * Research question: does this sample come from this population?
 
+--
+
 **Hypotheses**
 
 $H_0$: Yes, this sample comes from this population.
 
 $H_1$: No, this sample comes from a different population. 
 
+--
 
+**Hypotheses**
+
+$H_0$: Yes, the means are equal 
+
+$H_1$: No, the means are not equal
 
 ---
 ## Example
@@ -122,9 +130,9 @@ The heavier tails of the t-distribution, especially for small N, are the penalty
 
 ## Always Assuming...
 
-**Normality.** We assume the sampling distribution of the mean is normally distributed.
+**Normality.** We assume the population distribution is normal. If we don't meet this assumption --> non-parametric tests. (Wilcoxon signed-rank test)
 
-**Independence.** Observations in the dataset are not associated with one another. Put another way, collecting a score from Participant A doesn't tell me anything about what Participant B will say.
+**Independence.** Observations in the dataset are not associated with one another. Put another way, collecting a score from Participant A doesn't tell me anything about what Participant B will say. They are generated independently.
 
 ---
 
@@ -155,9 +163,9 @@ Using the same Census at School data, we find that Oregon students who participa
 
 **Hypotheses**
 
-$H_0: \mu = 45.05$
+$H_0: 45.05 (\mu) = 45.93 (\bar{X})$
 
-$H_1: \mu \neq 45.05$
+$H_1: 45.05 (\mu) \neq 45.93 (\bar{X})$
 
 ---
 
