@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Comparing Means</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Comparing Means
+
+---
+
+
+
+Borrowing and stealing heavily from Cooper (2020)
+---
+## Independent samples *t*-test
+
+- Independent samples *t*-tests are used when you want to compare means from two independent samples
+
+- Samples are independent if observations from one sample do not affect or depend on observations from the other sample. A score from sample 1 shouldn't tell me anything about a score from sample 2 (e.g., whether the score is above or below the sample mean) 
+
+- Basically, you want independence of observations within your samples and between your samples for this analysis
+
+- Very common with experimental research (e.g., compare Treatment condition mean with Control condition mean)
+---
+## Hypotheses 
+`$$H_0: \mu_1 = \mu_2$$`
+`$$H_1: \mu_1 \neq \mu_2$$`
+Alternatively. . . (rearranged formula)
+`$$H_0: \mu_1 - \mu_2 = 0$$`
+`$$H_1: \mu_1 - \mu_2 \neq\  0$$`
+---
+We can calculate the test statistic with:
+
+`$$t_{df} = \frac{\bar{X}_1 - \bar{X}_2}{SE_{meandifference}}$$`
+Technically, the formula is:
+`$$t_{df} = \frac{(\bar{X}_1 - \bar{X}_2)-(\mu_1 - \mu_2)}{SE_{meandifference}}$$`
+- `\((\bar{X}_1 - \bar{X}_2)\)` is our observed difference in (independent) means
+- Plug in values for `\((\mu_1 - \mu_2)\)` based on our null (usually that `\(\mu_1 - \mu_2\)` = 0 but doesn't have to be)
+
+---
+We assume homogeneity of variance for independent samples *t*-tests (i.e., even if samples come from different populations, these populations differ in mean but not variance), but in practice, this is unrealistic. We will most likely have two *different* variances
+
+Standard error is easy to calculate when you only know one *SD* (e.g., one-sample *t*-tests). But we have two *SD*s, so unless they're the exact same, "we" need to calculate a weighted combination of the two.
+---
+Two main methods of calculating the *SE*:
+1. Student's *t*-test is used when the variances of each sample are (roughly) the same. In many cases, slightly more powerful test but the **pooled variance** will be biased toward the sample with the larger sample size.
+2. Welch's *t*-test if the variances are NOT (roughly) the same. Slightly less powerful.
+---
+**Student's assumptions:**
+- Independence 
+- Normality of *Population* that each sample comes from
+- Homogeneity of variance for *Population*
+
+**Welch's assumptions:**
+- Independence
+- Normality of *Population* that each sample comes from
+
+---
+## Variance Calculations
+Welch's
+- Calculate variance separately for each sample
+
+Student's
+`$$\large{\hat{\sigma}^2_p = \frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}}$$`
+---
+## *SD* Calculations
+**Welch's**
+- Calculate SD separately for each sample
+
+**Student's**
+`$$\large{\sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} }$$`
+---
+## *SE_{diff}*  Calculations
+`\(SE_{diff} = \sigma_D\)`
+
+**Welch's **
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$`
+Essentially, the squared `\(SE_{mean}\)` of each sample is added then you take the square root.
+
+**Student's**
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}$$`
+Final result is standard error of the difference of independent means. Remember that standard deviations estimate population variability (i.e., variability of population scores). Taking the next step and dividing the *SD* by the square root of some variation of N (depending on the test equation) helps us estimate variability of means rather than scores. 
+---
+**Welch's **
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$`
+
+**Student's**
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}$$`
+Note that in Student's calculation, the variance for the larger sample will be weighted more heavily because each individual variance is being multiplied by N-1. Meanwhile, in Welch's, the standard deviations are being *divided* by sample size, so smaller samples will be weighted more heavily. 
+
+---
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$`
+
+```r
+# Welch's SE: sqrt(SD1^2/n1 + SD2^2/n2)
+# random values
+sqrt(4^2/1000 + 7^2/30)
+```
+
+```
+## [1] 1.284264
+```
+
+```r
+sqrt(7^2/30)
+```
+
+```
+## [1] 1.278019
+```
+One large sample can't make up for a small sample with Welch's. 
+
+---
+## *df*
+Welch's
+`$$df = \frac{[\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}]^2}{\frac{[\frac{\hat{\sigma}^2_1}{N1}]^2}{N_1-1}+\frac{[\frac{\hat{\sigma}^2_2}{N2}]^2}{N_2-1}}$$`
+Welch's *df*  will likely not be a whole number. And while Welch's allows for violations of homogeneity (i.e., unequal variance), you'll still be punished for it with reduced *df* unless you have equal variance and equal sample size. This doesn't mean that Welch can't have a lower *p*-value than student, though. The df will suffer, but the `\(SE_{diff}\)` could be lower to counteract that. 
+
+Student's
+`$$df = N_1 + N_2 - 2$$`
+Unlike before when we subtracted by 1, we are now calculating two means, so we need to subtract by two to get the *df*
+
+---
+We calculate our test statistic with:
+
+$$ t = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$ and then can find the probability of the absolute value of this test statistic (for two-tailed) or more extreme given the null is true.
+---
+## Examples!
+
+Research Question: Do Kid or Adult trick R treaters get more candy
+
+```r
+set.seed(15)
+trickRtreat &lt;- data.frame("Candy"=cbind(c(round(rnorm(n=500, mean=13.256, sd = 1.243)), round(rnorm(n=35, mean=14.5742, sd = 4.4523)))), "Age"=c(rep("Kid", 500), rep("Adult", 35)))
+# simulated data. How much Candy did each individual get? And are they adults or kids?
+psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
+```
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+
+---
+Calculate Pooled Variance `\(SE_{diff}\)` (for Student's *t*-test)
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+$$  \mu= 0$$
+`$$\sigma_D = \sqrt{\frac{(500-1){1.28}^2 + (35-1){4.78}^2}{500+35-2}} \sqrt{\frac{1}{500} + \frac{1}{35}}$$`
+`$$= 1.73\sqrt{\frac{1}{500} + \frac{1}{35}} = 0.30$$`
+`$$df = 500 + 35 - 2$$` 
+Or in R
+
+```r
+SE_diff &lt;- sqrt((499*sd(trickRtreat$Candy[trickRtreat$Age=="Kid"])^2 + 34*sd(trickRtreat$Candy[trickRtreat$Age=="Adult"])^2)/533)*sqrt(1/500+1/35) 
+SE_diff
+```
+
+```
+## [1] 0.3022688
+```
+---
+With this information, we can build a sampling distribution
+
+---
+
+
+```r
+cv &lt;- qt(p = .975, df = 533) # critical value #.975 for a two-tailed alpha .05 test
+x &lt;- c(-5:5)
+data.frame(x) %&gt;% ggplot(aes(x=x)) + stat_function(fun= function(x) dt(x, df = 533), geom = "area", xlim = c(cv, 5), fill = "aquamarine1") + stat_function(fun= function(x) dt(x, df = 533), geom = "area", xlim = c(-5, cv*-1), fill = "aquamarine1") + stat_function(fun= function(x) dt(x, df = 533), geom = "line") + labs(x = "Difference in means", y = "density") + theme_light(base_size = 20)
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+---
+We have `\(SE_{diff}\)`. Now we can divide the mean differences by `\(SE_{diff}\)` to get student's *t* value. 
+
+```r
+tvalue &lt;- (mean(trickRtreat$Candy[trickRtreat$Age=="Adult"])-mean(trickRtreat$Candy[trickRtreat$Age=="Kid"])-(0-0))/SE_diff
+tvalue
+```
+
+```
+## [1] 2.612623
+```
+
+```r
+cv
+```
+
+```
+## [1] 1.964425
+```
+
+```r
+abs(tvalue) &gt; abs(cv)
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+
+```r
+x &lt;- c(-5:5)
+data.frame(x) %&gt;% ggplot(aes(x=x)) + stat_function(fun= function(x) dt(x, df = 533), geom = "area", xlim = c(cv, 5), fill = "aquamarine1") +
+  stat_function(fun= function(x) dt(x, df = 533), geom = "area",  xlim = c(-5, cv*-1), fill = "aquamarine1") + stat_function(fun= function(x) dt(x, df = 533), geom = "line") +
+  labs(x = "Difference in means", y = "density") + theme_light(base_size = 20) + geom_vline(xintercept=tvalue, color = "cornflowerblue") + theme_bw()
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+Our T value exceeds the critical value cutoff, so our student's *t*-test is significant. 
+
+---
+
+```r
+2*pt(q=tvalue, df = 533, lower.tail = F)
+```
+
+```
+## [1] 0.009238611
+```
+Can use pt to confirm this. 
+
+---
+Why stop there? We can also calculate confidence intervals of the mean difference
+
+Confidence intervals are used to communicate the precision in how well our statistic estimates the parameter. As a reminder, they are grounded in frequentist probability: if we repeated our experiment or sampling infinitely, we would expect that 95% of our 95% confidence intervals would capture the true population parameter.
+
+In an independent sample's t-test, we calculated three statistics, and so you can construct three different confidence intervals. yay
+
+---
+### Confidence interval around the difference in means
+
+The most interpretable statistic is the difference in means -- this is the statistic you are testing using NHST. 
+
+`$$CI_{\text{Difference}} = (\bar{X}_1 - \bar{X}_2) \pm \sigma_D(CV)$$`
+
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+
+```r
+SE_diff #remember this will differ depending on Welch or Student
+```
+
+```
+## [1] 0.3022688
+```
+
+```r
+cv
+```
+
+```
+## [1] 1.964425
+```
+
+
+
+`\(CI_{\text{Difference}} = (14.09 -13.30) \pm .30(1.96)\)`
+`$$[.20, 1.38]$$`
+
+
+Confidence interval doesn't include zero. Significant!
+---
+### Confidence intervals around estimates of the mean
+
+In addition to calculating precision of the estimate in difference in means, you may also want to calculate the precision of the mean estimates themselves. 
+
+In this case, you should use the standard deviation of the group sample as your estimate of population sd, instead of merging them. 
+
+$$
+`\begin{aligned}
+CI_{\text{Mean}} &amp;= \bar{X} \pm \sigma_M(CV) \\
+ &amp;= {\bar{X}} \pm \frac{\hat{\sigma}}{\sqrt{N}}(CV)
+\end{aligned}`
+$$
+---
+
+$$
+`\begin{aligned}
+ &amp;= {X} \pm \frac{\hat{\sigma}}{\sqrt{N}}(CV)
+\end{aligned}`
+$$
+.pull-left[
+**Adults**
+
+
+```r
+sd(trickRtreat$Candy[trickRtreat$Age == "Adult"], na.rm=T)
+```
+
+```
+## [1] 4.779684
+```
+
+```r
+qt(.975, df = 35-1)
+```
+
+```
+## [1] 2.032245
+```
+
+```r
+14.09 + (4.78/sqrt(35)*2.03)
+```
+
+```
+## [1] 15.73017
+```
+
+```r
+14.09 - (4.78/sqrt(35)*2.03)
+```
+
+```
+## [1] 12.44983
+```
+
+
+`$$14.09 \pm \frac{4.78}{\sqrt{35}}(2.03)$$`
+`$$[12.45, 15.73]$$`
+]
+
+.pull-right[
+**Kids**
+
+
+```r
+sd(trickRtreat$Candy[trickRtreat$Age  == "Kid"], na.rm=T)
+```
+
+```
+## [1] 1.278927
+```
+
+```r
+qt(.975, df = 500-1)
+```
+
+```
+## [1] 1.964729
+```
+
+```r
+13.30 + (1.28/sqrt(500)*1.96)
+```
+
+```
+## [1] 13.4122
+```
+
+```r
+13.30 - (1.28/sqrt(500)*1.96)
+```
+
+```
+## [1] 13.1878
+```
+
+
+`$$13.30 \pm \frac{1.28}{\sqrt{500}}(1.96)$$`
+`$$[13.19, 13.41]$$`
+]
+
+
+
+
+
+---
+Or we can just use an R function for all of this of course
+
+```r
+t.test(trickRtreat$Candy ~ trickRtreat$Age, var.equal = T) #var.equal = T uses Student's test
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  trickRtreat$Candy by trickRtreat$Age
+## t = 2.6126, df = 533, p-value = 0.009239
+## alternative hypothesis: true difference in means between group Adult and group Kid is not equal to 0
+## 95 percent confidence interval:
+##  0.1959301 1.3834985
+## sample estimates:
+## mean in group Adult   mean in group Kid 
+##            14.08571            13.29600
+```
+
+Adults get significantly more candy trick or treating than kids as we showed before. Should I try to publish this cool result or is this really the whole story? 
+
+---
+
+```r
+psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
+```
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+*SD* seems to be pretty unequal, and the uneven sample size is going to exacerbate this issue. Student's *t* is pretty robust to homogeneity of variance violations when sample size is equal, but that's not the case here. 
+---
+Why don't we make a figure to see what's going on. You can't go wrong with a bar graph. 
+
+
+```r
+plot_data &lt;- Rmisc::summarySE(trickRtreat, "Candy", "Age")
+plot_data %&gt;% ggplot(aes(x = Age, y = Candy, fill=Age)) + geom_bar(stat = "identity") + ggtitle("amount of Candy trick or treated by age group") + geom_errorbar(aes(ymin=Candy-ci, ymax=Candy+ci)) + xlab("Age Group") +scale_y_continuous(breaks=seq(5,16,1)) +coord_cartesian( ylim = c(5,16))
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+You can't go wrong with a bar graph (But you can do better)
+
+
+```r
+ggstatsplot::ggbetweenstats(data = trickRtreat, x = Age,y = Candy,xlab = "Age Group",ylab = "Candy",title = "violin plot: amount of Candy trick or treated by age group",results.subtitle = T,var.equal = T,bf.message = FALSE,mean.size=10,messages = F)
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+Almost all the variability in Kids' candy scores are contained within Adults' interquartile (middle 50%) range. Yikes.
+
+---
+
+```r
+trickRtreat %&gt;% ggplot(aes(x = Candy, fill = Age)) + geom_histogram(bins = 50, color = "white", position = "dodge") + labs(x = "Candy", y = "Frequency", title = "Candy Distribution by Age Group") + scale_fill_manual(values = c("darkorchid1", "darkturquoise")) + theme_bw(base_size = 20)
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+subset(trickRtreat, trickRtreat$Age == "Adult") %&gt;% ggplot(aes(x = Candy)) + geom_histogram(bins = 50, color = "white", fill = "darkorchid1", position = "dodge") + labs(x = "Candy", y = "Frequency", title = "Candy Distribution for Adults") + scale_fill_manual(values = c("darkorchid1")) + theme_bw(base_size = 20)
+```
+
+![](Comparing-Means_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+
+http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+candy's normality isn't as bad as it first appears. 
+
+---
+## Welch's
+
+This is where Welch's comes in handy (although I default to it regardless)
+
+```r
+t.test(trickRtreat$Candy ~ trickRtreat$Age, var.equal = F) #var.equal = F uses Welch's test, although it's also the default, so you don't need to type it
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  trickRtreat$Candy by trickRtreat$Age
+## t = 0.97503, df = 34.342, p-value = 0.3364
+## alternative hypothesis: true difference in means between group Adult and group Kid is not equal to 0
+## 95 percent confidence interval:
+##  -0.8556709  2.4350995
+## sample estimates:
+## mean in group Adult   mean in group Kid 
+##            14.08571            13.29600
+```
+
+With Welch's test, adults do not get significantly more candy than kids on Halloween. Sad.
+We can perform a significance test of homogeneity of variance as reassurance that the variances are indeed unequal. 
+---
+Homogeneity of variance can be checked with Levene’s procedure.  It tests the null hypothesis that the variances for two or more groups are equal (or within sampling variability of each other): 
+
+`$$H_0: \sigma^2_1 = \sigma^2_2$$`
+`$$H_A: \sigma^2_1 \neq \sigma^2_2$$`
+Levene's test can be expanded to more than two variances; in this case, the alternative hypothesis is that at least one variance is different from at least one other variance.So a significant F value means a significant departure from homogeneity of variance. 
+
+Levene's produces a statistic, *W*, that is *F* distributed with degrees of freedom of `\(k-1\)` and `\(N-k\)`.
+
+---
+
+
+```r
+car::leveneTest(Candy~as.factor(Age), data = trickRtreat, center = "mean")
+```
+
+```
+## Levene's Test for Homogeneity of Variance (center = "mean")
+##        Df F value    Pr(&gt;F)    
+## group   1   301.3 &lt; 2.2e-16 ***
+##       533                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+Levene’s test gets more powerful as sample size increases. So unless your two variances are *exactly* equal to each other (and if they are, you don't need to do a test), your test will be "significant" with a large enough sample. Part of the analysis has to be an eyeball test -- is this "significant" because they are truly different, or because I have many subjects. 
+
+Don't need to base decision of Welch or Student based on a significance test. Utilize some of the tools we used earlier (looking at SDs, visualizations of spread and confidence intervals)
+---
+### Normality
+
+Finally, there's the assumption of normality. Specifically, this is the assumption that the population is normal -- if the population is normal, then our sampling distribution is **definitely** normal and we can use a *t*-distribution.
+
+But even if the population is not normal, the Central Limit Theorem lets us assume our sampling distribution is normal because as N approaches infinity, the sampling distributions approaches normality. So we can be **pretty sure** the sampling distribution is normal. 
+
+One thing we can check -- the only distribution we actually have access to -- is the sample distribution. If this is normal, then we can again be pretty sure that our population distribution is normal, and thus our sampling distribution is normal too. But again, the sample distributions aren't required to be normally distributed. 
+
+---
+
+Normality can be checked with a formal test: the Shapiro-Wilk test.  The test statistic, W, has an expected value of 1 under the null hypothesis. Departures from normality reduce the size of W.  
+A statistically significant W is a signal that the sample distribution departs significantly from normal.
+
+But...
+* With large samples, even trivial departures will be statistically significant.
+* With large samples, the sampling distribution of the mean(s) will approach normality, unless the data are very non-normally distributed.
+* Visual inspection of the data can confirm if the latter is a problem.
+* Visual inspection can also identify outliers that might influence the data.
+
+---
+
+
+```r
+shapiro.test(x = trickRtreat$Candy)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy
+## W = 0.88625, p-value &lt; 2.2e-16
+```
+
+```r
+shapiro.test(x = trickRtreat$Candy[trickRtreat$Age == "Adult"])
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy[trickRtreat$Age == "Adult"]
+## W = 0.9746, p-value = 0.5811
+```
+
+```r
+shapiro.test(x = trickRtreat$Candy[trickRtreat$Age == "Kid"])
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy[trickRtreat$Age == "Kid"]
+## W = 0.9429, p-value = 6.062e-13
+```
+It's kind of obvious that this isn't normal because the two groups have very different variabilities. It might seem surprising that Kids' significantly deviates from normalty, but we have a lot of Kids in the sample size.  
+---
+
+A common non-parametric test (in the event of egregious non-normality) that can be used in place of the independent samples *t*-test is the **Wilcoxon sum rank test**.  
+
+* Order all the data points by their outcome. 
+* For one of the groups, add up all the ranks. That's your test statistic, *W*.
+* To build the sampling distribution, randomly shuffle the group labels and add up the ranks for your group of interest again. Repeat this process until you've calculated the rank sum for every possible group assignment. 
+
+
+```r
+wilcox.test(Candy~Age, data = trickRtreat)
+```
+
+```
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  Candy by Age
+## W = 9316, p-value = 0.5122
+## alternative hypothesis: true location shift is not equal to 0
+```
+
+
+---
+### New Examples
+
+```r
+# 249 partygoers were asked by a researcher how much fun they had at a party (HadFun) on a scale of 1 (No fun) to 21 (SO much fun)
+# partygoers were also secretly rated by the researcher on how much fun they were to be around on the same scale
+# the researcher noted whether the partygoer wore a costume
+# Hypothesis: costume wearers would be more fun to be around but would have less fun than non-costume wearers
+set.seed(15)
+Partay &lt;- data.frame("WereFun"=cbind(c(
+  round(rnorm(n = 115, mean = 15.3526, sd = 1.4325)),
+  round(rnorm(n = 134, mean = 16.3562, sd = 1.743)))), 
+  "HadFun"=cbind(c(
+    round(rnorm(n = 115, mean = 16.7436, sd = 1.643)),
+    round(rnorm(n = 134, mean = 14.5464, sd = 2.4587)))),
+  "Costume" = c(rep("No", 115), rep("Yes", 134))
+)
+t.test(WereFun ~ Costume, data = Partay) #var.equal = F
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  WereFun by Costume
+## t = -3.0125, df = 242.43, p-value = 0.002866
+## alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+## 95 percent confidence interval:
+##  -1.0542568 -0.2206296
+## sample estimates:
+##  mean in group No mean in group Yes 
+##          15.50435          16.14179
+```
+
+
+---
+
+
+```r
+t.test(HadFun ~ Costume, data = Partay) #var.equal = F
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  HadFun by Costume
+## t = 7.3341, df = 235.98, p-value = 3.558e-12
+## alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+## 95 percent confidence interval:
+##  1.425694 2.472943
+## sample estimates:
+##  mean in group No mean in group Yes 
+##          16.74783          14.79851
+```
+
+
+---
+### Effect Sizes: Do significant differences really make a difference?
+
+Significance isn't a great proxy for meaningfulness or size of an effect. Many factors besides effect size goes into significance (provided the effect is not 0). And eyeballing how large an effect is can be difficult unless you're aware of the sample variances. 
+
+**Cohen's d** is a standardized mean difference and is one of the most common effect size estimate. Easy to understand and to compare across different experiments/studies. 
+
+`$$\delta = \frac{\mu_1 - \mu_0}{\sigma} \approx d = \frac{\bar{X}_1-\bar{X}_2}{\hat{\sigma}_p}$$`
+
+
+--
+
+Cohen’s d is in the standard deviation (Z) metric.
+
+
+Cohen's doesn't divide by *SE* so increasing sample size won't necessarily increase Cohen's D unless the effect grows or the variance decreases. 
+
+
+
+---
+
+
+
+```
+## 
+##  Descriptive statistics by group 
+## Costume: No
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 115 15.5 1.42     15   15.52 1.48  12  19     7 -0.02    -0.23 0.13
+## ------------------------------------------------------------ 
+## Costume: Yes
+##    vars   n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 134 16.14 1.91     16   16.21 1.48   9  20    11 -0.5     0.56 0.16
+```
+
+
+
+
+.pull-left[
+**Costume**
+$$
+`\begin{aligned}
+ \bar{X}_1 &amp;= 16.14 \\
+ \hat{\sigma}_1 &amp;= 1.91 \\
+ N_1 &amp;= 134 \\
+\end{aligned}`
+$$
+]
+
+.pull-right[
+**No Costume**
+$$
+`\begin{aligned}
+ \bar{X}_2 &amp;= 15.5 \\
+ \hat{\sigma}_2 &amp;= 1.42 \\
+ N_2 &amp;= 115 \\
+\end{aligned}`
+$$
+]
+
+`$$\hat{\sigma}_p = \sqrt{\frac{(115-1){1.42}^2 + (134-1){1.91}^2}{115+134-2}} 
+ = 1.7$$`
+ 
+
+ 
+ 
+`$$d = \frac{15.5-16.14}{1.7} = -0.37$$`
+
+How do we interpret this? Is this a large effect?
+
+---
+
+Cohen (1988) suggests the following guidelines for interpreting the size of d:
+
+.large[
+
+- 	.2 = Small
+
+- 	.5 = Medium
+
+- 	.8 = Large	
+
+]
+
+An aside, to calculate Cohen's D for a one-sample *t*-test: 
+`$$d = \frac{\bar{X}-\mu}{\hat{\sigma}}$$`
+
+
+.small[Cohen, J. (1988), Statistical power analysis for the behavioral sciences (2nd Ed.). Hillsdale: Lawrence Erlbaum.]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+```r
+# import Armand Gilles' Dataset
+pokemon &lt;- read.csv("https://gist.githubusercontent.com/armgilles/194bcff35001e7eb53a2a8b441e8b2c6/raw/92200bc0a673d5ce2110aaad4544ed6c4010f687/pokemon.csv") %&gt;%
+  subset(Generation == 1 | Generation == 2) %&gt;%
+  select(-X.) 
+head(pokemon, 10)
+```
+
+```
+##                         Name Type.1 Type.2 Total HP Attack Defense Sp..Atk
+## 1                  Bulbasaur  Grass Poison   318 45     49      49      65
+## 2                    Ivysaur  Grass Poison   405 60     62      63      80
+## 3                   Venusaur  Grass Poison   525 80     82      83     100
+## 4      VenusaurMega Venusaur  Grass Poison   625 80    100     123     122
+## 5                 Charmander   Fire          309 39     52      43      60
+## 6                 Charmeleon   Fire          405 58     64      58      80
+## 7                  Charizard   Fire Flying   534 78     84      78     109
+## 8  CharizardMega Charizard X   Fire Dragon   634 78    130     111     130
+## 9  CharizardMega Charizard Y   Fire Flying   634 78    104      78     159
+## 10                  Squirtle  Water          314 44     48      65      50
+##    Sp..Def Speed Generation Legendary
+## 1       65    45          1     False
+## 2       80    60          1     False
+## 3      100    80          1     False
+## 4      120    80          1     False
+## 5       50    65          1     False
+## 6       65    80          1     False
+## 7       85   100          1     False
+## 8       85   100          1     False
+## 9      115   100          1     False
+## 10      64    43          1     False
+```
+
+---
+Research Question 1: Are pokemon with one type at least 10 points weaker in total ability (stats) than pokemon with two types
+
+
+```r
+pokemon$typenumber &lt;- ifelse(pokemon$Type.2 =="", 1, 2)
+t.test(pokemon$Total ~ pokemon$typenumber, mu = -10, alternative = "less")
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  pokemon$Total by pokemon$typenumber
+## t = -1.9865, df = 265.64, p-value = 0.024
+## alternative hypothesis: true difference in means between group 1 and group 2 is less than -10
+## 95 percent confidence interval:
+##       -Inf -14.73774
+## sample estimates:
+## mean in group 1 mean in group 2 
+##        404.8993        442.9173
+```
+The difference is significantly greater than 10 (rather than significantly different from zero)
+---
+Research Question 2: Are pokemon from gen 2 (1999) stronger than gen 1 (1996)?
+
+
+```r
+pokemonlong &lt;- pokemon %&gt;%
+  pivot_longer(c(Total, HP, Attack, Defense, Sp..Atk, Sp..Def, Speed), names_to = "variables", values_to = "values")
+library(rstatix)
+```
+
+```
+## 
+## Attaching package: 'rstatix'
+```
+
+```
+## The following object is masked from 'package:stats':
+## 
+##     filter
+```
+
+```r
+pokemontest &lt;- pokemonlong %&gt;% group_by(variables) %&gt;% t_test(values ~ Generation, detailed = T) %&gt;% adjust_pvalue(method = 'holm') #adjust_pvalue(method = 'holm') adjusts p values for family wise error rate
+# var.equal = F implied
+pokemontest
+```
+
+```
+## # A tibble: 7 × 17
+##   variables estimate estimate1 estimate2 .y.    group1 group2    n1    n2
+## * &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
+## 1 Attack        4.61      76.6      72.0 values 1      2        166   106
+## 2 Defense      -2.53      70.9      73.4 values 1      2        166   106
+## 3 HP           -5.39      65.8      71.2 values 1      2        166   106
+## 4 Sp..Atk       5.88      71.8      65.9 values 1      2        166   106
+## 5 Sp..Def      -4.82      69.1      73.9 values 1      2        166   106
+## 6 Speed        10.8       72.6      61.8 values 1      2        166   106
+## 7 Total         8.53     427.      418.  values 1      2        166   106
+## # … with 8 more variables: statistic &lt;dbl&gt;, p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;,
+## #   conf.high &lt;dbl&gt;, method &lt;chr&gt;, alternative &lt;chr&gt;, p.adj &lt;dbl&gt;
+```
+Only speed is significant, even after holm correction, but in the opposite direction as hypothesized.
+
+
+---
+Can make an exportable figure with the code in the comment below
+
+```r
+pokemonsd &lt;- pokemonlong %&gt;% group_by(variables, Generation)  %&gt;% summarise(sd=format(round(sd(values, na.rm = T), 2), nsmall=2)) 
+```
+
+```
+## `summarise()` has grouped output by 'variables'. You can override using the `.groups` argument.
+```
+
+```r
+pokemonsdwide &lt;- pokemonsd %&gt;% pivot_wider(names_from = Generation, values_from = sd)
+pokemontest2 &lt;- data.frame("Outcome"= pokemontest$variables, "Gen1"=format(round(pokemontest$estimate1, 2), nsmall=2), "Gen2" = format(round(pokemontest$estimate2, 2), nsmall=2), "MeanDifference"=format(round(pokemontest$estimate, 2), nsmall=2) , "conf.low"=pokemontest$conf.low &lt;- format(round(pokemontest$conf.low, 2), nsmall=2) ,"conf.high"= format(round(pokemontest$conf.high, 2), nsmall=2), "t"=format(round(pokemontest$statistic, 2), nsmall=2) , "p"=format(round(pokemontest$p, 3), nsmall=3) , "p.holm"=format(round(pokemontest$p.adj, 3)), "df"=format(round(pokemontest$df, 2), nsmall=2) , "SD1"= pokemonsdwide$`1`, "SD2" = pokemonsdwide$`2`)
+pokemontest2 &lt;- pokemontest2 %&gt;% 
+  mutate(Outcome=factor(Outcome, levels =c("Total", "HP", "Attack", "Defense", "Sp..Atk", "Sp..Def", "Speed"))) %&gt;% arrange(Outcome)
+
+pokemontest2 &lt;- pokemontest2 %&gt;% unite("95%CI", conf.low:conf.high, sep = " ", remove = T) 
+pokemontest2 &lt;- pokemontest2 %&gt;% unite("Gen1MSD", c(Gen1, SD1), sep = " ", remove = T)
+pokemontest2 &lt;- pokemontest2 %&gt;% unite("Gen2MSD", c(Gen2, SD2), sep = " ", remove = T)
+pokemontest2
+```
+
+```
+##   Outcome       Gen1MSD       Gen2MSD MeanDifference        95%CI     t     p
+## 1   Total 426.81 115.88 418.28 120.11           8.53 -20.50 37.56  0.58 0.563
+## 2      HP   65.82 28.15   71.21 30.59          -5.39 -12.66  1.88 -1.46 0.146
+## 3  Attack   76.64 30.74   72.03 32.71           4.61  -3.22 12.44  1.16 0.247
+## 4 Defense   70.86 28.64   73.39 39.23          -2.53 -11.23  6.18 -0.57 0.568
+## 5 Sp..Atk   71.82 34.44   65.94 27.81           5.88  -1.61 13.36  1.55 0.123
+## 6 Sp..Def   69.09 25.51   73.91 31.53          -4.82 -12.01  2.38 -1.32 0.188
+## 7   Speed   72.58 29.68   61.81 27.26          10.77   3.86 17.69  3.07 0.002
+##   p.holm     df
+## 1  1.000 217.91
+## 2  0.738 210.18
+## 3  0.752 213.63
+## 4  1.000 175.68
+## 5  0.738 255.43
+## 6  0.752 189.95
+## 7  0.017 237.48
+```
+
+```r
+## write.table(s2, file = "filename", sep = ",", quote = FALSE, row.names = F)
+```
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

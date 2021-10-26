@@ -39,6 +39,8 @@ navbar:
         href: "lectures/13-chisq.html"
       - text: "One Sample Tests"
         href: "lectures/14-one_sample.html"
+      - text: "Comparing Means"
+        href: "lectures/Comparing-Means.html"
     - text: Homework
       href: homework.html
   right:
