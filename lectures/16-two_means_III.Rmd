@@ -22,6 +22,20 @@ library(kableExtra)
 
 ## Previously...
 
+$t$-tests galore!
+
+--
+
+Thoughts on signs
+
+--
+
+Thoughts on conservatism (Welch vs. Student, *t* vs. normal, etc.)
+
+---
+
+## Previously...
+
 * independent samples t-tests
 
 * pooled variance
@@ -35,7 +49,7 @@ library(kableExtra)
   
 ---
 
-### Today
+## Today
 
 Dealing with that pesky independence problem
 
@@ -354,7 +368,7 @@ Some (see below) argue the between-conditions version is actually better because
 
 ### Cohen's D from *t*
 
-This can be calculating from *t*-statistics, allowing you to calculate standardized effect sizes from manuscripts even when the authors did not provide them. 
+This can be calculated from *t*-statistics, allowing you to calculate standardized effect sizes from manuscripts even when the authors did not provide them. 
 
 .pull-left[
 **One sample or within-subjects for paired**
@@ -483,10 +497,13 @@ What should alpha be?
 
 --
 
-* You tell me. 
-
+* You tell me.
 
 ---
 class: inverse
 
-Exam 2 (omgggggg!)
+## Coming up...
+
+- Data Visualization 
+- Exam 2 Review
+- Exam 2 11/9 (ommmgggggggg!!!!!)

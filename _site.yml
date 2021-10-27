@@ -41,6 +41,8 @@ navbar:
         href: "lectures/14-one_sample.html"
       - text: "Comparing Means"
         href: "lectures/Comparing-Means.html"
+      - text: "Dependent Means"
+        href: lectures/16-two_means_III.html
     - text: Homework
       href: homework.html
   right:
