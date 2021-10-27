@@ -1,0 +1,36 @@
+---
+title: 'Psych 5066: Homework #4'
+output: 
+  html_document
+---
+
+# Instructions
+
+This assignment is going to be a little different than what we've done. Here's what's going to happen:
+
+-   First, watch this video on using RMarkdown and customization. It is truly an EXCELLENT talk.
+
+-   You will create your own RMarkdown file, and you need to utilize at least 5 things from the video. It can range from themes, to inserting tables or equations, formatting the text to be bold/italics, bibliographies, formatting figures on the page. You can choose. But the resulting output document needs to look amazing.
+
+-   In this gorgeous RMarkdown document that you create, you will answer the questions below. So the content will be the questions/answers, and the formatting better be 🔥
+
+- Please turn in both documents to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
+
+Good luck!
+
+## Question 1
+
+Do certain islands produce more males or more females? 
+
+## Question 2
+
+Do certain islands produce more of one specie of penguin than other islands? 
+
+## Question 3
+
+In our hypothetical world, it is well-understood that the average body mass (in grams) of penguins worldwide is about 4200. Does your sample of Biscoe penguins differ from the average penguin?
+
+## Question 4
+
+Do male and female penguins have similar bill lengths? 
+
