@@ -26,7 +26,7 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Peer Review of Homework 3 due *10/24 by 9:30am*
 
 ## Homework 4
-- Not posted yet
+- [Homework 4 is here](homework/homework_4.html)
 - Due on **11/4 by 9:30am**
 - Peer Review of Homework 4 due *11/7 by 9:30am*
 
