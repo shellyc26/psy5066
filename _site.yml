@@ -44,7 +44,7 @@ navbar:
       - text: "Dependent Means"
         href: "lectures/16-two_means_III.html"
       - text: "Data Viz"
-        href: "dataViz.html"
+        href: "lectures/dataViz.html"
     - text: Homework
       href: homework.html
   right:
