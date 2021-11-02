@@ -28,7 +28,24 @@ knitr::knit_hooks$set(source = function(x, options) {
 library(psych)
 library(tidyverse)
 library(broom)
+library(formatR)
 ```
+
+![](images/twitterP.jpeg)
+
+---
+
+## `ggplot2`
+
+- [Intro to `ggplot2`](introGgplot.pdf)
+
+- [Customization](customizationGgplot.pdf)
+
+- [Adding Stuff](multiPanelGgplot.pdf)
+
+- [Layers](layersGgplot.pdf)
+
+---
 
 ## Recap
 
@@ -57,7 +74,7 @@ class: inverse
 
 If you go into data science (and aren't constrained by academia), you'll want to check out R shiny (for interactive plots), web design, typography, etc. 
 
-If your PI makes you build a dashboard, think long and hard before committing. 
+If your PI asks you build a dashboard, think long and hard before committing. 
 
 ---
 ## Today
@@ -137,10 +154,13 @@ There are no 100% right answers, but there are wrong ones...
 
 - Bars are more appropriate when you have proportions or counts; but even still -- dotplots
 
-- Tracey Weissgerber has an excellent thread with many resources on why barplots suck and how to maximize the utility of dotplots: [https://tinyurl.com/3e6222a4](https://tinyurl.com/3e6222a4)
-
+- [Excellent thread](https://tinyurl.com/3e6222a4) with many resources on how to maximize the utility of dotplots 
 ]
 
+---
+class: center, middle
+
+![](images/dotplot.jpeg)
 ---
 
 ## Why box plots on their own can suck
@@ -250,13 +270,21 @@ Also super helpful! `RColorBrewer` and `ggsci` are great. But there are millions
 Different types of palettes (unordered, sequential, divergent etc.). Look [at this blog post](https://blog.datawrapper.de/which-color-scale-to-use-in-data-vis/) to learn more about these
 
 ---
+class: center, middle
+
+## Bad use of colors
+
+![](images/colorhell.png)
+
+---
+
 
 ## Contrast
 
 When you have something side-by-side, you can have different colors. OR you can have the same color but a different shade/tone/tint. 
 
 .pull-left[
-```{r, tidy=TRUE, eval=FALSE}
+```{r, eval=FALSE}
 ggplot(data = iris, aes(x = Species, y = Petal.Length)) +
   geom_boxplot(aes(fill = Species)) +
   scale_fill_manual(values = c("#0b2c0b",
@@ -346,6 +374,7 @@ You want to display your figures faithfully, but you don't want to take up extra
 
 .tiny[Rogowitz & Treinish, IEEE Spectrum, 35(12):52-59. 1998]
 ---
+
 ## Self-evaluation
 
 How do you know if you've made a good figure?
@@ -382,9 +411,8 @@ name: rules
 ## Helpful Things in `R`
 
 - `geom_dotplot`; better than bar plots, typically (see earlier slide)
-- Raincloud plots; [blog post here](https://micahallen.org/2018/03/15/introducing-raincloud-plots/)
+- Raincloud plots; [blog post here](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/)
 - Using the same theme modifications for all plots? Make a function to store that theme and call it later.
 - **Google is your friend; Google is your professor**
-- Interested in making generative art in `R`? Check out the Twitter accounts of [Danielle Navarro](https://twitter.com/djnavarro) and [Ijeamaka Anyene](https://twitter.com/ijeamaka_a); then look at their websites!
 - Want examples of good COVID plotting with open `R` code? Check out [Chris Prener's Twitter account](https://twitter.com/chrisprener). If you'd like this as a weekly newsletter, check out his [River City Data](https://chrisprener.substack.com/) tracking site!
-
+- Interested in making generative art in `R`? Check out the Twitter accounts of [Danielle Navarro](https://twitter.com/djnavarro) and [Ijeamaka Anyene](https://twitter.com/ijeamaka_a); then look at their websites!

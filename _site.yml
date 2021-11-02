@@ -42,7 +42,9 @@ navbar:
       - text: "Comparing Means"
         href: "lectures/Comparing-Means.html"
       - text: "Dependent Means"
-        href: lectures/16-two_means_III.html
+        href: "lectures/16-two_means_III.html"
+      - text: "Data Viz"
+        href: "dataViz.html"
     - text: Homework
       href: homework.html
   right:
