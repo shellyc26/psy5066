@@ -34,9 +34,7 @@ You are concerned that your results are biased because some makers only make cho
 
 ---
 
-## Group 1
-
-Independent samples t-test; Welch's
+## Group 1 - Independent Samples *t*
 
 Need standard error:
 
@@ -58,7 +56,7 @@ welchSE
 
 ---
 
-## Group 1
+## Group 1 - Independent Samples *t*
 
 Get test statistic
 
@@ -75,11 +73,16 @@ meanNotChoc = means$means[2]
 tStatistic = (meanChoc - meanNotChoc)/welchSE
 tStatistic
 ```
+---
+## Group 1 - Independent Samples *t*
+
+```{r}
+t.test(Calories ~ Type, data = candy)
+
+```
 
 ---
-## Group 2
-
-Paired samples t-test
+## Group 2 - Paired Samples *t*
 
 ```{r}
 candy$diff = candy$Calories - candy$MiniCalories
@@ -94,16 +97,20 @@ tStatisticPaired
 
 pt(tStatisticPaired, df = NPairs-1, lower.tail = F)
 
+```
+
+---
+## Group 2 - Paired Samples *t*
+
+```{r}
 t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
 ```
 
 ---
-
-## Group 3
-
-Chi-square test of association
+## Group 3 - Chi-square association
 
 Null = There is no relationship (not associated, are independent)
+
 Alternative = There is a relationship (are associated, are dependent)
 
 ```{r}
@@ -114,10 +121,11 @@ newCandy
 ```
 
 ---
+## Group 3 - Chi-square association
 Expected frequencies
 rowsum * columsum/total n
 
-```{r}
+```{r, echo = FALSE}
 newCandyEF = data.frame(Hershey = c("40*64/123", "83*64/123"),
            Mars = c("40*59/123", "83*59/123"))
 rownames(newCandyEF) <- c("Non-Chocolate", "Chocolate")
@@ -130,10 +138,11 @@ newCandyEF2
 ```
 
 ---
+## Group 3 - Chi-square association
 
 Now plug in those expected frequencies
 
-```{r}
+```{r, echo=FALSE}
 newCandy3 = data.frame(Hershey = c("(18-20.81)^2/20.81", "(46-43.19)^2/43.19"),
            Mars = c("(22-19.19)^2/19.19", "(37-39.81)^2/39.81"))
 rownames(newCandy3) <- c("Non-Chocolate", "Chocolate")
@@ -151,18 +160,20 @@ newCandy4
 
 ---
 
-## Group 3
+## Group 3 - Chi-square association
 
 df = (r-1)(c-1)
 df = 1
 
-chi(1) = 4.87
+chi(1) = 1.17
+
+--
 
 ```{r}
-qchisq(p = .05, df = 1, lower.tail = F)
+pchisq(q = 1.17, df = 1, lower.tail = F)
 ```
 
 ```{r}
-chisq.test(newCandy)
+chisq.test(newCandy, correct = FALSE)
 ```
 

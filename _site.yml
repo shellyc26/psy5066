@@ -45,6 +45,8 @@ navbar:
         href: "lectures/16-two_means_III.html"
       - text: "Data Viz"
         href: "lectures/dataViz.html"
+      - text: "Exam 2 Review"
+        href: "lectures/exam2review.html"
     - text: Homework
       href: homework.html
   right:

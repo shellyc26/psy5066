@@ -46,9 +46,7 @@ You are concerned that your results are biased because some makers only make cho
 
 ---
 
-## Group 1
-
-Independent samples t-test; Welch's
+## Group 1 - Independent Samples *t*
 
 Need standard error:
 
@@ -85,7 +83,7 @@ welchSE
 
 ---
 
-## Group 1
+## Group 1 - Independent Samples *t*
 
 Get test statistic
 
@@ -117,11 +115,30 @@ tStatistic
 ```
 ## [1] 4.434548
 ```
+---
+## Group 1 - Independent Samples *t*
+
+
+```r
+t.test(Calories ~ Type, data = candy)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  Calories by Type
+## t = 4.4345, df = 6.2079, p-value = 0.004054
+## alternative hypothesis: true difference in means between group Chocolate and group Not Chocolate is not equal to 0
+## 95 percent confidence interval:
+##   53.23328 181.96672
+## sample estimates:
+##     mean in group Chocolate mean in group Not Chocolate 
+##                       246.0                       128.4
+```
 
 ---
-## Group 2
-
-Paired samples t-test
+## Group 2 - Paired Samples *t*
 
 
 ```r
@@ -148,6 +165,10 @@ pt(tStatisticPaired, df = NPairs-1, lower.tail = F)
 ## [1] 0.0001893778
 ```
 
+---
+## Group 2 - Paired Samples *t*
+
+
 ```r
 t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
 ```
@@ -167,12 +188,10 @@ t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
 ```
 
 ---
-
-## Group 3
-
-Chi-square test of association
+## Group 3 - Chi-square association
 
 Null = There is no relationship (not associated, are independent)
+
 Alternative = There is a relationship (are associated, are dependent)
 
 
@@ -190,28 +209,15 @@ newCandy
 ```
 
 ---
+## Group 3 - Chi-square association
 Expected frequencies
 rowsum * columsum/total n
 
-
-```r
-newCandyEF = data.frame(Hershey = c("40*64/123", "83*64/123"),
-           Mars = c("40*59/123", "83*59/123"))
-rownames(newCandyEF) &lt;- c("Non-Chocolate", "Chocolate")
-newCandyEF
-```
 
 ```
 ##                 Hershey      Mars
 ## Non-Chocolate 40*64/123 40*59/123
 ## Chocolate     83*64/123 83*59/123
-```
-
-```r
-newCandyEF2 = data.frame(Hershey = c(20.81, 43.19),
-           Mars = c(19.19, 39.81))
-rownames(newCandyEF2) &lt;- c("Non-Chocolate", "Chocolate")
-newCandyEF2
 ```
 
 ```
@@ -221,28 +227,15 @@ newCandyEF2
 ```
 
 ---
+## Group 3 - Chi-square association
 
 Now plug in those expected frequencies
 
-
-```r
-newCandy3 = data.frame(Hershey = c("(18-20.81)^2/20.81", "(46-43.19)^2/43.19"),
-           Mars = c("(22-19.19)^2/19.19", "(37-39.81)^2/39.81"))
-rownames(newCandy3) &lt;- c("Non-Chocolate", "Chocolate")
-newCandy3
-```
 
 ```
 ##                          Hershey               Mars
 ## Non-Chocolate (18-20.81)^2/20.81 (22-19.19)^2/19.19
 ## Chocolate     (46-43.19)^2/43.19 (37-39.81)^2/39.81
-```
-
-```r
-newCandy4 = data.frame(Hershey = c(.38, .18),
-           Mars = c(.41, .20))
-rownames(newCandy4) &lt;- c("Non-Chocolate", "Chocolate")
-newCandy4
 ```
 
 ```
@@ -255,33 +248,35 @@ newCandy4
 
 ---
 
-## Group 3
+## Group 3 - Chi-square association
 
 df = (r-1)(c-1)
 df = 1
 
-chi(1) = 4.87
+chi(1) = 1.17
+
+--
 
 
 ```r
-qchisq(p = .05, df = 1, lower.tail = F)
+pchisq(q = 1.17, df = 1, lower.tail = F)
 ```
 
 ```
-## [1] 3.841459
+## [1] 0.2794012
 ```
 
 
 ```r
-chisq.test(newCandy)
+chisq.test(newCandy, correct = FALSE)
 ```
 
 ```
 ## 
-## 	Pearson's Chi-squared test with Yates' continuity correction
+## 	Pearson's Chi-squared test
 ## 
 ## data:  newCandy
-## X-squared = 0.79414, df = 1, p-value = 0.3728
+## X-squared = 1.1746, df = 1, p-value = 0.2785
 ```
 
     </textarea>
