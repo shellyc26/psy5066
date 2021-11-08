@@ -480,7 +480,7 @@ You can't go wrong with a bar graph (But you can do better)
 ggstatsplot::ggbetweenstats(data = trickRtreat, x = Age,y = Candy,xlab = "Age Group",ylab = "Candy",title = "violin plot: amount of Candy trick or treated by age group",results.subtitle = T,var.equal = T,bf.message = FALSE,mean.size=10,messages = F)
 ```
 
-![](Comparing-Means2_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+&lt;img src="Comparing-Means2_files/figure-html/unnamed-chunk-17-1.png" width="50%" /&gt;
 Almost all the variability in Kids' candy scores are contained within Adults' interquartile (middle 50%) range. Yikes.
 
 ---
@@ -497,7 +497,7 @@ trickRtreat %&gt;% ggplot(aes(x = Candy, fill = Age)) + geom_histogram(bins = 50
 subset(trickRtreat, trickRtreat$Age == "Adult") %&gt;% ggplot(aes(x = Candy)) + geom_histogram(bins = 50, color = "white", fill = "darkorchid1", position = "dodge") + labs(x = "Candy", y = "Frequency", title = "Candy Distribution for Adults") + scale_fill_manual(values = c("darkorchid1")) + theme_bw(base_size = 20)
 ```
 
-![](Comparing-Means2_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+&lt;img src="Comparing-Means2_files/figure-html/unnamed-chunk-19-1.png" width="50%" /&gt;
 
 candy's normality isn't as bad as it first appears. 
 ---

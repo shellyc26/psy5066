@@ -298,7 +298,7 @@ plot_data %>% ggplot(aes(x = Age, y = Candy, fill=Age)) + geom_bar(stat = "ident
 You can't go wrong with a bar graph (But you can do better)
 ---
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, out.width='50%'}
 ggstatsplot::ggbetweenstats(data = trickRtreat, x = Age,y = Candy,xlab = "Age Group",ylab = "Candy",title = "violin plot: amount of Candy trick or treated by age group",results.subtitle = T,var.equal = T,bf.message = FALSE,mean.size=10,messages = F)
 ```
 Almost all the variability in Kids' candy scores are contained within Adults' interquartile (middle 50%) range. Yikes.
@@ -309,7 +309,7 @@ trickRtreat %>% ggplot(aes(x = Candy, fill = Age)) + geom_histogram(bins = 50, c
 ```
 
 ---
-```{r}
+```{r, out.width='50%'}
 subset(trickRtreat, trickRtreat$Age == "Adult") %>% ggplot(aes(x = Candy)) + geom_histogram(bins = 50, color = "white", fill = "darkorchid1", position = "dodge") + labs(x = "Candy", y = "Frequency", title = "Candy Distribution for Adults") + scale_fill_manual(values = c("darkorchid1")) + theme_bw(base_size = 20)
 ```
 
