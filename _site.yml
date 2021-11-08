@@ -40,7 +40,7 @@ navbar:
       - text: "One Sample Tests"
         href: "lectures/14-one_sample.html"
       - text: "Comparing Means"
-        href: "lectures/Comparing-Means.html"
+        href: "lectures/Comparing-Means2.html"
       - text: "Dependent Means"
         href: "lectures/16-two_means_III.html"
       - text: "Data Viz"
