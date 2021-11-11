@@ -238,29 +238,6 @@ t.test(x = dems$Dem, mu = 53)
 ```
 
 ---
-
-## Look at the errors!
-In general, we try to *minimize* error!
-
-.pull-left[
-Restricted
-```{r}
-as.data.frame(dems$dev2)
-
-sum(dems$dev2)
-```
-]
-
-.pull-right[
-Full
-```{r}
-as.data.frame(demsFull$dev2)
-
-sum(demsFull$dev2)
-```
-
-]
----
 name: indep
 
 ## Scenario 2
