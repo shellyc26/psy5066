@@ -101,8 +101,8 @@ Let's break it down into **full** and **restricted** models:
 $$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$
 
 where:
-  - $E_r$ is the prediction error from the restricted model
-  - $E_f$ is the prediction error from the full model
+  - $E_r$ is the error from the restricted model
+  - $E_f$ is the error from the full model
   - $df_r$ is the degrees of freedom from the restricted model
   - $df_f$ is the degrees of freedom from the full model
 
@@ -223,9 +223,9 @@ round(x = tstat, digits = 3)
 
 Is `r round(x = tstat, digits = 3)` more extreme than our critical value? 
 
-- For an $\alpha = .05$ in a two-tailed test with $df - 7$, the critical $t$ value is 2.3650. 
+- For an $\alpha = .05$ in a two-tailed test with $df = 7$, the critical $t$ value is 2.3650. 
 
-**Conclusion: No, it's not more extreme than the critical value. The weighted error term from the restricted model is larger than the weighted error term from the full model -- 53 is a better estimator than 52. The means are not statistically significantly different**
+**Conclusion: No, it's not more extreme than the critical value. The weighted error term from the restricted model is smaller than the weighted error term from the full model -- 53 is a better estimator than 52. The means are not statistically significantly different**
 
 ---
 
@@ -246,6 +246,8 @@ In general, we try to *minimize* error!
 Restricted
 ```{r}
 as.data.frame(dems$dev2)
+
+sum(dems$dev2)
 ```
 ]
 
@@ -253,6 +255,8 @@ as.data.frame(dems$dev2)
 Full
 ```{r}
 as.data.frame(demsFull$dev2)
+
+sum(demsFull$dev2)
 ```
 
 ]
@@ -472,7 +476,7 @@ Is `r round(x = tstat, digits = 3)` more extreme than our critical value?
 
 - For an $\alpha = .05$ in a two-tailed test with $df = 14$, the critical $t$ value is 2.145. 
 
-**Conclusion: No, it's not more extreme than the critical value. The weighted error term for the restricted is larger than the weighted error term from the full. The grand mean was a better estimator than using individual group means. Therefore, the means are not statistically significantly different.**
+**Conclusion: No, it's not more extreme than the critical value. The weighted error term for the restricted is smaller than the weighted error term from the full. The grand mean was a better estimator than using individual group means. Therefore, the means are not statistically significantly different.**
 
 ---
 
@@ -492,6 +496,7 @@ name: aov
 - We have a dataset that looks at the lengths and widths of petals & sepals of the iris flower. It includes 3 different species of irises. 
 - *Question: are the sepal lengths different amongst the 3 species of irises?*
 
+![](images/iris.png)
 ---
 
 ## The Data
@@ -666,7 +671,7 @@ Is `r round(x = effect, digits = 3)` more extreme than our critical value?
 
 - A significant $F$-statistic is anything above 1. Yes, our value is larger than 1.
 
-**Conclusion: The weighted error term of the restricted is smaller than the weighted error term of the full. Using each group's mean was a better estimator, compared to the overall grand mean. Therefore, the means are statistically significantly different.**
+**Conclusion: The weighted error term of the restricted is larger than the weighted error term of the full. Using each group's mean was a better estimator, compared to the overall grand mean. Therefore, the means are statistically significantly different.**
 
 ---
 
