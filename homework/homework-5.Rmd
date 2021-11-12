@@ -1,104 +1,48 @@
 ---
 title: 'Psych 5066: Homework #5'
-author: YOUR NAME HERE
 output: 
   html_document
 ---
 
 # Instructions
 
-Please complete this assignment using the RMarkdown file provided (<a href="homework-5.Rmd" download="homework-5.Rmd">download here</a>). Be sure to (1) include your name in the preamble, (2) save the file, including your last name **AND THE NAME OF YOUR AI** (e.g., "cooper_april_homework_5.Rmd"). When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files.
+- You will again make your own RMarkdown file. It must knit to a HTML file. And it must look pretty enough that Shelly, the AIs, and your peer review buddy can easily read your responses and your code.
 
-  - If you are in Psychology or Computational & Data Sciences: your AI is Jayde
-  - If you are in any of the other programs: your AI is April
+- This HW assignment is about the use of Full/Restricted models. Please do your analyses using this frame work, "by hand" (aka as we have done in class several times). You may use an `R` function to double check your work if you wish (but not required).
 
-There will be empty gray sections below each question. Please put all R `CODE` within these gray chunks. They will behave as normal R code. If you are asked to explain something or write a few sentences, please do that *outside* of the gray chunks. That way, when you knit, your sentences will show up as normal text, but all of your code will be in a designated code chunk.
+- You must make use of formatted text and of code chunks. You need to show the appropriate output of your code so that we can evaluate it. For instance, if I ask for the mean of something, and you store it in an object *and do not print it out*, then we have no way of knowing if your mean value is correct. You must print it out. You do not need to print out an entire dataframe (although if you have the urge, you can use the `head()` function to show the first 6 rows).
 
-You will be able to retry questions to earn full credit, but here are some things to keep in mind:
+- Please turn in both documents (the .Rmd and the .html) to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
 
-1. You can only do this for questions that you attempted on the first try. If you skip a question, you will not be able to resubmit for full credit. 
+# Data
 
-2. For each question, the points are all-or-nothing, meaning you cannot receive partial credit if you correctly answer only some of the question (this includes the description/explanation of results).
+The questions in this assignment use the dataset referred to as `homework-bdi`. [Link to data here.](homework-bdi.csv) For the problems below, we are interested in investigating the efficacy of an intervention to reduce depressive symptoms in a randomly sampled, community-based sample of adults. The participants completed the Beck Depression Inventory (BDI), and the data file includes the participants' scores on that dimension. Additionally, you will need [this dataset](homework-bdi-part2.csv) to complete question 3. 
 
-3. Late assignments will receive 50% of the points earned, with no opportunity to resubmit your answers for a higher grade (unless otherwise discussed with Dr. Cooper, Jayde, or April). For example, if you correctly answer questions and earn 10 points but submit the assignment late, you will receive 5 points for the assignment. 
-
-4. You are allowed to Google things. *However*, if you use code from an outside source (meaning not the lecture slides or the R help documentation), then you must provide a **working link** to the website you used. You don't need to use APA formatting or anything. Just a working url. You may discuss homework assignments with your classmates; however, it is important that you complete each assignment on your own and **do not simply copy someone else’s code**. If we believe one student has copied another’s work, both students will receive a 0 on the homework assignment and will not be allowed to resubmit the assignment for points.
-
-5. In the instructions, when it says **_by hand_**, what we mean is that you should not use a function that is built into R to complete the task. For example, if I ask you to find the mean *by hand*, you should **not** use the `mean()` function. However, you can (and should!) use your variables. So for instance, if I ask you to find the `mean()` by hand, you may do something like `sum(variableX)/length(variableX)`. This would be an appropriate *by hand* calculation. (You don't need to type `(3 + 5 + 5 + 17) / 4`...you can still use your variables). 
-
-**Data:** The questions in this assignment use the dataset referred to as `homework-bdi`. [Link to data here.](homework-bdi.csv) For the problems below, we are interested in investigating the efficacy of an intervention to reduce depressive symptoms in a randomly sampled, community-based sample of adults. The participants completed the Beck Depression Inventory (BDI), and the data file includes the participants' scores on that dimension. Additionally, you will need [this dataset](homework-bdi-part2.csv) to complete question 3. 
 
 Good luck!
 
-## Setup (1 pt)
-I suggest including a setup chunk to load your dataset and make sure it is in a working data.frame format. You might consider loading the `tidyverse` package, if you wish (but not required).
-
-```{r}
-
-```
-
-## Question 1 (6 pts total)
+## Question 1
 For now, ignore the `condition` column of your data.frame and only pay attention to the scores. You recently read a literature review that suggested that your study population has an average BDI score of 14.
 
-### 1a) Write out the restricted and full models for the analysis, in your own words (e.g., NOT equations)
+- Write out the restricted and full models for the analysis, in your own words (e.g., NOT equations)
+- Conduct the appropriate analysis to compare these models. You must show all of your work! It's hard to see where you went wrong if we can't view what you calculated.
+- Calculate an appropriate effect size for the analysis
 
+## Question 2 
 
-### 1b) Conduct the appropriate analysis to compare these models.
-You must show all of your work! It's hard to see where you went wrong if we can't view what you calculated.
+Participants were randomly assigned into either the intervention group or a waitlist control group,  scores reflect participants' BDI scores following the term of the intervention. In this dataset, 0 indicates participants in the control group, 1 indicates participants in the intervention group. 
 
-```{r}
+- Write out the restricted and full models for the analysis, in your own words (e.g., NOT equations)
+- Conduct the appropriate analysis to compare these models. You must show all of your work! It's hard to see where you went wrong if we can't view what you calculated.
+- Calculate an appropriate effect size for the analysis
 
-```
+## Question 3
 
-### 1c) Calculate an appropriate effect size for the analysis
+- Next, you need to combine the current dataset with the additional one. The new dataset includes new data with Condition 2. Merge the 2 datasets together to create a single data.frame
+- Now assume that you have 3 groups (0 -- Control, 1 -- Intervention A, 2 -- Intervention B). Write out the restricted and full models for the oneway ANOVA of whether any group differences occur, in your own words (e.g., NOT equations)
+- Conduct the appropriate analysis to compare these models
+- Calculate an effect size measure for the overall ANOVA test of differences across groups
 
-```{r}
-
-```
-
-## Question 2 (6 pts total)
-
-Participants were randomly assigned into either the intervention group or a waitlist control groupl scores reflect particpants' BDI scores following the term of the intervention. In this dataset, 0 indicates participants in the control group, 1 indicates particpants in the intervention group. 
-
-### 2a) Write out the restricted and full models for the analysis, in your own words (e.g., NOT equations)
-
-
-### 2b) Conduct the appropriate analysis to compare these models.
-You must show all of your work! It's hard to see where you went wrong if we can't view what you calculated.
-
-```{r}
-
-```
-
-### 2c) Calculate an appropriate effect size for the analysis
-
-```{r}
-
-```
-
-## Question 3 (8 pts total)
-
-### 3a) Next, you need to combine the current dataset with the additional one. The new dataset includes new data with Condition 2. Merge the 2 datasets together to create a single file to complete the remaining questions. 
-
-```{r}
-
-```
-
-### 3b) Now assume that you have 3 groups (0 -- Control, 1 -- Intervention A, 2 -- Intervention B). Write out the restricted and full models for the oneway ANOVA of whether any group differences occur, in your own words (e.g., NOT equations)
-
-
-### 3c) Conduct the appropriate analysis to compare these models
-
-```{r}
-
-```
-
-### 3d) Calculate an effect size measure for the overall ANOVA test of differences across groups
-
-```{r}
-
-```
-
-## Question 4 (4 pts)
+## Question 4
 
 Provide an interpretation of each of the 3 analyses you just ran (3 total). Discuss how things changed when going from analysis 1 to analysis 2 (what happened to your $t$-statistic and effect size?).  
