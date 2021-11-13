@@ -291,21 +291,6 @@ summary(aov(AnxietyScores ~ ImpairmentType, data = cdrLong))
 
 ---
 
-## Why use ANOVA and not a bunch of *t*-tests?
-
-- Inflates Type I error rate
-- Family Wise Error Rate (FWER) is the probability that one or more of your "family" of multiple tests is false
-- P(making an error) = alpha
-- P(not making an error) = 1 - alpha
-- P(not making an error in m tests) = (1-alpha)^m
-- P(making at least 1 error in m tests) = 1 - (1-alpha)^m
-
---
-
-Using ANOVA helps control for inflated FWER by using a single, cohesive statistical tests rather than a series of *t*-tests! It allows a test of the various means while maintaining an *a priori* alpha level. 
-
----
-
 class: center, middle
 
 ## Why is it called the Analysis of Variance if we are interested in the means? 
