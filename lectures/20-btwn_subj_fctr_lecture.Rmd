@@ -380,7 +380,7 @@ kable(MS, digits = 3)
 
 ## A star is born
 
-```{r}
+```{r, echo=FALSE}
 MS <- MS %>% mutate(p_val = pf(F_val, df, df[3], lower.tail = F),
                     show_me_stars = c(ifelse(p_val < .001, "***", 
                                              ifelse(p_val > .05, ".", ""))))
@@ -416,16 +416,13 @@ summary(aov(correct ~ grade + doublet, data))
 ```
 
 ---
+class: inverse
 
 ## Next time
 
-What if we expect performance to depend on **both** factors? 
+- What if we expect performance to depend on **both** factors? 
+- We would add an *interaction* to our ANOVA: grade x doublet.
 
-We would add an *interaction* to our ANOVA: grade x doublet.
-
---
-
-You'll get Dr. Cooper and her fiddle leaf fig back :)
 
 
 

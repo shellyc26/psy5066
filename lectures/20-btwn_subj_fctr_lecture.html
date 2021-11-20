@@ -3,6 +3,7 @@
   <head>
     <title>Two Between-Subjects Factors</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -555,14 +556,6 @@ kable(MS, digits = 3)
 
 ## A star is born
 
-
-```r
-MS &lt;- MS %&gt;% mutate(p_val = pf(F_val, df, df[3], lower.tail = F),
-                    show_me_stars = c(ifelse(p_val &lt; .001, "***", 
-                                             ifelse(p_val &gt; .05, ".", ""))))
-kable(MS, digits = 4, booktabs = T)
-```
-
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -650,16 +643,16 @@ summary(aov(correct ~ grade + doublet, data))
 ```
 
 ---
+class: inverse
 
 ## Next time
 
-What if we expect performance to depend on **both** factors? 
+- What if we expect performance to depend on **both** factors? 
+- We would add an *interaction* to our ANOVA: grade x doublet.
 
-We would add an *interaction* to our ANOVA: grade x doublet.
 
---
 
-You'll get Dr. Cooper and her fiddle leaf fig back :)
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
