@@ -20,6 +20,12 @@ class: center, middle, inverse, title-slide
 
 
 
+## Watch the recording
+
+Recording of this lecture is found here 👇
+
+---
+
 ## Recap
 
   * We've taken a model comparison approach to comparing group means with ANOVA
@@ -37,20 +43,6 @@ class: center, middle, inverse, title-slide
 * Adding another independent variable: 
 
 **Between Subjects Factors**
-
----
-
-## The Plan
-
-* Two between-subjects factors
-* Working example 
-* Null in a two-factor design
-* Full and restricted models in two-factor design
-* Setting up the F table
-    * Decomposing variance in two-factor
-    * Degrees of freedom for different factors
-* Calculating the main effects in a two-factor design
-* Making R do the work
 
 ---
 
@@ -93,15 +85,15 @@ Two-way between-subjects, completely crossed (balanced)
 ---
 ## Null Hypothesis for "Main Effects" 
 
-`\(H_01\)`: Main effect of grade: The two age groups perform similarly
+`\(H_{0.1}\)`: Main effect of grade: The two age groups perform similarly
 
-`\(H_02\)`: Main effect of doublet legality: Children perform similarly with allowed and unallowed doublets
+`\(H_{0.2}\)`: Main effect of doublet legality: Children perform similarly with allowed and unallowed doublets
 
 --
 
-`\(H_01\)`: `\(\bar{x}_K = \bar{x}_{1st}\)`
+`\(H_{0.1}\)`: `\(\bar{x}_K = \bar{x}_{1st}\)`
 
-`\(H_02\)`: `\(\bar{x}_{allowed} = \bar{x}_{unallowed}\)`
+`\(H_{0.2}\)`: `\(\bar{x}_{allowed} = \bar{x}_{unallowed}\)`
 
 --
 
@@ -152,40 +144,59 @@ Two-way between-subjects, completely crossed (balanced)
 
 --
 
-![an image caption Source: variancetree1](20-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
+![Variance Tree 1](20-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
 ---
 ## The variance tree
 
-![an image caption Source: variancetree2](20-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
-
----
-## The variance tree
-
-![an image caption Source: variancetree3](20-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
+![Variance Tree 2](20-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
 
 ---
 ## The variance tree
 
-![an image caption Source: variancetree4](20-btwn_subj_fctr_lecture_files/figure-html/SS4.png)
+![Variance Tree 3](20-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
 
 ---
 ## The variance tree
 
-![an image caption Source: variancetree5](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
+![Variance Tree 4](20-btwn_subj_fctr_lecture_files/figure-html/SS4.png)
+
+---
+## The variance tree
+
+![Variance Tree 5](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
 ---
 
 ## Degrees of Freedom in two factor between subjects
 
-- For *each* factor: 
-  - `\(df_A = F_{A} - 1\)`
-  - e.g., grade has **2 levels** (K, first)
-    - `\(df_{grade} = 2 -1 = 2\)`
+** `\(df_\text{Between}\)` **
 
-- For the withinerror or residual: 
-  - `\(df_w = N - (R - 1) - (C - 1) - 1\)`
-  - simplifies to `\(N - R - C + 1\)`
-  - e.g., 16 observations, 1 additional mean for group factor, 1 additional mean for doublet factor, and 1 grand mean
-    - `\(df_w = 16 - 1 - 1 - 1 = 13\)`
+- For *each* factor: 
+  - `\(df_{factor} = \text{Levels of factor} - 1\)`
+  - e.g., grade has **2 levels** (K, first)
+    - `\(df_{grade} = 2 - 1 = 1\)`
+
+---
+## Degrees of Freedom in two factor between subjects
+
+** `\(df_{within/error/residual}\)` **
+
+.pull-left[
+16 observations, 1 additional mean for grade factor, 1 additional mean for doublet factor, and 1 grand mean
+
+`$$\small{df_w = N - (\text{Levels of }F_1 - 1) - \\
+(\text{Levels of }F_2 - 1)- 1}$$`
+
+simplifies to `\(N - \text{Levels of }F_1 - \text{Levels of }F_2 + 1\)`
+]
+
+.pull-right[
+`\(df_w = 16 - 1 - 1 - 1 = 13\)`
+
+`\(df_w = 16 - (2 - 1) - (2 - 1) - \\ 1 = 13\)`
+
+`\(df_w = 16 - 2 - 2 + 1 = 13\)`
+]
+
 ---
 
 ## Putting the pieces together
@@ -409,7 +420,7 @@ data$prediction &lt;- grandmean
 ## [1] 147.875
 ```
 ---
-## Step 3: Calculate SS. 
+## Step 3: Calculate SS
 
 `\(SS_{dbl} = E_r - E_f\)`
 
@@ -423,7 +434,7 @@ data$prediction &lt;- grandmean
 ```
 
 ---
-## Step 4: Determine the degrees of freedom. 
+## Step 4: Determine the degrees of freedom
 
 - `\(df_{dbl} = k_{dbl}-1\)`
 - where `\(k\)` = number of levels in the factor
@@ -450,7 +461,7 @@ This is our **leftover variation** after taking our grade and doublet variables 
 
 Conceptually: 
 
-`\(SS_{error} = SS_{Total}- SS_{grade} + SS_{doublet}\)`
+`\(SS_{error} = SS_{Total} - SS_{grade} - SS_{doublet}\)`
 
 ---
 
@@ -499,53 +510,6 @@ So from the full model perspective, the best guess for any student is...
 ## F Table
 
 ![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F5.png)
----
-
-## F Table
-
-```r
-MS&lt;- tibble(` ` = c("grade", "dbl", "error"),
-             df = as.numeric(c(1, 1, 13)),
-             SS = c(SS_grade, SS_dbl, SSe),
-             MS = c(SS_grade/1, SS_dbl/1, SSe/13),
-             F_val = as.numeric(c(MS[1]/MS[3], MS[2]/MS[3], "")))
-kable(MS, digits = 3)
-```
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; SS &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; MS &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; F_val &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; grade &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 138.062 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 138.062 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 184.083 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dbl &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.062 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.062 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.083 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; error &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.750 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.750 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 
 ---
 
@@ -554,56 +518,9 @@ kable(MS, digits = 3)
 
 ---
 
-## A star is born
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; SS &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; MS &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; F_val &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; p_val &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; show_me_stars &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; grade &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 138.0625 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 138.0625 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 184.0833 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; *** &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dbl &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.0625 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.0625 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.0833 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0644 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; . &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; error &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.7500 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.7500 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-
 ## Without stars
 
-1. We know that when F &gt; 1, effect is significant
+1. We know that when F &gt; 1, effect is significant (generally)
 
 --
 
@@ -618,9 +535,9 @@ kable(MS, digits = 3)
 ## [1] 4.667193
 ```
 
-`\(F_{grade} = 184.08\)` is more extreme than our `\(F_{crit} = 4.67\)` so we reject our `\(H_01\)`
+`\(F_{grade} = 184.08\)` is more extreme than our `\(F_{crit} = 4.67\)` so we reject our `\(H_{0.1}\)`
 
-`\(F_{dbl} = 4.08\)` is *not* more extreme than our `\(F_{crit} = 4.67\)` so we fail to reject our `\(H_02\)`
+`\(F_{dbl} = 4.08\)` is *not* more extreme than our `\(F_{crit} = 4.67\)` so we fail to reject our `\(H_{0.2}\)`
 
 ---
 
@@ -648,7 +565,8 @@ class: inverse
 ## Next time
 
 - What if we expect performance to depend on **both** factors? 
-- We would add an *interaction* to our ANOVA: grade x doublet.
+- We would add an *interaction* to our ANOVA: grade x doublet
+- We will translate all of this into formal equations (eek!)
 
 
 
