@@ -22,6 +22,7 @@ colors = RColorBrewer::brewer.pal(4, "Set2")
 
 Recording of this lecture is found here `r emo::ji("point_down")`
 
+[https://youtu.be/RIdjwE-13yQ](https://youtu.be/RIdjwE-13yQ)
 ---
 
 ## Recap
