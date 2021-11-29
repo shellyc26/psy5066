@@ -55,6 +55,8 @@ navbar:
         href: "lectures/19-multiplecomparisons.html"
       - text: "2Way ANOVA"
         href: "lectures/20-btwn_subj_fctr_lecture.html"
+      - text: "Interactions"
+        href: "lectures/21-interactions.html"
     - text: Homework
       href: homework.html
   right:

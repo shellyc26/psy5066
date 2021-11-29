@@ -356,6 +356,83 @@ So from the full model perspective, the best guess for observation is...
 ## ANOVA (Source) Table
 
 ![](images/finaltable3.png)
+
+
+```r
+qf(p = .05, df1 = 1, df2 = 12, lower.tail = FALSE)
+```
+
+```
+## [1] 4.747225
+```
+
+---
+
+## What do we conclude?
+
+We have 3 rejected null hypotheses. We interpret:
+
+1) There is a main effect of age; the means of age groups are not equal
+
+2) There is a main effct of problem type; the means of normal vs. tricky math problems are not equal
+
+3) The difference in age groups differs by problem type (and vice versa)
+
+---
+
+## Effect Sizes
+
+![](images/diagrams.png)
+
+---
+
+## Eta-squared
+
+`\(\eta^2 = \frac{SS_{Effect}}{SS_{Total}}\)`
+
+.pull-left[
+&lt;img src="images/etasq.png", width = "100%"&gt;
+]
+
+.pull-right[
+
+`\(\eta^2 = \frac{4}{35.75} = .112\)`
+]
+
+Proportion of the variation in Y that is associated with membership of the different groups defined by X. How much variance in our outcome is associated with Age? 11.2% of *total* variance can be accounted for by Age. 
+
+Hard to compare across studies bc dependent on study's total variance.
+
+---
+
+## Partial eta-squared
+`\(\eta_p^2 = \frac{SS_{Effect}}{SS_{Effect} + SS_{Error}}\)`
+
+.pull-left[
+&lt;img src="images/petasq.png", width = "100%"&gt;
+]
+
+.pull-right[
+
+`\(\eta^2 = \frac{4}{4 + 4.5} = .471\)`
+]
+
+Proportion of the variation in Y that can be explained by X, after accounting for all other variables in th model. How much variance in our outcome is associated with Age, after accounting for Problem, and their interaction? 47.1%.
+
+Same rules of thumb for `\(\eta^2\)`; calculations differ slightly when sample sizes are unequal in cells or when there are more than 2 factors
+
+---
+
+class: inverse
+
+## Next time
+
+- Within-subjects designs
+
+- Exam 3 review
+
+- Teary goodbyes (until next semester)
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
