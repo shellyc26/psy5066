@@ -178,8 +178,184 @@ AB(n-1) \\
 
 ---
 
+## How to calculate `\(SS_{Age}\)`
+
+`\(SS_{Age} = E_R - E_F\)`
+
+`\(Restricted: Y_{ij} = \mu + \text{Problem}_k + AP_{jk} + e_{ijk}\)`
+
+`\(Full: Y_{ij} = \mu + \text{Age}_j + \text{Problem}_k + AP_{jk} + e_{ijk}\)`
+
+---
+
+## Get the `\(E_R\)` for Age
+
+&lt;center&gt;
+&lt;img src="images/erage.png", width = "95%"&gt;
+&lt;/center&gt;
+
+---
+
+## Get the `\(E_F\)` for Age
+
+&lt;center&gt;
+&lt;img src="images/efage.png", width = "95%"&gt;
+&lt;/center&gt;
+
+---
+
+## How to calculate `\(SS_{Age}\)`
+
+`\(SS_{Age} = E_R - E_F\)`
+
+
+```r
+35.75 - 31.75
+```
+
+```
+## [1] 4
+```
+
+&lt;center&gt;
+&lt;img src="images/ssbtwn.png", width = "90%"&gt;
+&lt;/center&gt;
+
+---
+
 ## ANOVA (Source) Table
 
+![](images/ssbtwn2.png)
+
+---
+## ANOVA (Source) Table
+
+![](images/ssbtwn3.png)
+
+---
+## Calculating the Interaction ( `\(SS_{AxP}\)` )
+
+`\(H_{0.3}\)` : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+
+`\(H_{0.3}\)` : *Differential performance on problem types is independent of age group*
+
+---
+
+## What does the restricted model say?
+
+Your score = grand mean + some age effect + some problem effect + error
+
+Predicted Score = grand mean + (diffrence between age effect and grand mean) + (difference between problem effect and grand mean)
+
+Predicted Score = Grand Mean + (MeanRow – Grand Mean) + (MeanColumn – Grand Mean)
+
+Predicted Score = Grand Mean + MeanRow – Grand Mean + MeanColumn – Grand Mean 
+
+Predicted Score = MeanRow + MeanColumn – Grand Mean
+
+*Difference between Restricted and Full Models = Squared deviations for each cell from this predicted score*
+
+---
+
+## Interaction Effect
+
+*Difference between Restricted and Full Models = Squared deviations for each cell from this predicted score*
+
+We need to get the deviations + squared deviations of each cell mean from the predicted score
+
+--
+
+`\(\Sigma(\text{Cell mean - Predicted Score})^2\)`
+
+`\(\Sigma(\text{Cell mean - (Mean row + Mean column - Grand mean)})^2\)`
+
+`\(\Sigma(\text{Cell mean - Mean row - Mean column + Grand mean})^2\)`
+
+---
+
+## OG Data
+
+![](images/ogdata.png)
+
+---
+
+## Marginal Means
+
+![](images/margmeans.png)
+
+---
+
+## Calculating the Interaction Effect
+
+![](images/ix1.png)
+
+--
+
+**Sum of deviations is 0!**
+
+---
+## Calculating the Interaction Effect
+
+![](images/ix2.png)
+
+--
+
+Sum them up = 0.5625
+
+Multiply by n per group = 0.5625 * 4 = 2.25
+
+---
+
+## What we just did
+
+- Found the means for each cell in our 2x2 ANOVA
+
+- Took away the effect of each of the 2 factors (Age and Problem)
+
+- Added back the grand mean
+
+- *The extent to which each cell differs from its respective column and row is the difference between a model without an interaction (Restricted) and a model with one (Full)*
+
+---
+
+## ANOVA (Source) Table
+
+![](images/ftableix.png)
+
+---
+
+## `\(SS_{\text{within}}\)`
+
+Error from the full model
+
+The full model allows for the Age effect, the Problem effect, and the Interaction effect. 
+
+So from the full model perspective, the best guess for observation is...
+
+---
+## `\(SS_{\text{within}}\)`
+
+&lt;center&gt;
+&lt;img src="images/ef.png", width = "90%"&gt;
+&lt;/center&gt;
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable1.png)
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable2.png)
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable3.png)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
