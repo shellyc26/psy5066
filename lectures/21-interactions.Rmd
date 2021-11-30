@@ -413,6 +413,49 @@ Same rules of thumb for $\eta^2$; calculations differ slightly when sample sizes
 
 ---
 
+## In `R`
+
+```{r warning=FALSE, message=FALSE}
+library(here)
+mathproblem = read.csv(here("data/mathproblem.csv"))
+mathproblem
+```
+
+---
+
+## In `R` - No Interaction
+
+```{r}
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+--
+
+**What's wrong with this?**
+
+---
+
+## In `R` - No Interaction
+
+```{r}
+mathproblem[2,2] <- "Eight"
+mathproblem$Age <- factor(mathproblem$Age)
+mathproblem$Problem <- factor(mathproblem$Problem)
+
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+---
+
+## In `R` - With Interaction
+
+```{r}
+summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
+summary(aov(Score ~ Age * Problem, data = mathproblem))
+```
+
+---
+
 class: inverse
 
 ## Next time

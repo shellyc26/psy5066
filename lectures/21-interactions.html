@@ -423,6 +423,114 @@ Same rules of thumb for `\(\eta^2\)`; calculations differ slightly when sample s
 
 ---
 
+## In `R`
+
+
+```r
+library(here)
+mathproblem = read.csv(here("data/mathproblem.csv"))
+mathproblem
+```
+
+```
+##    Score   Age Problem
+## 1      3 Eight  Normal
+## 2      4 EIght  Normal
+## 3      3 Eight  Normal
+## 4      4 Eight  Normal
+## 5      4  Nine  Normal
+## 6      4  Nine  Normal
+## 7      4  Nine  Normal
+## 8      3  Nine  Normal
+## 9      0 Eight  Tricky
+## 10     0 Eight  Tricky
+## 11     0 Eight  Tricky
+## 12     1 Eight  Tricky
+## 13     2  Nine  Tricky
+## 14     3  Nine  Tricky
+## 15     2  Nine  Tricky
+## 16     1  Nine  Tricky
+```
+
+---
+
+## In `R` - No Interaction
+
+
+```r
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          2  9.161   4.580   9.464  0.00341 ** 
+## Problem      1 20.782  20.782  42.939 2.72e-05 ***
+## Residuals   12  5.808   0.484                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+--
+
+**What's wrong with this?**
+
+---
+
+## In `R` - No Interaction
+
+
+```r
+mathproblem[2,2] &lt;- "Eight"
+mathproblem$Age &lt;- factor(mathproblem$Age)
+mathproblem$Problem &lt;- factor(mathproblem$Problem)
+
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   7.704   0.0157 *  
+## Problem      1  25.00  25.000  48.148 1.02e-05 ***
+## Residuals   13   6.75   0.519                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+## In `R` - With Interaction
+
+
+```r
+summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   10.67  0.00675 ** 
+## Problem      1  25.00  25.000   66.67 3.05e-06 ***
+## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
+## Residuals   12   4.50   0.375                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
+summary(aov(Score ~ Age * Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   10.67  0.00675 ** 
+## Problem      1  25.00  25.000   66.67 3.05e-06 ***
+## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
+## Residuals   12   4.50   0.375                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
 class: inverse
 
 ## Next time
