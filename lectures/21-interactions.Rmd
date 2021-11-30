@@ -456,6 +456,39 @@ summary(aov(Score ~ Age * Problem, data = mathproblem))
 
 ---
 
+## Plotting
+
+```{r warning = FALSE, message = FALSE, echo = FALSE}
+library(ggplot2)
+library(RColorBrewer)
+
+summarizedData = mathproblem %>% 
+  group_by(Age, Problem) %>% 
+  summarize(meanScore = mean(Score),
+            sdScore = sd(Score)) %>% 
+  mutate(upperSD = meanScore + sdScore,
+         lowerSD = meanScore - sdScore)
+
+ggplot(data = summarizedData, aes(x = Age, y = meanScore, color = Problem)) +
+  geom_col(position = position_dodge(width=.9), fill = "white", size = 2) +
+  geom_errorbar(aes(ymin = lowerSD,
+                    ymax = upperSD),
+                position = position_dodge(width=.9),
+                width = .2) +
+  geom_point(data = mathproblem,
+              aes(x = Age, y = Score, color = Problem),
+             position=position_jitterdodge(),
+             size = 4,
+             alpha = .5) +
+  theme_classic() +
+  labs(x = "Age Category",
+       y = "Mean Score",
+       title = "2x2 ANOVA with Interaction")
+  
+```
+
+---
+
 class: inverse
 
 ## Next time
