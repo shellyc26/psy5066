@@ -1,5 +1,5 @@
 ---
-title: 'Within-Subjects Designs (and more)'
+title: 'Miscellaneous'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -18,13 +18,109 @@ library(kableExtra)
 colors = RColorBrewer::brewer.pal(4, "Set2")
 ```
 
+## Last time
+
+- 2x2 ANOVA with interactions
+- NHST and effect sizes
+
+--
+
 ## Today
 
 A series of shpiels 
 
-- **Within-subjects designs**
+- Finish up between-subjects ANOVA
+- Within-subjects designs
 - Non-parametric tests
-- Exam 3 + semester wrap up
+
+---
+
+## OG data
+
+![](images/ogdata.png)
+
+---
+
+## What we did...
+
+- Found the means for each cell in our 2x2 ANOVA
+
+- Took away the effect of each of the 2 factors (Age and Problem)
+
+- Added back the grand mean
+
+---
+
+## Another way of doing the interaction
+
+
+$H_{0.3}$ : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+
+![](images/ixcontrast1.png)
+
+---
+
+## Null hypothesis for interactions
+
+$H_{0.3}$ : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+
+$H_{0.3} : (\mu_{N8} - \mu_{N9}) = (\mu_{T8} - \mu_{T9})$
+
+$H_{0.3} : (\mu_{N8} - \mu_{N9}) - (\mu_{T8} - \mu_{T9}) = 0$
+
+$H_{0.3} : \mu_{N8} - \mu_{N9} - \mu_{T8} + \mu_{T9} = 0$
+
+--
+
+![](images/ixcontrast2.png)
+ **First rule of contrasts is that they must sum to 0**
+---
+
+## Coontrasts are your friends!
+
+$$F = \frac{\psi^2}{MS_\text{Within}\Sigma(c_j^2/n_j)}$$
+
+$$ \psi = (1)(3.50) + (-1)(3.75) + (-1)(0.25) + (1)(2.00)  = 1.50 $$
+$$F = \frac{1.50^2}{.375\Sigma(c_j^2/n_j)}$$
+$$F = \frac{1.50^2}{.375(\frac{1^2}{4} + \frac{-1^2}{4} + \frac{-1^2}{4} + \frac{1^2}{4})}$$
+
+$$F = \frac{2.25}{.375} = 6$$
+---
+
+## Did we get it right?
+
+![](images/finaltable3.png)
+---
+
+## Testing Ourselves
+
+New 2x2 design comparing treatments to reduce depression
+
+  * Therapy = Cognitive Behavioral vs. Meditation Training
+  * Medication = With meds vs. Without meds
+  
+![](images/emptyfmeds.png)
+---
+
+## Fill in the blanks
+
+![](images/fmedspartial1.png)
+
+---
+## Fill in the blanks -- Answer
+
+![](images/fmedsfull1.png)
+
+---
+
+## Fill in the blanks
+
+![](images/fmedspartial2.png)
+
+---
+## Fill in the blanks -- Answer
+
+![](images/fmedsfull2.png)
 
 ---
 class: inverse
@@ -84,7 +180,7 @@ class: inverse
 - Full Model: $\Sigma(D_i - \bar{D})^2$
 
   - The full model/alternative hypothesis is that there is a difference in the participants' scores between conditions
-  - Take each individual's difference score and find the deviatio for that difference score from the mean difference score of the sample. Square it, sum it up. 
+  - Take each individual's difference score and find the deviation for that difference score from the mean difference score of the sample. Square it, sum it up. 
   - EX: pre = 8, post = 10, diff = 2
   - EX: if the average of the difference scores was 5, you would then do `2 - 5 = -3`
   - $df_f$ = number of difference scores - 1; you lose 1 df because you calculated the mean of difference scores
@@ -116,12 +212,58 @@ class: inverse
 - Time elapsed can be...tricky
 
   - Take Josh Jackson's Applied Longitudinal class
-
+  - Take Mike Strube's Hierarchical Linear Modeling class
 ---
 
 ## To Summarize
 
 ![](22-within_files/figure-html/partition.png)
+
+---
+class: inverse
+
+# Analysis of Covariance (conceptually)
+
+---
+
+## Logic of ANCOVA
+
+Say you want to do an ANOVA, but there's an additional variable (continuous or categorical) whose influence you wish to *control for*. We call that a **covariate**. 
+
+Ex:
+
+- Effect of treatment, controlling for initial levels of some disorder
+
+- Controlling for known effects like age, sex, SES, etc...
+
+---
+
+## Logic of ANCOVA
+
+We just need to add another term to our restricted and full models.
+
+Restricted: 
+
+$$Y_{ij} = \mu + Covariate + e_{ij}$$
+Full: 
+$$Y_{ij} = \mu + Age_{j} + Covariate + e_{ij}$$
+
+---
+
+## ANCOVA Thoughts
+
+The Good:
+
+- Can increase power by reducing $SS_{within}$
+- Some use to control for initial levels of a disorder (meh)
+
+--
+
+The Bad:
+
+- We will talk about regression extensively next semester; IMHO, use formal regression framework instead
+- You're losing a degree of freedom in both your full and restricted models. So if you include a covariate that doesn't matter much, and now you've lost a df, then you might inadvertently wind up with less statistical power. Oy! 
+
 
 ---
 class: inverse
@@ -144,7 +286,15 @@ class: inverse
   - The assumption is that $\epsilon_{ij}$, or your residuals, need to be normally distributed -- lots more next semester
   - Can use QQ plots and Shaprio-Wilk -- QQ plots more common
   
-**NOTE THIS SLIDE WAS EDITED AFTER THE VIDEO WAS RECORDED**
+---
+
+## QQ Plots
+
+Try this (you might be limited to # of times you can click):
+
+[https://xiongge.shinyapps.io/QQplots/](https://xiongge.shinyapps.io/QQplots/)
+
+Check out [this Stack Exchange](https://stats.stackexchange.com/questions/101274/how-to-interpret-a-qq-plot) on how to interpret QQ plots.
 
 ---
 
@@ -157,16 +307,18 @@ If we violate our assumptions, *any of them*, we cannot make any valid inference
 ---
 ## Non-parametric tests
 
-Enter parametric tests. Often these are based on using the rank order of data (and the median instead of the mean).
+Enter non-parametric tests. Often these are based on using the rank order of data (and the median instead of the mean).
 
 Helpful when:
 
   - Dependent variable is nominal
-  - Indepenedent or dependent variable is ordinal
+  - Independent or dependent variable is ordinal
   - Sample size is small
   - Underlying population is skewed (reaction times, household income)
 
---
+---
+
+## Non-parametric tests
 
 Limitations:
 
@@ -176,8 +328,6 @@ Limitations:
   - Nominal/ordinal scales provide less detail than continuous data
   
 ---
-
-## Which test to use
 
 .small[
 | Parametric Test | Situation | Non-Parametric Version|
@@ -192,39 +342,11 @@ Limitations:
 |Correlation| Relationship between 2 continuous vars| *Spearman Rank-Order Correlation*|
 ]
 
----
-class: inverse
 
-# Exam 3 
-
----
-
-## Exam 3
-
-- Opens on **Monday 12/21 at 9am**
-
-- Closes on **Thursday 12/31 at 9am** (Sayonara, 2020 -- you were the worst)
-
-- Will be listed as a Quiz
-
-- Use CHROME as your web browser. Safari doesn't like this. Unclear how Firefox handles it.
-
-- Turn OFF your ad blocker. Canvas doesn't have ads.
-
-
----
-
-## Exam 3
-
-- You will have **50 hours** to complete the exam. Once you OPEN the quiz, the countdown timer begins
-  - If you close the window, the countdown timer will still be running
-  - IT WILL LOCK YOU OUT AFTER 50 HOURS...DON'T BE LATE
-
-![](22-within_files/figure-html/quizquestion.png)
 
 ---
 class: inverse
 
-# Next semester...
+# Next time
 
-Regression all day, every day (or at least every Tues/Thurs)
+Review for Exam 3!
