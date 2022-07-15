@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Real Intro &amp; Measurement Scales</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Real Intro &amp; Measurement Scales
+
+---
+
+
+## Goals of this sequence
+
+- Develop the basic quantitative skills necessary to be a research scientist
+    - Not all the skills you will need (not the only courses you need)
+    - Foundations of statistics, methods, and data science
+
+- Contextualize those skills
+    - Building a toolbox, not a cookbook
+    - How can I use this? Under what circumstances? When should I not use this?
+    
+.small[ - Sequence
+  - **5066**: Tools of statistics (distilling lots of data to interpretable numbers, sampling, hypothesis testing)
+  - **5067**: Building models (how do translate our theory into testable relationships using the tools of 5066)
+]
+---
+
+## Goals of this course
+
+  - Conceptualize __statistics__ as a method for specifying and testing a model of how the world works
+  
+  - Execute and understand of the use and limitations of null hypothesis significance testing
+  
+  - Summarize, test, and display data using `R`
+  
+  - *Ideally* everyone will learn at least one thing they can use in their research this term.
+
+---
+
+## Challenges
+
+Many basic statistical tests were developed a century ago. Your goal should not be to just do the test. It should be to understand what the test does, why you might want to use it, and how you can avoid abusing it
+
+--
+
+I'm a Psychologist and Neuroscientist. This class is in the Psychology department. It's goal is to train the next generation of Psychologists. Examples will primarily be in Psychology (occasionally some pop culture for funzies). 
+---
+
+## Setting Expectations
+
+My job is to balance theory and application. Everyone is coming here with *extremely* different backgrounds. The course evals are always...mixed. 
+
+--
+
+**too fast?** - COME TALK TO ME. Also, spend lots of time outside of class; learning takes time.
+
+--
+
+**too slow?** - COME TALK TO ME. There are lots of extensions to these concepts. I can give you extra readings, point you in interesting directions, or provide resources for improving your `R` code
+
+---
+
+## Important Links
+
+[Class Website](https://shellyc26.github.io/psy5066/index.html) -- syllabus, lecture slides, homeworks etc. 
+
+[Slack Workspace](https://gradstats-ps5066.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
+
+[Canvas](https://wustl.instructure.com/courses/72732) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
+
+Data from class examples can be found on our [GitHub](https://github.com/shellyc26/psy5066) site in the `data` folder
+
+[Learning Statistics with `R`](https://learningstatisticswithr.com/) -- textbook by Danielle Navarro
+
+---
+
+## Important Info
+
+- **Most important information is on the slides**
+
+- Readings serve to *supplement* and enhance
+
+- Important equations will be presented in the slides
+
+---
+
+# Questions?
+
+For the rest of today:
+- Data Types
+- (if time) Setting up your computer to play nicely using `RProjects`
+
+---
+
+## Kinds of statistics
+
+- Descriptive (about the data)
+- Inferential (about the world)
+
+--
+
+**Neither is more important than the other!!**
+
+---
+
+## Kinds of statistics
+
+- Exploratory (I don't have a hypothesis or theory. I don't know what's going to happen)
+- Confirmatory (If theory X is true, then the data I collect should look like Y)
+
+--
+
+**Neither is more important than the other!!**
+
+
+.center[Exploratory ---------------------------------------- Confirmatory]
+
+---
+
+## Kinds of research
+
+- Experimental (we introduce an intervention and look at the effects; researcher introduced assignment)
+- Observational (we measure/survey our participants without trying to affect them; no researcher-introduced assignment)
+
+--
+
+Typically we pair some kinds of statistical tests with experimental work and other kinds of tests with observational work.
+
+--
+
+In reality, most statistical tests can be used with most kinds of research. It's not so much the kind of research that matters, but __which statistic helps to answer your question__ and __what types of variables do you have?__
+
+- We'll discuss the first point throughout the course
+- Let's discuss variables now
+
+---
+class: center
+
+## Scales of measurement (Data types)
+
+![](images/alldataTypes_gray.png)
+---
+## Qualitative vs. Quantitative
+
+&lt;img src='images/quantvqual.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Qualitative**:
+
+- aka categorical, factors
+- "not numeric", as in numbers serve as labels, not as things to add or subtract
+]
+
+--
+
+.pull-right[
+**Quantitative**:
+
+- reflects magnitude
+- values are actually numbers you can add/subtract
+]
+
+
+---
+## Qualitative Variables
+#### Nominal vs. Ordinal
+
+&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Nominal**:
+
+- Response options are groups
+- There is no order
+- Example -- What are different kinds of fruit?
+    - apples: &lt;span style="color: red;"&gt;1&lt;/span&gt;
+    - blackberries: &lt;span style="color: red;"&gt;2&lt;/span&gt;
+    - coconut: &lt;span style="color: red;"&gt;3&lt;/span&gt;
+]
+
+.pull-right[
+![](images/nom.png)
+]
+---
+
+## Qualitative Variables
+#### Nominal vs. Ordinal
+
+&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Nominal**:
+
+- Response options are groups
+- There is no order
+- Example -- What are different kinds of fruit?
+    - apples: &lt;span style="color: green;"&gt;3&lt;/span&gt;
+    - blackberries: &lt;span style="color: green;"&gt;1&lt;/span&gt;
+    - coconut: &lt;span style="color: green;"&gt;2&lt;/span&gt;
+]
+
+.pull-right[
+![](images/nom.png)
+]
+
+---
+
+## Qualitative Variables
+#### Nominal vs. Ordinal
+
+&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Nominal**:
+
+- Response options are groups
+- There is no order
+- Example -- What are different kinds of fruit?
+    - apples: &lt;span style="color: blue;"&gt;312&lt;/span&gt;
+    - blackberries: &lt;span style="color: blue;"&gt;19&lt;/span&gt;
+    - coconut: &lt;span style="color: blue;"&gt;999&lt;/span&gt;
+]
+
+.pull-right[
+![](images/nom.png)
+]
+
+---
+
+## Qualitative Variables
+#### Nominal vs. Ordinal
+
+&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Nominal**:
+
+- Response options are groups
+- There is no order
+- Example -- What are different kinds of fruit?
+    - apples: 1
+    - blackberries: 2
+    - coconut: 3
+]
+
+.pull-right[
+**Ordinal**:
+
+- Response options are *ordered*
+- No consistent distance between possible scores
+- Example -- List the following fruits in order of preference
+    - apples: 2
+    - blackberries: 1
+    - coconuts: 3
+]
+
+---
+
+## Quantitative Variables
+#### Discrete vs. Continuous
+
+&lt;img src='images/quantdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Discrete**:
+
+- Takes numeric values that are countable
+- Must be finite number of possibilities
+- Examples
+    - Number of children/family
+    - Number of students/class
+- Often confused with categorical; context matters
+
+]
+
+--
+
+.pull-right[
+**Continuous**
+
+- Takes numeric values that are not necessarily countable
+- Infinite number of possibilities
+- Examples
+    - Age
+    - Height/weight
+- AKA "scale" variables
+]
+
+---
+## Quantitative Variables
+#### Continuous
+
+&lt;img src='images/quantdata.png' class='img_top_right' style='width:200px;'/&gt;
+
+.pull-left[
+**Interval**:
+
+- Responses are ordered (like ordinal)
+- Distance between responses is the same (unlike ordinal)
+- No meaningful 0
+- Examples
+    - temp in Farenheit
+- In my experience, not as common unless you treat Likert scale as interval (though it is technically ordinal)
+
+]
+
+--
+
+.pull-right[
+**Ratio**
+
+- Same as interval, but now with a meaningful 0
+- 0 indicates the absence of something
+- Example
+    - How many words did you recall on a memory test?
+    - 0 words recalled is meaningful!
+
+]
+
+---
+
+class: center
+
+## Pitfalls?
+
+![](images/alldataTypes_colors.png)
+
+---
+## Pitfalls
+
+Confusing Nominal and Ordinal
+  - lose information about order you might want
+  - or maybe you don't care and it doesn't matter
+
+--
+
+Confusing Interval and Ratio
+  - lots of stats are interpreted in regards to 0
+  - if there is no meaningful 0, how do you interpret?
+
+--
+
+Confusing Qualitative and Quantitative
+  - happens more than you think; esp in the machine learning world
+  - can straight up get the wrong numbers (will come back to this with correlation!)
+  
+---
+
+class: inverse 
+
+## Next time
+
+Measurement validity
+
+Remainder of class (if time)...`Rprojects`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

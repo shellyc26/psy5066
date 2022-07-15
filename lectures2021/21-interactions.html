@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Two Between-Subjects Factors with Interactions</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Two Between-Subjects Factors with Interactions
+
+---
+
+
+
+
+
+
+## Last time
+
+Twoway ANOVA
+- 2 between subjects factors
+- Can have as many levels as necessary
+  * 3x5 ANOVA still has 2 independent variables
+- Explored main effects
+
+--
+
+## This time
+- What happens when those 2 variables impact each other (not only impact the dependent variable)?
+
+---
+
+## Math is hard
+
+Here are our data...
+
+![](images/trickydata.png)
+
+---
+
+## Math is hard: Null Hypotheses for **Main Effects**
+
+.pull-left[
+
+`\(H_{0.1}\)` : The two age groups perform similarly
+
+
+`\(H_{0.1}: \mu_8 = \mu_9\)`
+
+]
+
+.pull-right[
+
+`\(H_{0.2}\)` : Children perform similarly on normal and tricky math problems
+
+
+`\(H_{0.2}: \mu_{\text{normal}} = \mu_{\text{tricky}}\)`
+
+]
+
+---
+
+## Math is hard
+
+![](images/cellmeans.png)
+---
+
+## Adding a 3rd Null Hypothesis
+
+`\(H_{0.3}\)` : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+
+`\(H_{0.3}\)` : *Differential performance on problem types is independent of age group*
+
+--
+
+☝️ These are the same! They are symmetric.
+
+---
+
+## Math is hard: Means on means
+
+![](images/means.png)
+
+---
+
+## Math is hard: Means on means
+
+![](images/means2.png)
+---
+
+## Equations
+
+Previously, we've talked about the restricted and the full model. We can write those as formal equations:
+
+`\(Restricted: Y_{ij} = \mu + e_{ij}\)`
+
+`\(Full: Y_{ij} = \bar{Y_{j}} + e_{ij}\)`
+
+--
+
+**Oneway ANOVA**
+
+`\(Restricted: Y_{ij} = \mu + e_{ij}\)`
+
+`\(Full: Y_{ij} = \bar{Age_{j}} + e_{ij}\)`
+
+---
+
+## Three Restricted Models
+
+When testing the Age main effect...
+
+`$$Restricted: Y_{ij} = \mu + \text{Problem}_k + AP_{jk} + e_{ijk}$$`
+
+When testing the Problem main effect...
+
+`$$Restricted: Y_{ij} = \mu + \text{Age}_j + AP_{jk} + e_{ijk}$$`
+
+When testing the **interaction** between Age &amp; Problem...
+
+`$$Restricted: Y_{ij} = \mu + \text{Age}_j + \text{Problem}_k + e_{ijk}$$`
+---
+
+## Diagrams
+
+![](images/diagrams.png)
+`\(SS_{\text{within}}\)` is our Ef; `\(SS_{\text{between}}\)` is our Er - Ef; `\(MS_{\text{within}}\)` is the denominator for all *F*-tests
+
+---
+
+## ANOVA (Source) Table
+
+![](images/emptyftable.png)
+
+---
+
+## ANOVA (Source) Table
+
+Fill in the easy stuff first
+
+![](images/ftabledf.png)
+
+---
+
+## Df for the Full Model
+
+Always the (Number of Participants - Number of Estimated Parameters in Full Model)
+
+How many means did we calculate? 
+
+--
+
+`\begin{equation}
+AB(n-1) \\
+2 \times 2 (4-1) \\
+4 \times3 \\
+12
+\end{equation}`
+
+---
+
+## ANOVA (Source) Table
+
+![](images/df2.png)
+
+---
+
+## ANOVA (Source) Table
+
+![](images/df3.png)
+
+---
+
+## How to calculate `\(SS_{Age}\)`
+
+`\(SS_{Age} = E_R - E_F\)`
+
+`\(Restricted: Y_{ij} = \mu + \text{Problem}_k + AP_{jk} + e_{ijk}\)`
+
+`\(Full: Y_{ij} = \mu + \text{Age}_j + \text{Problem}_k + AP_{jk} + e_{ijk}\)`
+
+---
+
+## Get the `\(E_R\)` for Age
+
+&lt;center&gt;
+&lt;img src="images/erage.png", width = "95%"&gt;
+&lt;/center&gt;
+
+---
+
+## Get the `\(E_F\)` for Age
+
+&lt;center&gt;
+&lt;img src="images/efage.png", width = "95%"&gt;
+&lt;/center&gt;
+
+---
+
+## How to calculate `\(SS_{Age}\)`
+
+`\(SS_{Age} = E_R - E_F\)`
+
+
+```r
+35.75 - 31.75
+```
+
+```
+## [1] 4
+```
+
+&lt;center&gt;
+&lt;img src="images/ssbtwn.png", width = "90%"&gt;
+&lt;/center&gt;
+
+---
+
+## ANOVA (Source) Table
+
+![](images/ssbtwn2.png)
+
+---
+## ANOVA (Source) Table
+
+![](images/ssbtwn3.png)
+
+---
+## Calculating the Interaction ( `\(SS_{AxP}\)` )
+
+`\(H_{0.3}\)` : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+
+`\(H_{0.3}\)` : *Differential performance on problem types is independent of age group*
+
+---
+
+## What does the restricted model say?
+
+Your score = grand mean + some age effect + some problem effect + error
+
+Predicted Score = grand mean + (diffrence between age effect and grand mean) + (difference between problem effect and grand mean)
+
+Predicted Score = Grand Mean + (MeanRow – Grand Mean) + (MeanColumn – Grand Mean)
+
+Predicted Score = Grand Mean + MeanRow – Grand Mean + MeanColumn – Grand Mean 
+
+Predicted Score = MeanRow + MeanColumn – Grand Mean
+
+*Difference between Restricted and Full Models = Squared deviations for each cell from this predicted score*
+
+---
+
+## Interaction Effect
+
+*Difference between Restricted and Full Models = Squared deviations for each cell from this predicted score*
+
+We need to get the deviations + squared deviations of each cell mean from the predicted score
+
+--
+
+`\(\Sigma(\text{Cell mean - Predicted Score})^2\)`
+
+`\(\Sigma(\text{Cell mean - (Mean row + Mean column - Grand mean)})^2\)`
+
+`\(\Sigma(\text{Cell mean - Mean row - Mean column + Grand mean})^2\)`
+
+---
+
+## OG Data
+
+![](images/ogdata.png)
+
+---
+
+## Marginal Means
+
+![](images/margmeans.png)
+
+---
+
+## Calculating the Interaction Effect
+
+![](images/ix1.png)
+
+--
+
+**Sum of deviations is 0!**
+
+---
+## Calculating the Interaction Effect
+
+![](images/ix2.png)
+
+--
+
+Sum them up = 0.5625
+
+Multiply by n per group = 0.5625 * 4 = 2.25
+
+---
+
+## What we just did
+
+- Found the means for each cell in our 2x2 ANOVA
+
+- Took away the effect of each of the 2 factors (Age and Problem)
+
+- Added back the grand mean
+
+- *The extent to which each cell differs from its respective column and row is the difference between a model without an interaction (Restricted) and a model with one (Full)*
+
+---
+
+## ANOVA (Source) Table
+
+![](images/ftableix.png)
+
+---
+
+## `\(SS_{\text{within}}\)`
+
+Error from the full model
+
+The full model allows for the Age effect, the Problem effect, and the Interaction effect. 
+
+So from the full model perspective, the best guess for observation is...
+
+---
+## `\(SS_{\text{within}}\)`
+
+&lt;center&gt;
+&lt;img src="images/ef.png", width = "90%"&gt;
+&lt;/center&gt;
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable1.png)
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable2.png)
+
+---
+
+## ANOVA (Source) Table
+
+![](images/finaltable3.png)
+
+
+```r
+qf(p = .05, df1 = 1, df2 = 12, lower.tail = FALSE)
+```
+
+```
+## [1] 4.747225
+```
+
+---
+
+## What do we conclude?
+
+We have 3 rejected null hypotheses. We interpret:
+
+1) There is a main effect of age; the means of age groups are not equal
+
+2) There is a main effct of problem type; the means of normal vs. tricky math problems are not equal
+
+3) The difference in age groups differs by problem type (and vice versa)
+
+---
+
+## Effect Sizes
+
+![](images/diagrams.png)
+
+---
+
+## Eta-squared
+
+`\(\eta^2 = \frac{SS_{Effect}}{SS_{Total}}\)`
+
+.pull-left[
+&lt;img src="images/etasq.png", width = "100%"&gt;
+]
+
+.pull-right[
+
+`\(\eta^2 = \frac{4}{35.75} = .112\)`
+]
+
+Proportion of the variation in Y that is associated with membership of the different groups defined by X. How much variance in our outcome is associated with Age? 11.2% of *total* variance can be accounted for by Age. 
+
+Hard to compare across studies bc dependent on study's total variance.
+
+---
+
+## Partial eta-squared
+`\(\eta_p^2 = \frac{SS_{Effect}}{SS_{Effect} + SS_{Error}}\)`
+
+.pull-left[
+&lt;img src="images/petasq.png", width = "100%"&gt;
+]
+
+.pull-right[
+
+`\(\eta^2 = \frac{4}{4 + 4.5} = .471\)`
+]
+
+Proportion of the variation in Y that can be explained by X, after accounting for all other variables in th model. How much variance in our outcome is associated with Age, after accounting for Problem, and their interaction? 47.1%.
+
+Same rules of thumb for `\(\eta^2\)`; calculations differ slightly when sample sizes are unequal in cells or when there are more than 2 factors
+
+---
+
+## In `R`
+
+
+```r
+library(here)
+mathproblem = read.csv(here("data/mathproblem.csv"))
+mathproblem
+```
+
+```
+##    Score   Age Problem
+## 1      3 Eight  Normal
+## 2      4 EIght  Normal
+## 3      3 Eight  Normal
+## 4      4 Eight  Normal
+## 5      4  Nine  Normal
+## 6      4  Nine  Normal
+## 7      4  Nine  Normal
+## 8      3  Nine  Normal
+## 9      0 Eight  Tricky
+## 10     0 Eight  Tricky
+## 11     0 Eight  Tricky
+## 12     1 Eight  Tricky
+## 13     2  Nine  Tricky
+## 14     3  Nine  Tricky
+## 15     2  Nine  Tricky
+## 16     1  Nine  Tricky
+```
+
+---
+
+## In `R` - No Interaction
+
+
+```r
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          2  9.161   4.580   9.464  0.00341 ** 
+## Problem      1 20.782  20.782  42.939 2.72e-05 ***
+## Residuals   12  5.808   0.484                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+--
+
+**What's wrong with this?**
+
+---
+
+## In `R` - No Interaction
+
+
+```r
+mathproblem[2,2] &lt;- "Eight"
+mathproblem$Age &lt;- factor(mathproblem$Age)
+mathproblem$Problem &lt;- factor(mathproblem$Problem)
+
+summary(aov(Score ~ Age + Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   7.704   0.0157 *  
+## Problem      1  25.00  25.000  48.148 1.02e-05 ***
+## Residuals   13   6.75   0.519                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+## In `R` - With Interaction
+
+
+```r
+summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   10.67  0.00675 ** 
+## Problem      1  25.00  25.000   66.67 3.05e-06 ***
+## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
+## Residuals   12   4.50   0.375                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
+summary(aov(Score ~ Age * Problem, data = mathproblem))
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Age          1   4.00   4.000   10.67  0.00675 ** 
+## Problem      1  25.00  25.000   66.67 3.05e-06 ***
+## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
+## Residuals   12   4.50   0.375                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+## Plotting
+
+![](21-interactions_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+## Next time
+
+- Within-subjects designs
+
+- Exam 3 review
+
+- Teary goodbyes (until next semester)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

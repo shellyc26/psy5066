@@ -13,8 +13,8 @@
 
 <title>Homework Assignments</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -308,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +325,7 @@ div.tocify {
   <a href="schedule.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lecture Slides
      
     <span class="caret"></span>
@@ -329,81 +333,6 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="lectures/1-intro.html">Introduction</a>
-    </li>
-    <li>
-      <a href="lectures/2-measurement.html">Measurement</a>
-    </li>
-    <li>
-      <a href="lectures/3-describing_data.html">Describing Data 1</a>
-    </li>
-    <li>
-      <a href="lectures/RMarkdown.pdf">RMarkdown</a>
-    </li>
-    <li>
-      <a href="lectures/4-describing_data.html">Describing Data 2</a>
-    </li>
-    <li>
-      <a href="lectures/5-probability.html">Probability</a>
-    </li>
-    <li>
-      <a href="lectures/6-binomial.html">Binomial</a>
-    </li>
-    <li>
-      <a href="lectures/6-normal.html">Normal</a>
-    </li>
-    <li>
-      <a href="lectures/8-sampling.html">Sampling</a>
-    </li>
-    <li>
-      <a href="lectures/exam1review.html">Exam 1 Practice Qs</a>
-    </li>
-    <li>
-      <a href="lectures/9-nhst.html">NHST 1</a>
-    </li>
-    <li>
-      <a href="lectures/10-nhst.html">NHST 2</a>
-    </li>
-    <li>
-      <a href="lectures/11-critiques.html">Criticsims of NHST</a>
-    </li>
-    <li>
-      <a href="lectures/12-open_science.html">Open Science</a>
-    </li>
-    <li>
-      <a href="lectures/13-chisq.html">Chi-Square</a>
-    </li>
-    <li>
-      <a href="lectures/14-one_sample.html">One Sample Tests</a>
-    </li>
-    <li>
-      <a href="lectures/Comparing-Means2.html">Comparing Means</a>
-    </li>
-    <li>
-      <a href="lectures/16-two_means_III.html">Dependent Means</a>
-    </li>
-    <li>
-      <a href="lectures/dataViz.html">Data Viz</a>
-    </li>
-    <li>
-      <a href="lectures/exam2review.html">Exam 2 Review</a>
-    </li>
-    <li>
-      <a href="lectures/17-modelcomparison.html">Model Comparisons</a>
-    </li>
-    <li>
-      <a href="lectures/18-onewayanova.html">Oneway ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/19-multiplecomparisons.html">MC &amp; C</a>
-    </li>
-    <li>
-      <a href="lectures/20-btwn_subj_fctr_lecture.html">2Way ANOVA</a>
-    </li>
-    <li>
-      <a href="lectures/21-interactions.html">Interactions</a>
-    </li>
-    <li>
-      <a href="lectures/22-within.html">Miscellaneous</a>
     </li>
   </ul>
 </li>
@@ -416,92 +345,89 @@ div.tocify {
   <a href="https://github.com/shellyc26/psy5066">GitHub</a>
 </li>
 <li>
-  <a href="https://gradstats-ps5066.slack.com/">Slack</a>
+  <a href="https://quant-i.slack.com/">Slack</a>
 </li>
 <li>
-  <a href="https://wustl.instructure.com/courses/72732">Canvas</a>
+  <a href="https://wustl.instructure.com/courses/94453">Canvas</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Fall2020
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Fall2021
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="lectureVideos.html">Lecture Videos</a>
+      <a href="lectures2021/1-intro.html">Introduction</a>
     </li>
     <li>
-      <a href="lectures2020/1-intro.html">1-Introduction</a>
+      <a href="lectures2021/2-measurement.html">Measurement</a>
     </li>
     <li>
-      <a href="lectures2020/2-measurement.html">2-Measurement</a>
+      <a href="lectures2021/3-describing_data.html">Describing Data 1</a>
     </li>
     <li>
-      <a href="lectures2020/3-describing_data.html">3-Describing Data Part 1</a>
+      <a href="lectures2021/RMarkdown.pdf">RMarkdown</a>
     </li>
     <li>
-      <a href="lectures2020/4-describing_data.html">4-Describing Data Part 2</a>
+      <a href="lectures2021/4-describing_data.html">Describing Data 2</a>
     </li>
     <li>
-      <a href="lectures2020/5_FisherandProbability.pdf">5-Fisher &amp; Probability</a>
+      <a href="lectures2021/5-probability.html">Probability</a>
     </li>
     <li>
-      <a href="lectures2020/6-binomial.html">6a-Binomial</a>
+      <a href="lectures2021/6-binomial.html">Binomial</a>
     </li>
     <li>
-      <a href="lectures2020/6-normal.html">6b-Normal</a>
+      <a href="lectures2021/6-normal.html">Normal</a>
     </li>
     <li>
-      <a href="lectures2020/7-bayes.html">7-Bayes</a>
+      <a href="lectures2021/8-sampling.html">Sampling</a>
     </li>
     <li>
-      <a href="lectures2020/8-sampling.html">8-Sampling</a>
+      <a href="lectures2021/9-nhst.html">NHST 1</a>
     </li>
     <li>
-      <a href="lectures2020/9-nhst.html">9-NHST 1</a>
+      <a href="lectures2021/10-nhst.html">NHST 2</a>
     </li>
     <li>
-      <a href="lectures2020/10-nhst.html">10-NHST 2</a>
+      <a href="lectures2021/11-critiques.html">Criticsims of NHST</a>
     </li>
     <li>
-      <a href="lectures2020/11-critiques.html">11-Critiques</a>
+      <a href="lectures2021/12-open_science.html">Open Science</a>
     </li>
     <li>
-      <a href="lectures2020/12-open_science.html">12-Open Science</a>
+      <a href="lectures2021/13-chisq.html">Chi-Square</a>
     </li>
     <li>
-      <a href="lectures2020/13-chisq.html">13-Chi Square</a>
+      <a href="lectures2021/14-one_sample.html">One Sample Tests</a>
     </li>
     <li>
-      <a href="lectures2020/14-one_sample.html">14-One Sample</a>
+      <a href="lectures2021/Comparing-Means2.html">Comparing Means</a>
     </li>
     <li>
-      <a href="lectures2020/15-two_means_I.html">15a-Comparing Means I</a>
+      <a href="lectures2021/16-two_means_III.html">Dependent Means</a>
     </li>
     <li>
-      <a href="lectures2020/15-two_means_II.html">15b-Comparing Means II</a>
+      <a href="lectures2021/dataViz.html">Data Viz</a>
     </li>
     <li>
-      <a href="lectures2020/16-two_means_III.html">16-Comparing Dependent Means</a>
+      <a href="lectures2021/17-modelcomparison.html">Model Comparisons</a>
     </li>
     <li>
-      <a href="lectures2020/17-modelcomparison.html">17-Model Comparisons</a>
+      <a href="lectures2021/18-onewayanova.html">Oneway ANOVA</a>
     </li>
     <li>
-      <a href="lectures2020/18-onewayanova.pdf">18-Oneway ANOVA</a>
+      <a href="lectures2021/19-multiplecomparisons.html">MC &amp; C</a>
     </li>
     <li>
-      <a href="lectures2020/19-multiplecomparisons.pdf">19-Multiple Comparisons</a>
+      <a href="lectures2021/20-btwn_subj_fctr_lecture.html">2Way ANOVA</a>
     </li>
     <li>
-      <a href="lectures2020/20-btwn_subj_fctr_lecture.html">20-Twoway ANOVA</a>
+      <a href="lectures2021/21-interactions.html">Interactions</a>
     </li>
     <li>
-      <a href="lectures2020/21-twowayWithInteraction.pdf">21-Interactions</a>
-    </li>
-    <li>
-      <a href="lectures2020/22-within.html">22-Within Subjects</a>
+      <a href="lectures2021/22-within.html">Miscellaneous</a>
     </li>
   </ul>
 </li>
@@ -519,53 +445,48 @@ div.tocify {
 </div>
 
 
-<p>Homework assignments will appear here. You’ll be able to access the assignment, as well as any data that may be used. Homework assignments will be posted <strong>at least one week</strong> before they are due. Submit homework assignments via Canvas by the due date and time.</p>
+<p>Homework assignments will appear here. You’ll be able to access the
+assignment, as well as any data that may be used. Homework assignments
+will be posted <strong>at least one week</strong> before they are due.
+Submit homework assignments via Canvas by the due date and time.</p>
 <div id="homework-1" class="section level2">
 <h2>Homework 1</h2>
 <ul>
-<li><a href="homework/homework_1.html">Homework 1 is here</a></li>
-<li>Due on <strong>9/14 by 9:30am</strong></li>
-<li>Peer Review of Homework 1 due <em>9/17 by 9:30am</em></li>
+<li>Homework 1 has not posted yet</li>
+<li>Due on <strong>9/8 by 9:30am</strong></li>
+<li>Peer Review of Homework 1 due <em>9/11 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-2" class="section level2">
 <h2>Homework 2</h2>
 <ul>
-<li><a href="homework/homework_2.html">Homework 2 is here</a></li>
-<li>Due on <strong>9/23 by 9:30am</strong></li>
-<li>Peer Review of Homework 2 due <em>9/26 by 9:30am</em></li>
+<li>Homework 2 has not posted yet</li>
+<li>Due on <strong>9/20 by 9:30am</strong></li>
+<li>Peer Review of Homework 2 due <em>9/23 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-3" class="section level2">
 <h2>Homework 3</h2>
 <ul>
-<li><a href="homework/homework_3.html">Homework 3 is here</a></li>
-<li>Due on <strong>10/21 by 9:30am</strong></li>
-<li>Peer Review of Homework 3 due <em>10/24 by 9:30am</em></li>
+<li>Homework 3 has not posted yet</li>
+<li>Due on <strong>10/27 by 9:30am</strong></li>
+<li>Peer Review of Homework 3 due <em>10/30 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-4" class="section level2">
 <h2>Homework 4</h2>
 <ul>
-<li><a href="homework/homework_4.html">Homework 4 is here</a></li>
-<li>Due on <strong>11/4 by 9:30am</strong></li>
-<li>Peer Review of Homework 4 due <em>11/7 by 9:30am</em></li>
+<li>Homework 4 has not posted yet</li>
+<li>Due on <strong>11/17 by 9:30am</strong></li>
+<li>Peer Review of Homework 4 due <em>11/20 by 9:30am</em></li>
 </ul>
 </div>
 <div id="homework-5" class="section level2">
 <h2>Homework 5</h2>
 <ul>
-<li><a href="homework/homework-5.html">Homework 5 is here</a></li>
-<li>Due on <strong>12/7 by 9:30am</strong></li>
-<li>Peer Review of Homework 5 due <em>12/10 by 9:30am</em></li>
-</ul>
-</div>
-<div id="homework-6" class="section level2">
-<h2>Homework 6</h2>
-<ul>
-<li>Not posted yet</li>
-<li>Due on <strong>12/7 by 9:30am</strong></li>
-<li>Peer Review of Homework 6 due <em>12/10 by 9:30am</em></li>
+<li>Homework 5 has not posted yet</li>
+<li>Due on <strong>12/6 by 9:30am</strong></li>
+<li>Peer Review of Homework 5 due <em>12/9 by 9:30am</em></li>
 </ul>
 </div>
 

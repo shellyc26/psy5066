@@ -1,0 +1,14 @@
+---
+title: 'Putting It Together - Exam 1'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, warning=FALSE, message=FALSE, include = FALSE}
+library(tidyverse)
+```

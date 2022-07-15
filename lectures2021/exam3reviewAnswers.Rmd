@@ -1,0 +1,159 @@
+---
+title: "answer key exam 3 review"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+|               | Ugly Sweater | Not Ugly Sweater |
+|---------------|--------------|------------------|
+| **Christmas** | 7, 6, 9, 8   | 4, 5, 3, 5       |
+| **Hanukkah**  | 4, 8, 10, 7  | 4, 3, 4, 4       |
+| **Kwanzaa**   | 8, 6, 5, 5   | 2, 3, 2, 5       |
+
+------------------------------------------------------------------------
+
+```{r message=FALSE, warning=FALSE}
+holidays = data.frame(
+  Happiness = c(7, 6, 9, 8, 4, 5, 3, 5, 4, 8, 10, 7,
+                4, 3, 4, 4, 8, 6, 5, 5, 2, 3, 2, 5),
+  Holiday = c(rep("Christmas", times = 8),
+              rep("Hanukkah", times = 8),
+              rep("Kwanzaa", times = 8)),
+  Sweater = c(rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4),
+              rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4),
+              rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4))
+)
+
+holidays$Holiday = factor(holidays$Holiday)
+holidays$Sweater = factor(holidays$Sweater)
+
+library(tidyverse)
+```
+
+## Sum of Squares for Holiday
+
+```{r}
+grandMean = round(mean(holidays$Happiness), 2)
+
+ssH = holidays
+ssH$prediction = rep(grandMean, times = nrow(ssH))
+ssH$Error = ssH$Happiness - ssH$prediction
+ssH$E2 = ssH$Error^2
+Er = sum(ssH$E2)
+
+means = holidays %>% 
+  group_by(Holiday) %>% 
+  summarize(m = mean(Happiness))
+
+ssh2 = holidays
+ssh2$prediction = c(rep(5.875, times = 8),
+                    rep(5.5, times = 8),
+                    rep(4.5, times = 8))
+
+ssh2$error = ssh2$Happiness - ssh2$prediction
+ssh2$e2 = ssh2$error^2
+Ef = sum(ssh2$e2)
+
+SSHoliday = Er-Ef
+dfh = 2
+MSHoliday = SSHoliday/dfh
+
+```
+
+## SS Sweater
+
+```{r}
+ssS = holidays
+ssS$prediction = rep(grandMean, times = nrow(ssS))
+ssS$Error = ssS$Happiness - ssS$prediction
+ssS$E2 = ssS$Error^2
+Er = sum(ssS$E2)
+
+means = holidays %>% 
+  group_by(Sweater) %>% 
+  summarize(m = round(mean(Happiness), 2))
+
+sss2 = holidays
+sss2$prediction = c(rep(6.92, times = 4),
+                    rep(3.67, times = 4),
+                    rep(6.92, times = 4),
+                    rep(3.67, times = 4),
+                    rep(6.92, times = 4),
+                    rep(3.67, times = 4))
+
+sss2$error = sss2$Happiness - sss2$prediction
+sss2$e2 = sss2$error^2
+Ef = sum(sss2$e2)
+
+SSSweater = Er-Ef
+dfs = 1
+MSSweater = SSSweater/dfs
+```
+
+## SS Interaction
+
+```{r}
+means = holidays %>% 
+  group_by(Holiday, Sweater) %>% 
+  summarize(m = mean(Happiness))
+
+means$rowMean = NA
+means$colMeans = NA
+means$rowMean[1] = 5.875
+means$rowMean[2] = 5.875
+means$rowMean[3] = 5.5
+means$rowMean[4] = 5.5
+means$rowMean[5] = 4.5
+means$rowMean[6] = 4.5
+
+means$colMeans[1] = 3.67
+means$colMeans[2] = 6.92
+means$colMeans[3] = 3.67
+means$colMeans[4] = 6.92
+means$colMeans[5] = 3.67
+means$colMeans[6] = 6.92
+
+means$Total = NA
+
+for (i in 1:nrow(means)) {
+  means$Total[i] = means$m[i] - means$rowMean[i] - means$colMeans[i] + grandMean
+}
+
+means$Total2 = means$Total^2
+sumInteraction = sum(means$Total2)
+SSInteraction = sumInteraction * 4
+```
+
+|                  | Ugly Sweater | Not Ugly Sweater | Row Means |
+|------------------|--------------|------------------|-----------|
+| **Christmas**    | 7, 6, 9, 8   | 4, 5, 3, 5       | **5.875** |
+| **Hanukkah**     | 4, 8, 10, 7  | 4, 3, 4, 4       | **5.5**   |
+| **Kwanzaa**      | 8, 6, 5, 5   | 2, 3, 2, 5       | **4.5**   |
+| **Column Means** | **6.92**     | **3.67**         | **5.29**  |
+
+## SS Within
+
+```{r}
+ssw = holidays
+ssw$prediction = c(7.50, 7.50, 7.50, 7.50,
+                   4.25, 4.25, 4.25, 4.25,
+                   7.25, 7.25, 7.25, 7.25, 
+                   3.75, 3.75, 3.75, 3.75, 
+                   6.00, 6.00, 6.00, 6.00, 
+                   3.00, 3.00, 3.00, 3.00)
+
+ssw$error = ssw$Happiness - ssw$prediction
+ssw$e2 = ssw$error^2
+SSWithin = sum(ssw$e2)
+```
+
+```{r}
+summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
+```
+

@@ -1,7 +1,7 @@
 ---
 title: "Psych 5066: Quantitative Methods I"
 subtitle: "Department of Psychological & Brain Sciences, Washington University in St. Louis"
-author: "Fall 2021 | Somers Family Hall 216B"
+author: "Fall 2022 | Somers Family Hall 216"
 date: "Tue/Thur 9:30am - 10:50am"
 output: 
   html_document:
@@ -13,13 +13,13 @@ output:
 - Pronouns: she/her
 - Office Hours: By appointment. [Make an appointment here](https://calendly.com/shelly-cooper/30min). 
 
-**Chad Miller** -- [mchad@wustl.edu](mailto:mchad@wustl.edu)
+**Tabea Springstein** -- [tspringstein@wustl.edu ](mailto:tspringstein@wustl.edu )
 
-- Pronouns: he/him
+- Pronouns: she/her
 - Office Hours: By appointment
 - *If you are in Psychology*
 
-**Alex Park** -- [alexanderpark@wustl.edu ](mailto:alexanderpark@wustl.edu)
+**Messi Lee** -- [hojunlee@wustl.edu ](mailto:hojunlee@wustl.edu)
 
 - Pronouns: he/him
 - Office Hours: By appointment

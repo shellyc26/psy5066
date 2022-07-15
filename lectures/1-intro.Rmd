@@ -66,9 +66,9 @@ My job is to balance theory and application. Everyone is coming here with *extre
 
 [Class Website](https://shellyc26.github.io/psy5066/index.html) -- syllabus, lecture slides, homeworks etc. 
 
-[Slack Workspace](https://gradstats-ps5066.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
+[Slack Workspace](https://quant-i.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
 
-[Canvas](https://wustl.instructure.com/courses/72732) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
+[Canvas](https://wustl.instructure.com/courses/94453) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
 
 Data from class examples can be found on our [GitHub](https://github.com/shellyc26/psy5066) site in the `data` folder
 
@@ -352,6 +352,6 @@ class: inverse
 
 ## Next time
 
-Measurement validity
+Describing data
 
 Remainder of class (if time)...`Rprojects`

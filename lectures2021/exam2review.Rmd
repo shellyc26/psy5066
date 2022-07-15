@@ -1,0 +1,179 @@
+---
+title: 'Exam 2 Practice Problems'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, warning=FALSE, message=FALSE, include = FALSE}
+library(tidyverse)
+
+```
+
+```{r, echo = FALSE}
+candy = read.csv("../data/candy.csv")
+candy$Type = factor(candy$Type)
+candy$Maker = factor(candy$Maker)
+
+candy
+```
+
+---
+**Group 1**
+You want to know if there is a difference in the number of calories in candy based on if it contains chocolate. With a degrees of freedom of 6.2709, the critical value is +/- 2.4. 
+
+**Group 2**
+You know that the mini versions of candy have fewer calories than the original versions, but you want to know if they have markedly fewer calories than the original or if the mini versions have roughly a similar amount of calories to the original versions.
+
+**Group 3**
+You are concerned that your results are biased because some makers only make chocolate candy, then those might have more calories than the candy from a brand that doesn't make chocolate. You need to know if chocolate/not chocolate is somehow related to the producer. However, you know that the data shown here are limited. You pool from other sources and get the following information: Hershey's makes 18 types of non-chocolate candy and 46 types of chocolate candy. Mars, Inc. makes 22 types of non-chocolate candy and 37 types of chocolate candy. Assume a critical value of 3.8
+
+---
+
+## Group 1 - Independent Samples *t*
+
+Need standard error:
+
+```{r}
+variances = candy %>% 
+  group_by(Type) %>% 
+  summarize(vars = var(Calories))
+
+variances
+
+sdChoc = variances$vars[1]
+sdNonChoc = variances$vars[2]
+N1 = 5
+N2 = 5
+
+welchSE = sqrt((sdChoc/N1) + (sdNonChoc/N2))
+welchSE
+```
+
+---
+
+## Group 1 - Independent Samples *t*
+
+Get test statistic
+
+```{r}
+means = candy %>% 
+  group_by(Type) %>% 
+  summarize(means = mean(Calories))
+
+means
+
+meanChoc = means$means[1]
+meanNotChoc = means$means[2]
+
+tStatistic = (meanChoc - meanNotChoc)/welchSE
+tStatistic
+```
+---
+## Group 1 - Independent Samples *t*
+
+```{r}
+t.test(Calories ~ Type, data = candy)
+
+```
+
+---
+## Group 2 - Paired Samples *t*
+
+```{r}
+candy$diff = candy$Calories - candy$MiniCalories
+meanDiff = mean(candy$diff)
+sdDiff = sd(candy$diff)
+NPairs = 10
+
+seDiff = sdDiff/(sqrt(10))
+
+tStatisticPaired = meanDiff/seDiff
+tStatisticPaired
+
+pt(tStatisticPaired, df = NPairs-1, lower.tail = F)
+
+```
+
+---
+## Group 2 - Paired Samples *t*
+
+```{r}
+t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
+```
+
+---
+## Group 3 - Chi-square association
+
+Null = There is no relationship (not associated, are independent)
+
+Alternative = There is a relationship (are associated, are dependent)
+
+```{r}
+newCandy = data.frame(Hershey = c(18, 46),
+           Mars = c(22, 37))
+rownames(newCandy) <- c("Non-Chocolate", "Chocolate")
+newCandy
+```
+
+---
+## Group 3 - Chi-square association
+Expected frequencies
+rowsum * columsum/total n
+
+```{r, echo = FALSE}
+newCandyEF = data.frame(Hershey = c("40*64/123", "83*64/123"),
+           Mars = c("40*59/123", "83*59/123"))
+rownames(newCandyEF) <- c("Non-Chocolate", "Chocolate")
+newCandyEF
+
+newCandyEF2 = data.frame(Hershey = c(20.81, 43.19),
+           Mars = c(19.19, 39.81))
+rownames(newCandyEF2) <- c("Non-Chocolate", "Chocolate")
+newCandyEF2
+```
+
+---
+## Group 3 - Chi-square association
+
+Now plug in those expected frequencies
+
+```{r, echo=FALSE}
+newCandy3 = data.frame(Hershey = c("(18-20.81)^2/20.81", "(46-43.19)^2/43.19"),
+           Mars = c("(22-19.19)^2/19.19", "(37-39.81)^2/39.81"))
+rownames(newCandy3) <- c("Non-Chocolate", "Chocolate")
+newCandy3
+
+newCandy4 = data.frame(Hershey = c(.38, .18),
+           Mars = c(.41, .20))
+rownames(newCandy4) <- c("Non-Chocolate", "Chocolate")
+newCandy4
+
+
+```
+
+.38 + .41 + .18 + .2 = 1.17
+
+---
+
+## Group 3 - Chi-square association
+
+df = (r-1)(c-1)
+df = 1
+
+chi(1) = 1.17
+
+--
+
+```{r}
+pchisq(q = 1.17, df = 1, lower.tail = F)
+```
+
+```{r}
+chisq.test(newCandy, correct = FALSE)
+```
+

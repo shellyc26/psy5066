@@ -3,7 +3,7 @@
   <head>
     <title>Real Intro &amp; Measurement Scales</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,7 +13,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Real Intro &amp; Measurement Scales
+]
 
 ---
 
@@ -73,9 +75,9 @@ My job is to balance theory and application. Everyone is coming here with *extre
 
 [Class Website](https://shellyc26.github.io/psy5066/index.html) -- syllabus, lecture slides, homeworks etc. 
 
-[Slack Workspace](https://gradstats-ps5066.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
+[Slack Workspace](https://quant-i.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
 
-[Canvas](https://wustl.instructure.com/courses/72732) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
+[Canvas](https://wustl.instructure.com/courses/94453) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
 
 Data from class examples can be found on our [GitHub](https://github.com/shellyc26/psy5066) site in the `data` folder
 
@@ -359,7 +361,7 @@ class: inverse
 
 ## Next time
 
-Measurement validity
+Describing data
 
 Remainder of class (if time)...`Rprojects`
     </textarea>
@@ -409,6 +411,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

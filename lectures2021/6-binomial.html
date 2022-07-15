@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Binomial Distribution</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Binomial Distribution
+
+---
+
+
+
+
+The **binomial distribution** is the theoretical probability distribution appropriate when modeling the expected outcome, X, of N trials (or event sequences) that have the following characteristics:
+
+--
+- The outcome on every trial is binary 
+
+    - also called a **Bernoulli trial**
+
+--
+
+- The probability of the target outcome (usually called a “success”) is the same for all N trials 
+
+--
+
+- The outcomes of the trials are *independent*
+
+  - The probability of a success in any one trial must be the same from trial to trial
+
+--
+
+- The number of trials is fixed (you know how many times you're flipping a coin)
+
+---
+
+If these assumptions hold then `\(X\)` is a binomial random variable representing the *expected number of successes* over `\(N\)` trials, with expected success on each trial of `\(\theta\)` .
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+
+A common and compact way of stating the same thing is: 
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+
+`$$\Huge X \sim B(N, \theta)$$`
+.small[
+Note: Last lecture we used `\(p\)` to denote the probability of success. This time we'll use `\(\theta\)`. `\(\theta\)` is more correct for the population parameter, but you'll see `\(p\)` used a lot, too.
+]
+---
+
+The probability distribution for X is defined by the following **probability mass function**: 
+
+`$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
+
+The probability mass function tells us what to expect for any particular value of X in the sample space.
+
+---
+
+The probability distribution for X is defined by the following **probability mass function**: 
+
+`$$\Large P(X = k|n,p) = \bigg(\frac{n}{k}\bigg)p^k(q)^{n-k}$$`
+
+This is the same exact thing as previous slide! 
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+--
+
+All theoretical distributions have a mass function (if discrete) or a density function (if continuous). These are the defining equations that tells us the generating process for the behavior of X.
+
+---
+
+`$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
+
+***
+
+`\(\mathbf{P(X|\theta,N)}\)` is a conditional probability: the probability of X **given** `\(\theta\)` and `\(N\)`.
+
+- X is the number of successful trials (in our other formula this is k -- as in r correct "choices")
+
+- N is the number of trials; must be independent
+
+- `\(\theta\)` is the probability of success on any given trial (in our other formula, this is p)
+
+
+`\(\theta\)` and N are parameters of the binomial distribution.
+
+The probability mass function tells us what to expect for any particular value of X in the sample space.
+
+---
+
+`$$\Large P(X|\theta,N) = \frac{N!}{X!(N-X)!}\theta^X(1-\theta)^{N-X}$$`
+
+***
+
+`\(\mathbf{\theta^X(1-\theta)^{N-X}}\)` is the probability of any particular instance of X.  
+- This is just a general form of the basic probability rule:
+
+`$$A \text{ and } B = P(A \cap B) = P(A)P(B)$$`
+- AKA the intersection AKA `\(p(success) \times p(failure)\)`
+- Note that this form of the rule assumes *independent events*.
+
+---
+
+## Binomial Distribution
+
+$$
+\Large p(X=k); n, p = \binom{n}{k}p^k(1-p)^{n-k}
+$$
+
+- Parameters of this distribution are `\(n\)` and `\(p\)`
+- If we change the parameters, we change the distribution
+- **Family** of distributions
+
+---
+
+## Family of Distributions
+
+.pull-left[
+![](6-binomial_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](6-binomial_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+---
+
+## Parameters
+
+Every probability distribution has an **expected value**.
+  - EV is essentially the average value if you repeated the experiment...a lot
+  - Most likely result of the probability function
+  - The thing we would expect to happen if we have no other information than the parameters of the distribution
+  - The *long-run* average over an infinite amount of trials or samplings
+
+---
+## Averages vs. EV
+
+What is the average number of successes out of 5 flips? 
+
+&lt;img src="6-binomial_files/figure-html/binom-plot-1.png" width="50%" /&gt;
+
+---
+
+## Parameters
+
+
+Every probability distribution has an **expected value**. 
+
+For the binomial distribution:
+
+`$$E(X) = N\theta$$`
+For 3 Heads out of 5 flips, `\(E(X) = 5 \times .5 = 2.5\)`
+
+--
+
+Each probability distribution also has a variance. For the binomial:
+
+`$$Var(X) = N\theta(1-\theta)$$`
+--
+
+Importantly, this means our mean and variance are related in the binomial distribution, because they both depend on `\(\theta\)`. How are they related?
+
+---
+
+## Let's set our mean = variance
+
+
+$$ 
+`\begin{equation}
+N\theta = N\theta(1-\theta) \\
+Np = Np(1-p) \\
+Np = Np(q) \\
+\text{mean} = \text{mean} \times q
+\end{equation}`
+$$
+
+
+--
+
+- If q = 1, then `\(E(X) = Var(X)\)` 
+- Else, `\(E(X) &gt; Var(X)\)` 
+
+---
+
+.left-column[
+The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome is not quite right either.
+]
+
+![](6-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+- If you have a discrete distribution with a small N, these estimates may not have a sensible meaning
+---
+
+The **probability mass (density) function** allows us to answer other questions about the sample space that might be more important, or at least realistic.
+- mass = discrete
+- density = continuous
+
+--
+
+I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.
+ &gt; "At or below what outcome in the sample space do .75 of the outcomes fall?"
+
+This is a **percentile or quantile** question. 
+
+--
+
+I might want to know the proportion of outcomes in the sample space that fall at or below a particular outcome. This is a **cumulative proportion** question.
+
+---
+At or below what outcome in the sample space do 75% of the outcomes fall? What is the outcome? Providing the `75%`, trying to find the `2`...
+
+![](6-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
+
+---
+What proportion of outcomes in the sample space that fall at or below a given outcome? What percentage of outcomes fall at or below 2? Providing the `2`, looking for the `75%`
+
+.pull-left[
+![](6-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+.pull-right[
+![](6-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+
+The binomial is of interest beyond describing the behavior of dice and coins.
+
+Many practical outcomes might be best described by a binomial distribution.
+
+For example, suppose I give a 40-item multiple choice test, with each question having 4 options.
+
+* I am worried that students might do well by chance alone.  I would not want to pass students in the class if they were just showing up for the exams and guessing for each question.
+
+--
+
+* What are the parameters in the binomial distribution that will help me address this question?
+  - `\(N = 40\)`
+  - `\(\theta = .25\)`
+
+---
+
+![](6-binomial_files/figure-html/binom-plot3-1.png)&lt;!-- --&gt;
+
+???
+I could use this distribution to help me decide if a given student is consistent with a guessing model.
+
+Nearly all of the outcomes expected for guessers fall below the minimum passing score (60%, D-, 24).
+
+---
+
+How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?
+
+$$P(24|.25, 40) + P(25|.25,40) + P(26|.25,40) + ... + P(40|.25, 40) $$
+
+--
+
+In R, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
+
+The probability of getting 23 questions or fewer correct:
+
+
+```r
+pbinom(q = 23, size = 40, prob = .25)
+```
+
+```
+## [1] 0.9999972
+```
+
+--
+
+The probability of getting 24 or more questions correct:
+
+```r
+#Note the use of the Law of Total Probability here
+
+1-pbinom(q = 23, size = 40, prob = .25)
+```
+
+```
+## [1] 2.825967e-06
+```
+
+---
+
+Cumulatively, what proportion of guessers will fall below each score?
+
+![](6-binomial_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+???
+
+Seems safe to assume that, practically speaking, all guessers will fall below the minimally passing score.
+
+---
+## There’s always a but
+
+But, what assumptions are we making and what consequences will they have?
+
+
+* The outcome on every trial is binary (also called a Bernoulli trial)
+* The probability of the target outcome (usually called a "success") is the same for all N trials
+* The trials are independent `\(P(A\cap B) = P(A|B)P(B)=P(A)P(B)\)`
+* The number of trials is fixed
+
+
+In probability and statistics, if the assumptions are wrong then inferences based on those assumptions could be wrong too, perhaps seriously so.
+
+---
+
+&gt; All models are wrong, but some models are useful.  (G.E.P. Box)
+
+We might have viable alternative models:
+
+* **Geometric distribution:**  Used if we are interested in the number of trials required for one "success" to occur 
+  * "how many times do I start my computer before it fails to start at all?"
+  
+
+* **Negative binomial distribution:** Used if we are interested in the number of successes in a series of repeated trials until a specified number of failures are seen 
+  * "A child won't return from trick or treating until they get 5 full-size candy bars. What is the probability that they will have to visit 34 homes to get this?"
+
+---
+
+.left-column[
+
+.small[As N increases, the binomial becomes more normal in appearance.
+
+Because of the difficulties in calculating large factorials, there is a large-sample normal approximation to the binomial. The normal distribution is useful for a lot of other reasons too.
+]
+]
+
+
+![](6-binomial_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+## Next time...
+
+the normal distribution
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
