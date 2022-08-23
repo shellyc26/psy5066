@@ -103,15 +103,3 @@ Now make a scatterplot for each of these 3 relationships. Include a linear best 
 
 ```
 
-## Question 6
-Using a function (aka not by hand) get the correlation between average perception of freedom in a country and typical generosity of its citizens. 
-
-  - Create a scatterplot showing the relationship between freedom and generosity
-  
-  - Referencing the scatterplot, consider the different threats to the validity of a correlation. Are there any that you are concerned about? Are there any that you don't think are a problem?
-  
-  - If you had to guess, do you think the correlation you calculated (a) underestimates the strength of the true relationship between freedom and generosity, (b) overestimates this relationship, or (c) does a good job representing the relationship? Explain your reasoning.
-  
-```{r q6}
-
-```
