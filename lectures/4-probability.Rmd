@@ -475,7 +475,7 @@ But a specific sequence of independent outcomes is just one way we could have X 
 - We need to know **how many possible ways** we could get X successes in N trials
   - HHHTT, HTHTH, TTHHH etc...
 
-Remaining part of the equation is the combination rule fro probability theory, $\bigg(\frac{N}{k}\bigg)$, it tells us how many different ways this can happen
+Remaining part of the equation is the combination rule for probability theory, $\bigg(\frac{N}{k}\bigg)$, it tells us how many different ways this can happen
 
 ---
 

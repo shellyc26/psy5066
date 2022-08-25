@@ -1,5 +1,5 @@
 ---
-title: 'Describing Data Part 1'
+title: 'Describing Data Part 2'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -10,574 +10,587 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(tidyverse) # for pipes and plots
-library(lsr) # for mode and maxFreq functions
-
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+library(MASS) # for simulating variables with specific correlations
+library(tidyverse) # for graphing
+library(ggExtra) # for marginal distributions
+library(psych) # for dataset showing content overlap
 ```
+### Last time
+
+.pull-left[### Population Variability
+
+**Sums of squares**
+$$\small SS = \Sigma(X_i-\mu_x)^2$$
+**Variance**
+$$\small \sigma^2 = \frac{\Sigma(X_i-\mu_x)^2}{N} = \frac{SS}{N}$$
+**Standard devation**
+$$\scriptsize \sigma = \sqrt{\frac{\Sigma(X_i-\mu_x)^2}{N}}= \sqrt{\frac{SS}{N}} = \sqrt{\sigma^2}$$]
 
 
-## Why do we describe data?
-
-- Understand your data
-
-  - There's a lot to learn from descriptive statistics
-
-- Find errors in data entry or collection
-
+.pull-right[
+###Sample variability
+**Sums of squares**
+$$\small SS = \Sigma(X_i-\bar{X})^2$$
+**Variance**
+$$\small s^2 = \frac{\Sigma(X_i-\bar{X})^2}{N-1} = \frac{SS}{N-1}$$
+**Standard devation**
+$$\scriptsize s = \sqrt{\frac{\Sigma(X_i-\bar{X})^2}{N-1}}= \sqrt{\frac{SS}{N-1}} = \sqrt{s^2}$$]
 ---
 
-## Happiness
+## Bi-variate descriptives
 
-Examples today are based on data from the [2015 World Happiness Report](https://worldhappiness.report/ed/2015/), which is an annual survey part of the [Gallup World Poll](https://www.gallup.com/178667/gallup-world-poll-work.aspx). 
+### Covariation 
 
-The dataset is available on our GitHub site in the `data` folder, for those who want to play along at home.
+"Sum of the cross-products"
 
----
 
-```{r}
-world = read.csv("../data/world_happiness_2015.csv")
-world
-```
+### Population
+$$SP_{XY} =\Sigma(X_i−\mu_X)(Y_i−\mu_Y)$$
+
+### Sample
+$$ SP_{XY} =\Sigma(X_i−\bar{X})(Y_i−\bar{Y})$$
+
 
 ???
-Data measured at country level, one row per country.
 
-Draw attention to `NA`s.
+**What does a large, positive SP indicate?**
+A positive relationship, same sign
+
+**What does a large, negatve SP indicate?**
+A negative relationship, different sign
+
+**What does SP close to 0 indicate?**
+No relationship
+
+
+
 ---
 
-```{r}
-names(world)
-```
+## Covariance
+Sort of like the variance of two variables
 
-.small[
-**Happiness**: “Please imagine a ladder, with steps numbered from 0 at the bottom to 10 at the top. The top of the ladder represents the best possible life for you and the bottom of the ladder represents the worst possible life for you. On which step of the ladder would you say you personally feel you stand at this time?”
+### Population
+$$\sigma_{XY} =\frac{\Sigma(X_i−\mu_X)(Y_i−\mu_Y)}{N}$$
 
-**GDP**: Log gross domestic product per capita
+### Sample
+$$s_{XY} = cov_{XY} =\frac{\Sigma(X_i−\bar{X})(Y_i−\bar{Y})}{N-1}$$
 
-**Support**: “If you were in trouble, do you have relatives or friends you can count on to help you whenever you need them, or not?”    
 
-**Life**: Healthy life expectancy at birth
+---
 
-**Freedom**: “Are you satisfied or dissatisfied with your freedom to choose what you do with your life?”
+## Covariance table
 
-**Generosity**: “Have you donated money to a charity in the past month?” (residual, adjusting for GDP)
 
-**Corruption**: “Is corruption widespread throughout the government or not” and “Is corruption widespread within businesses or not?” (average of 2 questions)
-
+.large[
+$$\mathbf{K_{XX}} = \left[\begin{array}
+{rrr}
+\sigma^2_X & cov_{XY} & cov_{XZ} \\
+cov_{YX} & \sigma^2_Y & cov_{YZ} \\
+cov_{ZX} & cov_{ZY} & \sigma^2_Z
+\end{array}\right]$$
 ]
 
+
+$cov_{xy} = cov_{yx}$ 
+
+---
+## Covariance table
+
+
+.large[
+$$\mathbf{K_{XX}} = \left[\begin{array}
+{rrr}
+\sigma^2_X & 126.5 & 5.2 \\
+126.5 & \sigma^2_Y & cov_{YZ} \\
+5.2 & cov_{ZY} & \sigma^2_Z
+\end{array}\right]$$
+]
+
+
+Which variable, $Y$ or $Z$, does $X$ have greater relationship with?
+
+--
+
+Can't know because you don't know what units they're measured in!
+
 ---
 
-## Distributions
+## Correlation
 
-A **distribution** often refers to a description of the [relative] number of times a variable X will take each of its unique values. 
+- Measure of association
 
-```{r, fig.height=5}
-hist(world$Happiness, breaks = 30, main = "Distribution of happiness scores", 
-     xlab = "Happiness")
+- How much two variables are *linearly* related
+
+- -1 to 1
+
+- Sign indicates direction of relationship
+
+- Invariant to changes in mean or scaling
+
+---
+
+## Correlation
+
+Pearson product moment correlation
+
+### Population
+$$\rho_{XY} = \frac{\Sigma z_Xz_Y}{N} = \frac{SP}{\sqrt{SS_X}\sqrt{SS_Y}} = \frac{\sigma_{XY}}{\sigma_X \sigma_Y}$$
+### Sample
+$$r_{XY} = \frac{\Sigma z_Xz_Y}{n-1} = \frac{SP}{\sqrt{SS_X}\sqrt{SS_Y}} = \frac{s_{XY}}{s_X s_Y}$$
+???
+
+**Why is it called the Pearson Product Moment correlation?**
+Pearson = Karl Pearson
+Product = multiply
+Moment = variance is the second moment of a distribution
+---
+
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+mu = c(50, 5)
+Sigma = matrix(c(.8, .5, .5, .7), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 150, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
 ```
-???
 
-One common assumption is that the data are normally distributed.  
+```{r, out.width='50%'}
+data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
+```
 
----
-
-## Moments of a distribution
-
-1. Mean
-2. Variance
-3. Skew
-4. Kurtosis
-
-???
-
-The first two moments (mean and variance) will be central to many inferential procedures (e.g., ANOVA). We will make assumptions about the other two moments (skew and kurtosis) in order to use some statistical procedures.  
-
----
-
-## Mean, $\mu$
-
-- The **mean** is the average
-
-- The population mean is represented by the Greek symbol $\mu$
-
-- The sample mean is represented by the Latin symbol $\bar{X}$
-
-- Example: a set of numbers is:  `7, 7, 8, 3, 9, 2`. 
-
-$$\mu = \frac{\Sigma(x_i)}{N}=\frac{7+7+8+3+9+2}{6}=\frac{`r sum(c(7,7,8,3,9,2))`}{6}=`r mean(c(7,7,8,3,9,2))`$$
-
-
----
-
-## Properties of the mean
-
-- The mean can take a value not found in the dataset. 
+What is the correlation between these two variables?
 
 --
 
-- Fulcrum of the data
-
---
-
-- The mean is strongly influenced by outliers. 
-
---
-
-- Deviations from the mean sum to 0
-
---
-
-- Can only be used with interval- and ratio-level variables. 
-
-???
-
-Balancing point of the data. 
-  The farther a data point is from the mean, the greater 'weight' it has. 
-Draw this for students:
-![](images/fulcrum.jpg)
----
-It's important to remember that the mean of a population (or group) may not represent well some (or any) members of the population.
-
-- Example: André-François Raffray and the French apartment
-
-![](images/apartment.jpg)
-
-???
-
-lawyer André-François Raffray in 1965
-
-agreed to pay a woman $2500 francs each month and when she died, he would take possession of the apartment. 
-
-Average life expectancy of French women was 74.5. Andre was 47 years old
-
-the woman lived another 32 years to become the oldest person on record, outliving Andre by two years. He had paid more than twice the market value for the apartment
+Correlation = `r round(cor(data$x, data$y),2)`
 
 ---
-## Other measures of central tendency
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+mu = c(10, 100)
+Sigma = matrix(c(.8, -.3, -.3, .7), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 150, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
+```
 
-- **Median** -- the middle point of the data
-  - e.g., in the set of numbers `7, 7, 8, 3, 9, 2`, the median number is 7. 
-  - Can be used with ordinal-, interval-, or ratio-level variables.
-  
-- **Mode** -- the number that most commonly occurs in the distribution. 
-    - e.g., in the set of numbers above, the mode is 7.
-    - Can be used with any kind of variable.
+```{r, out.width='50%'}
+data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
+```
+
+What is the correlation between these two variables?
+
+--
+
+Correlation = `r round(cor(data$x, data$y),2)`
+
+---
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+mu = c(3, 4)
+Sigma = matrix(c(.8, 0, 0, .7), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 150, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
+```
+
+```{r, out.width='50%'}
+data %>% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
+```
+
+What is the correlation between these two variables?
+
+--
+
+Correlation = `r round(cor(data$x, data$y),2)`
+
+---
+
+## Effect size
+
+- Recall that *z*-scores allow us to compare across units of measure; the products of standardized scores are themselves standardized. 
+
+- The correlation coefficient is a **standardized effect size** which can be used communicate the strength of a relationship.
+
+- Correlations can be compared across studies, measures, constructs, time. 
+
+- Example: the correlation between age and height among children is $r = .70$. The correlation between self- and other-ratings of extraversion is $r = .25$. 
     
 ---
 
-## Center and spread
+## What is a large correlation?
 
-- Distributions are most often described by their first two moments, mean and **variance**. 
-- Typically, these moments are the two used in common inferential techniques. 
+--
+- [Cohen (1988)](http://www.utstat.toronto.edu/~brunner/oldclass/378f16/readings/CohenPower.pdf): .1 (small), .3 (medium), .5 (large)
+    - Often forgot: Cohen said only to use them when you had nothing else to go on, and has since regretted even suggesting benchmarks to begin with. 
 
 --
 
-- The mean represents the average score in a distribution. A good measure of spread will tell us something about how the typical score deviates from the mean.
-
---
-
-- Why can't we use the average deviation?
+- $r^2$: Proportion of variance "explained"
+    - as [Ozer & Funder (2019)](https://uopsych.github.io/psy611/readings/Ozer_Funder_2019.pdf) discuss, we're not really explaining anything and the change in scale can mess up our interpretations if we're not careful.
 
 ---
 
-## Average deviation
+## What are good benchmarks? 
 
-```{r}
-x = c(7,7,8,3,9,2)
-mean(x)
-x - mean(x)
-sum(x - mean(x))
-sum(x - mean(x))/length(x)
-```
+From Ozer & Funder (2019)
 
----
-
-## Sums of squares
-
-Our solution is to square deviations.
-
-```{r}
-x = c(7,7,8,3,9,2)
-mean(x)
-deviation = x - mean(x)
-deviation^2
-sum(deviation^2)
-```
-
-The sum of squared deviations is referred to as **the Sum of Squares (SS)** 
+- Classic social psych studies: $r = .36-.42$
+- Scarcity increases the perceived alue of a commodity $r = .12$
+- People attribute failures to bad luck $r = .10$
+- Communicators perceived as more credible are more persuasive $r = .10$
+- People in a bad mood are more aggressive $r = .41$
+- Antihistamine and symptom relief $r = .11$
+- Ibuprofen and pain relief $r = .14$
+- Height and weight $r = .44$
 
 ---
 
-## Variance
+## What are good benchmarks? 
 
-We calculate the average squared deviation: this is our variance, $\sigma^2$:
+**Implications**
+- Don't dismiss small effects
+- Be skeptical of large effects
 
-```{r}
-sum((x - mean(x))^2)/length(x)
-```
-
----
-
-## Variance
-
-### Good things about variance:
-- It's additive.
-  - Given two variables X and Y, if I create $Z = X + Y$ then $Var(Z) = Var(X) + Var(Y)$
-- Represents all values in a dataset
-
---
-
-### Bad things about variance:
-- What the heck does it mean?
-
----
-
-## Standard Deviation
-
-**Standard deviation $\sigma$** is the square root of the variance. 
-```{r}
-sqrt(sum(deviation^2)/length(deviation))
-```
-
---
-
-<img src="images/sdVariants.png" style="width:70%">
-
+**Recommendations**
+- Report effect sizes 
+- Use large samples -- remember bias?
+- Report effect sizes in context
+- Stop using empty terminology
+- Revise guidelines
 
 ???
-We'll get to expected values when we talk about probability distributions, but for now, treat the expected value as the mean of a continuous variable.
+**What are good benchmarks?**
+- Classic social psych studies: $r$ between .35 and .45
+- scarcity increases the perceived value of a commodity ($r = .12$), 
+- people attribute failures to bad luck ($r = .10$), 
+- communicators perceived as more credible are more persuasive ($r = .10$)
+- people in a bad mood are more aggressive ($r = .41$)
+- SES and IQ predicting mortality $r = 25$
+
+- Antihistomine and symptom relief: $r = .11$
+- Ibuprofen and pain relief: $r = .14$
+- Men weigh more than women: $r = .26$
+- High elevations have lower annual temps: $r = .34$
+- Height and weight $r = .44$
 
 ---
+
+## What affects correlations?
+
+It's not enough to calculate a correlation between two variables. You should always look at a figure of the data to make sure the number accurately describes the relationship. Correlations can be easily fooled by qualities of your data, like:
+
+- Skewed distributions
+
+- Outliers
+
+- Restriction of range
+
+- Nonlinearity
+
+---
+
+## Skewed distributions
+
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+mu = c(3, 4)
+Sigma = matrix(c(.8, .2, .2, .7), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 150, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
+data$x = data$x^4
+```
+
+```{r, fig.height = 5}
+p = data %>% ggplot(aes(x=x, y=y)) + geom_point()
+ggMarginal(p, type = "density")
+```
+---
+
+## Outliers
+
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+mu = c(3, 4)
+Sigma = matrix(c(.8, 0, 0, .7), ncol =2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 50, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
+data[51, ] = c(7, 10)
+```
+
+```{r, fig.height = 5}
+data %>% ggplot(aes(x=x, y=y)) + geom_point() 
+```
+---
+
+## Outliers
 
 .pull-left-small[
 .code-small[
-```{r, eval = FALSE, warning = FALSE, message = FALSE}
-world %>% ggplot(aes(x = Happiness)) + 
-  geom_bar(fill = "gray") +
-  scale_x_binned() +
-  geom_vline(aes(xintercept = mean(Happiness))) +
-  geom_vline(aes(xintercept = median(Happiness))) + 
-  geom_label(aes(x = mean(Happiness), y = maxFreq(Happiness)), label = "mean") +
-  geom_label(aes(x = median(Happiness), y = maxFreq(Happiness)*2), label = "median") +
-  labs(y = "Frequency of Happiness") +
-  theme_bw()
+```{r, eval=FALSE, message = FALSE, warning = FALSE}
+data %>% ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") +
+  geom_smooth(data = data[-51,], 
+              method = "lm", 
+              se = FALSE)
 ```
-  ]
+]
 ]
 
 .pull-right-large[
-
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-world %>% ggplot(aes(x = Happiness)) + 
-  geom_bar(fill = "gray") +
-  scale_x_binned() +
-  geom_vline(aes(xintercept = mean(Happiness, na.rm=T))) +
-  geom_vline(aes(xintercept = median(Happiness, na.rm=T))) + 
-  geom_label(aes(x = mean(Happiness, na.rm=T), y = maxFreq(Happiness, na.rm=T)), label = "mean") +
-  geom_label(aes(x = median(Happiness, na.rm=T), y = maxFreq(Happiness, na.rm=T)*2), label = "median") +
-  labs(y = "Frequency of Happiness") +
-  theme_bw()
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+data %>% ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") +
+  geom_smooth(data = data[-51,], 
+              method = "lm", 
+              se = FALSE)
 ```
-
 ]
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-In a normal distribution, the mean, median, and mode are all relatively equal. 
-
 ---
-  
-## Skew and Kurtosis
-  
-  Moments 3 and 4 of a distribution are **skew** and **kurtosis**.
 
-- Skewness = asymmetry
-  - Negative skew = tail pointed towards the negative values (left)
-  - Positive skew = tail pointed towards the positive values (right)
+## Restriction of range
 
-- Kurtosis = pointyness
-  - Too pointy = leptokurtic
-  - Perfect = mesokurtic
-  - Too flat = platykurtic (as in platypus!)
+```{r, echo = FALSE}
+set.seed(1010191) # so we all get the same random numbers
+mu = c(100, 4)
+Sigma = matrix(c(.7, .4, 4, .75), ncol = 2) #diagonals are reliabilites, off-diagonals are correlations
+data = mvrnorm(n = 150, mu = mu, Sigma = Sigma)
+data = as.data.frame(data)
+colnames(data) = c("x", "y")
+real_data = data
+data = filter(data, x >100 & x < 101)
+```
 
-Most inferential statistics assume distributions are not skewed and are mesokurtic.
+.pull-left-small[
+.code-small[
+```{r, eval = FALSE, message = FALSE, warning = FALSE}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red")
+```
+]
+]
+
+.pull-right-large[
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+```
+]
 
 ???
-  platykurtic: too flat, negative kurtosis
-leptokurtic: too pointy, positive kurtosis
+
+What if I told you there were scores on X could range from 97 to 103?
 
 ---
+
+## Restriction of range
+
+.pull-left-small[
+.code-small[
+
+```{r, eval = FALSE, warning=F, message=F}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") + 
+  geom_point(data = real_data) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              data = real_data,
+              color = "blue")
+```
+]
+]
+
+.pull-right-large[
+```{r, echo = FALSE, warning=F, message=F}
+data %>%
+ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              color = "red") + 
+  geom_point(data = real_data) +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              data = real_data,
+              color = "blue")
+```
+]
+
+
+
+???
+
+**Can you think of example where this might occur in psychology?**
+My idea: that many psychology studies only look at undergraduates (restricted age, restricted education) -- can't use these as predictors or covariates
+
+---
+
+## Nonlinearity
 
 ```{r, echo = FALSE, warning = FALSE, message=FALSE}
-world %>% 
-  ggplot(aes(x = Corruption)) + 
-  geom_bar(fill = "gray") +
-  scale_x_binned() +
-  geom_vline(aes(xintercept = mean(Corruption, na.rm=T))) +
-  geom_vline(aes(xintercept = median(Corruption, na.rm=T))) + 
-  geom_label(aes(x = mean(Corruption, na.rm=T), y = maxFreq(Corruption, na.rm=T)), label = "mean") +
-  geom_label(aes(x = median(Corruption, na.rm=T), y = maxFreq(Corruption, na.rm=T)*2), label = "median") +
-  labs(y = "Frequency of Corruption") +
-  theme_bw()
+x = runif(n = 150, min = -2, max = 2)
+y = x^2 +rnorm(n = 150, sd = .5)
+data = data.frame(x,y)
 ```
 
-In a skewed distribution, both the mean and median get pulled away from the mode. The mean is pulled further.  
+```{r, fig.height = 5, warning=FALSE, message=FALSE, echo=FALSE}
+data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+```
 
 ---
 
-## Moments of a distribution
+## It's not always apparent
 
-Where do the names come from?
+Sometimes issues that affect correlations won't appear in your graph, but you still need to know how to look for them.
 
-.small[1. First moment: Mean
-$$\mu = \frac{\Sigma(x_i)}{N}$$
-2. Second moment: Variance
-$$\sigma^2 = \frac{\Sigma(X_i-\mu)^2}{N}$$
-3. Third moment: Skew
-$$skewness(X) = \frac{1}{N\sigma^3}\Sigma(X_i-\mu)^3$$
-4. Fourth moment: Kurtosis
-$$kurtosis(X) = \frac{1}{N\sigma^4}\Sigma(X_i-\mu)^4-3$$
-]
-???
-If you're calculating sample statistics for skewness and kurtosis, replace the $\sigma$ with $s$ and $\mu$ with $\bar{X}$.
+- Low reliability
+
+- Content overlap
+
+- Multiple groups
+
 ---
-## problems
-  
-```{r describe}
-psych::describe(world)
+
+## Multiple groups
+
+```{r, echo = FALSE}
+set.seed(101019) # so we all get the same random numbers
+m_mu = c(100, 4)
+m_Sigma = matrix(c(.7, .4, 4, .75), ncol = 2) #diagonals are reliabilites, off-diagonals are correlations
+m_data = mvrnorm(n = 150, mu = m_mu, Sigma = m_Sigma)
+m_data = as.data.frame(m_data)
+colnames(m_data) = c("x", "y")
+
+f_mu = c(102, 3)
+f_Sigma = matrix(c(.7, .4, 4, .75), ncol = 2) #diagonals are reliabilites, off-diagonals are correlations
+f_data = mvrnorm(n = 150, mu = f_mu, Sigma = f_Sigma)
+f_data = as.data.frame(f_data)
+colnames(f_data) = c("x", "y")
+
+m_data$gender = "male"
+f_data$gender = "female"
+
+data = rbind(m_data, f_data)
 ```
 
-How do we know if there is a problem and what should we do?
-  
----
-## Problems
-
-```{r ref.label="describe", highlight.output = c(9,18)}
-
+```{r, fig.height = 5, message=F, warning=F, echo=FALSE}
+data %>% ggplot(aes(x=x, y=y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 ```
 
+---
+
+## Multiple groups
+
+```{r, fig.height = 5, message=F, warning=F, echo=FALSE}
+data %>% ggplot(aes(x=x, y=y, color = gender)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + guides(color = F)
+```
 
 --
 
-- mean and median are very different
-- skew and kurtosis are large (|value| > 1)
+Known as **Simpson's Paradox**
+---
+
+### Special cases of the Pearson correlation
+
+- **Spearman correlation coefficient**
+    - Applies when both X and Y are ranks (ordinal data) instead of continuous
+    - Denoted $\rho$ by your textbook, although I prefer to save Greek letters for population parameters. 
+
+- **Point-biserial correlation coefficient**
+    - Applies when Y is binary.
+        - NOTE: This is not an appropriate statistic when you [artificially dichotomize data](../readings/Cohen_1983.pdf).
+
+- **Phi (
+$\phi$
+) coefficient**
+  - Both X and Y are dichotomous.
 
 
 ---
-  
-There are several approaches that could be taken to detecting and dealing with non-normality:
-  
-  - Overall tests of normality (e.g., Kolmogorov-Smirnov, Shapiro-Wilk tests)
-- Tests of extremity for a particular moment 
--  $$SE_{skew} =\sqrt{\frac{6n(n-1)}{(n-1)(n+2)(n+3)}}$$
-  - Implication?
-  - Use procedures that are immune to the problem.
+## Do the special cases matter?
 
----
-  
-The mean is more affected than the median by extreme values.  If the data are severely skewed or there are extreme outliers, inferential statistics might be affected. There are several remedies:
-  
-  - Transform the data 
-
-  - Exclude the outliers 
-
-  - Use a trimmed mean (e.g., eliminate upper and lower 10%; “robust statistics”)
-
-  - Use the median (not susceptible to extreme values)
-
-Pros & Cons to each of these; **be careful**
-  
----
-
-class: inverse, center
-
-# Bias and efficiency
-
----
-
-## Population versus sample
-
-For those following along at home:
-
+For Spearman, you'll get a different answer. 
 ```{r}
-sum((x - mean(x))^2)/length(x)
-var(x)
+x = rnorm(n = 10); y = rnorm(n = 10) #randomly generate 10 numbers from normal distribution
 ```
-
----
-
-## Population versus sample
-
-- The value that represents the entire population is called a **parameter**.
-  - We collect samples to estimate the properties of populations; the statistic that represents a sample is called a **statistic**.
-  - Population parameters are represented with Greek letters (
-  $\mu$
-  , 
-  $\sigma$).
-  - Sample statistics are represented with Latin letters (
-  $M$
-  , 
-  $\bar{X}$
-  , 
-  $s$).
-  
----
-
-## Bias and efficiency
-
-- In deciding about different ways to estimate a parameter (e.g., central tendency), it is important to consider bias and efficiency (and sometimes consistency).
-
-- **Bias**: An estimator is biased if its expected value and the true value of the parameter are different. 
-
-- **Efficiency**: Of two alternative estimators, the more efficient one will estimate the parameter with less error for the same sample size.
-
----
-
-## Bias and efficiency
-
-Robust statistics sacrifice efficiency to control possible bias.
-
-Variance (and standard deviation) are *biased* estimators when applied to samples. 
-- Using the formulas we've described, these statistics will *underestimate* variability in the population. 
-  
----
-
-## Population versus sample
 
 .pull-left[
-### Variance
-
-*Population*
-$$\sigma^2 = \frac{\Sigma(X_i-\mu)^2}{N}$$
-
-*Sample*
-$$s^2 = \hat{\sigma}^2 = \frac{\Sigma(X_i-\bar{X})^2}{N-1}$$]
-
+```{r, echo = T}
+head(cbind(x,y))
+cor(x,y, method = "pearson")
+```
+]
 .pull-right[
-### Standard Deviation
-
-*Population*
-$$\sigma = \sqrt{\frac{\Sigma(X_i-\mu)^2}{N}}$$
-
-*Sample*
-$$s = \hat{\sigma} = \sqrt{\frac{\Sigma(X_i-\bar{X})^2}{N-1}}$$]
+```{r}
+head(cbind(x,y, rank(x), rank(y)))
+cor(x,y, method = "spearman")
+```
+]
 
 ---
-## Simulation
+## Do the special cases matter?
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE, fig.width=15, fig.height=10}
-set.seed(100917) #so everyone gets same random draws
+If your data are naturally binary, no difference between Pearson and point-biserial.
 
-#function to estimate variance using population formula
-sample_var = function(x){
-  sum((x - mean(x, na.rm=T))^2, na.rm=T)/length(which(!is.na(x)))
-}
-#number of samples
-draws = 10000
-#which sample sizes to test
-sample_sizes = seq(from = 5, to = 100, by = 5)
-#data frame to store simulations
-var_estimates = data.frame(size = sample_sizes, sample = NA, estimate = NA)
-
-for(i in sample_sizes){ # loop through sample sizes
-  sample_est = numeric(length = draws) #create empty vectors
-  estimate = numeric(length = draws)
-  for(j in 1:draws){ # loop through draws
-    sample = rnorm(n = i, mean = 1000, sd = 10) # randomly draw sample from pop with variance 100
-    sample_est[j] = sample_var(sample) # calculate variance using population formula
-    estimate[j] = var(sample) # calculate variance using sample formula
-  }
-  row = which(var_estimates$size == i) #which row in data frame does this belong to?
-  var_estimates$sample[row] = mean(sample_est) # average of variance estimates (using pop) across draws
-  var_estimates$estimate[row] = mean(estimate) # average of variances (using sample) across draws
-}
-
-var_estimates %>%
-  mutate(population = 100) %>% #add population variable
-  gather("var", "value", -size) %>% # long-form
-  mutate(var = factor(var, 
-                      levels = c("population","sample","estimate"),
-                      labels = c("Population Variance",
-                                 "Sample Variance", 
-                                 "Sample Estimate of Population Variance"))) %>% #lovely labels
-  ggplot(aes(x = size, y = value)) +
-  geom_line(aes(color = var), size = 3) +
-  scale_x_continuous("Sample Size", breaks = sample_sizes) +
-  scale_color_discrete("")+
-  geom_point() + 
-  theme_bw(base_size = 25)
+```{r}
+x = rnorm(n = 10); y = rbinom(n = 10, size = 1, prob = .3)
+head(cbind(x,y))
 ```
 
-
-
+.pull-left[
+```{r, echo = T}
+cor(x,y, method = "pearson")
+```
+]
+.pull-right[
+```{r}
+ltm::biserial.cor(x,y, level = 2)
+```
+]
 ---
-class: inverse, center
+## Do the special cases matter?
 
-# Standardized scores
+If your data are artificially binary, there can be big differences.
 
----
-
-## Standardized scores (z-scores)
-
-$$ z = \frac{x_i - M}{s} $$
-Scores interpreted as distance from the mean, in standard deviations. 
-
-### Properties of z-scores
-
-- $\Large \Sigma z = 0$
-- $\Large \Sigma z^2 = N$
-- $\Large s_z = \frac{\Sigma z^2}{n}$
-
----
-
-## Standardized scores (z-scores)
-
-$$ z = \frac{x_i - M}{s} $$
-**Why is this useful?**
-
---
-
-- Compare across scales and unit of measures
-
---
-
-- More easily identify extreme data
-
-???
-
-Note for the standard deviation property
-
-$$s_z = \frac{\Sigma z^2}{n} = \frac{n}{n} = 1$$
-
----
-
-# Which variable has outliers?
-
-```{r, warning=FALSE, message = FALSE}
-psych::describe(world, fast =T)
+```{r}
+x = rnorm(n = 10); y = rnorm(n = 10)
 ```
 
----
-
-# Which variable has outliers?
-
-```{r,warning=FALSE, message = FALSE, highlight.output = c(9)}
-world %>%
-  mutate_if(is.numeric, scale) %>%
-  psych::describe(., fast =T)
+.pull-left[
+```{r, echo = T}
+head(cbind(x,y))
+cor(x,y, method = "pearson")
 ```
+]
+.pull-right[
+```{r}
+d_y = ifelse(y < median(y), 0, 1)
+head(cbind(x,y, d_y))
+ltm::biserial.cor(x,d_y, level = 2)
+```
+]
 
+### Don't use median splits!
 ---
-
 class: inverse
 
 ## Next time...
 
-describing relationships
+Probability
