@@ -526,7 +526,7 @@ class: inverse, center
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 Scores interpreted as distance from the mean, in standard deviations. 
 
 ### Properties of z-scores
@@ -539,7 +539,7 @@ Scores interpreted as distance from the mean, in standard deviations.
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 **Why is this useful?**
 
 --
