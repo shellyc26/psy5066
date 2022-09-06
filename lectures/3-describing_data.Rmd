@@ -509,9 +509,9 @@ Known as **Simpson's Paradox**
 
 ### Special cases of the Pearson correlation
 
-- **Spearman correlation coefficient**
+- **Spearman/Kendall correlation coefficient**
     - Applies when both X and Y are ranks (ordinal data) instead of continuous
-    - Denoted $\rho$ by your textbook, although I prefer to save Greek letters for population parameters. 
+    - Spearman for larger samples, Kendall for smaller samples (or a lot of ties in rank ordering). 
 
 - **Point-biserial correlation coefficient**
     - Applies when Y is binary.
