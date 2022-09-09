@@ -160,10 +160,10 @@ data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>%
 ## Parameters
 
 Every probability distribution has an **expected value**.
-  - EV is essentially the average value if you repeated the experiment...a lot
+  - Expected Value is essentially the average value if you repeated the experiment...a lot
   - Most likely result of the probability function
   - The thing we would expect to happen if we have no other information than the parameters of the distribution
-  - The *long-run* average over an infinite amount of trials or samplings
+  - The *long-run* average over an infinite amount of trials or samples
 
 ---
 ## Averages vs. EV
