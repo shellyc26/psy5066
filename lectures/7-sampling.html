@@ -3,7 +3,7 @@
   <head>
     <title>Sampling Distributions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,7 +13,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Sampling Distributions
+]
 
 ---
 
@@ -92,7 +94,7 @@ We use the sample to inform us about the likely characteristics of the populatio
 
 ]
 
-![](8-sampling_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -107,7 +109,7 @@ Statistics (e.g., mean) can be calculated for any sample.
 ]
 ]
 
-![](8-sampling_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 ???
 here, the sample sizes is 30 fo each of these 4 graphs. each of theses is a sample. and each sample has it's only mean and sd. 
@@ -122,7 +124,7 @@ The mean of the **sampling distribution** converges on `\(\mu\)`
 ]
 ]
 
-![](8-sampling_files/figure-html/sampling1-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/sampling1-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -135,7 +137,7 @@ The sampling distribution of the mean is of particular interest, it's called the
 ]
 
 
-![](8-sampling_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -198,13 +200,13 @@ Regardless of the CLT, if the data are skewed, we might wonder if the mean is th
 Here is the sample standard deviation from a normal distribution with `\(\sigma = 1\)`.
 ]
 
-![](8-sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 ---
 
 .left-column[And the range.]
 
-![](8-sampling_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ???
 Note here that we're not just narrowing in, but our mean estimate is getting larger. 
 
@@ -343,7 +345,7 @@ This is reduced with large samples, so that the normal is “close enough.”  I
 ]
 ]
 
-![](8-sampling_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 ## `\(t\)` distribution
@@ -388,7 +390,7 @@ Calculate CI using for each sample using `\(\sigma\)`.
 ]
 ]
 
-![](8-sampling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](7-sampling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -527,6 +529,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

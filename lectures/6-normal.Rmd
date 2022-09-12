@@ -121,7 +121,10 @@ ggplot(data.frame(x = seq(0, 1)), aes(x)) +
   stat_function(fun = function(x) pnorm(x)-.5, color = "red") + 
   geom_hline(aes(yintercept = 0), color = "red", linetype = "dashed")+
   scale_x_continuous("Z") +
-  scale_y_continuous("Density", limits=c(0,.4)) +ggtitle("Area under the normal curve between Z and 0")+ theme(text = element_text(size = 20))
+  scale_y_continuous("Density", limits=c(0,.4)) +
+  labs(title = "Area under the normal",
+       subtitle = "Between Z and 0") + 
+  theme(text = element_text(size = 20))
 
 ```
 
@@ -212,8 +215,10 @@ ggarrange(p1, p2, p3, ncol = 3)
 
 ---
 
-Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
+- Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
+
 - About 95% of the data will be within two standard deviations of the mean.  
+
 - About 99.7% of the data will be within three standard deviations of the mean.
 
 In other words, nearly all of the data will fall within 3 standard deviations of the mean in a normal distribution.
@@ -259,7 +264,7 @@ There is only one (1) standard normal distribution.
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 Scores interpreted as distance from the mean, in standard deviations. 
 
 ### Properties of z-scores
@@ -272,7 +277,7 @@ Scores interpreted as distance from the mean, in standard deviations.
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 **Why is this useful?**
 
 - Compare across scales and unit of measures

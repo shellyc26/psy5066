@@ -15,6 +15,12 @@ navbar:
         href: "lectures/3-describing_data.html"
       - text: "Probability"
         href: "lectures/4-probability.html"
+      - text: "Binomial"
+        href: "lectures/5-binomial.html"
+      - text: "Normal"
+        href: "lectures/6-normal.html"
+      - text: "Sampling"
+        href: "lectures/7-sampling.html"
     - text: Homework
       href: homework.html
   right:

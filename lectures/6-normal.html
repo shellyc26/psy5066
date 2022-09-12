@@ -3,7 +3,7 @@
   <head>
     <title>Normal Distribution</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,7 +13,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Normal Distribution
+]
 
 ---
 
@@ -143,8 +145,10 @@ All of these distributions are normal and have an equivalent area (proportion) t
 
 ---
 
-Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
+- Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
+
 - About 95% of the data will be within two standard deviations of the mean.  
+
 - About 99.7% of the data will be within three standard deviations of the mean.
 
 In other words, nearly all of the data will fall within 3 standard deviations of the mean in a normal distribution.
@@ -190,7 +194,7 @@ There is only one (1) standard normal distribution.
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 Scores interpreted as distance from the mean, in standard deviations. 
 
 ### Properties of z-scores
@@ -203,7 +207,7 @@ Scores interpreted as distance from the mean, in standard deviations.
 
 ## Standardized scores (z-scores)
 
-$$ z = \frac{x_i - M}{s} $$
+$$ z = \frac{x_i - \bar{x}}{s} $$
 **Why is this useful?**
 
 - Compare across scales and unit of measures
@@ -425,6 +429,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
