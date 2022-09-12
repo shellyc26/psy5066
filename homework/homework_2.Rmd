@@ -38,8 +38,6 @@ Use the `homework-avengers` to answer the following questions (Note: you may cho
 
 * Do Black Widow movies make more domestically or internationally?
 
-* Does the average number of domestic screens per movie increase by year of release?
-
 ## Question 3
 
 Which avengers character do you believe brings in the most money? Using the `homework-avengers` dataset, create a figure that demonstrates the relationship between budget and worldwide gross earnings. Color the geoms differently if the movie includes your predicted character. Be sure your graph includes a title and appropriate labels. 
@@ -66,5 +64,3 @@ Psychological and educational tests, including the MMPI (Minnesota Multiphasic P
 * What proportion would be expected to score 68 or above?
 
 * What proportion would be expected to score between 53 and 63?
-
-* What score separates out the lowest one-fifth from the rest?

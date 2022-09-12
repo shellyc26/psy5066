@@ -16,7 +16,7 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Peer Review of Homework 1 due *9/11 by 9:30am*
 
 ## Homework 2
-- Homework 2 has not posted yet
+- [Homework 2 is here](homework/homework_2.html)
 - Due on **9/20 by 9:30am**
 - Peer Review of Homework 2 due *9/23 by 9:30am*
 
