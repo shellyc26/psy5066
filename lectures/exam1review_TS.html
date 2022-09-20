@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Exam 1 Practice Problems</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Exam 1 Practice Problems
+]
+
+---
+
+
+
+
+# Penguins are cute
+
+&lt;img src="images/penguins.png", width="100%"&gt;
+
+package: `palmerpenguins`
+
+---
+# Question Set 1
+
+Let's MANUALLY calculate the correlation between two variables X and Y
+
+
+```
+##        X  Y
+##  [1,]  6 45
+##  [2,] 12 47
+##  [3,] 13 39
+##  [4,] 17 58
+##  [5,] 22 68
+##  [6,] 25 76
+##  [7,] 27 75
+##  [8,] 29 74
+##  [9,] 30 78
+## [10,] 32 81
+```
+
+---
+# Question Set 2
+
+- For an upcoming stats exam we have decided to be lazy and only make 5 multiple choice questions. The questions have 4 response options each. How likely are students to get *at least 4* of these questions correct simply by guessing? Calculate this "by hand" meaning do not use a `R` function
+
+---
+
+# Question Set 3
+
+- Get the z-scores of the `body_mass_g` variable "by hand" meaning do not use a `R` function
+- Which value is furthest away from the mean? Which is closest?
+- Interpret the 10th z-score
+- Which of these is an outlier? How do you propose to deal with this outlier?
+
+
+```
+## # A tibble: 10 × 4
+##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7               181        3750
+##  2           39.5          17.4               186        3800
+##  3           40.3          18                 195        3250
+##  4           36.7          19.3               193        3450
+##  5           39.3          20.6               190        3650
+##  6           38.9          17.8               181        3625
+##  7           39.2          19.6               195        4675
+##  8           34.1          18.1               193        3475
+##  9           42            20.2               190        4250
+## 10           37.8          17.1               186        3300
+```
+
+---
+
+# Question Set 4
+
+- Which of these variables are qualitative? Quantitative?
+- Which variable would be appropriate for a binomial question?
+- Which variable do you assume is normally distributed? `\(t\)` distributed?
+- Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
+
+.code-small[
+
+```
+## # A tibble: 10 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
+##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
+##  4 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
+##  5 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+##  6 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
+##  7 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+##  8 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+##  9 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+## 10 Adelie  Torgersen           37.8          17.1        186    3300 &lt;NA&gt;   2007
+## # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
+```
+]
+---
+
+# Results Question Set 1 
+
+- Mean of X is 21.3
+- Mean of Y is 64.1
+- Sum of (X-Xmean)*(Y-Ymean) is 1172.7
+- Sum of (X-Xmean)^2 is 704.1
+- Sum of (Y-Ymean)^2 is 2176.9
+- To calculate Correlation r= 1172.7/sqrt(704.1*2176.9) = .947
+
+#### Check using the cor function in R 
+
+```r
+cor(X,Y)
+```
+
+```
+## [1] 0.9472192
+```
+
+
+---
+# Results Question Set 2
+
+- For a stats exam we have decided to be lazy and only make 5 multiple choice questions. The questions have 4 response options each. How likely are students to get *at least 4* of these questions correct simply by guessing?
+
+.code-small[
+
+```r
+#using pbinom
+1-pbinom(q = 3, size = 5, prob = .25)
+```
+
+```
+## [1] 0.015625
+```
+
+```r
+#using formula 
+(factorial(5)/(factorial(4)*factorial(5-4)))*.25^4*(1-.25)^(5-4)+(factorial(5)/(factorial(5) * factorial(5-5)))*.25^5*(1-.25)^(5-5)
+```
+
+```
+## [1] 0.015625
+```
+]
+
+
+`$$P(4|.25,5) = \frac{5!}{4!(5-4)!}.25^4(1-.25)^{5-4} + \\
+P(5|.25,5) = \frac{5!}{5!(5-5)!}.25^5(1-.25)^{5-5}$$`
+
+---
+
+# Results Question Set 3
+
+- Get the z-scores of the `body_mass_g` variable "by hand" meaning do not use a `R` function
+
+.code-small[
+
+```
+## # A tibble: 10 × 4
+##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7               181        3750
+##  2           39.5          17.4               186        3800
+##  3           40.3          18                 195        3250
+##  4           36.7          19.3               193        3450
+##  5           39.3          20.6               190        3650
+##  6           38.9          17.8               181        3625
+##  7           39.2          19.6               195        4675
+##  8           34.1          18.1               193        3475
+##  9           42            20.2               190        4250
+## 10           37.8          17.1               186        3300
+```
+]
+
+- Scores interpreted as distance from the mean, in standard deviations.
+- Mean = 3722.5
+- SD = 440.2414
+
+```
+##  [1]  0.06246573  0.17603978 -1.07327477 -0.61897857 -0.16468237 -0.22146940
+##  [7]  2.16358565 -0.56219155  1.19820623 -0.95970072
+```
+
+---
+
+# Results Question Set 4
+
+- Which of these variables are qualitative? Quantitative?
+- Which variable would be appropriate for a binomial question?
+- Which variable do you assume is normally distributed? `\(t\)` distributed?
+- Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
+
+.code-small[
+
+```
+## # A tibble: 10 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
+##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
+##  4 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
+##  5 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+##  6 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
+##  7 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+##  8 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+##  9 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+## 10 Adelie  Torgersen           37.8          17.1        186    3300 &lt;NA&gt;   2007
+## # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
+```
+]
+
+
+```r
+se=sd(tinyp$bill_depth_mm)/sqrt(nrow(tinyp))
+se
+```
+
+```
+## [1] 0.3791218
+```
+
+
+
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
