@@ -22,7 +22,7 @@ navbar:
       - text: "Sampling"
         href: "lectures/7-sampling.html"
       - text: "Review #1"
-        href: "lectures/exam1-review_TS.html"
+        href: "lectures/exam1review_TS.html"
     - text: Homework
       href: homework.html
   right:
