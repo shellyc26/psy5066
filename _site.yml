@@ -25,6 +25,12 @@ navbar:
         href: "lectures/exam1review_TS.html"
       - text: "NHST 1"
         href: "lectures/8-nhst.html"
+      - text: "NHST 2"
+        href: "lectures/9-nhst.html"
+      - text: "NHST Critiques"
+        href: "lectures/10-critiques.html"
+      - text: "Open Science"
+        href: "lectures/11-open_science.html"
     - text: Homework
       href: homework.html
   right:
