@@ -21,23 +21,15 @@ Good luck!
 
 ## Question 1
 
-Women in the U.S. Air Force have hands that are 6.9 inches long on average (from the tip of the middle finger to the heel of the hand). The standard deviation is .34 inches. Assume that hand length is normally distributed.
-
-* What proportion would have hands 7 inches or longer?
-* What proportion would have hands 6 inches or shorter?
-* What proportion would have hands between 6.5 and 7.2 inches long?
-* Of 3000 women in the U.S. Air Force, how many would have hands 7.5 inches (the mean for male Air Force personnel) or longer?
-* How long would a woman's hand have to be to put her among the 10% with the longest hands in the U.S. Air Force?
-
-## Question 2
-
 You had the opportunity to work with data from a sample of 38 children about the age (in months) at which they first stood without support. The mean you calculated was 13.00 months.
 
 If the population mean for children standing on their own is 13.20 months with a standard deviation of 2, what is the probability of randomly selecting a sample of 38 children who stood on their own by the average age of 13.00 months or earlier? 
 
-## Question 3
+## Question 2
 
 A teacher was interested in the mathematical ability of graduating high school seniors in her state. She gave a 32-item test to a random sample of 75 seniors from her state with the following results: The $\Sigma{x}$ = 1275 and $\Sigma{x^2}$= 23525. Establish a 95% confidence interval about the mean, and write a sentence that explains the interval you found to a high school principal.
+
+## Question 3
 
 ## Question 4
 
