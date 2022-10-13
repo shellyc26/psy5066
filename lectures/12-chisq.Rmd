@@ -378,6 +378,7 @@ N is large (usually taken to mean that expected N is at least 5 in each cell)
 ## Effect Sizes for Chi-Square
 
 **Odds Ratio**
+OR = number experiencing event divided by number who did not experience event.
 
 ```{r, echo=FALSE}
 att
@@ -393,15 +394,16 @@ We're going ACROSS THE ROWS to get the denominator
 ---
 
 ## Odds Ratio
+OR = number experiencing event divided by number who did not experience event.
 
-- Odds(Dropped Out | < High School = (20/40) / (1-20/40) = 1
-- Odds(Dropped Out | High School = (15/40) / (1-15/40) = .6
+- Odds(Dropped Out | < High School = 20/40 = .5
+- Odds(Dropped Out | High School = 15/40 = .375
 
 --
 
-- Odds Ratio = 1 / .6 = 1.66
+- Odds Ratio = .5 / .375 = 1.33
 
-*The odds of dropping out of the study rather than remaining in the study when they did not complete high school are 1.66 times the odds of dropping out if they completed high school, but not college*
+*The odds of dropping out of the study rather than remaining in the study when they did not complete high school are 1.33 times the odds of dropping out if they completed high school, but not college*
 
 ---
 
