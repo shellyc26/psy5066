@@ -15,21 +15,39 @@ You are allowed to Google things. *However*, if you use code from an outside sou
 
 In the instructions, when it says **_by hand_**, what we mean is that you should not use a function that is built into R to complete the task. For example, if I ask you to find the mean *by hand*, you should **not** use the `mean()` function. However, you can (and should!) use your variables. So for instance, if I ask you to find the `mean()` by hand, you may do something like `sum(variableX)/length(variableX)`. This would be an appropriate *by hand* calculation. (You don't need to type `(3 + 5 + 5 + 17) / 4`...you can still use your variables). 
 
-You will not need a specific dataset for this homework assignment, and you also should not need any packages for this assignment.
+You will be using the same census data that we used in class for our one-sample $t$-test. These data are specific to the state of Missouri [Here is the link for the census data](cenus_at_school_missouri.csv).
 
 Good luck!
 
 ## Question 1
 
-You had the opportunity to work with data from a sample of 38 children about the age (in months) at which they first stood without support. The mean you calculated was 13.00 months.
+Students were asked how important access to the internet is to them, and to rate this importance on a scale of 0-1000 (see `Importance_Internet_access` variable) with 0 referring to not important and 1000 referring to very important. Do 9th graders (freshman) differ from 12th graders (seniors) in these ratings? Please do the following:
 
-If the population mean for children standing on their own is 13.20 months with a standard deviation of 2, what is the probability of randomly selecting a sample of 38 children who stood on their own by the average age of 13.00 months or earlier? 
+- Write a sentence or two stating the hypotheses
+- Run the appropriate statistical test. Interpret the results in regards to your hypotheses.
+- Calculate an appropriate effect size. Interpret results in terms of your hypotheses. 
+- Make a figure showing this effect that includes all of the following:
+  - The means
+  - Variability around the means
+  - Either the raw data or a distribution of data
+  - Appropriate title, labeled axes etc.
 
 ## Question 2
-
-A teacher was interested in the mathematical ability of graduating high school seniors in her state. She gave a 32-item test to a random sample of 75 seniors from her state with the following results: The $\Sigma{x}$ = 1275 and $\Sigma{x^2}$= 23525. Establish a 95% confidence interval about the mean, and write a sentence that explains the interval you found to a high school principal.
+High school students to rate the importance of reducing pollution on a scale of 0 (not important) to 1000 (very important). The nationwide average was 762. How well do students from Missouri align with the national average? Run and interpret your statistical test. Additionally, calculate confidence intervals "by hand" and interpret them.
 
 ## Question 3
+
+You are interested in better understanding technology use and consumption among teenagers. However, you are concerned that in your sample of Missouri high school students that males might be more likely to prefer social media whereas females might be more likely to prefer text messaging. Run an appropriate statistical test and interpret the results. Calculate an appropriate measure of effect size (you may do this by hand or you may find a function...Google is your friend!)
+
+## Question 4
+
+Each student in the sample is a unique individual. However, let's assume that instead they collect census data of the same students over time (years 9, 10, 11, and 12 for the same students). Answer the following questions about this new setup:
+
+- What is the name of this type of research design?
+- If you are interested in the same question asked in Q1, how does your code need to change to reflect the changes in research design? 
+- What are the pros and cons of this setup?
+- Can you think of a time in your own research where you might use a similar setup? If so, describe it. If not, describe why this would not work for your research program.
+- Ask us a question about how you might go about implementing or analyzing this type of design (for your own research or otherwise)! 
 
 ## Question 4
 
