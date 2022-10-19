@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Comparing two means I</title>
+    <title>Comparing Means I</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -12,342 +13,278 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Comparing two means I
+.title[
+# Comparing Means I
+]
 
 ---
 
 
 
+## Recap
 
-
+You tell me -- what is a one-sample *t*-test?
+---
 ## Independent samples *t*-test
 
-The independent samples *t*-test is appropriate when the means from two independent samples are compared.
+- Independent samples *t*-tests are used when you want to compare means from two independent samples
 
+- Samples are independent if observations from one sample do not affect or depend on observations from the other sample. A score from sample 1 shouldn't tell me anything about a score from sample 2 (e.g., whether the score is above or below the sample mean) 
+
+- Basically, you want independence of observations within your samples and between your samples for this analysis
+
+- Very common with experimental research (e.g., compare Treatment condition mean with Control condition mean)
+---
+## Hypotheses 
 `$$H_0: \mu_1 = \mu_2$$`
 `$$H_1: \mu_1 \neq \mu_2$$`
-
-Test statistic is (roughly) defined by
-
-`$$t = \frac{\bar{X}_1 - \bar{X}_2}{SE}$$`
-
-The standard error of the mean difference can be estimated in two different ways.  If the variances for the two groups are the same, then pooling them provides the most powerful solution, known as Student’s t-test.  Otherwise, a separate-variances estimate is used, resulting in Welch’s t-test.
-
----
-
-More formally, the numerator of the t-statistic is the following:
-
-`$$t = \frac{(\bar{X}_1 - \bar{X}_2)-(\mu_1 - \mu_2)}{SE}$$`
-In other words, is the difference between the sample means different from the hypothesized difference in the population means?
-
-* `\(\bar{X}_1 - \bar{X}_2\)` = our observed difference in (independent) means
-* `\(\mu_1 - \mu_2\)` = the (null) hypothesized difference in (independent) means
-
-In this sense, the independent samples t-test is similar to a one-sample test of differences.
-
-.pull-left[
+Alternatively. . . (rearranged formula)
 `$$H_0: \mu_1 - \mu_2 = 0$$`
-]
+`$$H_1: \mu_1 - \mu_2 \neq\  0$$`
+---
+We can calculate the test statistic with:
 
-.pull-right[
-`$$H_1: \mu_1 - \mu_2 \neq 0$$`
-]
+`$$t_{df} = \frac{\bar{X}_1 - \bar{X}_2}{SE_{meandifference}}$$`
+Technically, the formula is:
+`$$t_{df} = \frac{(\bar{X}_1 - \bar{X}_2)-(\mu_1 - \mu_2)}{SE_{meandifference}}$$`
+- `\((\bar{X}_1 - \bar{X}_2)\)` is our observed difference in (independent) means
+- Plug in values for `\((\mu_1 - \mu_2)\)` based on our null (usually that `\(\mu_1 - \mu_2\)` = 0 but doesn't have to be)
 
 ---
+## Homogeneity of Variance
 
-Calculating the demoninator of this test is not straightfoward. If we think of our test as a one-sample test of our difference score, then we need our standard error to be that of difference in means, not means themselves.
+We assume homogeneity of variance for independent samples *t*-tests (i.e., even if samples come from different populations, these populations differ in mean but not variance), but in practice, this is unrealistic. We will most likely have two *different* variances
 
-`\(\text{SE (difference in means)} = \sigma_D\)`
+Standard error is easy to calculate when you only know one *SD* (e.g., one-sample *t*-tests). But we have two *SD*s, so unless they're the exact same, "we" need to calculate a weighted combination of the two.
+---
+## How to calculate the Standard Error
 
-To take our standard error of the mean calculation and adjust it to reflect a difference in means, we make a small adjustment:
+Two main methods of calculating the *SE*:
+1. __Student's *t*-test__ is used when the variances of each sample are (roughly) the same. In many cases, slightly more powerful test but the **pooled variance** will be biased toward the sample with the larger sample size.
+2. __Welch's *t*-test__ if the variances are NOT (roughly) the same. Slightly less powerful.
+---
+**Student's assumptions:**
+- Independence 
+- Normality of *Population* that each sample comes from
+- Homogeneity of variance for *Population*
 
-`$$\sigma_D = \hat{\sigma}_p\sqrt{\frac{1}{N_1} + \frac{1}{N_2}}$$`
+**Welch's assumptions:**
+- Independence
+- Normality of *Population* that each sample comes from
 
 ---
+## Variance Calculations
+Welch's
+- Calculate variance separately for each sample
 
-A key assumption of the independent samples t-test is **homogeneity of variance,** meaning that even if these samples come from different populations, those populations differ only in terms of their mean, not in terms of their variance. 
-
-The benefit of making this assumption is that we can calculate a single estimate of variance and simply adjust the units (as in the previous slide). 
-
-If the variance in both samples is exactly the same, then we can plug `\(\hat{\sigma}\)` in for `\(\sigma_p\)` and be done.
-
----
-
-### Pooled variance
-
-Rarely do we find that the variance estimates are *exactly* the same, in which case, we need to combine the two estimates to get a single variance number. This is called the **pooled variance**.
-
+Student's
 `$$\large{\hat{\sigma}^2_p = \frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}}$$`
---
+---
+## *SD* Calculations
+**Welch's**
+- Calculate SD separately for each sample
 
-The bottom part, `\(N_1+N_2-2\)` is the degrees of freedom for an independent sample *t*-test. The total number of quantities ( `\(N_1+N_2\)` total scores) minus the number of constraints (2 means).
+**Student's**
+$$\sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} $$
+---
+## `\(SE_{diff}\)`  Calculations
+`\(SE_{diff} = \hat{\sigma}_D\)`
 
-Each variance is weighted based on its sample's contribution to degrees of freedom. 
+**Welch's **
+`$$\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}$$`
+Essentially, the squared `\(SE_{mean}\)` of each sample is added then you take the square root.
 
+**Student's**
+`$$\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}$$`
 ---
 
-So our final calculation for the standard error of the difference of independent means is
+Final result is *SE* of the difference of independent means. Remember that standard deviations estimate population variability (i.e., variability of population scores). Taking the next step and dividing the *SD* by the square root of some variation of N (depending on the test equation) helps us estimate variability of means rather than scores. 
+---
+**Welch's **
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$`
 
+**Student's**
 `$$\large{\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}$$`
-**Recap**
-
-The first part of this equation pools the two variance estimates by weighting each one based on sample size. 
-
-The second part changes the units from scores to differences in means. 
-  
----
-
-At this point, the procedure of hypothesis testing goes back to normal.
-
-We have our sampling distribution under the null hypothesis, which is a *t* distribution defined by
-
-$$
-`\begin{aligned}
- \mu &amp;= 0 \\
- \sigma_D &amp;= \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}} \\
- df &amp;= N_1 + N_2 - 2
-\end{aligned}`
-$$
-In this case, we're using `\(\sigma_D\)` the same way we use `\(\sigma_M\)`, we just change the notation to reflect our interest in a difference in means, rather than the mean itself.
+Note that in Student's calculation, the variance for the larger sample will be weighted more heavily because each individual variance is being multiplied by N-1. Meanwhile, in Welch's, the standard deviations are being *divided* by sample size, so smaller samples will be weighted more heavily. 
 
 ---
-
-We calculate our test statistic
-
-$$ t = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$
-and then find the probability of this test statistic or more extreme under the null. 
-
----
-
-## Example
-
-We turn again to the Census at School data. One question that students were asked was to report how many hours per week they spent time with friends. We might be interested to know whether adolescent girls spend more time with friends than adolescent boys. 
-
+`$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$`
 
 ```r
-table(school$Gender)
+# Welch's SE: sqrt(SD1^2/n1 + SD2^2/n2)
+# random values
+sqrt(4^2/1000 + 7^2/30)
 ```
 
 ```
-## 
-## Female   Male 
-##    144    101
+## [1] 1.284264
 ```
 
 ```r
-psych:: describe(school$Hanging_Out_With_Friends_Hours)
+sqrt(7^2/30)
 ```
 
 ```
-##    vars   n  mean    sd median trimmed mad min  max range  skew kurtosis   se
-## X1    1 208 23.59 78.41      9   12.49 8.9   0 1000  1000 10.28   118.18 5.44
+## [1] 1.278019
 ```
+One large sample can't make up for a small sample with Welch's. 
 
 ---
-.pull-left[
+## *df* for Welch's
 
-```r
-school %&gt;%
-  ggplot(aes(x = friends)) + 
-  geom_histogram(aes(y = ..density..), bins = 50) +
-  geom_density(color = "red", size = 2, fill = "red", alpha = .3) + 
- labs(x = "Hours per week", title = "Full sample") + theme_minimal(base_size = 20)
-```
-
-![](15-two_means_I_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-]
-
-.pull-right[
-
-```r
-school %&gt;%
-  filter(friends &lt; 168) %&gt;%
-  ggplot(aes(x = friends)) + 
-  geom_histogram(aes(y = ..density..), bins = 50) +
-  geom_density(color = "red", size = 2, fill = "red", alpha = .3) + 
-  labs(x = "Hours per week", title = "Mathematically possible") + theme_minimal(base_size = 20)
-```
-
-![](15-two_means_I_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
-]
+`$$df = \frac{[\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}]^2}{\frac{[\frac{\hat{\sigma}^2_1}{N1}]^2}{N_1-1}+\frac{[\frac{\hat{\sigma}^2_2}{N2}]^2}{N_2-1}}$$`
+Welch's *df*  will likely not be a whole number. And while Welch's allows for violations of homogeneity (i.e., unequal variance), you'll still be punished for it with reduced *df* unless you have equal variance and equal sample size. This doesn't mean that Welch can't have a lower *p*-value than student, though. The df will suffer, but the `\(SE_{diff}\)` could be lower to counteract that. 
 
 ---
+## *df* for Student's
 
-Maybe I'll exclude participants who report impossible numbers.
+`$$df = N_1 + N_2 - 2$$`
+Unlike before when we subtracted by 1, we are now calculating two means, so we need to subtract by two to get the *df*
 
+---
+We calculate our test statistic with:
 
-```r
-school_new = filter(school, friends &lt; 168)
-psych::describeBy(school_new$friends, group = school_new$Gender)
-```
+$$ t = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$ and then can find the probability of the absolute value of this test statistic (for two-tailed) or more extreme given the null is true.
+---
+## Examples!
+
+Research Question: Do Kid or Adult trick R treaters get more candy
+.code-small[
 
 ```
 ## 
 ##  Descriptive statistics by group 
-## group: Female
-##    vars   n  mean    sd median trimmed   mad min max range skew kurtosis   se
-## X1    1 122 18.31 21.44     10   14.19 10.38 0.3 124 123.7 2.14     5.45 1.94
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
 ## ------------------------------------------------------------ 
-## group: Male
-##    vars  n  mean    sd median trimmed  mad min max range skew kurtosis   se
-## X1    1 83 12.34 15.91      7    8.87 7.41   0  80    80 2.46     6.32 1.75
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+]
+
+
+---
+Calculate Pooled Variance `\(SE_{diff}\)` (for Student's *t*-test)
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+`$$\sigma_D = \sqrt{\frac{(500-1){1.28}^2 + (35-1){4.78}^2}{500+35-2}} \sqrt{\frac{1}{500} + \frac{1}{35}}$$`
+`$$= 1.73\sqrt{\frac{1}{500} + \frac{1}{35}} = 0.30$$`
+`$$df = 500 + 35 - 2$$` 
+
+---
+With this information, we can build a sampling distribution
+
+
+![](14-two_means_I_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+
+---
+We have `\(SE_{diff}\)`. Now we can divide the mean differences by `\(SE_{diff}\)` to get student's *t* value. 
+`$$t_{df} = \frac{\bar{X}_1 - \bar{X}_2}{SE_{meandifference}}$$`
+
+`$$t_{df} = \frac{14.09 - 13.3}{0.302}$$`
+`$$t(533) = 2.616$$`
+---
+
+![](14-two_means_I_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+Our *t*-statistic exceeds the critical value cutoff, so our Student's *t*-test is significant. 
+
+---
+## Check your work!
+
+Can use `pt` to confirm this. 
+
+```r
+2*pt(q=tvalue, df = 533, lower.tail = F)
+```
+
+```
+## [1] 0.009148903
 ```
 
 --
 
-
-.pull-left[
-$$
-`\begin{aligned}
- \bar{X}_1 &amp;= 18.31 \\
- \hat{\sigma}_1 &amp;= 21.44 \\
- N_1 &amp;= 122 \\
-\end{aligned}`
-$$
-]
-
-.pull-right[
-$$
-`\begin{aligned}
- \bar{X}_2 &amp;= 12.34 \\
- \hat{\sigma}_2 &amp;= 15.91 \\
- N_2 &amp;= 83 \\
-\end{aligned}`
-$$
-]
-
----
-
-
-
-
-Next we build the sampling distribution under the null hypotheses.
-
-$$
-`\begin{aligned}
- \mu &amp;= 0 \\
- \\
- \sigma_D &amp;= \sqrt{\frac{(122-1){21.44}^2 + (83-1){15.91}^2}{122+83-2}} \sqrt{\frac{1}{122} + \frac{1}{83}}\\
- &amp;= 19.39\sqrt{\frac{1}{122} + \frac{1}{83}} = 2.76\\
- \\
- df &amp;= 203
-\end{aligned}`
-$$ 
----
+Can use `t.test` to extra confirm
 
 
 ```r
-(cv = qt(p = .975, df = 203))
-```
-
-```
-## [1] 1.971719
-```
-
-![](15-two_means_I_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
-
-
----
-
-.left-column[We calculate our test statistic and compare that to our critical value.]
-
-
-```r
-(t = (x1-x2)/s_d)
-```
-
-```
-## [1] 2.165904
-```
-
-![](15-two_means_I_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
-
----
-
-.left-column[
-We can also calculate the probability of this test statistic or more extreme under the null.
-
-
-```r
-pt(t, 
-   df = df, 
-   lower.tail = 
-     F)*2
-```
-
-```
-## [1] 0.03148413
-```
-
-]
-
-![](15-two_means_I_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
-
----
-
-Alternatively, we can not do any of that, and use an R function.
-
-
-```r
-t.test(friends~Gender, data = school_new, var.equal = T)
+t.test(Candy ~ Age, data = trickRtreat, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Two Sample t-test
 ## 
-## data:  friends by Gender
-## t = 2.1659, df = 203, p-value = 0.03148
-## alternative hypothesis: true difference in means is not equal to 0
+## data:  Candy by Age
+## t = 2.6126, df = 533, p-value = 0.009239
+## alternative hypothesis: true difference in means between group Adult and group Kid is not equal to 0
 ## 95 percent confidence interval:
-##   0.5358328 11.4173373
+##  0.1959301 1.3834985
 ## sample estimates:
-## mean in group Female   mean in group Male 
-##             18.31393             12.33735
+## mean in group Adult   mean in group Kid 
+##            14.08571            13.29600
 ```
 
+---
+## Confidence Intervals 
+Why stop there? We can also calculate confidence intervals of the mean difference
+
+Confidence intervals are used to communicate the precision in how well our statistic estimates the parameter. As a reminder, they are grounded in frequentist probability: if we repeated our experiment or sampling infinitely, we would expect that 95% of our 95% confidence intervals would capture the true population parameter.
+
+In an independent sample's *t*-test, we calculated three statistics, and so you can construct three different confidence intervals.Yay
 
 ---
-
-## Confidence intervals
-
-**Confidence intervals** are used to communicate the precision in how well our statistic estimates the parameter. As a reminder, they are grounded in frequenst probability: if we repeated our experiment many times, we would expect that 95% of the time, our 95% confidence interval would capture the true population parameter.
-
-In an independent sample's t-test, you have calculated three different statistics, and so you can construct three different confidence intervals.
-
----
-
 ### Confidence interval around the difference in means
 
 The most interpretable statistic is the difference in means -- this is the statistic you are testing using NHST. 
 
 `$$CI_{\text{Difference}} = (\bar{X}_1 - \bar{X}_2) \pm \sigma_D(CV)$$`
 
-.pull-left[
-Your critical value (CV) is determined by your degrees of freedom and alpha. 
-
-In our example, we used `\(\alpha = .05\)` and our df = `\(122+83-2 = 203\)`.
-
-
-```r
-qt(p = .975, df = 203)
-```
 
 ```
-## [1] 1.971719
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
 ```
-]
---
 
-.pull-right[
-
-`$$CI_{\text{Difference}} = \\(18.31 -12.34) \pm 2.76(1.97)$$`
-`$$[0.53, 11.41]$$`
-
-]
 
 ---
+### Confidence interval around the difference in means
 
+
+```
+## [1] 3.022688
+```
+
+```
+## [1] 1.964425
+```
+
+`\(CI_{\text{Difference}} = (14.09 -13.30) \pm .30(1.96)\)`
+`$$[.20, 1.38]$$`
+
+Confidence interval doesn't include zero. Significant!
+---
 ### Confidence intervals around estimates of the mean
 
 In addition to calculating precision of the estimate in difference in means, you may also want to calculate the precision of the mean estimates themselves. 
@@ -356,124 +293,493 @@ In this case, you should use the standard deviation of the group sample as your 
 
 $$
 `\begin{aligned}
-CI_{\text{Mean}} &amp;= {X} \pm \sigma_M(CV) \\
- &amp;= {X} \pm \frac{\hat{\sigma}}{\sqrt{N}}(CV)
+CI_{\text{Mean}} &amp;= \bar{X} \pm \sigma_M(CV) \\
+ &amp;= {\bar{X}} \pm \frac{\hat{\sigma}}{\sqrt{N}}(CV)
 \end{aligned}`
 $$
 ---
+.pull-left[
+**Adults**
 
+
+```r
+sd(trickRtreat$Candy[trickRtreat$Age == "Adult"], na.rm=T)
+```
+
+```
+## [1] 4.779684
+```
+
+```r
+qt(.975, df = 35-1)
+```
+
+```
+## [1] 2.032245
+```
+
+```r
+14.09 + (4.78/sqrt(35)*2.03)
+```
+
+```
+## [1] 15.73017
+```
+
+```r
+14.09 - (4.78/sqrt(35)*2.03)
+```
+
+```
+## [1] 12.44983
+```
+
+
+`$$14.09 \pm \frac{4.78}{\sqrt{35}}(2.03)$$`
+`$$[12.45, 15.73]$$`
+]
+
+.pull-right[
+**Kids**
+
+
+```r
+sd(trickRtreat$Candy[trickRtreat$Age  == "Kid"], na.rm=T)
+```
+
+```
+## [1] 1.278927
+```
+
+```r
+qt(.975, df = 500-1)
+```
+
+```
+## [1] 1.964729
+```
+
+```r
+13.30 + (1.28/sqrt(500)*1.96)
+```
+
+```
+## [1] 13.4122
+```
+
+```r
+13.30 - (1.28/sqrt(500)*1.96)
+```
+
+```
+## [1] 13.1878
+```
+
+
+`$$13.30 \pm \frac{1.28}{\sqrt{500}}(1.96)$$`
+`$$[13.19, 13.41]$$`
+]
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# Do you believe it?
+
+---
+
+```r
+psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
+```
+
+```
+## 
+##  Descriptive statistics by group 
+## group: Adult
+##    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## group: Kid
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## X1    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+*SD* seems to be pretty unequal, and the uneven sample size is going to exacerbate this issue. Student's *t* is pretty robust to homogeneity of variance violations when sample size is equal, but that's not the case here. 
+---
+## Plot it! 
+
+.pull-left[
+.code-small[
+
+
+```r
+plot_data &lt;- Rmisc::summarySE(trickRtreat, "Candy", "Age")
+plot_data %&gt;% 
+  ggplot(aes(x = Age, y = Candy, fill=Age)) + 
+  geom_bar(stat = "identity") + ggtitle("Amount of Candy Obtained by Age Group") + 
+  geom_errorbar(aes(ymin=Candy-ci, ymax=Candy+ci), width = .2) + 
+  xlab("Age Group") +
+  scale_y_continuous(breaks=seq(5,16,1)) +
+  coord_cartesian( ylim = c(5,16))
+```
+]
+]
+
+.pull-right[
+![](14-two_means_I_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+
+
+---
+## Do better than bar graphs
+
+.pull-left[
+
+```r
+library(ggstatsplot)
+ggbetweenstats(
+  data = trickRtreat,
+  x = Age,
+  y = Candy,
+  xlab = "Age Group",
+  ylab = "Candy",
+  title = "Violin Plot: amount of Candy trick or treated by age group",
+  results.subtitle = T,
+  var.equal = T,
+  bf.message = F,
+  mean.size = 10,
+  messages = F
+)
+```
+]
+
+
+.pull-right[
+![](14-two_means_I_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+]
+
+
+
+Almost all the variability in Kids' candy scores are contained within Adults' interquartile (middle 50%) range. Yikes.
+
+---
+## Welch's
+
+This is where Welch's comes in handy (although I default to it regardless)
+
+```r
+t.test(Candy ~ Age, data = trickRtreat, var.equal = F) #var.equal = F uses Welch's test, although it's also the default, so you don't need to type it
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  Candy by Age
+## t = 0.97503, df = 34.342, p-value = 0.3364
+## alternative hypothesis: true difference in means between group Adult and group Kid is not equal to 0
+## 95 percent confidence interval:
+##  -0.8556709  2.4350995
+## sample estimates:
+## mean in group Adult   mean in group Kid 
+##            14.08571            13.29600
+```
+
+With Welch's test, adults do not get significantly more candy than kids on Halloween. Sad.
+We can perform a significance test of homogeneity of variance as reassurance that the variances are indeed unequal. 
+---
+
+## Levene's Test for Homogeneity of Variance
+
+Homogeneity of variance can be checked with Levene’s procedure.  It tests the null hypothesis that the variances for two or more groups are equal (or within sampling variability of each other): 
+
+`$$H_0: \sigma^2_1 = \sigma^2_2$$`
+`$$H_A: \sigma^2_1 \neq \sigma^2_2$$`
+???
+Levene's test can be expanded to more than two variances; in this case, the alternative hypothesis is that at least one variance is different from at least one other variance.So a significant F value means a significant departure from homogeneity of variance. 
+
+Levene's produces a statistic, *W*, that is *F* distributed with degrees of freedom of `\(k-1\)` and `\(N-k\)`.
+
+---
+
+
+```r
+car::leveneTest(Candy~as.factor(Age), data = trickRtreat, center = "mean")
+```
+
+```
+## Levene's Test for Homogeneity of Variance (center = "mean")
+##        Df F value    Pr(&gt;F)    
+## group   1   301.3 &lt; 2.2e-16 ***
+##       533                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+Levene’s test gets more powerful as sample size increases. So unless your two variances are *exactly* equal to each other (and if they are, you don't need to do a test), your test will be "significant" with a large enough sample. Part of the analysis has to be an eyeball test -- is this "significant" because they are truly different, or because I have many subjects. 
+
+Don't need to base decision of Welch or Student based on a significance test. Utilize some of the tools we used earlier (looking at SDs, visualizations of spread and confidence intervals)
+---
+### Normality
+
+Finally, there's the assumption of normality. Specifically, this is the assumption that the population is normal -- if the population is normal, then our sampling distribution is **definitely** normal and we can use a *t*-distribution.
+
+But even if the population is not normal, the Central Limit Theorem lets us assume our sampling distribution is normal because as N approaches infinity, the sampling distributions approaches normality. So we can be **pretty sure** the sampling distribution is normal. 
+
+One thing we can check -- the only distribution we actually have access to -- is the sample distribution. If this is normal, then we can again be pretty sure that our population distribution is normal, and thus our sampling distribution is normal too. But again, the sample distributions aren't required to be normally distributed. 
+
+---
+
+Normality can be checked with a formal test: the Shapiro-Wilk test.  The test statistic, *W*, has an expected value of 1 under the null hypothesis. Departures from normality reduce the size of *W*.
+
+A statistically significant *W* is a signal that the sample distribution departs significantly from normal.
+
+But...
+* With large samples, even trivial departures will be statistically significant.
+* With large samples, the sampling distribution of the mean(s) will approach normality, unless the data are very non-normally distributed.
+* Visual inspection of the data can confirm if the latter is a problem.
+* Visual inspection can also identify outliers that might influence the data.
+
+---
+.code-small[
+
+```r
+shapiro.test(x = trickRtreat$Candy)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy
+## W = 0.88625, p-value &lt; 2.2e-16
+```
+
+```r
+shapiro.test(x = trickRtreat$Candy[trickRtreat$Age == "Adult"])
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy[trickRtreat$Age == "Adult"]
+## W = 0.9746, p-value = 0.5811
+```
+
+```r
+shapiro.test(x = trickRtreat$Candy[trickRtreat$Age == "Kid"])
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  trickRtreat$Candy[trickRtreat$Age == "Kid"]
+## W = 0.9429, p-value = 6.062e-13
+```
+]
+
+It's obvious that this isn't normal because the two groups have very different variabilities. It might seem surprising that Kids' significantly deviates from normalty, but we have a lot of Kids in the group.  
+---
+## What if I don't meet the normality assumption?
+A common non-parametric test (in the event of egregious non-normality) that can be used in place of the independent samples *t*-test is the **Wilcoxon sum rank test**.  
+
+* Order all the data points by their outcome. 
+* For one of the groups, add up all the ranks. That's your test statistic, *W*.
+* To build the sampling distribution, randomly shuffle the group labels and add up the ranks for your group of interest again. Repeat this process until you've calculated the rank sum for every possible group assignment. 
+
+
+```r
+wilcox.test(Candy~Age, data = trickRtreat)
+```
+
+```
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  Candy by Age
+## W = 9316, p-value = 0.5122
+## alternative hypothesis: true location shift is not equal to 0
+```
+
+---
+### Effect Sizes: Do significant differences really make a difference?
+
+Significance isn't a great proxy for meaningfulness or size of an effect. Many factors besides effect size goes into significance (provided the effect is not 0). And eyeballing how large an effect is can be difficult unless you're aware of the sample variances. 
+
+**Cohen's d** is a standardized mean difference and is one of the most common effect size estimate. Easy to understand and to compare across different experiments/studies. 
+
+`$$\delta = \frac{\mu_1 - \mu_0}{\sigma} \approx d = \frac{\bar{X}_1-\bar{X}_2}{\hat{\sigma}_p}$$`
+
+
+--
+
+Cohen’s d is in the standard deviation (Z) metric.
+
+
+Cohen's doesn't divide by *SE* so increasing sample size won't necessarily increase Cohen's D unless the effect grows or the variance decreases. 
+
+
+
+---
+
+
+
+```
+## 
+##  Descriptive statistics by group 
+## Age: Adult
+##       vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
+## Candy    1 35 14.09 4.78     14   14.03 4.45   5  23    18 0.12    -0.93 0.81
+## ------------------------------------------------------------ 
+## Age: Kid
+##       vars   n mean   sd median trimmed  mad min max range  skew kurtosis   se
+## Candy    1 500 13.3 1.28     13   13.33 1.48   8  16     8 -0.27     0.11 0.06
+```
+
+
+
+
+.pull-left[
+**Kid**
 $$
 `\begin{aligned}
- &amp;= {X} \pm \frac{\hat{\sigma}}{\sqrt{N}}(CV)
+ \bar{X}_1 &amp;= 13.3 \\
+ \hat{\sigma}_1 &amp;= 1.28 \\
+ N_1 &amp;= 500 \\
 \end{aligned}`
 $$
-.pull-left[
-**Females**
-
-
-```r
-sd(school_new$friends[school_new$Gender == "Female"], na.rm=T)
-```
-
-```
-## [1] 21.43591
-```
-
-```r
-qt(.975, df = 122-1)
-```
-
-```
-## [1] 1.979764
-```
-
-
-`$$18.31 \pm \frac{21.44}{\sqrt{122}}(1.98)$$`
-`$$[14.47, 22.15]$$`
 ]
 
 .pull-right[
-**Males**
-
-
-```r
-sd(school_new$friends[school_new$Gender == "Male"], na.rm=T)
-```
-
-```
-## [1] 15.90772
-```
-
-```r
-qt(.975, df = 83-1)
-```
-
-```
-## [1] 1.989319
-```
-
-
-`$$12.34 \pm \frac{15.91}{\sqrt{83}}(1.99)$$`
-`$$[8.87, 15.81]$$`
+**Adult**
+$$
+`\begin{aligned}
+ \bar{X}_2 &amp;= 14.09 \\
+ \hat{\sigma}_2 &amp;= 4.78 \\
+ N_2 &amp;= 35 \\
+\end{aligned}`
+$$
 ]
 
 ---
 
+`$$\hat{\sigma}_p = \sqrt{\frac{(35-1){4.78}^2 + (500-1){1.28}^2}{35+500-2}} 
+ = 1.73$$`
+ 
 
-```r
-library(ggpubr)
-ggerrorplot(school_new, x = "Gender", y = "friends", 
-            desc_stat = "mean_ci", color = "Gender", 
-            ylab = "Hours spent with friends (per week)")
-```
+ 
+ 
+`$$d = \frac{14.09-13.3}{1.73} = 0.46$$`
 
-![](15-two_means_I_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+How do we interpret this? Is this a large effect?
+
 ---
 
+Cohen (1988) suggests the following guidelines for interpreting the size of d:
 
+.large[
 
-```r
-ggerrorplot(school_new, x = "Gender", y = "friends", 
-            desc_stat = "mean_ci", color = "Gender", 
-            ylim=range(school_new$friends, na.rm=T),
-            ylab = "Hours spent with friends (per week)")
-```
+- 	.2 = Small
 
-![](15-two_means_I_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
----
+- 	.5 = Medium
 
-### What is a test statistic?
-
-.pull-left[
-
-`$$Z = \frac{\bar{X}-\mu}{\sigma_M}$$`
-
-`$$t = \frac{\bar{X}-\mu}{\frac{s}{\sqrt{N}}}$$`
-]
-
-.pull-right[
-
-`$$t = \frac{(\bar{X}_1 - \bar{X}_2)-(\mu_1 - \mu_2)}{\sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}$$`
+- 	.8 = Large	
 
 ]
 
-All test statistics measure 
+An aside, to calculate Cohen's D for a one-sample *t*-test: 
+`$$d = \frac{\bar{X}-\mu}{\hat{\sigma}}$$`
 
-`$$\frac{\text{Signal}}{\text{Noise}}$$`
+
+.small[Cohen, J. (1988), Statistical power analysis for the behavioral sciences (2nd Ed.). Hillsdale: Lawrence Erlbaum.]
+
+---
+## Double check your work -- Student's *t*
+
+
+```r
+library(lsr)
+independentSamplesTTest(Candy ~ Age, data = trickRtreat, var.equal = T)
+```
+
+```
+## 
+##    Student's independent samples t-test 
+## 
+## Outcome variable:   Candy 
+## Grouping variable:  Age 
+## 
+## Descriptive statistics: 
+##              Adult    Kid
+##    mean     14.086 13.296
+##    std dev.  4.780  1.279
+## 
+## Hypotheses: 
+##    null:        population means equal for both groups
+##    alternative: different population means in each group
+## 
+## Test results: 
+##    t-statistic:  2.613 
+##    degrees of freedom:  533 
+##    p-value:  0.009 
+## 
+## Other information: 
+##    two-sided 95% confidence interval:  [0.196, 1.383] 
+##    estimated effect size (Cohen's d):  0.457
+```
 
 ---
 
-class: center
+## Double check your work -- Welch's *t*
 
-![](images/signal.png)
+
+```r
+library(lsr)
+independentSamplesTTest(Candy ~ Age, data = trickRtreat, var.equal = F)
+```
+
+```
+## 
+##    Welch's independent samples t-test 
+## 
+## Outcome variable:   Candy 
+## Grouping variable:  Age 
+## 
+## Descriptive statistics: 
+##              Adult    Kid
+##    mean     14.086 13.296
+##    std dev.  4.780  1.279
+## 
+## Hypotheses: 
+##    null:        population means equal for both groups
+##    alternative: different population means in each group
+## 
+## Test results: 
+##    t-statistic:  0.975 
+##    degrees of freedom:  34.342 
+##    p-value:  0.336 
+## 
+## Other information: 
+##    two-sided 95% confidence interval:  [-0.856, 2.435] 
+##    estimated effect size (Cohen's d):  0.226
+```
+
 ---
-
 class: inverse
 
-## Next time
+## Next time...
 
-* Assumptions
-* Cohen's D
+- 10/25 - Comparing dependent means
+- 10/27 - Data Viz
+- 11/1 - Exam 2 Review
+- 11/3 - Exam 2 opens (and Shelly holds lab hours)
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -521,6 +827,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

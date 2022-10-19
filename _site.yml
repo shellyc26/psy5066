@@ -35,6 +35,8 @@ navbar:
         href: "lectures/12-chisq.html"
       - text: "One-Sample t"
         href: "lectures/13-one_sample.html"
+      - text: "Two-Sample t 1"
+        href: "lectures/14-two_means_I.html"
     - text: Homework
       href: homework.html
   right:
