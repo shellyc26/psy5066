@@ -1,0 +1,22 @@
+---
+title: "test"
+author: "Prof Coops"
+date: "2022-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+set.seed(15)
+trickRtreat <- data.frame("Candy"=cbind(c(round(rnorm(n=500, mean=13.256, sd = 1.243)), round(rnorm(n=35, mean=14.5742, sd = 4.4523)))), "Age"=c(rep("Kid", 500), rep("Adult", 35)))
+# simulated data. How much Candy did each individual get? And are they adults or kids?
+psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
+```
+
+Then run the test
+```{r}
+library(broom)
+results <- t.test(Candy ~ Age, data = trickRtreat)
+results_pretty <- tidy(results)
+```
+
+Now, there is a significant difference `r results_pretty$p.value`
