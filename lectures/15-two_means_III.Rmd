@@ -288,7 +288,7 @@ t.test(x = gulls$At, y = gulls$Away,
 
 ---
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 ggpubr::ggpaired(data = gulls, cond1 = "At", cond2 = "Away", line.color = "grey",
                  ylab = "Time to approach (seconds)", 
                  title = "Some gulls approach food more quickly when \npeople look away from them")
