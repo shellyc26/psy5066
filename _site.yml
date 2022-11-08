@@ -43,6 +43,8 @@ navbar:
         href: "lectures/dataViz.html"
       - text: "Exam 2 Review"
         href: "lectures/exam2review.html"
+      - text: "Model Comparisons"
+        href: "lectures/17-modelcomparison.html"
     - text: Homework
       href: homework.html
   right:

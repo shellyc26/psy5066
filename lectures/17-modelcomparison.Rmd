@@ -17,6 +17,24 @@ library(knitr)
 colors = RColorBrewer::brewer.pal(4, "Set2")
 ```
 
+## Announcements
+- We will first grade Exam 2, then grade HW 3.
+
+--
+
+- I will post HW 4 by end of day on Wednesday. It is due 11/20
+
+--
+
+- Exam 3:
+  - Heavily weighted to newer material
+  - Older material covered would be things like, define a p-value, confidence intervals, and what types of tests would you use for different research questions. I will NOT make you re-calculate specific tests. 
+  
+--
+
+- **Messi is teaching on Thursday 11/10**
+
+---
 ## Recap
 
 * We've compared a lot of means:
@@ -249,7 +267,7 @@ name: indep
 
 ## The Data
 
-.code-small[
+
 ```{r}
 dems <- data.frame(Dem = c(30, 69, 99, 77, 29, 37, 38, 37,
                            30, 62, 50, 69, 27, 29, 44, 45),
@@ -260,7 +278,7 @@ dems$Year <- factor(dems$Year)
 dems
 
 ```
-]
+
 
 ---
 
@@ -683,18 +701,17 @@ The $F$-distribution is one-sided (like the $\chi^2$ ). You only care about the 
 
 ---
 
-<center>
-
-<img src="17-modelcomparison_files/figure-html/fdist.png", width="50%">
-
-</center>
+.left-column[
+.small[
 
 The $t$, $\chi^2$, and $F$ distributions all depend on the normal distribution assumption. The normal distribution is the "parent" population.
 
-As sample size increases, $t$ and $\chi^2$ converge on the normal. $F$ converges on :
+As sample size increases, $t$ and $\chi^2$ converge on the normal. $F$ converges on : $\frac{\chi^2_{\nu_1}}{\nu_1}$
+with the numerator depending on the normal
+]
+]
 
-$$\frac{\chi^2_{\nu_1}}{\nu_1}$$
-with the numerator depending on the normal.
+<img src="17-modelcomparison_files/figure-html/fdist.png", width="80%">
 
 ---
 
@@ -720,6 +737,10 @@ A model is what **YOU** define. It's how you think the world works. The restrict
 --
 
 Minimizing error terms is how we evaluate multitudes of models!
+
+--
+
+> *All models are wrong, but some are useful* - George Box
 
 --
 
