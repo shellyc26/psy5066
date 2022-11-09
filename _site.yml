@@ -45,6 +45,8 @@ navbar:
         href: "lectures/exam2review.html"
       - text: "Model Comparisons"
         href: "lectures/17-modelcomparison.html"
+      - text: "Oneway ANOVA"
+        href: "lectures/18-onewayanova-messi.html"
     - text: Homework
       href: homework.html
   right:
