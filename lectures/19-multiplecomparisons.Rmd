@@ -1,5 +1,5 @@
 ---
-title: 'Multiple Comparisons and Contrasts'
+title: 'Comparisons and Contrasts'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -241,6 +241,8 @@ $\alpha = .05$ and we have 6 planned tests, $.05/6 = .0083$. $.0083$ is our new 
 
 What issues might present with the Bonferonni correction for multiple comparisons?
 
+<center>
+
 ![](images/bonferonniCartoon.png)
 
 ---
@@ -376,7 +378,7 @@ F = 2.25$$
 
 Critical value $F(1, 16) = 4.49$
 
-Cannot reject H0 that the average of older Batmen is different from the average of younger Batmen
+Cannot reject $H_0$. There is not sufficient evidence to say that the average of older Batmen is different from the average of younger Batmen
 
 ---
 class: inverse

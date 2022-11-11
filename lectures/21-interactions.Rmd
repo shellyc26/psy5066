@@ -319,7 +319,7 @@ Multiply by n per group = 0.5625 * 4 = 2.25
 
 ---
 
-## $SS_{\text{within}}$
+### $SS_{\text{within}}$
 
 Error from the full model
 
@@ -494,6 +494,8 @@ class: inverse
 ## Next time
 
 - Within-subjects designs
+
+- Validity
 
 - Exam 3 review
 

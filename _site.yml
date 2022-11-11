@@ -47,6 +47,12 @@ navbar:
         href: "lectures/17-modelcomparison.html"
       - text: "Oneway ANOVA"
         href: "lectures/18-onewayanova-messi.html"
+      - text: "Compare & Contrast"
+        href: "lectures/19-multiplecomparisons.html"
+      - text: "Twoway ANOVA"
+        href: "lectures/20-btwn_subj_fctr_lecture.html"
+      - text: "Interactions"
+        href: "lectures/21-interactions.html"
     - text: Homework
       href: homework.html
   right:

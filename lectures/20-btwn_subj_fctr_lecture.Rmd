@@ -18,19 +18,13 @@ library(kableExtra)
 colors = RColorBrewer::brewer.pal(4, "Set2")
 ```
 
-## Watch the recording
-
-Recording of this lecture is found here `r emo::ji("point_down")`
-
-[https://youtu.be/RIdjwE-13yQ](https://youtu.be/RIdjwE-13yQ)
----
-
 ## Recap
 
   * We've taken a model comparison approach to comparing group means with ANOVA
     * Restricted 
     * Full 
-    * F test
+    * _F_ test
+    
   * Explored different approaches to comparing means
     * Multiple comparisons
     * Contrast coefficients
@@ -331,13 +325,12 @@ This is our **leftover variation** after taking our grade and doublet variables 
 ---
 ## Calculating SS error
 
-$SS_{Total} = SS_{grade} + SS_{doublet} + SS_{error}$
-
+$$SS_{Total} = SS_{grade} + SS_{doublet} + SS_{error}$$
 --
 
-Conceptually: 
+**Conceptually: **
 
-$SS_{error} = SS_{Total} - SS_{grade} - SS_{doublet}$
+$$SS_{error} = SS_{Total} - SS_{grade} - SS_{doublet}$$
 
 ---
 
@@ -399,7 +392,7 @@ $F_{dbl} = 4.08$ is *not* more extreme than our $F_{crit} = 4.67$ so we fail to 
 
 ## Is it always this painful? 
 
-No, because we have R! 
+No, because we have `R`! 
 
 ```{r}
 summary(aov(correct ~ grade + doublet, data))
