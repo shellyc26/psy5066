@@ -53,6 +53,8 @@ navbar:
         href: "lectures/20-btwn_subj_fctr_lecture.html"
       - text: "Interactions"
         href: "lectures/21-interactions.html"
+      - text: "Misc."
+        href: "lectures/22-within.html"
     - text: Homework
       href: homework.html
   right:

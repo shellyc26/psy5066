@@ -123,7 +123,20 @@ New 2x2 design comparing treatments to reduce depression
 ![](images/fmedsfull2.png)
 
 ---
-class: inverse
+## Assumptions of ANOVA
+
+1. Experimental errors are normally distributed (more later)
+
+2. Equal variances between treatments. Aka homogeneity of variances.
+
+3. Independence of samples (more next)
+
+--
+
+What happens when we break some of these assumptions?
+
+---
+class: inverse, center
 
 # Within-subjects
 
@@ -133,7 +146,7 @@ class: inverse
 
 - Other names: within-groups, repeated measures
 
-- Each subject contributes a score to each level of an independent variable
+- Each subject contributes a score to each level of an independent variable (breaking independence assumption)
 
 - We've done this before...paired $t$-test
 
@@ -215,9 +228,9 @@ class: inverse
   - Take Mike Strube's Hierarchical Linear Modeling class
 ---
 
-## To Summarize
+## Venn Diagram Exercise
 
-![](22-within_files/figure-html/partition.png)
+How do we break down variances?
 
 ---
 class: inverse
@@ -349,4 +362,4 @@ class: inverse
 
 # Next time
 
-Review for Exam 3!
+Validity!
