@@ -55,6 +55,8 @@ navbar:
         href: "lectures/21-interactions.html"
       - text: "Misc."
         href: "lectures/22-within.html"
+      - text: "Validity"
+        href: "lectures/23-measurement.html"
     - text: Homework
       href: homework.html
   right:
