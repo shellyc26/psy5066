@@ -1,0 +1,452 @@
+---
+title: 'Exam 3 Review'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, warning=FALSE, message=FALSE, include = FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(effectsize)
+```
+
+## Exam 3
+
+- Cumulative-ish
+- 4 hours to complete between Thursday (12/8) and Tuesday (12/13) 11:59pm
+- There will be lab hours on Thursday 12/8!
+
+---
+
+## Review 1
+
+The holidays are upon us! You want to know if happiness (scale of 1-10) this time of year is impacted by which holiday folks celebrate (Christmas, Hanukkah, Kwanzaa) and ugly sweaters (ugly, not ugly). You're specifically interested in whether these interact. That is, you think that an ugly Christmas sweater might bring more joy than an ugly Hanukkah sweater or ugly Kwanzaa sweater. Here are the data:
+
+|               | Ugly Sweater | Not Ugly Sweater |
+|---------------|--------------|------------------|
+| **Christmas** | 7, 6, 9, 8   | 4, 5, 3, 5       |
+| **Hanukkah**  | 4, 8, 10, 7  | 4, 3, 4, 4       |
+| **Kwanzaa**    | 8, 6, 5, 5   | 2, 3, 2, 5       |
+
+Calculate the ANOVA for main effects and interaction. Be able to interpret all *F* tests. 
+
+---
+
+class: inverse
+
+# Review 1 Answers
+
+---
+
+## Create DataFrame
+
+```{r message=FALSE, warning=FALSE}
+
+holidays = data.frame(
+  Happiness = c(7, 6, 9, 8, 4, 5, 3, 5, 4, 8, 10, 7,
+                4, 3, 4, 4, 8, 6, 5, 5, 2, 3, 2, 5),
+  Holiday = c(rep("Christmas", times = 8),
+              rep("Hanukkah", times = 8),
+              rep("Kwanzaa", times = 8)),
+  Sweater = c(rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4),
+              rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4),
+              rep("Ugly", times = 4),
+              rep("Not Ugly", times = 4))
+)
+```
+
+---
+
+```{r message=FALSE, warning=FALSE}
+# Don't forget to change Holiday and Sweater variables into Factors!
+holidays <- holidays %>% 
+  mutate(Holiday = as.factor(Holiday)) %>%
+  mutate(Sweater = as.factor(Sweater))
+
+holidays %>% group_by(Holiday) %>%
+  slice_head(n = 3) %>%
+  kable("html") %>% 
+  kable_styling(font_size = 16)
+  
+```
+
+---
+
+## Sum of Squares for Holiday (Restricted)
+
+```{r message=FALSE, warning=FALSE}
+
+grandMean = round(mean(holidays$Happiness), 2)
+
+ssH = holidays
+ssH$prediction = rep(grandMean, times = nrow(ssH))
+ssH$Error = ssH$Happiness - ssH$prediction
+ssH$E2 = ssH$Error^2
+Er = sum(ssH$E2)
+
+Er
+
+```
+
+---
+
+## Sum of Squares for Holiday (Full)
+
+```{r message=FALSE, warning=FALSE}
+
+means = holidays %>% 
+  group_by(Holiday) %>% 
+  summarize(m = mean(Happiness))
+
+ssh2 = holidays
+ssh2$prediction = c(rep(means$m[1], times = 8),
+                    rep(means$m[2], times = 8),
+                    rep(means$m[3], times = 8))
+
+ssh2$error = ssh2$Happiness - ssh2$prediction
+ssh2$e2 = ssh2$error^2
+Ef = sum(ssh2$e2)
+
+Ef
+```
+
+---
+
+## Sum of Squares Holiday is... 
+
+```{r message=FALSE, warning=FALSE}
+
+SSHoliday = Er-Ef
+dfh = 2
+MSHoliday = SSHoliday/dfh
+
+SSHoliday
+
+```
+
+---
+
+## SS Sweater
+
+```{r echo=FALSE}
+ssS = holidays
+ssS$prediction = rep(grandMean, times = nrow(ssS))
+ssS$Error = ssS$Happiness - ssS$prediction
+ssS$E2 = ssS$Error^2
+Er = sum(ssS$E2)
+
+means = holidays %>% 
+  group_by(Sweater) %>% 
+  summarize(m = round(mean(Happiness), 2))
+
+sss2 = holidays
+sss2$prediction = c(rep(means$m[2], times = 4),
+                    rep(means$m[1], times = 4),
+                    rep(means$m[2], times = 4),
+                    rep(means$m[1], times = 4),
+                    rep(means$m[2], times = 4),
+                    rep(means$m[1], times = 4))
+
+sss2$error = sss2$Happiness - sss2$prediction
+sss2$e2 = sss2$error^2
+Ef = sum(sss2$e2)
+
+SSSweater = Er-Ef
+dfs = 1
+MSSweater = SSSweater/dfs
+```
+
+```{r}
+
+Er
+
+Ef
+
+SSSweater
+
+```
+
+---
+
+## SS Interaction
+
+The goal is to create a table like this, and calculate the SS Interaction: 
+
+|                  | Ugly Sweater | Not Ugly Sweater | Row Means |
+|------------------|--------------|------------------|-----------|
+| **Christmas**    | 7, 6, 9, 8   | 4, 5, 3, 5       | **5.875** |
+| **Hanukkah**     | 4, 8, 10, 7  | 4, 3, 4, 4       | **5.5**   |
+| **Kwanzaa**      | 8, 6, 5, 5   | 2, 3, 2, 5       | **4.5**   |
+| **Column Means** | **6.92**     | **3.67**         | **5.29**  |
+
+---
+
+## SS Interaction
+
+```{r}
+means = holidays %>% 
+  group_by(Holiday, Sweater) %>% 
+  summarize(m = mean(Happiness))
+
+means
+```
+
+---
+
+## SS Interaction
+
+```{r echo = FALSE}
+means$rowMean = NA
+means$colMeans = NA
+means$rowMean[1] = 5.875
+means$rowMean[2] = 5.875
+means$rowMean[3] = 5.5
+means$rowMean[4] = 5.5
+means$rowMean[5] = 4.5
+means$rowMean[6] = 4.5
+
+means$colMeans[1] = 3.67
+means$colMeans[2] = 6.92
+means$colMeans[3] = 3.67
+means$colMeans[4] = 6.92
+means$colMeans[5] = 3.67
+means$colMeans[6] = 6.92
+
+```
+
+```{r}
+means$Total = NA
+for (i in 1:nrow(means)) {
+  means$Total[i] = means$m[i] - means$rowMean[i] - means$colMeans[i] + grandMean
+}
+means$Total2 = means$Total^2
+```
+
+```{r echo = FALSE}
+means  %>% 
+  kable("html") %>% 
+  kable_styling(font_size = 16)
+```
+```{r}
+(SSInteraction = sum(means$Total2) * 4)
+```
+
+---
+
+## SS Within
+
+```{r}
+ssw = holidays
+ssw$prediction = c(7.50, 7.50, 7.50, 7.50,
+                   4.25, 4.25, 4.25, 4.25,
+                   7.25, 7.25, 7.25, 7.25, 
+                   3.75, 3.75, 3.75, 3.75, 
+                   6.00, 6.00, 6.00, 6.00, 
+                   3.00, 3.00, 3.00, 3.00)
+
+ssw$error = ssw$Happiness - ssw$prediction
+ssw$e2 = ssw$error^2
+SSWithin = sum(ssw$e2)
+MSWithin = SSWithin/(24-1)
+
+SSWithin
+```
+
+---
+
+## aov() Output
+
+```{r}
+summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
+```
+
+-- 
+
+#### What do we conclude about the main effects? 
+
+
+--
+
+#### Do the effects of Holiday and Sweater interact?
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Statistical Conclusion Validity?
+
+- low statistical power
+- violations of assumptions
+- fishing and the error rate problem
+- unreliable measures
+- restricted range
+- unreliable group assignment 
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Internal Validity?
+
+- ambiguous temporal precedence
+- selection
+- attrition
+- history
+- maturation
+- regression
+- testing
+- instrumentation
+
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Construct Validity?
+
+- inadequate explication of constructs
+- construct confounding
+- reactive self-report changes
+- reactivity to the experimental situation
+- experimenter expectancy
+- novelty and disruption effects
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about External Validity?
+
+- sampling bias
+- experimenter effects
+- hawthorne effect
+- testing effects
+- situation effects
+
+---
+
+## Review 3
+
+#### What effect sizes have we learned? Eta-Squared!
+
+---
+
+## Review 3
+
+#### What effect sizes have we learned? Eta-Squared!
+
+```{r}
+holiday.aov <- aov(Happiness ~ Holiday * Sweater, data = holidays)
+eta_squared(holiday.aov, partial = FALSE)
+```
+
+--
+
+```{r}
+c(SSHoliday/Er, SSSweater/Er)
+```
+
+---
+
+## Review 3
+
+#### Now Partial Eta-Squared!
+
+```{r}
+holiday.aov <- aov(Happiness ~ Holiday * Sweater, data = holidays)
+eta_squared(holiday.aov, partial = TRUE)
+```
+
+--
+
+```{r}
+c(SSHoliday/(SSWithin + SSHoliday), 
+  SSSweater/(SSWithin + SSSweater),
+  SSInteraction/(SSWithin + SSInteraction))
+```
+
+---
+
+## Review 3
+
+#### Omega-squared
+
+```{r}
+summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
+```
+
+--
+
+Omega-squared can be calculated using the following equation:
+
+$$\omega^2_{Holiday} = \frac{df_{Holiday}(MS_{Holiday} - MS_{within})}{SS_{Total} + MS_{within}}$$
+
+---
+
+## Review 3
+
+```{r}
+omega_squared(holiday.aov, partial = FALSE)
+```
+
+--
+
+When we plug in the values for $\omega^2_{Holiday}$, it would be: 
+
+$$\omega^2_{Holiday} = \frac{2 * (4.04 - 2.18)}{(8.08 + 63.37 + 0.25 + 39.25) + 2.18}=.0328$$
+
+---
+
+## Review 4
+
+#### What tests did we learn about? 
+
+- Compare sample mean to population mean with unknown sigma
+
+- Compare 2 means with within-groups design
+
+- Compare 2 means with between-groups design
+
+- Compare 3+ levels of IV
+
+- 2+ IVs (main effects/interactions)
+
+
+---
+
+## Review 4 Answers
+
+| **Situation** | **Which Test?** |
+|---------------|-----------------|
+| Compare sample mean to population mean with unknown sigma | Single sample *t*  test | 
+| Compare 2 means with within-groups design | Paired samples *t* test |  
+| Compare 2 means with between-groups design | Independent samples *t* test |  
+| Compare 3+ levels of IV | One-way ANOVA (between groups) |  
+| 2+ IVs (main effects/interactions) | Two-way ANOVA |  
+
+---
+
+class: inverse
+
+## End of Review
+
+- Good luck on Exam!
+- Don't forget Course Evals!
+
+

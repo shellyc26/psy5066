@@ -57,6 +57,8 @@ navbar:
         href: "lectures/22-within.html"
       - text: "Validity"
         href: "lectures/23-measurement.html"
+      - text: "Exam 3 Review"
+        href: "lectures/exam3review-messi.html"
     - text: Homework
       href: homework.html
   right:
