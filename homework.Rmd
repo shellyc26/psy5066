@@ -11,26 +11,26 @@ output:
 Homework assignments will appear here. You'll be able to access the assignment, as well as any data that may be used. Homework assignments will be posted **at least one week** before they are due. Submit homework assignments via Canvas by the due date and time.
 
 ## Homework 1
-- [Homework 1 is here](homework/homework_1.html)
+- HW1 will be posted here
 - Due on **9/8 by 9:30am**
 - Peer Review of Homework 1 due *9/11 by 9:30am*
 
 ## Homework 2
-- [Homework 2 is here](homework/homework_2.html)
+- HW2 will be posted here
 - Due on **9/20 by 9:30am**
 - Peer Review of Homework 2 due *9/23 by 9:30am*
 
 ## Homework 3
-- [Homework 3 is here](homework/homework_3.html)
+- HW3 will be posted here
 - Due on **10/27 by 9:30am**
 - Peer Review of Homework 3 due *10/30 by 9:30am*
 
 ## Homework 4
-- [Homework 4 is here](homework/homework-5.html) 
+- HW4 will be posted here
 - Due on **11/17 by 9:30am**
 - Peer Review of Homework 4 due *11/20 by 9:30am*
 
 ## Homework 5
-- [Homework 5 is here](homework/homework-6.html)
+- HW5 will be posted here
 - Due on **12/6 by 9:30am**
 - Peer Review of Homework 5 due *12/9 by 9:30am*
