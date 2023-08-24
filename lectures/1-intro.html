@@ -3,7 +3,7 @@
   <head>
     <title>Real Intro &amp; Measurement Scales</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -77,7 +77,7 @@ My job is to balance theory and application. Everyone is coming here with *extre
 
 [Slack Workspace](https://quant-i.slack.com/) -- here for answering questions, posting stats/`R` memes, building community
 
-[Canvas](https://wustl.instructure.com/courses/94453) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
+[Canvas](https://wustl.instructure.com/courses/116326) -- where you will turn in your homeworks, complete code reviews, and view your grades (including exam grades)
 
 Data from class examples can be found on our [GitHub](https://github.com/shellyc26/psy5066) site in the `data` folder
 
@@ -94,12 +94,9 @@ Data from class examples can be found on our [GitHub](https://github.com/shellyc
 - Important equations will be presented in the slides
 
 ---
+class: center, middle
 
 # Questions?
-
-For the rest of today:
-- Data Types
-- (if time) Setting up your computer to play nicely using `RProjects`
 
 ---
 
@@ -143,217 +140,6 @@ In reality, most statistical tests can be used with most kinds of research. It's
 
 - We'll discuss the first point throughout the course
 - Let's discuss variables now
-
----
-class: center
-
-## Scales of measurement (Data types)
-
-![](images/alldataTypes_gray.png)
----
-## Qualitative vs. Quantitative
-
-&lt;img src='images/quantvqual.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Qualitative**:
-
-- aka categorical, factors
-- "not numeric", as in numbers serve as labels, not as things to add or subtract
-]
-
---
-
-.pull-right[
-**Quantitative**:
-
-- reflects magnitude
-- values are actually numbers you can add/subtract
-]
-
-
----
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: &lt;span style="color: red;"&gt;1&lt;/span&gt;
-    - blackberries: &lt;span style="color: red;"&gt;2&lt;/span&gt;
-    - coconut: &lt;span style="color: red;"&gt;3&lt;/span&gt;
-]
-
-.pull-right[
-![](images/nom.png)
-]
----
-
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: &lt;span style="color: green;"&gt;3&lt;/span&gt;
-    - blackberries: &lt;span style="color: green;"&gt;1&lt;/span&gt;
-    - coconut: &lt;span style="color: green;"&gt;2&lt;/span&gt;
-]
-
-.pull-right[
-![](images/nom.png)
-]
-
----
-
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: &lt;span style="color: blue;"&gt;312&lt;/span&gt;
-    - blackberries: &lt;span style="color: blue;"&gt;19&lt;/span&gt;
-    - coconut: &lt;span style="color: blue;"&gt;999&lt;/span&gt;
-]
-
-.pull-right[
-![](images/nom.png)
-]
-
----
-
-## Qualitative Variables
-#### Nominal vs. Ordinal
-
-&lt;img src='images/qualdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Nominal**:
-
-- Response options are groups
-- There is no order
-- Example -- What are different kinds of fruit?
-    - apples: 1
-    - blackberries: 2
-    - coconut: 3
-]
-
-.pull-right[
-**Ordinal**:
-
-- Response options are *ordered*
-- No consistent distance between possible scores
-- Example -- List the following fruits in order of preference
-    - apples: 2
-    - blackberries: 1
-    - coconuts: 3
-]
-
----
-
-## Quantitative Variables
-#### Discrete vs. Continuous
-
-&lt;img src='images/quantdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Discrete**:
-
-- Takes numeric values that are countable
-- Must be finite number of possibilities
-- Examples
-    - Number of children/family
-    - Number of students/class
-- Often confused with categorical; context matters
-
-]
-
---
-
-.pull-right[
-**Continuous**
-
-- Takes numeric values that are not necessarily countable
-- Infinite number of possibilities
-- Examples
-    - Age
-    - Height/weight
-- AKA "scale" variables
-]
-
----
-## Quantitative Variables
-#### Continuous
-
-&lt;img src='images/quantdata.png' class='img_top_right' style='width:200px;'/&gt;
-
-.pull-left[
-**Interval**:
-
-- Responses are ordered (like ordinal)
-- Distance between responses is the same (unlike ordinal)
-- No meaningful 0
-- Examples
-    - temp in Farenheit
-- In my experience, not as common unless you treat Likert scale as interval (though it is technically ordinal)
-
-]
-
---
-
-.pull-right[
-**Ratio**
-
-- Same as interval, but now with a meaningful 0
-- 0 indicates the absence of something
-- Example
-    - How many words did you recall on a memory test?
-    - 0 words recalled is meaningful!
-
-]
-
----
-
-class: center
-
-## Pitfalls?
-
-![](images/alldataTypes_colors.png)
-
----
-## Pitfalls
-
-Confusing Nominal and Ordinal
-  - lose information about order you might want
-  - or maybe you don't care and it doesn't matter
-
---
-
-Confusing Interval and Ratio
-  - lots of stats are interpreted in regards to 0
-  - if there is no meaningful 0, how do you interpret?
-
---
-
-Confusing Qualitative and Quantitative
-  - happens more than you think; esp in the machine learning world
-  - can straight up get the wrong numbers (will come back to this with correlation!)
   
 ---
 
@@ -361,7 +147,7 @@ class: inverse
 
 ## Next time
 
-Describing data
+Models
 
 Remainder of class (if time)...`Rprojects`
     </textarea>

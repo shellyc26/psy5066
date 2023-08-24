@@ -12,38 +12,38 @@ output:
 
 LSR readings can be found in the free, online textbook, [*Learning Statistics with R*](https://learningstatisticswithr-bookdown.netlify.com/index.html) by Danielle Navarro. For those interested in taking notes, I recommend the use of the [Hypothes.is](http://Hypothes.is) app to annotate webpages. I will note that the formatting of the book online is wonky in a few places. If this bothers you, or you prefer to work offline, you can download a [PDF version](https://learningstatisticswithr.com/lsr-0.6.pdf) of the book.
 
-| Week | Date  | Topic                                                | Readings                                                                                                        | HW Due | Peer Review Due |
-|-----------|-----------|-----------|-----------------|-----------|-----------|
-| 1    | 8/29  | Syllabus, Introductions, RMarkdown/RProjects         |                                                                                                                 |        |                 |
-| \-   | 8/31  | Models                                               |                                                                                                                 |        |                 |
-| 2    | 9/5   | Measurements & Data                                  | LSR Ch 1 & 3                                                                                                    |        |                 |
-| \-   | 9/7   | Describing data                                      | LSR Ch 5 & 6                                                                                                    |        |                 |
-| 3    | 9/12  | Describing data                                      | LSR Ch 5 & 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf)                                             |        |                 |
-| \-   | 9/14  | Fisher tradition & probability                       | LSR Ch 9                                                                                                        |        |                 |
-| 4    | 9/19  | Normal & binomial distributions                      | LSR Ch 9                                                                                                        |        |                 |
-| \-   | 9/21  | Sampling distributions and $t$ distributions         | LSR Ch 10                                                                                                       |        |                 |
-| 5    | 9/26  | **Exam 1**                                           |                                                                                                                 |        |                 |
-| \-   | 9/28  | Hypothesis testing 1                                 | LSR Ch 11                                                                                                       |        |                 |
-| 6    | 10/3  | Hypothesis testing 2                                 | LSR Ch 11                                                                                                       |        |                 |
-| \-   | 10/5  | Critique of NHST                                     | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf) |        |                 |
-| 7    | 10/10 | Open science practices                               | [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)                                  |        |                 |
-| \-   | 10/12 | *No Class - Happy Fall Break!*                       |                                                                                                                 |        |                 |
-| 8    | 10/17 | Chi-Square test                                      | LSR Ch 12                                                                                                       |        |                 |
-| \-   | 10/19 | One-sample tests                                     | LSR Ch 13                                                                                                       |        |                 |
-| 9    | 10/24 | Comparing two means                                  | LSR Ch 13                                                                                                       |        |                 |
-| \-   | 10/26 | Comparing dependent means                            | LSR Ch 13                                                                                                       |        |                 |
-| 10   | 10/31 | Data Visualization                                   |                                                                                                                 |        |                 |
-| \-   | 11/2  | **Exam 2**                                           |                                                                                                                 |        |                 |
-| 11   | 11/7  | Introduction to model comparisons & $F$-distribution | LSR Ch 14                                                                                                       |        |                 |
-| \-   | 11/9  | One-way ANOVA                                        | LSR Ch 14                                                                                                       |        |                 |
-| 12   | 11/14 | Multiple comparisons & contrasts                     | LSR Ch 16                                                                                                       |        |                 |
-| \-   | 11/16 | Two between-subjects factors                         | LSR Ch 16                                                                                                       |        |                 |
-| 13   | 11/21 | Interactions & ANCOVA                                | LSR Ch 16                                                                                                       |        |                 |
-| \-   | 11/23 | *No Class - Happy Thanksgiving!*                     |                                                                                                                 |        |                 |
-| 14   | 11/28 | Within-subjects designs                              | LSR Ch 16                                                                                                       |        |                 |
-| \-   | 11/30 | Threats to Validity                                  | LSR CH 2 & 4, [Cronbach & Meehl (1955)](readings/Cronbach_Meehl_1955.pdf)                                       |        |                 |
-| 15   | 12/5  | Threats to Validity Cont.                            |                                                                                                                 |        |                 |
-| \-   | 12/7  | **Exam 3**                                           |                                                                                                                 |        |                 |
+| Week | Date  |                        Topic                         |                                                    Readings                                                     |  HW Due  |
+|:----------:|:----------:|:----------:|:----------:|:----------:|
+|  1   | 8/29  |     Syllabus, Introductions, RMarkdown/RProjects     |                                                                                                                 |          |
+|  \-  | 8/31  |                        Models                        |                                                                                                                 |          |
+|  2   |  9/5  |                 Measurements & Data                  |                                                  LSR Ch 1 & 3                                                   |          |
+|  \-  |  9/7  |                   Describing data                    |                                                  LSR Ch 5 & 6                                                   |          |
+|  3   | 9/12  |                   Describing data                    |                       LSR Ch 5 & 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf)                       | HW 1 due |
+|  \-  | 9/14  |            Fisher tradition & probability            |                                                    LSR Ch 9                                                     |          |
+|  4   | 9/19  |           Normal & binomial distributions            |                                                    LSR Ch 9                                                     |          |
+|  \-  | 9/21  |     Sampling distributions and $t$ distributions     |                                                    LSR Ch 10                                                    |          |
+|  5   | 9/26  |                      **Exam 1**                      |                                                                                                                 |          |
+|  \-  | 9/28  |                 Hypothesis testing 1                 |                                                    LSR Ch 11                                                    | HW 2 due |
+|  6   | 10/3  |                 Hypothesis testing 2                 |                                                    LSR Ch 11                                                    |          |
+|  \-  | 10/5  |                   Critique of NHST                   | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf) |          |
+|  7   | 10/10 |               *No Class - Fall Break!*               |                                                                                                                 |          |
+|  \-  | 10/12 |                Open science practices                |                 [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)                  |          |
+|  8   | 10/17 |                   Chi-Square test                    |                                                    LSR Ch 12                                                    |          |
+|  \-  | 10/19 |                   One-sample tests                   |                                                    LSR Ch 13                                                    |          |
+|  9   | 10/24 |                 Comparing two means                  |                                                    LSR Ch 13                                                    |          |
+|  \-  | 10/26 |              Comparing dependent means               |                                                    LSR Ch 13                                                    |          |
+|  10  | 10/31 |                  Data Visualization                  |                                                                                                                 | HW 3 due |
+|  \-  | 11/2  |                      **Exam 2**                      |                                                                                                                 |          |
+|  11  | 11/7  | Introduction to model comparisons & $F$-distribution |                                                    LSR Ch 14                                                    |          |
+|  \-  | 11/9  |                    One-way ANOVA                     |                                                    LSR Ch 14                                                    |          |
+|  12  | 11/14 |           Multiple comparisons & contrasts           |                                                    LSR Ch 16                                                    |          |
+|  \-  | 11/16 |             Two between-subjects factors             |                                                    LSR Ch 16                                                    | HW 4 due |
+|  13  | 11/21 |                Interactions & ANCOVA                 |                                                    LSR Ch 16                                                    |          |
+|  \-  | 11/23 |           *No Class - Happy Thanksgiving!*           |                                                                                                                 |          |
+|  14  | 11/28 |               Within-subjects designs                |                                                    LSR Ch 16                                                    |          |
+|  \-  | 11/30 |                 Threats to Validity                  |                    LSR CH 2 & 4, [Cronbach & Meehl (1955)](readings/Cronbach_Meehl_1955.pdf)                    | HW 5 due |
+|  15  | 12/5  |              Threats to Validity Cont.               |                                                                                                                 |          |
+|  \-  | 12/7  |                      **Exam 3**                      |                                                                                                                 |          |
 
 # Overview
 
@@ -68,8 +68,7 @@ While we will be covering the use of R and RStudio extensively, one of the key s
 Your final grade is comprised of three components:
 
 -   5 Homework: 6% each, 30% total
--   5 Peer Reviews: 2% each, 10% total
--   Exams: 20% each, 60% total
+-   Exams: 20% for the first exam, 25% for exams 2 and 3, 70% total
 
 ### Homework assignments
 
@@ -90,13 +89,9 @@ You may work with your peers on homework assignments, with the following caveats
 1.  Your code cannot be 100% identical to your peer's code (trust me, I can tell). It's one thing to work together and consult, but it's another thing to copy someone else's assignment. If it is determined that someone copied an entire homework assignment, both parties will be given automatic zero.
 2.  If you work with someone, you *must* acknowledge them in the assignment itself.
 
-### Peer Reviews
-
-It's important to get feedback on your work not just from the instructors/AIs but also from your peers. You will gain valuable experience in reading other peoples' code, which is far more prevalent than you might expect. Code reviews will take place on Canvas in Discussion threads. You will submit your code to the discussion thread by the assignment due date. You then have 72 hours (3 days) to complete the code review. You will follow the the template I provide for each code review. Each review will be worth 2% each for a total of 10% of your grade.
-
 ### Exams
 
-There will be 3 exams, each worth 20% of your grade. They will test both your theoretical understanding of concepts, as well as your applied understanding of the material. You will not be expected to open `R` and code during these exams, however you will be expected to understand `R` code that has been provided. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below).
+There will be 3 exams. They will test both your theoretical understanding of concepts, as well as your applied understanding of the material. You will not be expected to open `R` and code during these exams, however you will be expected to understand `R` code that has been provided. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). The first exam is worth 20% of your grade. Exams 2 and 3 are each worth 25% of your grade.
 
 ### Final Grading Rubric
 
@@ -106,17 +101,16 @@ All assignments and examinations are mandatory. If you need to miss an exam you 
 \begin{equation}
 \begin{split}
 
-& \text{> 100% = A+} \\
-& \text{93% - 99.99% = A} \\
+& \text{93% >=  A} \\
 & \text{90% - 92.99% = A-} \\
 & \text{87% - 89.99% = B+} \\
 & \text{83% - 86.99% = B} \\
 & \text{80% - 82.99% = B-} \\
+& \text{77% - 79.99% = C+} \\
 
 \end{split}
 
 \begin{split}
-& \text{77% - 79.99% = C+} \\
 & \text{73% - 76.99% = C} \\
 & \text{70% - 72.99% = C-} \\
 & \text{67% - 69.99% = D+} \\
@@ -129,15 +123,15 @@ All assignments and examinations are mandatory. If you need to miss an exam you 
 ```
 # Learning from Crappy Years
 
-The 2020-2021 academic year sucked, and the 2021-2022 academic year was just plain weird. But instead of burying our heads in the sand and forgetting they existed, let's at least extract some things and incorporate them into our lives. For this class, here's what that means...
+The 2020-2021 academic year sucked, and the 2021-2022 academic year was just plain weird. Things got a little better in 2022-2023, but still had its bizarre moments. But instead of burying our heads in the sand and forgetting they existed, let's at least extract some things and incorporate them into our lives. For this class, here's what that means...
 
 ### Staying Connected
 
 The past few years have been lonely. Although we're back in person, we still might feel that residual loneliness. On top of that, learning stats, learning to code, and grad school in general can be really scary -- impostor syndrome is real! The best thing we can do to combat these feelings is to stay connected to one another. Here's how we'll accomplish this in our class:
 
--   Your peer review will be with the same person. This way, you will get to know your buddy over the course of the semester. Make a friend!
-
 -   We will have a dedicated class Slack work space (see upper right corner of website for link). You can post questions that everyone can see, or make use of direct messaging. Shelly or the AIs will respond to your questions on Slack (if your peers don't respond first!). This is really great for one-off questions, or if you need some quick clarification on something. We will also have a dedicated channel for silly programming and stats memes, because humor is important when you're learning a skill like coding, in which you'll repeatedly fail. Slack is not required *per se*, but it is **highly encouraged**.
+
+-   We will occasionally have group discussions. Please engage with those around you.
 
 ### Be Considerate and Kind
 
