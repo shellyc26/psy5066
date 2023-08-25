@@ -3,12 +3,18 @@ title: 'Describing Data Part 1'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse) # for pipes and plots
@@ -37,7 +43,7 @@ The dataset is available on our GitHub site in the `data` folder, for those who 
 
 ```{r}
 world = read.csv("../data/world_happiness_2015.csv")
-world
+head(world)
 ```
 
 ???
@@ -45,10 +51,12 @@ Data measured at country level, one row per country.
 
 Draw attention to `NA`s.
 ---
-
+.code-small[
 ```{r}
 names(world)
 ```
+]
+
 
 .small[
 **Happiness**: “Please imagine a ladder, with steps numbered from 0 at the bottom to 10 at the top. The top of the ladder represents the best possible life for you and the bottom of the ladder represents the worst possible life for you. On which step of the ladder would you say you personally feel you stand at this time?”
