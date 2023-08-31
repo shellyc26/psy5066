@@ -3,13 +3,19 @@ title: 'Measurement Scales'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     incremental: true
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E")
+
+```
 
 class: center
 
@@ -135,7 +141,6 @@ class: center
 
 ## Quantitative Variables
 #### Discrete vs. Continuous
-
 <img src='images/quantdata.png' class='img_top_right' style='width:200px;'/>
 
 .pull-left[
@@ -144,8 +149,8 @@ class: center
 - Takes numeric values that are countable
 - Must be finite number of possibilities
 - Examples
-    - Number of children/family
-    - Number of students/class
+    - `#` of children/family
+    - `#` of students/class
 - Often confused with categorical; context matters
 
 ]
@@ -177,7 +182,7 @@ class: center
 - No meaningful 0
 - Examples
     - temp in Farenheit
-- In my experience, not as common unless you treat Likert scale as interval (though it is technically ordinal)
+- .small[Not as common unless you treat Likert scale as interval (it is technically ordinal)] 
 
 ]
 

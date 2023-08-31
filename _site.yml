@@ -9,6 +9,10 @@ navbar:
       menu:
       - text: "1-Introduction"
         href: "lectures/1-intro.html"
+      - text: "2-Models"
+        href: "lectures/2-models.html"
+      - text: "3-Data Types"
+        href: "lectures/3-dataTypes.html"
     - text: Homework
       href: homework.html
   right:

@@ -53,17 +53,7 @@ class: inverse, middle, center
 
 **YOU DEFINE THE MODEL**
 
---
-
-- are you always right?
-- are your data "perfect"?
-
---
-
-**MODELS ARE FLAWED**
-
 ---
-
 ## Middle School Math
 
 $$ y = mx + b $$
@@ -82,15 +72,37 @@ $$y = b_0 + b_{1}X$$
 - what is $b_1$?
 - what is $X$?
 
+---
+class: inverse, middle, center
+
+# Are models always right?
+
+---
+
+# MODELS ARE FLAWED
+
+- How? 
+
 --
 
-**MODELS ARE FLAWED**
+How do we compensate?
 
 --
 
-$$y = b_0 + b_{1}X + e$$ 
+$y = b_0 + b_{1}X + e$
 
 
+---
+
+class: inverse, middle, center
+
+# What are the goals of modeling?
+# What do you need in order to develop a model?
+
+---
+class: inverse, middle, center
+
+# How do we know if a model is good? What makes it good?
 ---
 
 ## How will we use models?
@@ -102,7 +114,3 @@ $$y = b_0 + b_{1}X + e$$
 - We will also focus on developing your intuition 
 
 - When you face new models, come back to these basics
-
----
-
-## What are the goals of modeling? 
