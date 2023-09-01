@@ -84,7 +84,7 @@ Create a boxplot graph for the `Corruption` variable, with separate boxplots for
 
 ## Question 5
 #### Part A
-Calculate the correlation *by hand* for `Happiness` & `Freedom`, `Happiness` & `Support`, and finally `Freedom` & `Support`. 
+Calculate the correlation for `Happiness` & `Freedom`, `Happiness` & `Support`, and finally `Freedom` & `Support`. 
 
 ```{r q5a}
 
