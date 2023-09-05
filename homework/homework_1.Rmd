@@ -7,7 +7,7 @@ output:
 
 # Instructions
 
-Please complete this assignment using the RMarkdown file provided (<a href="homework_1.Rmd" download="homework_1.Rmd">download here</a>). Be sure to include your name in the preamble. When you turn in the assignment, include **_both_** the .Rmd and knitted .pdf files. Please turn in both documents to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
+Please complete this assignment using the RMarkdown file provided (<a href="homework_1.Rmd" download="homework_1.Rmd">download here</a>). Be sure to include your name in the preamble. When you turn in the assignment, include **_both_** the .Rmd and knitted .html files. Please turn in both documents to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
 
 There will be empty gray sections below each question. Please put all R `CODE` within these gray chunks. They will behave as normal R code. If you are asked to explain something or write a few sentences, please do that *outside* of the gray chunks. That way, when you knit, your sentences will show up as normal text, but all of your code will be in a designated code chunk.
 
