@@ -19,7 +19,8 @@ style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse) # for pipes and plots
 library(lsr) # for mode and maxFreq functions
-
+library(kableExtra) # for tables
+library(psych)
 ```
 
 
@@ -71,7 +72,7 @@ names(world)
 
 **Generosity**: “Have you donated money to a charity in the past month?” (residual, adjusting for GDP)
 
-**Corruption**: “Is corruption widespread throughout the government or not” and “Is corruption widespread within businesses or not?” (average of 2 questions)
+**Corruption**: “Is corruption widespread throughout the government or not” and “Is corruption widespread within businesses or not?” (avg of 2 questions)
 
 ]
 
@@ -178,6 +179,7 @@ the woman lived another 32 years to become the oldest person on record, outlivin
 ## Center and spread
 
 - Distributions are most often described by their first two moments, mean and **variance**. 
+
 - Typically, these moments are the two used in common inferential techniques. 
 
 --
@@ -186,7 +188,7 @@ the woman lived another 32 years to become the oldest person on record, outlivin
 
 --
 
-- Why can't we use the average deviation?
+- *Let's take the average of how far numbers deviates from the mean*
 
 ---
 
@@ -311,9 +313,9 @@ In a normal distribution, the mean, median, and mode are all relatively equal.
   - Positive skew = tail pointed towards the positive values (right)
 
 - Kurtosis = pointyness
-  - Too pointy = leptokurtic
+  - Too pointy = leptokurtic; $+$ kurtosis
   - Perfect = mesokurtic
-  - Too flat = platykurtic (as in platypus!)
+  - Too flat = platykurtic (as in platypus!); $-$ kurtosis
 
 Most inferential statistics assume distributions are not skewed and are mesokurtic.
 
@@ -356,18 +358,28 @@ $$kurtosis(X) = \frac{1}{N\sigma^4}\Sigma(X_i-\mu)^4-3$$
 ???
 If you're calculating sample statistics for skewness and kurtosis, replace the $\sigma$ with $s$ and $\mu$ with $\bar{X}$.
 ---
-## problems
+## Problems
   
 ```{r describe}
-psych::describe(world)
+descriptives = describe(world)
+descriptives = descriptives %>% 
+  mutate_if(is.numeric, round, 2)
+
+kable(descriptives) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 14)
 ```
 
 How do we know if there is a problem and what should we do?
   
 ---
 ## Problems
+```{r, echo=FALSE}
+descriptives = describe(world)
+descriptives = descriptives %>% 
+  mutate_if(is.numeric, round, 2)
 
-```{r ref.label="describe", highlight.output = c(9,18)}
+kable(descriptives) %>% 
+  kable_styling(bootstrap_options = "striped", font_size = 14)
 
 ```
 
@@ -404,7 +416,7 @@ Pros & Cons to each of these; **be careful**
   
 ---
 
-class: inverse, center
+class: inverse, center, middle
 
 # Bias and efficiency
 
@@ -424,7 +436,9 @@ var(x)
 ## Population versus sample
 
 - The value that represents the entire population is called a **parameter**.
+
   - We collect samples to estimate the properties of populations; the statistic that represents a sample is called a **statistic**.
+  
   - Population parameters are represented with Greek letters (
   $\mu$
   , 
@@ -526,7 +540,7 @@ var_estimates %>%
 
 
 ---
-class: inverse, center
+class: inverse, center, middle
 
 # Standardized scores
 
@@ -588,4 +602,4 @@ class: inverse
 
 ## Next time...
 
-describing relationships
+describing relationships amongst 2 variables
