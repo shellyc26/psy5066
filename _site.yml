@@ -15,6 +15,10 @@ navbar:
         href: "lectures/3-dataTypes.html"
       - text: "4-Descriptives"
         href: "lectures/4-describing_data.html"
+      - text: "5-Correlations"
+        href: "lectures/5-describing_data.html"
+      - text: "6-Probability"
+        href: "lectures/6-probability.html"
     - text: Homework
       href: homework.html
   right:

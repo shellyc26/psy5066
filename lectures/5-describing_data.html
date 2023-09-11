@@ -3,10 +3,8 @@
   <head>
     <title>Describing Data Part 2</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,8 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
 
 
 
@@ -158,7 +158,7 @@ Moment = variance is the second moment of a distribution
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="3-describing_data_files/figure-html/unnamed-chunk-3-1.png" width="50%" /&gt;
+&lt;img src="5-describing_data_files/figure-html/unnamed-chunk-3-1.png" width="50%" /&gt;
 
 What is the correlation between these two variables?
 
@@ -174,7 +174,7 @@ Correlation = 0.68
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="3-describing_data_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
+&lt;img src="5-describing_data_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
 
 What is the correlation between these two variables?
 
@@ -190,7 +190,7 @@ Correlation = -0.41
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
-&lt;img src="3-describing_data_files/figure-html/unnamed-chunk-7-1.png" width="50%" /&gt;
+&lt;img src="5-describing_data_files/figure-html/unnamed-chunk-7-1.png" width="50%" /&gt;
 
 What is the correlation between these two variables?
 
@@ -294,7 +294,7 @@ p = data %&gt;% ggplot(aes(x=x, y=y)) + geom_point()
 ggMarginal(p, type = "density")
 ```
 
-![](3-describing_data_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 ---
 
 ## Outliers
@@ -306,7 +306,7 @@ ggMarginal(p, type = "density")
 data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() 
 ```
 
-![](3-describing_data_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ---
 
 ## Outliers
@@ -328,7 +328,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) +
 ]
 
 .pull-right-large[
-![](3-describing_data_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -352,7 +352,7 @@ ggplot(aes(x=x, y=y)) +
 ]
 
 .pull-right-large[
-![](3-describing_data_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 
 ???
@@ -384,7 +384,7 @@ ggplot(aes(x=x, y=y)) +
 ]
 
 .pull-right-large[
-![](3-describing_data_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 ]
 
 
@@ -400,7 +400,7 @@ My idea: that many psychology studies only look at undergraduates (restricted ag
 
 
 
-![](3-describing_data_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -420,13 +420,13 @@ Sometimes issues that affect correlations won't appear in your graph, but you st
 
 
 
-![](3-describing_data_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
 ## Multiple groups
 
-![](3-describing_data_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](5-describing_data_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 --
 

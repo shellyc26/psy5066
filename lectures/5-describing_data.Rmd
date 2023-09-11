@@ -3,12 +3,18 @@ title: 'Describing Data Part 2'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(MASS) # for simulating variables with specific correlations

@@ -13,7 +13,7 @@ output:
 LSR readings can be found in the free, online textbook, [*Learning Statistics with R*](https://learningstatisticswithr-bookdown.netlify.com/index.html) by Danielle Navarro. For those interested in taking notes, I recommend the use of the [Hypothes.is](http://Hypothes.is) app to annotate webpages. I will note that the formatting of the book online is wonky in a few places. If this bothers you, or you prefer to work offline, you can download a [PDF version](https://learningstatisticswithr.com/lsr-0.6.pdf) of the book.
 
 | Week | Date  |                        Topic                         |                                                    Readings                                                     |  HW Due  |
-|:----:|:-----:|:----------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|:--------:|
+|:--------:|:--------:|:----------:|:------------------------------:|:--------:|
 |  1   | 8/29  |               Syllabus & Introductions               |                                                                                                                 |          |
 |  \-  | 8/31  |                        Models                        |                                                                                                                 |          |
 |  2   |  9/5  |          Measurements; RMarkdown/ RProjects          |                                                  LSR Ch 1 & 3                                                   |          |
@@ -92,6 +92,8 @@ You may work with your peers on homework assignments, with the following caveats
 ### Exams
 
 There will be 3 exams. They will test both your theoretical understanding of concepts, as well as your applied understanding of the material. You will not be expected to open `R` and code during these exams, however you will be expected to understand `R` code that has been provided. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). The first exam is worth 20% of your grade. Exams 2 and 3 are each worth 25% of your grade.
+
+There will be 2 portions to each exam. The first part is a written exam to be taken during class time. The second portion will be an **oral** exam! You will schedule a time with me (I will have a sign up sheet for available times). Each oral exam to take longer than 10-15 minutes. Details (including points breakdown) will be further discussed in class as exams get closer.
 
 ### Final Grading Rubric
 
