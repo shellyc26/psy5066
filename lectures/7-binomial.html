@@ -3,10 +3,8 @@
   <head>
     <title>Binomial Distribution</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,8 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
 
 
 
@@ -130,11 +130,11 @@ $$
 ## Family of Distributions
 
 .pull-left[
-![](5-binomial_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
-![](5-binomial_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 ---
 
@@ -147,11 +147,12 @@ Every probability distribution has an **expected value**.
   - The *long-run* average over an infinite amount of trials or samples
 
 ---
-## Averages vs. EV
+## Averages vs. Expected Value
 
-What is the average number of successes out of 5 flips? 
+- What is the average number of successes out of 5 flips? 
+- In 5 coin flips, what is the average number of times you'd get "heads"?
 
-&lt;img src="5-binomial_files/figure-html/binom-plot-1.png" width="50%" /&gt;
+&lt;img src="7-binomial_files/figure-html/binom-plot-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -197,10 +198,10 @@ $$
 ---
 
 .left-column[
-The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome is not quite right either.
+The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome isn't right either.
 ]
 
-![](5-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 - If you have a discrete distribution with a small N, these estimates may not have a sensible meaning
 ---
@@ -212,7 +213,7 @@ The **probability mass (density) function** allows us to answer other questions 
 --
 
 I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.
- &gt; "At or below what outcome in the sample space do .75 of the outcomes fall?"
+ &gt; "At or below what outcome in the sample space do 75% of the outcomes fall?"
 
 This is a **percentile or quantile** question. 
 
@@ -223,17 +224,17 @@ I might want to know the proportion of outcomes in the sample space that fall at
 ---
 At or below what outcome in the sample space do 75% of the outcomes fall? What is the outcome? Providing the `75%`, trying to find the `2`...
 
-![](5-binomial_files/figure-html/binom-plot2-1.png)&lt;!-- --&gt;
+&lt;img src="7-binomial_files/figure-html/binom-plot2-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 What proportion of outcomes in the sample space that fall at or below a given outcome? What percentage of outcomes fall at or below 2? Providing the `2`, looking for the `75%`
 
 .pull-left[
-![](5-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ]
 .pull-right[
-![](5-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -254,7 +255,7 @@ For example, suppose I give a 40-item multiple choice test, with each question h
 
 ---
 
-![](5-binomial_files/figure-html/binom-plot3-1.png)&lt;!-- --&gt;
+&lt;img src="7-binomial_files/figure-html/binom-plot3-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 I could use this distribution to help me decide if a given student is consistent with a guessing model.
@@ -262,14 +263,28 @@ I could use this distribution to help me decide if a given student is consistent
 Nearly all of the outcomes expected for guessers fall below the minimum passing score (60%, D-, 24).
 
 ---
+## By hand
 
-How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?
+**How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?**
 
-$$P(24|.25, 40) + P(25|.25,40) + P(26|.25,40) + ... + P(40|.25, 40) $$
+$$
+`\begin{equation}
+P(24|.25, 40) + \\
+P(25|.25, 40) + \\
+P(26|.25, 40) + \\
+... \\
+P(40|.25, 40)
+\end{equation}`
+$$
+---
+## In `R`
 
---
+**How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?**
 
-In R, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
+
+In `R`, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
+
+.pull-left[
 
 The probability of getting 23 questions or fewer correct:
 
@@ -281,26 +296,27 @@ pbinom(q = 23, size = 40, prob = .25)
 ```
 ## [1] 0.9999972
 ```
+]
 
---
+.pull-right[
+
 
 The probability of getting 24 or more questions correct:
 
 ```r
 #Note the use of the Law of Total Probability here
-
 1-pbinom(q = 23, size = 40, prob = .25)
 ```
 
 ```
 ## [1] 2.825967e-06
 ```
-
+]
 ---
 
 Cumulatively, what proportion of guessers will fall below each score?
 
-![](5-binomial_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+&lt;img src="7-binomial_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -314,7 +330,7 @@ But, what assumptions are we making and what consequences will they have?
 
 * The outcome on every trial is binary (also called a Bernoulli trial)
 * The probability of the target outcome (usually called a "success") is the same for all N trials
-* The trials are independent `\(P(A\cap B) = P(A|B)P(B)=P(A)P(B)\)`
+* The trials are **independent** `\(P(A\cap B) = P(A|B)P(B)=P(A)P(B)\)`
 * The number of trials is fixed
 
 
@@ -344,7 +360,7 @@ Because of the difficulties in calculating large factorials, there is a large-sa
 ]
 
 
-![](5-binomial_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](7-binomial_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 

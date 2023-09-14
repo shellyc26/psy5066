@@ -4,12 +4,18 @@ output:
   xaringan::moon_reader:
     includes: 
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 library(tidyverse)
@@ -126,7 +132,7 @@ $$
 ```{r, echo = FALSE}
 data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = .5)) %>% 
   ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(fill = "#562457") +
+  geom_col(fill = "#DD3E3E") +
   geom_text(aes(label = round(prob, 2), y = prob + .01),
             position = position_dodge(.9),
             size = 5, 
@@ -143,7 +149,7 @@ data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = .5)) %>%
 ```{r, echo = FALSE}
 data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>% 
   ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(fill = "#562457") +
+  geom_col(fill = "#DD3E3E") +
   geom_text(aes(label = round(prob, 2), y = prob + .01),
             position = position_dodge(.9),
             size = 5, 
@@ -166,15 +172,16 @@ Every probability distribution has an **expected value**.
   - The *long-run* average over an infinite amount of trials or samples
 
 ---
-## Averages vs. EV
+## Averages vs. Expected Value
 
-What is the average number of successes out of 5 flips? 
+- What is the average number of successes out of 5 flips? 
+- In 5 coin flips, what is the average number of times you'd get "heads"?
 
-```{r binom-plot, echo = FALSE, out.width="50%"}
+```{r binom-plot, echo = FALSE, out.width="50%", fig.align='center'}
 data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5),
            correct = c("not", "not", "not", "yes", "not", "not")) %>% 
   ggplot(aes(x = factor(heads), y = prob)) +
-  geom_col(aes(fill = correct), show.legend=FALSE) +
+  geom_col(aes(fill = "#DD3E3E"), show.legend=FALSE) +
   geom_text(aes(label = round(prob, 2), y = prob + .01),
             position = position_dodge(.9),
             size = 5, 
@@ -183,8 +190,7 @@ data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5),
        subtitle = "Five Flips",
        x = "Number of Successes (Heads)",
        y = "Probability(Successes)") +
-  theme_classic(base_size = 16) +
-  scale_fill_manual(values = c("#562457","#4BB149"))
+  theme_classic(base_size = 16) 
 ```
 
 ---
@@ -231,7 +237,7 @@ $$
 ---
 
 .left-column[
-The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome is not quite right either.
+The mean, 2.5, does not exist in the sample space, and rounding up to 3 and claiming that to be the most typical outcome isn't right either.
 ]
 
 ```{r ref.label = 'binom-plot', echo = FALSE}
@@ -248,7 +254,7 @@ The **probability mass (density) function** allows us to answer other questions 
 --
 
 I might want to know the value in the sample space at or below which a certain proportion of outcomes fall.
- > "At or below what outcome in the sample space do .75 of the outcomes fall?"
+ > "At or below what outcome in the sample space do 75% of the outcomes fall?"
 
 This is a **percentile or quantile** question. 
 
@@ -259,12 +265,12 @@ I might want to know the proportion of outcomes in the sample space that fall at
 ---
 At or below what outcome in the sample space do 75% of the outcomes fall? What is the outcome? Providing the `75%`, trying to find the `2`...
 
-```{r binom-plot2, echo = FALSE}
+```{r binom-plot2, echo = FALSE, fig.align='center'}
 data.frame(heads = 0:10, prob = dbinom(x = 0:10, size = 10, prob = (1/6))) %>% 
   ggplot(aes(x = heads, y = prob)) +
-  geom_col(fill = "#562457") +
+  geom_col(fill = "#DD3E3E") +
   geom_vline(aes(xintercept = 2),
-             color = "#4BB149") +
+             color = "#17139C") +
   labs(title = "Probability Mass Distribution of Dice Rolls",
        subtitle = "n = 10, p = 1/6",
        x = "Number of Successes (Rolling a 4)",
@@ -284,7 +290,7 @@ What proportion of outcomes in the sample space that fall at or below a given ou
 ]
 .pull-right[
 ```{r echo = FALSE}
-data.frame(num = 0:10, p = pbinom(q = 0:10, size = 10, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity", fill = "#562457") + 
+data.frame(num = 0:10, p = pbinom(q = 0:10, size = 10, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity", fill = "#DD3E3E") + 
   labs(title = "Cumulative Distribution of Dice Rolls",
        subtitle = "n = 10, p = 1/6",
        x = "Number of Successes (Rolling a 4) in 10 rolls (N)",
@@ -312,9 +318,18 @@ For example, suppose I give a 40-item multiple choice test, with each question h
 
 ---
 
-```{r binom-plot3, echo = F}
+```{r binom-plot3, echo = F, fig.align='center'}
 limit = 30
-data.frame(num = 0:limit, p = dbinom(x = 0:limit, size = 40, prob = .25)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity") + scale_x_continuous("Test Score (0-40) Under a Guessing Model", breaks=seq(0,limit,2)) +scale_y_continuous("Probability")+ggtitle("Binomial Probability Distribution")
+data.frame(num = 0:limit, p = dbinom(x = 0:limit, size = 40, prob = .25)) %>%
+  ggplot(aes(x=num, y=p)) +
+  geom_bar(stat="identity", fill = "#DD3E3E") +
+  geom_vline(aes(xintercept = 24),
+             color = "#17139C") +
+  scale_x_continuous("Test Score (0-40) Under a Guessing Model",
+                     breaks=seq(0,limit,2)) +
+  scale_y_continuous("Probability") +
+  ggtitle("Binomial Probability Distribution") +
+  theme_classic(base_size = 16)
 ```
 
 ???
@@ -323,37 +338,61 @@ I could use this distribution to help me decide if a given student is consistent
 Nearly all of the outcomes expected for guessers fall below the minimum passing score (60%, D-, 24).
 
 ---
+## By hand
 
-How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?
+**How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?**
 
-$$P(24|.25, 40) + P(25|.25,40) + P(26|.25,40) + ... + P(40|.25, 40) $$
+$$
+\begin{equation}
+P(24|.25, 40) + \\
+P(25|.25, 40) + \\
+P(26|.25, 40) + \\
+... \\
+P(40|.25, 40)
+\end{equation}
+$$
+---
+## In `R`
 
---
+**How likely is it that a guesser would score above the threshold (60%) necessary to pass the class by the most minimal standards?**
 
-In R, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
+
+In `R`, we can calculate the cumulative probability (X or lower), using the `pbinom` function.
+
+.pull-left[
 
 The probability of getting 23 questions or fewer correct:
 
 ```{r}
 pbinom(q = 23, size = 40, prob = .25)
 ```
+]
 
---
+.pull-right[
+
 
 The probability of getting 24 or more questions correct:
 ```{r}
 #Note the use of the Law of Total Probability here
-
 1-pbinom(q = 23, size = 40, prob = .25)
 ```
-
+]
 ---
 
 Cumulatively, what proportion of guessers will fall below each score?
 
-```{r, echo = F}
+```{r, echo = F, fig.align='center'}
 limit = 40
-data.frame(num = 0:limit, p = pbinom(q = 0:limit, size = 40, prob = .25)) %>% ggplot(aes(x=num, y=p)) + geom_line() + geom_vline(aes(xintercept = 24), color = "red") + scale_x_continuous("Test Score (0-40) Under a Guessing Model", breaks=seq(0,limit,2)) +scale_y_continuous("Cumulative Proportion")+ggtitle("Cumulative Binomial Probability Distribution")
+data.frame(num = 0:limit, p = pbinom(q = 0:limit, size = 40, prob = .25)) %>%
+  ggplot(aes(x=num, y=p)) +
+  geom_line() +
+  geom_vline(aes(xintercept = 24),
+             color = "#DD3E3E") +
+  scale_x_continuous("Test Score (0-40) Under a Guessing Model",
+                     breaks=seq(0,limit,2)) +
+  scale_y_continuous("Cumulative Proportion") +
+  ggtitle("Cumulative Binomial Probability Distribution") +
+  theme_classic(base_size = 16)
 ```
 
 ???
@@ -368,7 +407,7 @@ But, what assumptions are we making and what consequences will they have?
 
 * The outcome on every trial is binary (also called a Bernoulli trial)
 * The probability of the target outcome (usually called a "success") is the same for all N trials
-* The trials are independent $P(A\cap B) = P(A|B)P(B)=P(A)P(B)$
+* The trials are **independent** $P(A\cap B) = P(A|B)P(B)=P(A)P(B)$
 * The number of trials is fixed
 
 
@@ -399,7 +438,8 @@ Because of the difficulties in calculating large factorials, there is a large-sa
 
 
 ```{r, echo = F}
-data.frame(num = 0:30, p = dbinom(x = 0:30, size = 100, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity") + scale_x_continuous("Number of sixes (X) in 100 rolls (N)", breaks=seq(0,30,2)) +scale_y_continuous("Probability")+ggtitle("Binomial Probability Distribution")
+data.frame(num = 0:30, p = dbinom(x = 0:30, size = 100, prob = 1/6)) %>% ggplot(aes(x=num, y=p)) + geom_bar(stat="identity", fill = "#DD3E3E") + scale_x_continuous("Number of sixes (X) in 100 rolls (N)", breaks=seq(0,30,2)) +scale_y_continuous("Probability")+ggtitle("Binomial Probability Distribution") +
+  theme_classic(base_size = 16)
 ```
 
 ---

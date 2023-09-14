@@ -4,12 +4,18 @@ output:
   xaringan::moon_reader:
     includes: 
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 library(tidyverse)
@@ -36,7 +42,7 @@ pull out 2, pull out 1/2
 
 ---
 
-### Expected value
+## Expected value
 The expected value of the normal distribution is quite easy.
 
 $$E(X) = \mu$$
@@ -62,7 +68,7 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density")+
   ggtitle("The normal curve") +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 ```
 
 ```{r ref.label = "normal", eval=F, echo=FALSE}
@@ -70,7 +76,7 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
 ```
 
 ---
-
+## Probabilities - same but different
 Both the normal distribution and the binomial distribution follow the Law of Total Probability, but in different ways.
 
 In the *binomial distribution*, each outcome in the sample space has a probability and these probabilities sum to 1.
@@ -80,6 +86,7 @@ In the *normal distribution*, there are an infinite number of values, each havin
 The density values are derived to insure that the area under the density curve is 1.  They have no inherent meaning beyond that.
 
 ---
+## Probabilities - same but different
 
 Density is mass per volume. In this context (curve in two dimensions) density is mass per area.  The total density in the normal curve is 1. 
 
@@ -88,8 +95,23 @@ The density for a part of the curve (a smaller area) will necessarily be less th
 ---
 
 .left-column[
-The area under the curve that lies between the mean (here 0) and a value of 1 is the probability of a score between 0 and 1.
+The area under the curve between the mean (0) and a value of 1 is the probability of a score between 0 and 1.
+]
 
+```{r, echo = F}
+ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
+  stat_function(fun = function(x) dnorm(x)) + 
+  stat_function(fun = function(x) dnorm(x) , 
+                xlim = c(0, 1),
+                geom = "area", fill = "#DD3E3E") + 
+  geom_hline(aes(yintercept = 0))+
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+
+  ggtitle("The normal curve") +
+  theme_classic(base_size = 16)
+```
+
+---
+.left-column[
 As we shrink that area by moving X closer to the mean, that probability interpretation holds.
 
 ]
@@ -99,32 +121,32 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x)) + 
   stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(0, 1),
-                geom = "area", fill = colors[1]) + 
+                geom = "area", fill = "#DD3E3E") + 
   geom_hline(aes(yintercept = 0))+
-  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme(text = element_text(size =20))
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+
+  ggtitle("The normal curve") +
+  theme_classic(base_size = 16)
 ```
 
 ---
 
 .left-column[
 
-As our interval shrinks closer and closer to 0, our area (probability) shrinks as well.
+As our interval shrinks towards 0, our area shrinks as well.
 
-It can get vanishingly close to 0—essentially a point rather than an area.
-
-The probability of that "point" is 0.
+It can get *very* close to 0—essentially a point rather than an area. The probability of that "point" is 0.
 
 ]
 
 ```{r, echo = F}
 ggplot(data.frame(x = seq(0, 1)), aes(x)) +
-  stat_function(fun = function(x) pnorm(x)-.5, color = "red") + 
-  geom_hline(aes(yintercept = 0), color = "red", linetype = "dashed")+
+  stat_function(fun = function(x) pnorm(x)-.5, color = "#DD3E3E") + 
+  geom_hline(aes(yintercept = 0), color = "#DD3E3E", linetype = "dashed")+
   scale_x_continuous("Z") +
   scale_y_continuous("Density", limits=c(0,.4)) +
   labs(title = "Area under the normal",
        subtitle = "Between Z and 0") + 
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 
 ```
 
@@ -144,7 +166,8 @@ ggplot(data.frame(x = seq(0, .001, by =.00005)), aes(x)) +
   stat_function(fun = function(x) pnorm(x)-.5, color = "red") + 
   geom_hline(aes(yintercept = 0), color = "red", linetype = "dashed")+
   scale_x_continuous("Z") +
-  scale_y_continuous("Density") +ggtitle("Area under the normal curve\nbetween Z and 0")+ theme(text = element_text(size = 20))
+  scale_y_continuous("Density") +ggtitle("Area under the normal curve\nbetween Z and 0")+
+  theme_classic(base_size = 16)
 
 ```
 
@@ -166,14 +189,15 @@ It does not make sense to talk about the probability of a point for a continuous
 
 ---
 
-```{r, echo = F}
+```{r, echo = F, fig.align='center'}
 ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x, mean = .5, sd = 2)) +
-  stat_function(fun = function(x) dnorm(x, mean = 2, sd = .2), color = "blue") +
-  stat_function(fun = function(x) dnorm(x, mean = -1.25, sd = 1), color = "red") +
+  stat_function(fun = function(x) dnorm(x, mean = 2, sd = .2), color = "#17139C") +
+  stat_function(fun = function(x) dnorm(x, mean = -1.25, sd = 1), color = "#DD3E3E") +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density") +
-  ggtitle("Normal Curves")
+  ggtitle("Normal Curves") +
+  theme_classic(base_size = 16)
 ```
 
 ---
@@ -183,38 +207,38 @@ All of these distributions are normal and have an equivalent area (proportion) t
 p1 = ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
 stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(-1, 1),
-                geom = "area", fill = colors[1]) +
+                geom = "area", fill = "#DD3E3E") +
   stat_function(fun = function(x) dnorm(x)) +
   geom_hline(aes(yintercept = 0)) +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density")+
-  ggtitle("Area under the normal curve")
+  theme_classic(base_size = 16)
 
 p2 = ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
 stat_function(fun = function(x) dnorm(x, sd = 1.5) , 
                 xlim = c(-1.5, 1.5),
-                geom = "area", fill = colors[1]) +
+                geom = "area", fill = "#DD3E3E") +
   stat_function(fun = function(x) dnorm(x, sd = 1.5)) +
   geom_hline(aes(yintercept = 0)) +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density")+
-  ggtitle("Area under the normal curve")
+  theme_classic(base_size = 16)
 
 p3 = ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
 stat_function(fun = function(x) dnorm(x, sd = .5) , 
                 xlim = c(-.5, .5),
-                geom = "area", fill = colors[1]) +
+                geom = "area", fill = "#DD3E3E") +
   stat_function(fun = function(x) dnorm(x, sd = .5)) +
   geom_hline(aes(yintercept = 0)) +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density")+
-  ggtitle("Area under the normal curve")
+  theme_classic(base_size = 16)
 
 ggarrange(p1, p2, p3, ncol = 3)
 ```
 
 ---
-
+## The Normal Distribution Is Cool
 - Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
 
 - About 95% of the data will be within two standard deviations of the mean.  
@@ -247,9 +271,7 @@ Why?
 
 ---
 
-### Standard normal distribution
-
-There is only one (1) standard normal distribution. 
+## Standard normal distribution
   
 **How is this useful?**
   - Given any score, we can calculate the probability of getting a value greater than that z-score. *(Or less than that z-score.)*
@@ -340,22 +362,26 @@ What does .4721 mean?
   - The probability of obtaining a z-score less than -.07
   - The area under the curve from -.07, moving left
   
-```{r, echo = F}
+```{r, echo = F, out.width="60%", fig.align='center'}
 ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x)) + 
   stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(-0.07, -4),
-                geom = "area", fill = colors[1]) + 
+                geom = "area", fill = "#DD3E3E") + 
   geom_hline(aes(yintercept = 0))+
-  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme(text = element_text(size =20))
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme_classic(base_size = 16)
 ```
 
 ---
   
-What do we want?
-  - The probabilty of obtaining a z-score of -.07 or something more extreme
+## What do we want?
+
+  - The probability of obtaining a z-score of -.07 or something more extreme
+  
   - This could be more extreme in the positive direction (moving right)
+  
   - This could be more extreme in the negative direction (moving left)
+  
   - You could split the difference and it can be in either direction
 
 ---
@@ -377,9 +403,9 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x)) + 
   stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(-0.07, 4),
-                geom = "area", fill = colors[1]) + 
+                geom = "area", fill = "#DD3E3E") + 
   geom_hline(aes(yintercept = 0))+
-  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme(text = element_text(size =20))
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme_classic(base_size = 16)
 ```
 ]
 ---
@@ -401,9 +427,9 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x)) + 
   stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(-2.25, -4),
-                geom = "area", fill = colors[1]) + 
+                geom = "area", fill = "#DD3E3E") + 
   geom_hline(aes(yintercept = 0))+
-  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme(text = element_text(size =20))
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme_classic(base_size = 16)
 ```
 ]
 ---
@@ -423,9 +449,9 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x)) + 
   stat_function(fun = function(x) dnorm(x) , 
                 xlim = c(-2.25, 4),
-                geom = "area", fill = colors[1]) + 
+                geom = "area", fill = "#DD3E3E") + 
   geom_hline(aes(yintercept = 0))+
-  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme(text = element_text(size =20))
+  scale_x_continuous("Variable X") + scale_y_continuous("Density")+ggtitle("The normal curve") + theme_classic(base_size = 16)
 ```
 ]
 

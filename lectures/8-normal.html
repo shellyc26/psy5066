@@ -3,10 +3,8 @@
   <head>
     <title>Normal Distribution</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,8 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
 
 
 
@@ -40,7 +40,7 @@ pull out 2, pull out 1/2
 
 ---
 
-### Expected value
+## Expected value
 The expected value of the normal distribution is quite easy.
 
 `$$E(X) = \mu$$`
@@ -60,12 +60,12 @@ Although these values communicate information about probability or likelihood, t
 ]
 
 
-![](6-normal_files/figure-html/normal-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/normal-1.png)&lt;!-- --&gt;
 
 
 
 ---
-
+## Probabilities - same but different
 Both the normal distribution and the binomial distribution follow the Law of Total Probability, but in different ways.
 
 In the *binomial distribution*, each outcome in the sample space has a probability and these probabilities sum to 1.
@@ -75,6 +75,7 @@ In the *normal distribution*, there are an infinite number of values, each havin
 The density values are derived to insure that the area under the density curve is 1.  They have no inherent meaning beyond that.
 
 ---
+## Probabilities - same but different
 
 Density is mass per volume. In this context (curve in two dimensions) density is mass per area.  The total density in the normal curve is 1. 
 
@@ -83,27 +84,30 @@ The density for a part of the curve (a smaller area) will necessarily be less th
 ---
 
 .left-column[
-The area under the curve that lies between the mean (here 0) and a value of 1 is the probability of a score between 0 and 1.
+The area under the curve between the mean (0) and a value of 1 is the probability of a score between 0 and 1.
+]
 
+![](8-normal_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+.left-column[
 As we shrink that area by moving X closer to the mean, that probability interpretation holds.
 
 ]
 
-![](6-normal_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 
 .left-column[
 
-As our interval shrinks closer and closer to 0, our area (probability) shrinks as well.
+As our interval shrinks towards 0, our area shrinks as well.
 
-It can get vanishingly close to 0—essentially a point rather than an area.
-
-The probability of that "point" is 0.
+It can get *very* close to 0—essentially a point rather than an area. The probability of that "point" is 0.
 
 ]
 
-![](6-normal_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -116,7 +120,7 @@ It will be very, very small.
 
 ]
 
-![](6-normal_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ???
 
@@ -136,15 +140,15 @@ It does not make sense to talk about the probability of a point for a continuous
 
 ---
 
-![](6-normal_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 All of these distributions are normal and have an equivalent area (proportion) that falls between a standard deviation below and above their respective means.
 
-![](6-normal_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
-
+## The Normal Distribution Is Cool
 - Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
 
 - About 95% of the data will be within two standard deviations of the mean.  
@@ -177,9 +181,7 @@ Why?
 
 ---
 
-### Standard normal distribution
-
-There is only one (1) standard normal distribution. 
+## Standard normal distribution
   
 **How is this useful?**
   - Given any score, we can calculate the probability of getting a value greater than that z-score. *(Or less than that z-score.)*
@@ -297,14 +299,18 @@ What does .4721 mean?
   - The probability of obtaining a z-score less than -.07
   - The area under the curve from -.07, moving left
   
-![](6-normal_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
   
-What do we want?
-  - The probabilty of obtaining a z-score of -.07 or something more extreme
+## What do we want?
+
+  - The probability of obtaining a z-score of -.07 or something more extreme
+  
   - This could be more extreme in the positive direction (moving right)
+  
   - This could be more extreme in the negative direction (moving left)
+  
   - You could split the difference and it can be in either direction
 
 ---
@@ -326,7 +332,7 @@ The probability of getting a z-score of -.07 or greater?
 ]
 
 .pull-right[
-![](6-normal_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 ]
 ---
 
@@ -347,7 +353,7 @@ pnorm(q = -2.25, mean = 0, sd = 1)
 ]
 
 .pull-right[
-![](6-normal_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 ---
 .pull-left[
@@ -366,7 +372,7 @@ Probability of getting a z-score of -2.25 or something larger
 ]
 
 .pull-right[
-![](6-normal_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 ]
 
 ---
