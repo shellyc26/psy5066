@@ -68,9 +68,9 @@ Although these values communicate information about probability or likelihood, t
 ## Probabilities - same but different
 Both the normal distribution and the binomial distribution follow the Law of Total Probability, but in different ways.
 
-In the *binomial distribution*, each outcome in the sample space has a probability and these probabilities sum to 1.
+In the *binomial distribution*, each outcome in the sample space has a probability and these probabilities **sum to 1**.
 
-In the *normal distribution*, there are an infinite number of values, each having a probability of 0, but the probability that some value will occur is 1.  The area under the curve is 1.
+In the *normal distribution*, there are an infinite number of values, each having a probability of 0, but the probability that some value will occur is 1.  **The area under the curve is 1**.
 
 The density values are derived to insure that the area under the density curve is 1.  They have no inherent meaning beyond that.
 
@@ -130,6 +130,19 @@ It does not make sense to talk about the probability of a point for a continuous
 
 ---
 
+.left-column[
+
+We can keep shrinking the distance between Z and 0, never reaching 0, and still calculate an area.
+
+It will be very, very small. 
+
+
+]
+
+![](8-normal_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
 ## Characteristics of the normal distribution
 
 * The mean and standard deviation are independent
@@ -140,20 +153,20 @@ It does not make sense to talk about the probability of a point for a continuous
 
 ---
 
-&lt;img src="8-normal_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 All of these distributions are normal and have an equivalent area (proportion) that falls between a standard deviation below and above their respective means.
 
-![](8-normal_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](8-normal_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 ## The Normal Distribution Is Cool
 - Approximately 68% of the data in a normal distribution will be within one standard deviation of the mean.  
 
-- About 95% of the data will be within two standard deviations of the mean.  
+- Approximately 95% of the data will be within two standard deviations of the mean.  
 
-- About 99.7% of the data will be within three standard deviations of the mean.
+- Approximately 99.7% of the data will be within three standard deviations of the mean.
 
 In other words, nearly all of the data will fall within 3 standard deviations of the mean in a normal distribution.
 
@@ -162,7 +175,7 @@ These benchmarks are convenient for determining if a score (and later, a mean) i
 ---
 ## Standard normal distribution
 
-The normal distribution with `\(\mu\)`=0 and `\(\sigma\)`=1 is called standard normal.  
+The normal distribution with `\(\mu\)`=0 and `\(\sigma\)`=1 is called the **standard normal distribution** or the **Z distribution**.  
 
 Variables with quite different means and standard deviations can be standardized so that they can be compared in the same metric (standard deviation units). This allows statements such as "relative to the mean, I am more conscientious (e.g., `\(Z=2\)`) than I am extroverted (e.g., `\(Z=1\)`)."
 
@@ -299,7 +312,7 @@ What does .4721 mean?
   - The probability of obtaining a z-score less than -.07
   - The area under the curve from -.07, moving left
   
-&lt;img src="8-normal_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
   
@@ -315,7 +328,7 @@ What does .4721 mean?
 
 ---
 
-.pull-left[
+
 .small[
 The probability of getting a z-score of -.07 or greater?
 
@@ -329,14 +342,12 @@ The probability of getting a z-score of -.07 or greater?
 ```
 
 ]
-]
 
-.pull-right[
-![](8-normal_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
-]
+
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-15-1.png" width="68%" style="display: block; margin: auto;" /&gt;
+
 ---
 
-.pull-left[
 .small[
 What about R2D2? (z-score of -2.25)
   - Probability of getting a z-score of -2.25 or something even smaller
@@ -350,13 +361,10 @@ pnorm(q = -2.25, mean = 0, sd = 1)
 ## [1] 0.01222447
 ```
 ]
-]
 
-.pull-right[
-![](8-normal_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
-]
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-17-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
 ---
-.pull-left[
 .small[
 Probability of getting a z-score of -2.25 or something larger
   
@@ -369,11 +377,10 @@ Probability of getting a z-score of -2.25 or something larger
 ## [1] 0.9877755
 ```
 ]
-]
 
-.pull-right[
-![](8-normal_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
-]
+
+&lt;img src="8-normal_files/figure-html/unnamed-chunk-19-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 ## Some z-scores of note
