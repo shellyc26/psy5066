@@ -3,10 +3,8 @@
   <head>
     <title>Sampling Distributions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,9 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
+
 
 
 
@@ -94,7 +95,7 @@ We use the sample to inform us about the likely characteristics of the populatio
 
 ]
 
-![](7-sampling_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+&lt;img src="9-sampling_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto 0 auto auto;" /&gt;
 
 ---
 
@@ -109,7 +110,7 @@ Statistics (e.g., mean) can be calculated for any sample.
 ]
 ]
 
-![](7-sampling_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+&lt;img src="9-sampling_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto 0 auto auto;" /&gt;
 
 ???
 here, the sample sizes is 30 fo each of these 4 graphs. each of theses is a sample. and each sample has it's only mean and sd. 
@@ -124,7 +125,7 @@ The mean of the **sampling distribution** converges on `\(\mu\)`
 ]
 ]
 
-![](7-sampling_files/figure-html/sampling1-1.png)&lt;!-- --&gt;
+&lt;img src="9-sampling_files/figure-html/sampling1-1.png" style="display: block; margin: auto 0 auto auto;" /&gt;
 
 ---
 
@@ -137,13 +138,14 @@ The sampling distribution of the mean is of particular interest, it's called the
 ]
 
 
-![](7-sampling_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
+![](9-sampling_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
 
 ???
 
 Sampling distributions can be constructed around any statistic -- ranges, standard deviations, difference scores. The standard errors of those distributions are also standard errors. (E.g., the standard error of the difference.)
 
 ---
+class: middle, center
 
 ![](images/sampling.png)
 
@@ -180,13 +182,12 @@ One of the most important discoveries in statistics is that the sampling distrib
 The error represented by how far off a sample mean is from the population mean is called **sampling error**.  
 
 ---
-## Central limit theorem
 
-According to the **central limit theorem**, as sample size increases, the sampling distribution of the mean approaches normality, even when the data upon which the mean is based are not normally distributed.
+According to the **central limit theorem**, as sample size increases, the *sampling* distribution of the mean approaches normality, even when the OG data are not normally distributed.
 
-The sample size necessary to be "approximately normal" depends on the nature of the underlying data.  The less normal it is, the larger the sample size necessary in order for the sampling distribution of the means to become normal.
+The sample size necessary to be "approximately normal" depends on the nature of the underlying data. The less normal it is, the larger the sample size necessary in order for the sampling distribution of the means to become normal.
 
-"Around sample size of 30" is a common rule of thumb.
+*"Around sample size of 30"* is a common rule of thumb.
 - Note, however, that this rule of thumb is sufficiently only to assume that the sampling distribution is normal. It doesn't magically mean your sample will be normally distributed
 
 ???
@@ -195,18 +196,18 @@ Regardless of the CLT, if the data are skewed, we might wonder if the mean is th
 
 ---
 
-.left-column[Ends up that quite a few sample statistics approach normality as sample size increases.
+.left-column[Quite a few sample statistics approach normality as sample size increases.
 
 Here is the sample standard deviation from a normal distribution with `\(\sigma = 1\)`.
 ]
 
-![](7-sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](9-sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 ---
 
 .left-column[And the range.]
 
-![](7-sampling_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](9-sampling_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ???
 Note here that we're not just narrowing in, but our mean estimate is getting larger. 
 
@@ -339,13 +340,13 @@ The 95% CI is sometimes represented as:
 
 .left-column[
 .small[
-If N is not “sufficiently large?”  The normal assumes we know the population mean and standard deviation. But we don’t. We only know the sample mean and sd, and those have some uncertainty about them. 
+The normal assumes we know the `\(\mu\)` and `\(\sigma\)`. But we don’t. We only know `\(\bar x\)` and `\(s\)`, and those have some uncertainty about them. 
 
 This is reduced with large samples, so that the normal is “close enough.”  In small samples, the `\(t\)` dist has a better approximation.
 ]
 ]
 
-![](7-sampling_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+&lt;img src="9-sampling_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto 0 auto auto;" /&gt;
 
 ---
 ## `\(t\)` distribution
@@ -390,7 +391,7 @@ Calculate CI using for each sample using `\(\sigma\)`.
 ]
 ]
 
-![](7-sampling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](9-sampling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -475,8 +476,6 @@ print(c(ci_lb_z, ci_ub_z))
 class:inverse
 
 ## Next time...
-
-Exam 1 Review
 
 Exam 1
 

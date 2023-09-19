@@ -3,12 +3,19 @@ title: 'Sampling Distributions'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
+
 ```{r setup, warning=FALSE, message=FALSE, include = FALSE}
 library(tidyverse)
 ```
@@ -86,12 +93,14 @@ We use the sample to inform us about the likely characteristics of the populatio
 
 ]
 
-```{r, echo = F, warning = F, message = F}
+```{r, echo = F, warning = F, message = F, fig.align='right'}
 ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
-  stat_function(fun = function(x) dnorm(x), geom = "area") +
+  stat_function(fun = function(x) dnorm(x),
+                geom = "area",
+                fill = "#DD3E3E") +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density") +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 
 ```
 
@@ -108,7 +117,7 @@ Statistics (e.g., mean) can be calculated for any sample.
 ]
 ]
 
-```{r, echo=FALSE, warning=F, message=F}
+```{r, echo=FALSE, warning=F, message=F, fig.align='right'}
 library(ggpubr) #for multiple plots
 sample_size = 30
 set.seed(101919)
@@ -119,9 +128,10 @@ for(i in 1:4){
   p = data.frame(x = sample) %>%
     ggplot(aes(x = x)) +
     geom_histogram(color = "white") +
-    geom_vline(aes(xintercept = m), color = "purple", size = 2, alpha = .5)+
+    geom_vline(aes(xintercept = m), color = "#DD3E3E", size = 2, alpha = .5)+
     scale_x_continuous(limits = c(-4,4)) +
     scale_y_continuous("", breaks = NULL) +
+    theme_classic() +
     labs(title = as.expression(bquote("Sample"~.(i)~", m ="~.(m)~", sd ="~.(s))))
   assign(paste0("p",i), p)
 }
@@ -142,7 +152,7 @@ The mean of the **sampling distribution** converges on $\mu$
 ]
 ]
 
-```{r sampling1, echo = F, warning = F, message = F}
+```{r sampling1, echo = F, warning = F, message = F, fig.align='right'}
 reps = 5000
 means = rep(0, reps)
 se = 1/sqrt(sample_size)
@@ -153,10 +163,11 @@ for(i in 1:reps){
 data.frame(mean = means) %>%
   ggplot(aes(x = mean)) + 
   geom_histogram(aes(y = ..density..), 
-                 fill = "purple", 
+                 fill = "#DD3E3E", 
                  color = "white") +  
   stat_function(fun = function(x) dnorm(x, mean = 0, sd = se), inherit.aes = F, size = 1.5) +
-  labs(title = "Sampling Distribution")
+  labs(title = "Sampling Distribution") +
+  theme_classic(base_size = 16)
 ```
 
 ---
@@ -181,10 +192,11 @@ for(i in 1:reps){
 data.frame(mean = means) %>%
   ggplot(aes(x = mean)) + 
   geom_histogram(aes(y = ..density..), 
-                 fill = "purple", 
+                 fill = "#DD3E3E", 
                  color = "white") +  
   stat_function(fun = function(x) dnorm(x, mean = 0, sd = se), inherit.aes = F, size = 1.5) +
-  labs(title = "Sampling Distribution")
+  labs(title = "Sampling Distribution") +
+  theme_classic(base_size = 16)
 ```
 
 ???
@@ -192,6 +204,7 @@ data.frame(mean = means) %>%
 Sampling distributions can be constructed around any statistic -- ranges, standard deviations, difference scores. The standard errors of those distributions are also standard errors. (E.g., the standard error of the difference.)
 
 ---
+class: middle, center
 
 ![](images/sampling.png)
 
@@ -228,13 +241,12 @@ One of the most important discoveries in statistics is that the sampling distrib
 The error represented by how far off a sample mean is from the population mean is called **sampling error**.  
 
 ---
-## Central limit theorem
 
-According to the **central limit theorem**, as sample size increases, the sampling distribution of the mean approaches normality, even when the data upon which the mean is based are not normally distributed.
+According to the **central limit theorem**, as sample size increases, the *sampling* distribution of the mean approaches normality, even when the OG data are not normally distributed.
 
-The sample size necessary to be "approximately normal" depends on the nature of the underlying data.  The less normal it is, the larger the sample size necessary in order for the sampling distribution of the means to become normal.
+The sample size necessary to be "approximately normal" depends on the nature of the underlying data. The less normal it is, the larger the sample size necessary in order for the sampling distribution of the means to become normal.
 
-"Around sample size of 30" is a common rule of thumb.
+*"Around sample size of 30"* is a common rule of thumb.
 - Note, however, that this rule of thumb is sufficiently only to assume that the sampling distribution is normal. It doesn't magically mean your sample will be normally distributed
 
 ???
@@ -243,7 +255,7 @@ Regardless of the CLT, if the data are skewed, we might wonder if the mean is th
 
 ---
 
-.left-column[Ends up that quite a few sample statistics approach normality as sample size increases.
+.left-column[Quite a few sample statistics approach normality as sample size increases.
 
 Here is the sample standard deviation from a normal distribution with $\sigma = 1$.
 ]
@@ -265,7 +277,8 @@ for(i in 1:reps){
 
 data.frame(N = rep(c(2,5,25,100), each = reps), s = c(n2, n5, n25, n100)) %>%
   ggplot(aes(x = s)) + 
-  geom_histogram(fill = "purple") + 
+  geom_histogram(fill = "#DD3E3E") + 
+  theme_classic(base_size = 16) +
   scale_x_continuous("Standard Deviation")+
   scale_y_continuous("Density") +
   facet_wrap(~N, scales = "free_y")
@@ -292,7 +305,8 @@ for(i in 1:reps){
 
 data.frame(N = rep(c(2,5,25,100), each = reps), s = c(n2, n5, n25, n100)) %>%
   ggplot(aes(x = s)) + 
-  geom_histogram(fill = "purple") + 
+  geom_histogram(fill = "#DD3E3E") + 
+  theme_classic(base_size = 16) +
   scale_x_continuous("Range")+
   scale_y_continuous("Density") +
   facet_wrap(~N, scales = "free_y")
@@ -429,13 +443,13 @@ $$CI_{95} = \bar{X} \pm [1.96\frac{\hat{\sigma}}{\sqrt{N}}]$$
 
 .left-column[
 .small[
-If N is not “sufficiently large?”  The normal assumes we know the population mean and standard deviation. But we don’t. We only know the sample mean and sd, and those have some uncertainty about them. 
+The normal assumes we know the $\mu$ and $\sigma$. But we don’t. We only know $\bar x$ and $s$, and those have some uncertainty about them. 
 
 This is reduced with large samples, so that the normal is “close enough.”  In small samples, the $t$ dist has a better approximation.
 ]
 ]
 
-```{r, echo = FALSE, fig.width = 7, warning = FALSE, message = FALSE}
+```{r, echo = FALSE, fig.width = 7, warning = FALSE, message = FALSE, fig.align='right'}
 ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   stat_function(fun = function(x) dnorm(x), 
                 aes(color = "Normal", linetype = "Normal")) +
@@ -454,7 +468,9 @@ ggplot(data.frame(x = seq(-4, 4)), aes(x)) +
   scale_linetype_manual("", 
                         values = c("solid", "solid", "dashed", "solid", "dashed")) +
   ggtitle("The Normal and t Distributions") +
-  theme(text = element_text(size=20),legend.position = "bottom")
+  theme_classic(base_size = 16) +
+  theme(legend.position="bottom")
+
 ```
 
 ---
@@ -611,8 +627,6 @@ print(c(ci_lb_z, ci_ub_z))
 class:inverse
 
 ## Next time...
-
-Exam 1 Review
 
 Exam 1
 
