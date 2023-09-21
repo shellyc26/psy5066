@@ -173,6 +173,35 @@ PLAY WITH THIS!
 [Sampling distribution example](http://shiny.calpoly.sh/Sampling_Distribution/)
 
 ---
+class: inverse, middle, center
+
+# Sampling
+### Part 2
+---
+
+## Statistical Inference
+
+We want to learn from incomplete or imperfect data. 
+
+1. *Sampling model*: learn something about the population, which we need to estimate from a sample
+
+2. *Measurement error model*: learn about some underlying pattern, but the there is measurement error
+
+3. *Model error*: "inevitable imperfections of models that we apply to real data" 
+
+.tiny[*Regression and Other Stories*, Gelman, Hill, &amp; Vehtari]
+
+---
+## Sampling Distribution
+
+We can have a sampling distribution of data. All of the possible datasets that could have been observed if you ran the study a gajillion times.
+
+This is **generative**. If you knew the underlying process, you could create (or generates) data. 
+
+We could have collected the mean for each of those gajillion times. 
+
+If we plot those gajillion means, then we have a sampling distribution of an **estimate**. 
+---
 ## Sampling Distribution Approximates the Normal
 
 One of the most important discoveries in statistics is that the sampling distributions of many statistics are approximately **normal** even when the sample (and population) distributions are not.
@@ -198,14 +227,17 @@ Regardless of the CLT, if the data are skewed, we might wonder if the mean is th
 
 .left-column[Quite a few sample statistics approach normality as sample size increases.
 
-Here is the sample standard deviation from a normal distribution with `\(\sigma = 1\)`.
+Here is the sample median from a normal distribution with `\(\sigma = 1\)`.
 ]
 
 ![](9-sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 ---
 
-.left-column[And the range.]
+.left-column[And the range.
+
+Note that the sampling distribution of `\(\sigma^2\)` is not normally distributed. It is `\(\chi^2\)` distributed. More on this later!
+]
 
 ![](9-sampling_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ???
@@ -266,12 +298,12 @@ Second term:
 [insert long proof here...]
 
 `$$E(\bar{x}^2) = \frac{\sigma_M^{2}}{N} + \mu^2$$`
-
 ---
 ## Variability in the Sampling Distribution
 
 **Standard Error of the Mean**
   - The standard deviation of the sampling distribution
+  - Gives us a sense of **uncertainty** about mean*
   - Directly related to the variability of the underlying data:
 
 `$$\sigma_{m} = \frac{\sigma_X}{\sqrt{N}}$$`
@@ -290,12 +322,14 @@ We do not know `\(\sigma\)` but we can estimate it based on the sample statistic
 
 `$$\hat{\sigma} = s = \sqrt{\frac{\sum(x - \bar{x})^2}{N-1}}$$`
 
-This is the sample estimate of the population standard deviation.  This is an unbiased estimate of `\(\sigma\)` and relies on the sample mean, which is an unbiased estimate of `\(\mu\)`.
+This is an unbiased estimate of `\(\sigma\)` (why?) and relies on the sample mean, which is an unbiased estimate of `\(\mu\)`.
 
-This is different from the sample standard deviation, which divides the sum of squares by `\(N\)` rather than `\(N-1\)`.
+--
+
+This is different from the uncorrected sample standard deviation, which divides the sum of squares by `\(N\)` rather than `\(N-1\)`.
 
 `$$SEM = \sigma_M = \frac{\hat{\sigma}}{\sqrt{N}} = \frac{\text{Estimate of pop SD}}{\sqrt{N}}$$`
-.small[(Most methods of calculating standard deviation assume you're estimating the popluation from a sample and correct for bias.)]
+.small[(Most methods of calculating standard deviation assume you're estimating the population from a sample and correct for bias.)]
 
 ---
 ## Making Statements
@@ -312,7 +346,7 @@ The key is that we have a sampling distribution of the mean with a standard devi
 ---
 ## Confidence Intervals
 
-The sampling distribution of the mean has variability, represented by the SEM, reflecting uncertainty in the sample mean as an estimate of the population mean.
+The sampling distribution of the mean has variability, represented by the SEM, **reflecting uncertainty in the sample mean as an estimate of the population mean**.
 
 The assumption of normality allows us to construct an interval within which we have good reason to believe a sample mean will fall if it comes from a particular population:
 
@@ -393,6 +427,11 @@ Calculate CI using for each sample using `\(\sigma\)`.
 
 ![](9-sampling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
+---
+
+## A better simulation...
+
+[https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
 ---
 
 In the past, my classroom exams (aggregating over many classes) have a mean of 90 and a standard deviation of 8.
