@@ -25,6 +25,8 @@ navbar:
         href: "lectures/8-normal.html"
       - text: "9-Sampling"
         href: "lectures/9-sampling.html"
+      - text: "10-NHST v1"
+        href: "lectures/10-nhst.html"
     - text: Homework
       href: homework.html
   right:

@@ -3,25 +3,26 @@ title: 'Hypothesis testing (NHST)'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
 
-class:center, middle
+```
 
-![](images/Slide1.png)
----
 
 ## What Is A Hypothesis?
 
 In statistics, a **hypothesis** is a statement about the population. It is usually a prediction that a parameter describing some characteristic of a variable takes a particular numerical value, or falls into a certain range of values. 
 
-For example, I might hypothesize that that given equal qualifications, male candidates are viewed more favorably and more likely to be hired than female candidates (Moss-Rascusin et al., PNAS, 2012). We would call this a **research hypothesis.**
+Ex: given equal qualifications, male candidates are viewed more favorably and more likely to be hired than female candidates (Moss-Rascusin et al., PNAS, 2012). **Research hypothesis.**
 
-This could be represented numerically as, as a **statistical hypothesis**:
+Numerically, a **statistical hypothesis**:
 
 $$\text{Proportion}_{\text{Male applicants hired}} > \text{Proportion}_{\text{Females applicants hired}}$$
 
@@ -112,8 +113,9 @@ You can already test this using what you know about the binomial distribution.
 dbinom(9, size = 10, prob = .5)
 ```
 
-```{r, echo = F, warning = F, message = F}
+```{r, echo = F, warning = F, message = F, fig.align='center'}
 library(tidyverse)
+cols = c("#DD3E3E", "#17139C")
 men = 0:10
 data.frame(men = men, d = dbinom(men, size = 10, prob = .5), 
            color = ifelse(men == 9, "1", "2")) %>%
@@ -122,7 +124,7 @@ data.frame(men = men, d = dbinom(men, size = 10, prob = .5),
   guides(fill = "none")+
   scale_x_continuous("Number of men hired", breaks = c(0:10))+
   scale_y_continuous("Probability of X men hired") +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16) 
   
 ```
 
@@ -318,7 +320,7 @@ data.frame(x = seq(0,10)) %>%
       labs(title = as.expression(bquote(~mu~"=5.3"~sigma~"=3.3"~sigma[M]~"=1.1")),
            x = "Average rating of candidate",
            y = NULL)  +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 ```
 
 
@@ -357,7 +359,7 @@ data.frame(x = seq(0,10)) %>%
       labs(title = as.expression(bquote(~mu~"=5.3"~sigma~"=3.3"~sigma[M]~"=1.1")),
            x = "Average rating of candidate",
            y = NULL)  +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 ```
 
 ???
@@ -371,10 +373,25 @@ $N = 9$
 
 ---
 
+```{r, echo = F}
+M = 5.3
+s = 3.3
+N = 9
+X = 2.9
+
+sem = s/sqrt(N)
+
+z = (X-M)/sem
+```
+
 .pull-left[
 ```{r ref.label="sampling", echo= F, warning= F}
 
 ```
+
+$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} $$
+
+$$`r round(z, 2)`$$
 
 ]
 
@@ -391,12 +408,12 @@ sem = s/sqrt(N)
 z = (X-M)/sem
 ```
 
-We have a normal distribution for which we have a score of interest (new applicant, $\bar{X}$ ), we know the mean of the population (the before times, M), the standard deviation of the before times, so we can get the standard deviation (SEM). 
+We have a normal distribution for which we have a score of interest (new applicant, $\bar{X}$ ), we know the mean of the population (the before times), the standard deviation of the before times, so we can get the standard deviation (SEM). 
 
 We can use this information to calculate a Z-score; in the context of comparing one mean to a sampling distribution of means, we call this a **Z-statistic**. 
 ]
 
-$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} = `r round(z, 2)`$$
+
 
 ???
 The z here isn't a z-score bc indtrsf we’re calculating standardised version of a sample mean,
@@ -421,9 +438,9 @@ The probability that the average current applicant's score would be at least 2.1
 
 --
 
-`r round(p, 3)` is our $p$-value!
+**`r round(p, 3)` is our $p$-value!**
 ---
-class: inverse, center
+class: inverse, center, middle
 
 # Congrats! `r emo::ji("tada")`
 
@@ -460,8 +477,6 @@ We still have our population mean of 5.3, but now let's say we *only* have the *
 
 $$SEM = \frac{\hat{\sigma}}{\sqrt{N}} = \frac{s}{\sqrt{N}}$$
 
-As long as your estimate of the standard deviation is already corrected for bias (you've divided by $N-1$ ), then you can swap in your sample SD.
-
 ---
 
 .left-column[
@@ -482,7 +497,7 @@ data.frame(x = seq(0,10)) %>%
       labs(title = as.expression(bquote(~mu~"=5.3"~s~"=3.1"~sigma[M]~"=1.03")),
            x = "Average rating of candidate",
            y = NULL)  +
-  theme(text = element_text(size = 20))
+  theme_classic(base_size = 16)
 ```
 
 ---
@@ -545,7 +560,6 @@ This means that, among the times we examine a relationship that is truly null, w
 Some have argued that this is not conservative enough and we should use $\alpha < .005$ ([Benjamin et al., 2018](../readings/Benjamin_etal_2018.pdf)).
 ---
 
-## NHST Steps
 
 1. Define $H_0$ and $H_1$. 
 

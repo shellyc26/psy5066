@@ -3,10 +3,8 @@
   <head>
     <title>Hypothesis testing (NHST)</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -20,18 +18,15 @@ class: center, middle, inverse, title-slide
 ---
 
 
-class:center, middle
 
-![](images/Slide1.png)
----
 
 ## What Is A Hypothesis?
 
 In statistics, a **hypothesis** is a statement about the population. It is usually a prediction that a parameter describing some characteristic of a variable takes a particular numerical value, or falls into a certain range of values. 
 
-For example, I might hypothesize that that given equal qualifications, male candidates are viewed more favorably and more likely to be hired than female candidates (Moss-Rascusin et al., PNAS, 2012). We would call this a **research hypothesis.**
+Ex: given equal qualifications, male candidates are viewed more favorably and more likely to be hired than female candidates (Moss-Rascusin et al., PNAS, 2012). **Research hypothesis.**
 
-This could be represented numerically as, as a **statistical hypothesis**:
+Numerically, a **statistical hypothesis**:
 
 `$$\text{Proportion}_{\text{Male applicants hired}} &gt; \text{Proportion}_{\text{Females applicants hired}}$$`
 
@@ -127,7 +122,7 @@ dbinom(9, size = 10, prob = .5)
 ## [1] 0.009765625
 ```
 
-![](8-nhst_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+&lt;img src="10-nhst_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
   
 ---
@@ -159,7 +154,7 @@ Instead of calculating the probability of our statistic, we calculate the probab
 The probability of hiring 9 men out of 10 or more extreme is 0.02.]
 ]
 
-![](8-nhst_files/figure-html/sampling_binom-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/sampling_binom-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -171,7 +166,7 @@ As we have more trials...
 ]
 ]
 
-![](8-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -183,7 +178,7 @@ As we have more trials...
 ]
 ]
 
-![](8-nhst_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -194,7 +189,7 @@ As we have more trials...
 If our measure was continuous, it would look something like this.]
 ]
 
-![](8-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -221,7 +216,7 @@ If our measure was continuous, it would look something like this.]
 ## Enter sampling distributions
 
 .pull-left[
-![](8-nhst_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -267,7 +262,7 @@ The standard deviation of the sampling distribution:
 
 ]
 
-![](8-nhst_files/figure-html/sampling-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/sampling-1.png)&lt;!-- --&gt;
 
 
 ???
@@ -295,7 +290,7 @@ The standard deviation of the sampling distribution:
 
 ]
 
-![](8-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ???
 Now, we're trying to decide if given this null hypothesis, that has a distribution that looks like so, is it likely that our recent applicatins come from this same distribution. the recent apps had a mean of 2.9, so our purple line moves over. The standard deviation of our sampling distribution here is our standard error of the mean. to caluclate that we take our population standard deviation, sigma, and divide by the square root of N. we had 9 recent apps, so square root of 9. this turns out to be 1.1. Even though we're only talking about this tail at the moment, i've plotted out the equivalent tail on the other side. 
@@ -308,8 +303,14 @@ Calculate SEM on board.
 
 ---
 
+
+
 .pull-left[
-![](8-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} $$
+
+`$$-2.18$$`
 
 ]
 
@@ -317,12 +318,12 @@ Calculate SEM on board.
 
 
 
-We have a normal distribution for which we have a score of interest (new applicant, `\(\bar{X}\)` ), we know the mean of the population (the before times, M), the standard deviation of the before times, so we can get the standard deviation (SEM). 
+We have a normal distribution for which we have a score of interest (new applicant, `\(\bar{X}\)` ), we know the mean of the population (the before times), the standard deviation of the before times, so we can get the standard deviation (SEM). 
 
 We can use this information to calculate a Z-score; in the context of comparing one mean to a sampling distribution of means, we call this a **Z-statistic**. 
 ]
 
-`$$Z = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.1} = -2.18$$`
+
 
 ???
 The z here isn't a z-score bc indtrsf we’re calculating standardised version of a sample mean,
@@ -357,9 +358,9 @@ The probability that the average current applicant's score would be at least 2.1
 
 --
 
-0.029 is our `\(p\)`-value!
+**0.029 is our `\(p\)`-value!**
 ---
-class: inverse, center
+class: inverse, center, middle
 
 # Congrats! 🎉
 
@@ -396,8 +397,6 @@ We still have our population mean of 5.3, but now let's say we *only* have the *
 
 `$$SEM = \frac{\hat{\sigma}}{\sqrt{N}} = \frac{s}{\sqrt{N}}$$`
 
-As long as your estimate of the standard deviation is already corrected for bias (you've divided by `\(N-1\)` ), then you can swap in your sample SD.
-
 ---
 
 .left-column[
@@ -408,7 +407,7 @@ If you didn't know the population standard deviation, you would use the sample o
 `$$SEM = \frac{\hat{\sigma}}{\sqrt{N}}$$`]
 ]
 
-![](8-nhst_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
+![](10-nhst_files/figure-html/sampling2-1.png)&lt;!-- --&gt;
 
 ---
 ## Again, but with a twist...
@@ -471,7 +470,6 @@ This means that, among the times we examine a relationship that is truly null, w
 Some have argued that this is not conservative enough and we should use `\(\alpha &lt; .005\)` ([Benjamin et al., 2018](../readings/Benjamin_etal_2018.pdf)).
 ---
 
-## NHST Steps
 
 1. Define `\(H_0\)` and `\(H_1\)`. 
 
