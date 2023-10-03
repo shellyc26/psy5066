@@ -3,10 +3,8 @@
   <head>
     <title>NHST II</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,8 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
 
 
 
@@ -37,11 +37,9 @@ class: center, middle, inverse, title-slide
 
 ## Review
 
-- If we do not reject `\(H_0\)`, that does not mean that we accept it.  We have simply failed to reject it. It lives to fight another day.
+- If we do not reject `\(H_0\)`, that does **not** mean that we accept it.  We have simply failed to reject it. *It lives to fight another day.*
 
-- A `\(z\)`-statistic or `\(t\)`-statistic summarizes how unusual the sample estimate of a mean compared to the value of the mean as specified by the null hypothesis.
-
-  - More broadly, we refer to the **test statistic** as the statistic that summarizes how unusual the sample estimate of a parameter is from the point value specified by the null hypothesis.
+- **Test statistic**: the statistic that summarizes how unusual the sample estimate of a parameter is from the point value specified by the null hypothesis. `\(z\)`-statistics or `\(t\)`-statistics do exactly this for means.
   
 ---
 
@@ -49,13 +47,13 @@ class: center, middle, inverse, title-slide
   
 - The test statistic is derived from a probability distribution that represents the likelihood of any sample estimated given that the null hypothesis is true.
 
-- We choose the probability assumption based on assumptions we are willing to make about the data. The **sampling distribution** of the test statistic tells us what counts as rare or unusual.
+- We choose the probability assumption based on assumptions we are willing to make about the data. The **sampling distribution** of the test statistic tells us what counts as rare or unusual. **Uncertainty**
 
 ---
 
 ## Review
 
-We summarize the probability of the sample data (or even more extreme data), assuming the null is true, by the ** `\(p\)`-value** (signified by `\(p\)`). This value is the proportion of the sampling distribution of the test statistic that is as extreme, or more extreme, as the test statistic value.
+We summarize the probability of the sample data (or even more extreme data), assuming the null is true, by the ** `\(p\)`-value**. This value is the proportion of the sampling distribution of the test statistic that is as extreme, or more extreme, as the test statistic value.
 
 If `\(p\)` is small, the observed data are unusual *if the null hypothesis is true*.
 
@@ -69,9 +67,10 @@ Need it in Twitter/meme format? See [here](https://twitter.com/ChelseaParlett/st
 
 Ronald Fisher established (rather arbitrarily) the sanctity of the .05 and .01 significance levels during his work in agriculture, including work on the effectiveness of fertilizer.  A common source of fertilizer is cow manure. Male cattle are called bulls...  
 
-A common misinterpretation of the p value ( `\(\alpha\)` ) is that it is the probability of the null hypothesis being wrong.
+**Incorrect**:
 
-Another common misunderstanding is that `\(1-\alpha\)` is the probability that results will replicate.
+- `\(p\)`-value (and/or your `\(\alpha\)` level) is that it is the probability of the null hypothesis being wrong.
+- `\(1-\alpha\)` is the probability that results will replicate
 
 ---
 
@@ -96,7 +95,7 @@ In hypothesis testing, we can make two kinds of errors.
 &lt;img src='images/errors.jpg', width = 55%&gt;
 &lt;/center&gt;
 
-Falsely rejecting the null hypothesis is a **Type I error**.  Traditionally this has been viewed as particularly important to control at a low level (akin to avoiding false conviction of an innocent defendant). False Positive!
+Falsely rejecting the null hypothesis is a **Type I error**.  Traditionally this has been viewed as particularly important to control at a low level (akin to avoiding false conviction of an innocent defendant). **False Positive**!
 .tiny[https://www.simplypsychology.org/type_I_and_type_II_errors.html]
 
 ---
@@ -110,7 +109,7 @@ In hypothesis testing, we can make two kinds of errors.
 &lt;img src='images/errors.jpg', width = 55%&gt;
 &lt;/center&gt;
 
-Failing to reject the null hypothesis when it is false is a **Type II error**.  This is sometimes viewed as a failure in signal detection.
+Failing to reject the null hypothesis when it is false is a **Type II error**.  This is sometimes viewed as a failure in signal detection. **False Negative**!
 
 ---
 
@@ -173,7 +172,7 @@ Controlling Type II errors is the goal of power analysis and must contend with f
 - Significance level ( `\(\alpha\)` )
 - Power
 
-When any three are known, the remaining one can be determined.  Usually this translates into determining the power present in a research design (**post-hoc power analysis** ), or, determining the sample size necessary to achieve a desired level of power.
+When any three are known, the remaining one can be determined.  Usually this translates into determining the power present in a research design (**_post-hoc_ power analysis** ), or, determining the sample size necessary to achieve a desired level of power (**_a priori_ power analysis**).
 
 We must specify a specific value for the alternative hypothesis to estimate and control Type II errors.
 
@@ -195,7 +194,7 @@ This location is called the **critical value**.
 ]
 ]
 
-![](9-nhst_files/figure-html/student null-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/student null-1.png)&lt;!-- --&gt;
 ???
 
 ### How do we figure out where this region is?
@@ -239,14 +238,14 @@ Draw the line at the critical value
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
 .pull-left[
-![](9-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 
 
 ---
 .left-column[
 .small[
-To get the probability of a Type II error we must specify a value for the alternative hypothesis. We will use the sample mean of `\(110\)`.
+To get the probability of a Type II error we must specify a value for the **alternative hypothesis**. We will use the sample mean of `\(110\)`.
 
 The critical value under the null will also fall under the alternative...
 
@@ -257,7 +256,7 @@ Red = `\(1-\beta\)`
 ]
 
 
-![](9-nhst_files/figure-html/student alt-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/student alt-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -273,20 +272,20 @@ It occurs 5% of time ( `\(\alpha\)` ). It falls under the **null** distribution
 
 
 
-![](9-nhst_files/figure-html/student null and alt-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/student null and alt-1.png)&lt;!-- --&gt;
 
 ---
 
 .left-column[
 .small[
 
-**Type II error** is when the null is truly false (aka the alternative is better), but it is still less than our critical value, so we *incorrectly* retain the null when in fact we should reject it. A false negative. 
+**Type II error** is when the null is truly false, but it is still less than our critical value, so we *incorrectly* retain the null when in fact we should reject it. A false negative. 
 
 It occurs under the **alternative** distribution, and occurs `\(\beta\)` % of the time.
 ]
 ]
 
-![](9-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -299,7 +298,7 @@ It is given by `\(1-\beta\)`.
 ]
 ]
 
-![](9-nhst_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -314,12 +313,12 @@ null with probability of .28 ( `\(\beta\)` ).
 ]
 ]
 
-![](9-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 
 .pull-left[
-![](9-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 Once the critical value and alternative value is established, we can determine the location of the critical value in the alternative distribution.
 ]
@@ -350,7 +349,7 @@ The choice of 110 as the mean of `\(H_1\)` is completely arbirtary. What if we b
 
 
 
-![](9-nhst_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
 `$$Z_1 = \frac{107.4 - 115}{\frac{20}{\sqrt{20}}} = -1.71$$`
@@ -373,7 +372,7 @@ What if instead we increase the sample size?  This will reduce variability in th
 
 
 
-![](9-nhst_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
 `$$\text{CV} = 100 + 1.645\frac{20}{\sqrt{40}} = 105.2$$`
@@ -400,7 +399,7 @@ What if we decrease the significance level to .025?
 
 
 
-![](9-nhst_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -418,49 +417,49 @@ That will move the critical value:
 ```
 ]
 
-I strongly recommend playing around with different configurations of `\(N\)`, `\(\alpha\)` and the difference in means ( `\(d\)` ) in this [online demo](https://rpsychologist.com/d3/NHST/).
+.small[I strongly recommend playing around with different configurations of `\(N\)`, `\(\alpha\)` and the difference in means ( `\(d\)` ) in this [online demo](https://rpsychologist.com/d3/NHST/).]
 
 ---
 
 More generally we can determine the relationship between effect size and power for a constant `\(\alpha\)` (.05) and sample size ( `\(N = 20\)` ).
 
-![](9-nhst_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 
 Likewise, we can display the relationship between sample size and power for a constant `\(\alpha\)` and effect size.
 
-![](9-nhst_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
 Power changes as a function of significance level for a constant effect size and sample size.
 
-![](9-nhst_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ---
 
 For a two-tailed test, we divide the rejection area equally in the two tails. If `\(\alpha = .05\)`, then each tail contains .025 and critical values will be 1.96 standard errors away from the null mean.
 
-![](9-nhst_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+&lt;img src="11-nhst_files/figure-html/unnamed-chunk-22-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 The relationship of power to effect size is more complicated because deviations above and below the null mean are relevant.
 
 
-![](9-nhst_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ---
 
 A two-tailed test is less powerful (more conservative) than a one-tailed test for the same sample size.
 
 
-![](9-nhst_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 
 ---
 
-![](9-nhst_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -468,7 +467,7 @@ A two-tailed test is less powerful (more conservative) than a one-tailed test fo
 
 
 .pull-left[
-![](9-nhst_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ]
 .pull-right[
@@ -482,7 +481,7 @@ A two-tailed test is less powerful (more conservative) than a one-tailed test fo
 
 ---
 
-Often the most challenging part of a power analysis is to settle on an effect size.  
+How do you choose an effect size?
 
 - Past research can often provide some guidance, especially if a meta-analysis is available. 
 
@@ -524,18 +523,18 @@ Note that given publication bias, or the tendancy to only publish significant re
 
 Let's make some assumptions. If psychology studies use `\(\alpha = .05\)` and are good at achieving adequate power ( `\(1-\beta = .80\)` ), how does the choice of hypothesis affect PPV?
 
-![](9-nhst_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+&lt;img src="11-nhst_files/figure-html/unnamed-chunk-27-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ---
 
 However, there are many reasons to think that psychology studies are underpowered. Typical power may be closer to .5 or even worse. 
 
-![](9-nhst_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 
 ---
 
 In addition to being under-powered, there's recognition that research practices have inflated family-wise error, making `\(\alpha\)` much bigger than it should be. 
 
-![](9-nhst_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+![](11-nhst_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
 ---
 
 ![](images/ioannidis.png)
