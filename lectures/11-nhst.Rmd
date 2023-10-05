@@ -573,7 +573,7 @@ data.frame(alpha = size, power = sapply(size, function(x) pwr_fun(m1 = 100, m2 =
   ggplot(aes(x = alpha, y = power)) +
   geom_line(size = 1.5) +
   scale_x_continuous(expression(alpha)) +
-  ggtitle("Power to detect significant effect by sample size") +
+  ggtitle("Power to detect significant effect by alpha") +
   theme(text = element_text(size = 20))
 ```
 
@@ -651,14 +651,13 @@ data.frame(effect = size,
   geom_line(aes(y = power_2, color = "two-tail"), size = 1.5) +
   scale_x_continuous("Sample Size") +
   scale_y_continuous("power")+
-  ggtitle("Power to detect significant effect by mean") +
+  ggtitle("Power to detect significant effect by sample size") +
   theme(text = element_text(size = 20))
 
 ```
 
----
 
-```{r, echo = F}
+```{r, echo = F, eval=FALSE}
 means = data.frame(means = seq(101, 115, 1)) %>%
   mutate(d = abs(means-100)/20) 
 means$power_1 = sapply(means$d, function(x) pwr.norm.test(d = x, sig.level = .05, power = .80, alternative = "greater")$n)
