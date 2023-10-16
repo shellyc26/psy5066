@@ -3,12 +3,18 @@ title: 'Chi-Square Distribution'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 --- 
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r setup, warning=FALSE, message=FALSE, include = FALSE}
 library(tidyverse)
@@ -37,7 +43,7 @@ The **chi-square** ( $\chi^2$ ) distribution is very unique in that we really on
 
 ---
 
-```{r, echo = FALSE, fig.width = 7, warning = FALSE, message = FALSE}
+```{r, echo = FALSE, fig.width = 7, warning = FALSE, message = FALSE, fig.align='center'}
 ggplot(data.frame(x = seq(0, 50)), aes(x)) +
   stat_function(fun = function(x) dchisq(x, df = 1), 
                 aes(color = "k=1")) +
@@ -56,7 +62,7 @@ ggplot(data.frame(x = seq(0, 50)), aes(x)) +
   scale_x_continuous("Variable X") +
   scale_y_continuous("Density") +
   ggtitle("The Chi-Square Distribution") +
-  theme_classic()
+  theme_classic(base_size = 24)
 ```
 
 ---
@@ -133,11 +139,11 @@ noNoise
 
 Step 2: Sum these up
 
-.code-small[
+
 ```{r}
 noise + noNoise
 ```
-]
+
 
 ---
 ## Trees Example
@@ -191,6 +197,7 @@ Our caclulation, like with the z-score, reflects our value minus some expectatio
 ---
 ## When to use?
 - Classes of observations
+
 - Non-continuous data
 
 ???
@@ -200,7 +207,9 @@ The normal is no longer useful if you have noncontinuous data
 ## Assumptions
 
 - Each observation is in only one category
+
 - Observations are independent
+
 - N is large (or expected N is large)
   - 2 groups greater than 10 per group
   - More than 2 groups greater than 5 per group
@@ -213,19 +222,22 @@ $$p(A)p(B) = p(A\cap B)$$
 ## Let's expand... Tests of Association (or Independence)
 
 - aka Pearson Chi-square test
+
 - Developed to see how close we are to the estimated distribution
   - nominal data (ordinal and greater we can use corelations)
   
 ---
 ## Same Old Same
 - If we are interested in knowing whether X is contingent (or dependent) upon Y, or whether X and Y are **independent**, we're going to need a bigger table.
+
 - And we need to calculate our expected frequencies differently, where...
+
 - Expected value = $R_iC_j/N$
 
 ---
-class: inverse
+class: inverse, middle, center
 
-Is attrition on a longitudinal study related to educational attainment?
+## Is attrition on a longitudinal study related to educational attainment?
 
 ???
 People seem to be dropping out of your study. You hope that they drop out at random. But you're concerned that the people dropping out do so in a way that seems to be related to education levels. Maybe you think that the less educated a participant is, the more likely it is that they drop out of the study. 
@@ -359,8 +371,10 @@ pchisq(5.33, df = 2, lower.tail = FALSE)
 
 We have 3 constraints:
 
-- The cell frequenies must sum to the overall sample size
+- The cell frequencies must sum to the overall sample size
+
 - The row totals must sum to the overall sample size
+
 - The column totals must sum to the overall sample size
 
 ---

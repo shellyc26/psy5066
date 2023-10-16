@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chi-Square Distribution</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chi-Square Distribution
+]
+
+---
+
+
+
+
+
+
+## Recap
+
+Typically, the probability distribution function for a distribution is regulated by two parameters:
+
+ - mean
+ - standard deviation
+ 
+--
+
+These parameters are sometimes independent (normal, `\(t\)` ) and sometimes associated with one another (binomial)
+
+---
+
+## Chi-Square Distribution
+
+The **chi-square** ( `\(\chi^2\)` ) distribution is very unique in that we really only have one parameter, `\(k\)`
+
+- mean = `\(k\)`
+- variance = `\(2k\)`
+
+---
+
+&lt;img src="14-chisq_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## What kind of crazy function would lead to a distribution like this?!?!!
+
+![](images/animal.png)
+
+---
+class: inverse, center, middle
+
+## If a tree falls in the forest, and no one is around, does it make a sound?
+
+---
+
+## Trees Example
+
+Let's say a total of 110 trees have fallen. We might *expect* that half of those trees make a sound and half of them don't.
+  - 55 trees fall and do make a sound
+  - 55 trees fall and do not make a sound
+
+---
+
+## Trees Example
+
+We expect 55 trees to fall per category (sound and no sound). However, our data show that 10 fell and made a sound whereas 100 fell and did not make a sound.
+
+--
+
+This let's build a table that shows us what we have:
+
+
+```r
+trees = data.frame(TreesFallen = c(10, 100),
+                   Expected = c(55, 55))
+rownames(trees) = c("Registered Noise", "No Registered Noise")
+
+trees
+```
+
+```
+##                     TreesFallen Expected
+## Registered Noise             10       55
+## No Registered Noise         100       55
+```
+
+---
+
+## Trees Example
+
+
+```
+##                     TreesFallen Expected
+## Registered Noise             10       55
+## No Registered Noise         100       55
+```
+
+
+
+$$ \chi^2_P = \Sigma\frac{(\text{observed frequency} - \text{expected frequency})^2}{\text{expected frequency}}$$
+---
+
+## Trees Example
+
+
+```
+##                     TreesFallen Expected
+## Registered Noise             10       55
+## No Registered Noise         100       55
+```
+
+Step 1: Get the ratio across rows:
+
+`\(\frac{(10-55)^2}{55}\)`
+`\(\frac{(100-55)^2}{55}\)`
+
+.code-small[
+
+```r
+noise &lt;- ((10-55)^2)/55
+noise
+```
+
+```
+## [1] 36.81818
+```
+
+```r
+noNoise &lt;- ((100-55)^2)/55
+noNoise
+```
+
+```
+## [1] 36.81818
+```
+]
+---
+## Trees Example
+
+Step 2: Sum these up
+
+
+
+```r
+noise + noNoise
+```
+
+```
+## [1] 73.63636
+```
+
+
+---
+## Trees Example
+
+Step 3: Determine Degrees of Freedom
+
+df = `\((r-1)(c-1)\)`
+
+df = `\((2-1)(2-1)\)`
+
+df = 1
+
+---
+
+## Trees Example
+
+.left-column[
+.small[
+`\(\chi^2(1) = 73.636\)`
+]
+]
+
+![](14-chisq_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+## What did we learn?
+
+The `\(\chi^2\)` distribution gives us the probability to find the data (or those more extreme) given a theory (expected values)
+
+--
+
+Comparing that against some threshold for determining whether that probability is within the range of expectations or not
+
+
+```r
+pchisq(q = 73.636, df = 1, lower.tail = FALSE)
+```
+
+```
+## [1] 9.393574e-18
+```
+
+--
+
+Our caclulation, like with the z-score, reflects our value minus some expectation, to understand how far away it is from that expectation.
+
+---
+## When to use?
+- Classes of observations
+
+- Non-continuous data
+
+???
+The normal is no longer useful if you have noncontinuous data
+
+---
+## Assumptions
+
+- Each observation is in only one category
+
+- Observations are independent
+
+- N is large (or expected N is large)
+  - 2 groups greater than 10 per group
+  - More than 2 groups greater than 5 per group
+  
+---
+## Remember Independence? 
+
+`$$p(A)p(B) = p(A\cap B)$$`
+---
+## Let's expand... Tests of Association (or Independence)
+
+- aka Pearson Chi-square test
+
+- Developed to see how close we are to the estimated distribution
+  - nominal data (ordinal and greater we can use corelations)
+  
+---
+## Same Old Same
+- If we are interested in knowing whether X is contingent (or dependent) upon Y, or whether X and Y are **independent**, we're going to need a bigger table.
+
+- And we need to calculate our expected frequencies differently, where...
+
+- Expected value = `\(R_iC_j/N\)`
+
+---
+class: inverse, middle, center
+
+## Is attrition on a longitudinal study related to educational attainment?
+
+???
+People seem to be dropping out of your study. You hope that they drop out at random. But you're concerned that the people dropping out do so in a way that seems to be related to education levels. Maybe you think that the less educated a participant is, the more likely it is that they drop out of the study. 
+
+---
+## Attrition Example
+
+Our data...
+
+
+```
+##                                StayedIn DroppedOut
+## Failed to complete high school       20         20
+## High school degree                   25         15
+## College degree                       30         10
+```
+
+---
+
+## Attrition Example
+
+
+```
+##                                StayedIn DroppedOut
+## Failed to complete high school       20         20
+## High school degree                   25         15
+## College degree                       30         10
+```
+
+It's the same general formula, but we need to calculate our expected values a little differently...
+$$ \chi^2_P = \Sigma\frac{(\text{observed frequency} - \text{expected frequency})^2}{\text{expected frequency}}$$
+
+`$$\text{Expected Value} = R_iC_j/N$$`
+---
+## Attrition Example
+
+The OG Data
+
+
+```
+##                                StayedIn DroppedOut
+## Failed to complete high school       20         20
+## High school degree                   25         15
+## College degree                       30         10
+```
+
+
+--
+
+The Expected Value Calculations
+
+
+```
+##                                 StayedIn DroppedOut
+## Failed to complete high school 40*75/120  40*45/120
+## High school degree             40*75/120  40*45/120
+## College degree                 40*75/120  40*45/120
+```
+
+Expected frequency for staying in = 25
+
+Expected frequency for dropping out = 15
+---
+
+## Attrition Example
+
+Plug this in for "expected frequencies"
+
+```
+##                                    StayedIn   DroppedOut
+## Failed to complete high school (20-25)^2/25 (20-15)^2/15
+## High school degree             (25-25)^2/25 (15-15)^2/15
+## College degree                 (30-25)^2/25 (10-15)^2/15
+```
+
+--
+
+So we get...
+
+
+```
+##                                StayedIn DroppedOut
+## Failed to complete high school        1   1.666667
+## High school degree                    0   0.000000
+## College degree                        1   1.666667
+```
+
+--
+
+Sum them up:
+
+```r
+1 + 0 + 1 + 1.666667 + 0 + 1.666667
+```
+
+```
+## [1] 5.333334
+```
+
+---
+## Attrition Example
+
+`\(\chi^2(?) = 5.33\)`
+
+--
+
+What is our degrees of freedom?
+
+- `\(df = (r-1)(c-1)\)`
+- `\(df = (3-1)(2-1)\)`
+- `\(df = 2*1\)`
+- `\(df = 2\)`
+
+--
+
+`\(\chi^2(2) = 5.33\)`
+
+
+```r
+pchisq(5.33, df = 2, lower.tail = FALSE)
+```
+
+```
+## [1] 0.06959935
+```
+
+
+---
+## What's up with these df?
+
+We have 3 constraints:
+
+- The cell frequencies must sum to the overall sample size
+
+- The row totals must sum to the overall sample size
+
+- The column totals must sum to the overall sample size
+
+---
+
+## Assumptions
+
+Independent observations
+
+Each obseravation is in one and only one category
+
+N is large (usually taken to mean that expected N is at least 5 in each cell)
+
+---
+
+## Effect Sizes for Chi-Square
+
+**Odds Ratio**
+OR = number experiencing event divided by number who did not experience event.
+
+
+```
+##                                StayedIn DroppedOut
+## Failed to complete high school       20         20
+## High school degree                   25         15
+## College degree                       30         10
+```
+
+- `\(p(\text{Dropped Out} | &lt;\text{high school}) = 20/40\)`
+- `\(p(\text{Dropped Out} | \text{high school}) = 15/40\)`
+
+
+???
+We're going ACROSS THE ROWS to get the denominator
+
+---
+
+## Odds Ratio
+OR = number experiencing event divided by number who did not experience event.
+
+- Odds(Dropped Out | &lt; High School = 20/40 = .5
+- Odds(Dropped Out | High School = 15/40 = .375
+
+--
+
+- Odds Ratio = .5 / .375 = 1.33
+
+*The odds of dropping out of the study rather than remaining in the study when they did not complete high school are 1.33 times the odds of dropping out if they completed high school, but not college*
+
+---
+
+## Rules of thumb
+
+Cohen (1988) provided the following advice for interpreting odds ratios:
+
+- 1.5 small
+- 2.5 medium
+- 4.3 large
+
+---
+
+## Phi Correlation
+
+- Pearson correlation between two dichotomous variables is `\(\phi\)`
+- This doesn't quite work with our attrition example, so let's look at another contingency table...
+
+--
+
+.small[
+- Rosenstein &amp; Horowitz (1996): Adolescent attachment and psychopathology
+- Researchers were interested in whether attachment to mothers was associated with having a conduct disorder or affective disorder (clinical sample)
+- Attachment:
+  - Preoccupied: appear confused and entangled by attachment relationships
+  - Dismissive: dismiss the importance or influence of attachment figure
+- Disorder:
+  - Conduct: persistent antisocial behavior that violates norms
+  - Affective: major or recurrent depressive symptoms, mania, and/or mood disorders
+]
+---
+
+## Attachment
+
+
+```
+##             AnyConduct JustAffective
+## Dissmissive          1             5
+## Preoccupied          3            14
+```
+
+Practice:
+- Work through the full chi-square test on your own time. You should get .003. See if you're right!
+- Calculate the effect size (odds ratio). You can choose what you're calculating, but note that your interpretation will change!
+
+---
+
+## Phi Correlation
+
+
+```
+##              AnyConduct JustAffective
+## Dissmissive 1 (Cell 11)   5 (Cell 12)
+## Preoccupied 3 (Cell 21)  14 (Cell 22)
+```
+
+.small[
+`$$\phi = \frac{Cell_{11} Cell_{22} - Cell_{12} Cell_{21}}{\sqrt{(Cell_{11} + Cell_{12})(Cell_{21} + Cell_{22})(Cell_{11} + Cell_{21})(Cell_{12} + Cell_{22})}}$$`
+]
+---
+## Phi Correlation
+.small[
+
+`$$\phi = \frac{Cell_{11} Cell_{22} - Cell_{12} Cell_{21}}{\sqrt{(Cell_{11} + Cell_{12})(Cell_{21} + Cell_{22})(Cell_{11} + Cell_{21})(Cell_{12} + Cell_{22})}}$$`
+]
+
+`$$\phi = \frac{(1*14) - (5*3)}{\sqrt{(1+5)(3+14)(1+3)(5+14)}}$$`
+
+`$$\phi = .01$$`
+
+--
+
+OR
+
+`$$\phi = \sqrt{\frac{\chi^2}{N}}$$`
+
+---
+class: inverse
+
+## Next time
+
+Comparing means with all the `\(t\)`-tests
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
