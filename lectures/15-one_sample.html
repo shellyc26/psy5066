@@ -3,10 +3,8 @@
   <head>
     <title>One-sample hypothesis tests</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -23,13 +21,15 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
 ## Today...
 
 * One-sample *t*-tests
 
 ---
 
-# What are the steps of NHST?
+### What are the steps of NHST?
 
 --
 
@@ -41,7 +41,7 @@ class: center, middle, inverse, title-slide
 
 --
 
-3. Determine which sampling distribution ( `\(z\)`, `\(t\)`, or `\(\chi^2\)` for now)
+3. Determine which sampling distribution ( `\(z\)`, `\(t\)`, or `\(\chi^2\)`)
 
 --
 
@@ -85,6 +85,7 @@ One-sample tests compare your given sample with a "known" population.
 The [sample data](../data/cenus_at_school_missouri.csv) were obtained from Census at School, a website developed by the American Statistical Association to help students in the 4th through 12th grades understand statistical problem-solving. 
 
   * The site sponsors a survey that students can complete and a database that students and instructors can use to illustrate principles in quantitative methods.  
+  
   * The database includes students from all 50 states, from grade levels 4 through 12, both boys and girls,  who have completed the survey dating back to 2010.  
   
 
@@ -95,10 +96,10 @@ The [sample data](../data/cenus_at_school_missouri.csv) were obtained from Censu
 
 Comparing means is usually done with the *t*-test, of which there are several forms.
 
-The one-sample *t*-test is appropriate when a single sample mean is compared to a population mean but the population standard deviation is unknown.  A sample estimate of the population standard deviation is used instead.  The appropriate sampling distribution is the t-distribution, with N-1 degrees of freedom.
+The one-sample *t*-test is appropriate when a **single sample mean** is compared to a **population mean** but the population standard deviation is unknown.  A sample estimate of the population standard deviation is used instead.  The appropriate sampling distribution is the *t*-distribution, with `\(N-1\)` degrees of freedom.
 
 `$$t_{df=N-1} = \frac{\bar{X}-\mu}{\frac{\hat{\sigma}}{\sqrt{N}}}$$`
-The heavier tails of the t-distribution, especially for small N, are the penalty we pay for having to estimate the population standard deviation from the sample.
+The heavier tails of the t-distribution, especially for small *N*, are the penalty we pay for having to estimate the population standard deviation from the sample.
 
 ---
 
@@ -124,7 +125,7 @@ The heavier tails of the t-distribution, especially for small N, are the penalty
 | `\(\sigma\)` | known |unknown |
 | sem or `\(\sigma_M\)` | `\(\frac{\sigma}{\sqrt{N}}\)` | `\(\frac{\hat{\sigma}}{\sqrt{N}}\)` |
 |Probability distribution | standard normal | t |
-| DF | none | N-1 |
+| DF | none | `\(N-1\)` |
 | Tails | One or two | One or two |
 | Critical value ( `\(\alpha = .05, two-tailed\)` | 1.96 | Depends on DF |
 
@@ -140,7 +141,7 @@ The heavier tails of the t-distribution, especially for small N, are the penalty
 
 ## A brief example
 
-Using the same Census at School data, we find that Missouri students who participated in a memory game ( `\(N = 51\)` ) completed the game in an average time of `\(45.93\)` seconds ( `\(s = 13.05\)` ). We know that the average US student completed the game in `\(45.04\)` seconds. How do our students compare?
+Using the same Census at School data, we find that Missouri students who participated in a memory game completed the game in an average time of `\(45.93\)` seconds. We know that the average US student completed the game in `\(45.05\)` seconds. How do our students compare?
 
 .tiny[We're using data from Missouri in 2021 only]
 
@@ -170,7 +171,7 @@ nrow(school)
 
 ## A brief example
 
-Using the same Census at School data, we find that Missouri students who participated in a memory game ( `\(N = 51\)` ) completed the game in an average time of `\(45.93\)` seconds ( `\(s = 13.05\)` ). We know that the average US student completed the game in `\(45.05\)` seconds. How do our students compare?
+Using the same Census at School data, we find that Missouri students who participated in a memory game completed the game in an average time of `\(45.93\)` seconds. We know that the average US student completed the game in `\(45.05\)` seconds. How do our students compare?
 
 .tiny[We're using data from Missouri in 2021 only]
 
@@ -251,7 +252,7 @@ lsr::oneSampleTTest(x = school$Score_in_memory_game,
 
 ---
 
-## Cohen's D
+## Cohen's *D*
 
 Cohen suggested one of the most common effect size estimates—the standardized mean difference—useful when comparing a group mean to a population mean or two group means to each other. 
 
@@ -259,15 +260,14 @@ Cohen suggested one of the most common effect size estimates—the standardized 
 
 --
 
-Cohen’s d is in the standard deviation (Z) metric. Why does this matter?
+Cohen’s *d* is in the standard deviation (*Z*) metric. Why does this matter?
 
 
 ---
-## Cohen's D
+## Cohen's *D*
 
-Cohens’s d for these data is .068.  In other words, the sample mean differs from the population mean by .068 standard deviation units. 
+Cohens’s *d* for these data is .068.  In other words, the sample mean differs from the population mean by .068 standard deviation units. 
 
-Cohen (1988) suggests the following guidelines for interpreting the size of d:
 
 
 - .2 = Small
@@ -285,7 +285,7 @@ Not bounded by 1 the way a correlation is bounded
 
 Another useful metric is the overlap between the two distributions -- the smaller the overlap, the farther apart the distributions
 
-![](13-one_sample_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](15-one_sample_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -307,7 +307,7 @@ school_pollution = school %&gt;%
 
 ## You Try!
 
-Students were asked the following: *"How important is reducing pollution to you?"*. They were give options of 0 (not important) to 1000 (very important). 
+Students were asked the following: *"How important is reducing pollution to you?"*. They were given options of 0 (not important) to 1000 (very important). 
 
 The average rating across the nation is `\(762.52\)`. 
 
@@ -324,7 +324,7 @@ Using the same data:
 
 --
 
-**Step 3**: Calculate Cohen's D "by hand". Interpret!
+**Step 3**: Calculate Cohen's *D* "by hand". Interpret!
 
 ---
 ### Let's do it together
@@ -357,7 +357,13 @@ nrow(school_pollution)
 
 $$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
 
---
+---
+
+### Let's do it together
+
+**Step 1**: Get the test statistic
+
+$$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
 
 
 ```r
@@ -420,7 +426,7 @@ ci_ub_t
 
 --
 
-If we carried out random sampling from the population a large number of times, and each time we calculated the 95% confidence interval, we would expect 95% of those intervals to contain the true population mean, which is likely somewhere between 633.249 and 804.097
+If we carried out random sampling a large number of times, and each time we calculated the 95% confidence interval, we would expect 95% of those intervals to contain the true population mean, which is likely between 633 and 804
 
 --
 

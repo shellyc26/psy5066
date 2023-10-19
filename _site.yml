@@ -35,12 +35,16 @@ navbar:
         href: "lectures/13-open_science.html"
       - text: "14-Chi-Sq"
         href: "lectures/14-chisq.html"
+      - text: "15-1-Sample-T"
+        href: "lectures/15-one_sample.html"
     - text: PDF Slides
       menu: 
       - text: "13-Open Science"
         href: "lectures/13-open_science.pdf"
       - text: "14-Chi-Sq"
         href: "lectures/14-chisq.pdf"
+      - text: "15-1-Sample-T"
+        href: "lectures/15-one_sample.pdf"
     - text: Homework
       href: homework.html
   right:
