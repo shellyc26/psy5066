@@ -427,6 +427,24 @@ The one-sample *t*-test is used to test coefficients in a model.
 
 ---
 
+### Let's compare to 0
+
+```{r}
+lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution, 
+                    mu = 0, one.sided = FALSE)
+```
+
+---
+### Let's compare to 0
+
+```{r}
+model = lm(Importance_reducing_pollution ~ 1, data = school_pollution)
+summary(model)
+```
+
+
+---
+
 ```{r}
 model = lm(Petal.Width ~ Species, data = iris)
 summary(model)

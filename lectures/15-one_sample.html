@@ -285,7 +285,7 @@ Not bounded by 1 the way a correlation is bounded
 
 Another useful metric is the overlap between the two distributions -- the smaller the overlap, the farther apart the distributions
 
-![](15-one_sample_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](15-one_sample_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -514,6 +514,69 @@ How often will you come across one-sample *t*-tests?
 * A lot!
 
 The one-sample *t*-test is used to test coefficients in a model. 
+
+---
+
+### Let's compare to 0
+
+
+```r
+lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution, 
+                    mu = 0, one.sided = FALSE)
+```
+
+```
+## 
+##    One sample t-test 
+## 
+## Data variable:   school_pollution$Importance_reducing_pollution 
+## 
+## Descriptive statistics: 
+##             Importance_reducing_pollution
+##    mean                           718.673
+##    std dev.                       297.403
+## 
+## Hypotheses: 
+##    null:        population mean equals 0 
+##    alternative: population mean not equal to 0 
+## 
+## Test results: 
+##    t-statistic:  16.915 
+##    degrees of freedom:  48 
+##    p-value:  &lt;.001 
+## 
+## Other information: 
+##    two-sided 95% confidence interval:  [633.249, 804.097] 
+##    estimated effect size (Cohen's d):  2.416
+```
+
+---
+### Let's compare to 0
+
+
+```r
+model = lm(Importance_reducing_pollution ~ 1, data = school_pollution)
+summary(model)
+```
+
+```
+## 
+## Call:
+## lm(formula = Importance_reducing_pollution ~ 1, data = school_pollution)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -717.7 -168.7  105.3  231.3  281.3 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   718.67      42.49   16.91   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 297.4 on 48 degrees of freedom
+```
+
 
 ---
 
