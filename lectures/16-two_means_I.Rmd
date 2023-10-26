@@ -4,12 +4,17 @@ output:
   xaringan::moon_reader:
     includes: 
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 library(tidyverse)
@@ -57,6 +62,9 @@ Two main methods of calculating the *SE*:
 1. __Student's *t*-test__ is used when the variances of each sample are (roughly) the same. In many cases, slightly more powerful test but the **pooled variance** will be biased toward the sample with the larger sample size.
 2. __Welch's *t*-test__ if the variances are NOT (roughly) the same. Slightly less powerful.
 ---
+
+## Assumptions
+
 **Student's assumptions:**
 - Independence 
 - Normality of *Population* that each sample comes from
@@ -68,17 +76,14 @@ Two main methods of calculating the *SE*:
 
 ---
 ## Variance Calculations
-Welch's
-- Calculate variance separately for each sample
-
-Student's
-$$\large{\hat{\sigma}^2_p = \frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}}$$
----
-## *SD* Calculations
-**Welch's**
-- Calculate SD separately for each sample
 
 **Student's**
+$$\large{\hat{\sigma}^2_p = \frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}}$$
+--
+<br>
+<br>
+
+
 $$\sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} $$
 ---
 ## $SE_{diff}$  Calculations
@@ -91,6 +96,7 @@ Essentially, the squared $SE_{mean}$ of each sample is added then you take the s
 **Student's**
 $$\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}$$
 ---
+## What did we just do?
 
 Final result is *SE* of the difference of independent means. Remember that standard deviations estimate population variability (i.e., variability of population scores). Taking the next step and dividing the *SD* by the square root of some variation of N (depending on the test equation) helps us estimate variability of means rather than scores. 
 ---
@@ -130,15 +136,15 @@ $$ t = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$ and then can find the probability 
 ---
 ## Examples!
 
-Research Question: Do Kid or Adult trick R treaters get more candy
-.code-small[
+Research Question: Do Kid or Adult trick `R` treaters get more candy
+
 ```{r, echo=FALSE}
 set.seed(15)
 trickRtreat <- data.frame("Candy"=cbind(c(round(rnorm(n=500, mean=13.256, sd = 1.243)), round(rnorm(n=35, mean=14.5742, sd = 4.4523)))), "Age"=c(rep("Kid", 500), rep("Adult", 35)))
 # simulated data. How much Candy did each individual get? And are they adults or kids?
 psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
 ```
-]
+
 
 
 ---
@@ -357,7 +363,7 @@ Almost all the variability in Kids' candy scores are contained within Adults' in
 ---
 ## Welch's
 
-This is where Welch's comes in handy (although I default to it regardless)
+This is where Welch's comes in handy (default)
 ```{r}
 t.test(Candy ~ Age, data = trickRtreat, var.equal = F) #var.equal = F uses Welch's test, although it's also the default, so you don't need to type it
 ```
@@ -417,8 +423,8 @@ shapiro.test(x = trickRtreat$Candy[trickRtreat$Age == "Kid"])
 
 It's obvious that this isn't normal because the two groups have very different variabilities. It might seem surprising that Kids' significantly deviates from normalty, but we have a lot of Kids in the group.  
 ---
-## What if I don't meet the normality assumption?
-A common non-parametric test (in the event of egregious non-normality) that can be used in place of the independent samples *t*-test is the **Wilcoxon sum rank test**.  
+#### What if I don't meet the normality assumption?
+Non-parametric version of the independent samples *t*-test is the **Wilcoxon sum rank test**.  
 
 * Order all the data points by their outcome. 
 * For one of the groups, add up all the ranks. That's your test statistic, *W*.
@@ -431,7 +437,7 @@ wilcox.test(Candy~Age, data = trickRtreat)
 ---
 ### Effect Sizes: Do significant differences really make a difference?
 
-Significance isn't a great proxy for meaningfulness or size of an effect. Many factors besides effect size goes into significance (provided the effect is not 0). And eyeballing how large an effect is can be difficult unless you're aware of the sample variances. 
+Significance isn't a great proxy for meaningfulness or size of an effect. Many factors besides effect size goes into significance (provided the effect is not 0). 
 
 **Cohen's d** is a standardized mean difference and is one of the most common effect size estimate. Easy to understand and to compare across different experiments/studies. 
 
@@ -547,15 +553,6 @@ library(lsr)
 independentSamplesTTest(Candy ~ Age, data = trickRtreat, var.equal = F)
 ```
 
----
-class: inverse
-
-## Next time...
-
-- 10/25 - Comparing dependent means
-- 10/27 - Data Viz
-- 11/1 - Exam 2 Review
-- 11/3 - Exam 2 opens (and Shelly holds lab hours)
 
 
 
