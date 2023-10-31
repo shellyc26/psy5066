@@ -3,12 +3,18 @@ title: 'Comparing two dependent means'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -51,8 +57,6 @@ Thoughts on conservatism (Welch vs. Student, *t* vs. normal, etc.)
 
 ## Today
 
-Dealing with that pesky independence problem
-
 The independent samples t-test (Student's or Welch's) assumes that the responses in one group are uncorrelated with the responses in the other group.
 
 That independence assumption is sometimes violated, as in the following common research situations:
@@ -66,7 +70,11 @@ Note that these are violations *between* groups, but not within groups. For now,
 ## Research Designs with Dependencies
 In **longitudinal research**, the same people provide responses to the same measure on two occasions (the individuals in the two groups are the same).
 
+--
+
 In **paired-sample research**, the individuals in the two groups are different, but they are related and their responses are assumed to be correlated.  Examples would be responses by children and their parents, members of couples, twins, etc.
+
+--
 
 In **paired-measures research**, the same people provide responses to two different measures that assess closely related constructs.  This resembles longitudinal research, but data collection occurs at one time.
 
@@ -87,7 +95,7 @@ The advantage of repeated measures designs is that, compared to an independent g
 ---
 ## Dealing with Dependencies
 
-Each of these repeated measures problems can be viewed as a transformation of the original two measures into a single measure:  a difference score.  This reduces the analysis to a one-sample *t*-test on the difference score, with null mean = 0.
+Each of these repeated measures problems can be viewed as a transformation of the original two measures into a single measure:  a difference score.  This reduces the analysis to a __one-sample *t*-test__ on the difference score, with null mean = 0.
 
 ---
 ## Dealing with Dependencies
@@ -111,7 +119,7 @@ Note here the signal to noise ratios
 
 ---
 
-## Example
+### Example
 
 Human-wildlife conflict in urban areas endangers wildlife species. One species under threat is the *Larus argentatus* or herring gull, which is considered a nuisance owing to food-snatching and other behaviors. A [recent study](https://royalsocietypublishing.org/doi/10.1098/rsbl.2019.0405) examined whether herring gull behavior is influenced by human behavior cues and whether this could be used to reduce human-gull conflict. 
 
@@ -127,14 +135,27 @@ In this study, experimenters visited coastal towns in the UK and found locations
 
 ![](images/gulls_at.jpg)
 
-In the **Looking At** treatment, the experimenter directed their gaze towards the eye(s) of the gull and turned their head, if necessary, to follow its approach path until the gull completed the trial by pecking at the food bag. 
+**Looking At**: the experimenter directed their gaze towards the eye(s) of the gull and turned their head, if necessary, to follow its approach path until the gull completed the trial by pecking at the food bag. 
 ]
 
 .pull-right[
 
 ![](images/gulls_away.jpg)
 
-In the **Looking Away** treatment, the experimenter turned their head and eyes approximately 60° (randomly left or right) away from the gull and maintained this position until they heard the gull peck at the food bag. 
+**Looking Away**: the experimenter turned their head and eyes approximately 60° (randomly left or right) away from the gull and maintained this position until they heard the gull peck at the food bag. 
+]
+
+
+
+---
+.pull-left[
+
+![](images/gulls_at.jpg)
+]
+
+.pull-right[
+
+![](images/gulls_away.jpg)
 ]
 
 "We adopted a repeated measures design... We randomly assigned individuals to receive Looking At or Looking Away first, and trial order was counterbalanced across individuals. Second trials commenced 180 s after the completion of the first trial to allow normal behaviour to resume."
@@ -209,7 +230,7 @@ And we can calculate the standard deviation
 
 --
 
-To calculate the standard error of our difference scores, we simply divide the standard deviation by the square root of the number of *pairs* or, in the case of repeated measures, the number of *subjects*.
+Std Error: divide the standard deviation by the square root of the number of *pairs* or, in the case of repeated measures, the number of *subjects*.
 
 ```{r}
 (se_delta = s_delta/sqrt(nrow(gulls)))
@@ -328,11 +349,11 @@ lsr::cohensD(x = gulls$At, y = gulls$Away, method = "pooled")
 
 **Which one should you use?**
 
-The first thing to recognize is that, unlike hypothesis testing, there are no standards for effect sizes. When Cohen developed his formula in 1988, he never bothered to precisely define $\large \sigma$. Interpretations have varied, but no single method for within-subjects designs has been identified. 
+*There are no standards for effect sizes.* When Cohen (1988) developed his formula, he never bothered to precisely define $\large \sigma$. Interpretations have varied, but no single method for within-subjects designs has been identified. 
 
 Most often, textbooks will argue for the within-pairs version, because this mirrors the hypothesis test. 
 
-Some (see below) argue the between-conditions version is actually better because the paired-design is used to reduce noise by adjusting our calculation of the standard error. But that shouldn't make our effect bigger, just easier to detect. The other argument is that using the same formula (the between-conditions version) allows us to compare effect sizes across many different designs, which are all trying to capture the same effect.
+Some argue the between-conditions version is better because the paired-design is used to reduce noise by adjusting our calculation of the standard error. The other argument is that using the same formula (betwn-conditions version) lets us to compare effect sizes across many different designs, which are all trying to capture the same effect.
 
 .small[Westfall, J. (2016). [Five different "Cohen's d" statistics for within-subject designs](http://jakewestfall.org/blog/index.php/2016/03/25/five-different-cohens-d-statistics-for-within-subject-designs/)]
 
@@ -419,9 +440,8 @@ What happens when our tests are not independent of one another?
 
 ---
 
-The issue of independence between tests has long been ignored by scientists. It was only when we were confronted with impossible-to believe results (people have ESP, listening to "When I'm Sixty-Four" by The Beatles makes you younger) that we started to doubt our methods.
+The issue of independence between tests has long been ignored by scientists. It was only when we were confronted with impossible-to believe results (listening to "When I'm Sixty-Four" by The Beatles makes you younger) that we started to doubt our methods. + a lot of fraud. 
 
-And an explosion of fraud cases made us revisit our incentive structures. Maybe we weren't producing the best science we could...
 
 .pull-left[
 ![](images/replicability2.png)
@@ -476,6 +496,5 @@ class: inverse
 
 ## Coming up...
 
-- Data Visualization 
-- Exam 2 Review
-- Exam 2 11/3 (ommmgggggggg!!!!!)
+- Written Exam 2 11/2 (ommmgggggggg!!!!!)
+- Oral Exam 2 11/6-11/8

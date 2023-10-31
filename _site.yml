@@ -39,8 +39,16 @@ navbar:
         href: "lectures/15-one_sample.html"
       - text: "16-2-Samples-T"
         href: "lectures/16-two_means_I.html"
+      - text: "17-Paired-T"
+        href: "lectures/17-two_means_II.html"
     - text: PDF Slides
-      menu: 
+      menu:
+      - text: "10-NHST v1"
+        href: "lectures/10-nhst.pdf"
+      - text: "11-NHST v2"
+        href: "lectures/11-nhst.pdf"
+      - text: "12-NHST Issues"
+        href: "lectures/12-critiques.pdf"
       - text: "13-Open Science"
         href: "lectures/13-open_science.pdf"
       - text: "14-Chi-Sq"
@@ -49,6 +57,8 @@ navbar:
         href: "lectures/15-one_sample.pdf"
       - text: "16-2-Samples-T"
         href: "lectures/16-two_means_I.pdf"
+      - text: "17-Paired-T"
+        href: "lectures/17-two_means_II.pdf"
     - text: Homework
       href: homework.html
   right:
