@@ -62,7 +62,7 @@ navbar:
       - text: "17-Paired-T"
         href: "lectures/17-two_means_II.pdf"
       - text: "18-Model Comparisons"
-        href: "lecture/18-modelcomparison.pdf"
+        href: "lectures/18-modelcomparison.pdf"
     - text: Homework
       href: homework.html
   right:
