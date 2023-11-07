@@ -3,12 +3,18 @@ title: 'Model Comparison Approach'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E", base_font_size = "18px")
+
+```
 
 ```{r packagesAndData, include=FALSE, warning=FALSE}
 library(tidyverse)
@@ -22,7 +28,7 @@ colors = RColorBrewer::brewer.pal(4, "Set2")
 
 --
 
-- I will post HW 4 by end of day on Wednesday. It is due 11/20
+- I am going to modify the HW due dates a bit so stay tuned
 
 --
 
@@ -32,7 +38,7 @@ colors = RColorBrewer::brewer.pal(4, "Set2")
   
 --
 
-- **Messi is teaching on Thursday 11/10**
+- **Merve is teaching on Thursday 11/9**
 
 ---
 ## Recap
@@ -86,19 +92,28 @@ Another way of thinking about it -- what does a model of the null hypothesis loo
 
 --
 
-- If there is truly no difference between means (the null is true), then the best way to summarize the data is to use the population mean. Let's use that as our estimator. 
+- If there is truly no difference between means (the null is true), then the best way to summarize the data is to use the *population mean*. Let's use that as our **estimator**. 
 
 --
 
-- If we use the population mean as our estimator, we can look at error or *residual*. The actual data points - estimator (a deviation score!). We want to do a good job of predicting. So we want this error to be as SMALL as possible!
+- If we use the population mean as our estimator, we can look at error or **residuals**. The actual data points - estimator (a deviation score!). We want to do a good job of predicting. So we want this error to be as SMALL as possible!
 
 --
 
 - If there *is* a difference between means (the null should be rejected), then the best way of summarizing our data should be to use the sample mean.
 
+---
+class: inverse, center, middle
+
+# Which had the smallest prediction error?
+
 --
 
-- Our goal: which had the smallest prediction error?
+
+model that uses population mean as the estimator? 
+<br>
+
+model that uses sample mean as the estimator?
 
 ---
 
@@ -118,7 +133,6 @@ Let's break it down into **full** and **restricted** models:
 
 $$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$
 
-where:
   - $E_r$ is the error from the restricted model
   - $E_f$ is the error from the full model
   - $df_r$ is the degrees of freedom from the restricted model
@@ -289,9 +303,9 @@ dems
 
 --
 
-- Restricted Model: the best way of minimizing errors is to use the overall grand mean
+- Restricted Model: the best way of minimizing errors is to use the overall **grand mean**
 
-- Full Model: the best way of minimizing errors is to use the group-specific mean. 
+- Full Model: the best way of minimizing errors is to use the **group-specific mean** 
 
 ---
 
@@ -495,12 +509,36 @@ name: aov
 ---
 
 ## The Data
-
-```{r}
-head(iris)
-
+.pull-left[
+```{r, echo=FALSE}
 iris <- iris %>% 
   select(Sepal.Length, Species)
+print(iris[1:10,])
+```
+]
+
+.pull-right[
+```{r, echo=FALSE}
+iris <- iris %>% 
+  select(Sepal.Length, Species)
+print(iris[51:60,])
+```
+]
+
+
+```{r, echo=FALSE}
+iris <- iris %>% 
+  select(Sepal.Length, Species)
+print(iris[101:110,])
+```
+
+---
+## Reorder the data for teaching purposes
+
+```{r}
+iris_sorted = iris %>% 
+  group_by(Sepal.Length, Species) %>% 
+  arrange(Sepal.Length)
 ```
 
 ---
@@ -512,8 +550,9 @@ iris <- iris %>%
 
 --
 
-- Restricted Model: the best way of minimizing errors is to use the overall grand mean
-- Full Model: the best way of minimizing errors is to use the group-specific means 
+- Restricted Model: the best way of minimizing errors is to use the overall **grand mean**
+
+- Full Model: the best way of minimizing errors is to use the **group-specific means** 
 
 ---
 
@@ -537,10 +576,12 @@ groupMeans
 
 ## The Restricted Model
 
-```{r}
+```{r, echo=FALSE}
 restricted <- iris
 restricted$Mean <- rep(grandMean, times = nrow(restricted))
-head(restricted)
+restricted[1:4,]
+restricted[51:54,]
+restricted[101:104,]
 ```
 
 ---
@@ -548,9 +589,11 @@ head(restricted)
 
 Step 1: Deviation Scores
 
-```{r}
+```{r, echo=FALSE}
 restricted$deviationScores <- restricted$Sepal.Length - restricted$Mean
-head(restricted)
+restricted[1:4,]
+restricted[51:54,]
+restricted[101:104,]
 ```
 
 ---
@@ -558,9 +601,11 @@ head(restricted)
 
 Step 2: Square Deviation Scores
 
-```{r}
+```{r, echo=FALSE}
 restricted$dev2 <- restricted$deviationScores ^2
-head(restricted)
+restricted[1:4,]
+restricted[51:54,]
+restricted[101:104,]
 ```
 
 ---
@@ -570,7 +615,6 @@ Step 3: Sum of Squares -- our **ERROR** term
 
 ```{r}
 Er <- sum(restricted$dev2)
-head(restricted)
 Er
 ```
 
@@ -590,12 +634,14 @@ dfr <- 149
 
 ## The Full Model
 
-```{r}
+```{r, echo=FALSE}
 full <- iris
 full$Mean <- c(rep(groupMeans$means[1], times = 50),
                rep(groupMeans$means[2], times = 50),
                rep(groupMeans$means[3], times = 50))
-head(full)
+full[1:4,]
+full[51:54,]
+full[101:104,]
 ```
 
 ---
@@ -604,9 +650,11 @@ head(full)
 
 Step 1: Deviation Scores
 
-```{r}
+```{r, echo=FALSE}
 full$deviationScores <- full$Sepal.Length - full$Mean
-head(full)
+full[1:4,]
+full[51:54,]
+full[101:104,]
 ```
 
 ---
@@ -614,9 +662,11 @@ head(full)
 
 Step 2: Square Deviation Scores
 
-```{r}
+```{r,echo=FALSE}
 full$dev2 <- full$deviationScores ^2
-head(full)
+full[1:4,]
+full[51:54,]
+full[101:104,]
 ```
 
 ---
@@ -626,7 +676,6 @@ Step 3: Sum of Squares -- our **ERROR** term
 
 ```{r}
 Ef <- sum(full$dev2)
-head(full)
 Ef
 ```
 
@@ -664,7 +713,7 @@ round(x = effect, digits = 3)
 
 Is `r round(x = effect, digits = 3)` more extreme than our critical value? 
 
-- A significant $F$-statistic is anything above 1. Yes, our value is larger than 1.
+- The critical value for this test is 3.058
 
 **Conclusion: The weighted error term of the restricted is larger than the weighted error term of the full. Using each group's mean was a better estimator, compared to the overall grand mean. Therefore, the means are statistically significantly different.**
 
@@ -711,7 +760,7 @@ with the numerator depending on the normal
 ]
 ]
 
-<img src="17-modelcomparison_files/figure-html/fdist.png", width="80%">
+<img src="18-modelcomparison_files/figure-html/fdist.png", width="80%">
 
 ---
 
@@ -728,17 +777,15 @@ If the sample is not a random selection, the rules of probability don't apply.
 
 ## Utility
 
-We have programs like `R`. In the workforce, no one will expect you to calculate this stuff by hand. So why go through the effort of showing you this?
+### Why do this painful process?
 
 --
 
-A model is what **YOU** define. It's how you think the world works. The restricted model is really just an emobodiement of the null hypothesis! The full model is the embodiment of the alternative hypothesis!
+A model is what **YOU** define. It's how you think the world works. The restricted model is really just an embodiment of the null hypothesis! The full model is the embodiment of the alternative hypothesis!
 
 --
 
 Minimizing error terms is how we evaluate multitudes of models!
-
---
 
 > *All models are wrong, but some are useful* - George Box
 

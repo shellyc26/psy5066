@@ -41,6 +41,8 @@ navbar:
         href: "lectures/16-two_means_I.html"
       - text: "17-Paired-T"
         href: "lectures/17-two_means_II.html"
+      - text: "18-Model Comparisons"
+        href: "lectures/18-modelcomparison.html"
     - text: PDF Slides
       menu:
       - text: "10-NHST v1"
@@ -59,6 +61,8 @@ navbar:
         href: "lectures/16-two_means_I.pdf"
       - text: "17-Paired-T"
         href: "lectures/17-two_means_II.pdf"
+      - text: "18-Model Comparisons"
+        href: "lecture/18-modelcomparison.pdf"
     - text: Homework
       href: homework.html
   right:

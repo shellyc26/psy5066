@@ -3,10 +3,8 @@
   <head>
     <title>Model Comparison Approach</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -22,12 +20,14 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
 ## Announcements
 - We will first grade Exam 2, then grade HW 3.
 
 --
 
-- I will post HW 4 by end of day on Wednesday. It is due 11/20
+- I am going to modify the HW due dates a bit so stay tuned
 
 --
 
@@ -37,7 +37,7 @@ class: center, middle, inverse, title-slide
   
 --
 
-- **Messi is teaching on Thursday 11/10**
+- **Merve is teaching on Thursday 11/9**
 
 ---
 ## Recap
@@ -91,19 +91,28 @@ Another way of thinking about it -- what does a model of the null hypothesis loo
 
 --
 
-- If there is truly no difference between means (the null is true), then the best way to summarize the data is to use the population mean. Let's use that as our estimator. 
+- If there is truly no difference between means (the null is true), then the best way to summarize the data is to use the *population mean*. Let's use that as our **estimator**. 
 
 --
 
-- If we use the population mean as our estimator, we can look at error or *residual*. The actual data points - estimator (a deviation score!). We want to do a good job of predicting. So we want this error to be as SMALL as possible!
+- If we use the population mean as our estimator, we can look at error or **residuals**. The actual data points - estimator (a deviation score!). We want to do a good job of predicting. So we want this error to be as SMALL as possible!
 
 --
 
 - If there *is* a difference between means (the null should be rejected), then the best way of summarizing our data should be to use the sample mean.
 
+---
+class: inverse, center, middle
+
+# Which had the smallest prediction error?
+
 --
 
-- Our goal: which had the smallest prediction error?
+
+model that uses population mean as the estimator? 
+&lt;br&gt;
+
+model that uses sample mean as the estimator?
 
 ---
 
@@ -123,7 +132,6 @@ Let's break it down into **full** and **restricted** models:
 
 `$$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$`
 
-where:
   - `\(E_r\)` is the error from the restricted model
   - `\(E_f\)` is the error from the full model
   - `\(df_r\)` is the degrees of freedom from the restricted model
@@ -446,9 +454,9 @@ dems
 
 --
 
-- Restricted Model: the best way of minimizing errors is to use the overall grand mean
+- Restricted Model: the best way of minimizing errors is to use the overall **grand mean**
 
-- Full Model: the best way of minimizing errors is to use the group-specific mean. 
+- Full Model: the best way of minimizing errors is to use the **group-specific mean** 
 
 ---
 
@@ -872,25 +880,64 @@ name: aov
 ---
 
 ## The Data
+.pull-left[
+
+```
+##    Sepal.Length Species
+## 1           5.1  setosa
+## 2           4.9  setosa
+## 3           4.7  setosa
+## 4           4.6  setosa
+## 5           5.0  setosa
+## 6           5.4  setosa
+## 7           4.6  setosa
+## 8           5.0  setosa
+## 9           4.4  setosa
+## 10          4.9  setosa
+```
+]
+
+.pull-right[
+
+```
+##    Sepal.Length    Species
+## 51          7.0 versicolor
+## 52          6.4 versicolor
+## 53          6.9 versicolor
+## 54          5.5 versicolor
+## 55          6.5 versicolor
+## 56          5.7 versicolor
+## 57          6.3 versicolor
+## 58          4.9 versicolor
+## 59          6.6 versicolor
+## 60          5.2 versicolor
+```
+]
+
+
+
+```
+##     Sepal.Length   Species
+## 101          6.3 virginica
+## 102          5.8 virginica
+## 103          7.1 virginica
+## 104          6.3 virginica
+## 105          6.5 virginica
+## 106          7.6 virginica
+## 107          4.9 virginica
+## 108          7.3 virginica
+## 109          6.7 virginica
+## 110          7.2 virginica
+```
+
+---
+## Reorder the data for teaching purposes
 
 
 ```r
-head(iris)
-```
-
-```
-##   Sepal.Length Species
-## 1          5.1  setosa
-## 2          4.9  setosa
-## 3          4.7  setosa
-## 4          4.6  setosa
-## 5          5.0  setosa
-## 6          5.4  setosa
-```
-
-```r
-iris &lt;- iris %&gt;% 
-  select(Sepal.Length, Species)
+iris_sorted = iris %&gt;% 
+  group_by(Sepal.Length, Species) %&gt;% 
+  arrange(Sepal.Length)
 ```
 
 ---
@@ -902,8 +949,9 @@ iris &lt;- iris %&gt;%
 
 --
 
-- Restricted Model: the best way of minimizing errors is to use the overall grand mean
-- Full Model: the best way of minimizing errors is to use the group-specific means 
+- Restricted Model: the best way of minimizing errors is to use the overall **grand mean**
+
+- Full Model: the best way of minimizing errors is to use the **group-specific means** 
 
 ---
 
@@ -944,20 +992,28 @@ groupMeans
 ## The Restricted Model
 
 
-```r
-restricted &lt;- iris
-restricted$Mean &lt;- rep(grandMean, times = nrow(restricted))
-head(restricted)
-```
-
 ```
 ##   Sepal.Length Species     Mean
 ## 1          5.1  setosa 5.843333
 ## 2          4.9  setosa 5.843333
 ## 3          4.7  setosa 5.843333
 ## 4          4.6  setosa 5.843333
-## 5          5.0  setosa 5.843333
-## 6          5.4  setosa 5.843333
+```
+
+```
+##    Sepal.Length    Species     Mean
+## 51          7.0 versicolor 5.843333
+## 52          6.4 versicolor 5.843333
+## 53          6.9 versicolor 5.843333
+## 54          5.5 versicolor 5.843333
+```
+
+```
+##     Sepal.Length   Species     Mean
+## 101          6.3 virginica 5.843333
+## 102          5.8 virginica 5.843333
+## 103          7.1 virginica 5.843333
+## 104          6.3 virginica 5.843333
 ```
 
 ---
@@ -966,19 +1022,28 @@ head(restricted)
 Step 1: Deviation Scores
 
 
-```r
-restricted$deviationScores &lt;- restricted$Sepal.Length - restricted$Mean
-head(restricted)
-```
-
 ```
 ##   Sepal.Length Species     Mean deviationScores
 ## 1          5.1  setosa 5.843333      -0.7433333
 ## 2          4.9  setosa 5.843333      -0.9433333
 ## 3          4.7  setosa 5.843333      -1.1433333
 ## 4          4.6  setosa 5.843333      -1.2433333
-## 5          5.0  setosa 5.843333      -0.8433333
-## 6          5.4  setosa 5.843333      -0.4433333
+```
+
+```
+##    Sepal.Length    Species     Mean deviationScores
+## 51          7.0 versicolor 5.843333       1.1566667
+## 52          6.4 versicolor 5.843333       0.5566667
+## 53          6.9 versicolor 5.843333       1.0566667
+## 54          5.5 versicolor 5.843333      -0.3433333
+```
+
+```
+##     Sepal.Length   Species     Mean deviationScores
+## 101          6.3 virginica 5.843333      0.45666667
+## 102          5.8 virginica 5.843333     -0.04333333
+## 103          7.1 virginica 5.843333      1.25666667
+## 104          6.3 virginica 5.843333      0.45666667
 ```
 
 ---
@@ -987,19 +1052,28 @@ head(restricted)
 Step 2: Square Deviation Scores
 
 
-```r
-restricted$dev2 &lt;- restricted$deviationScores ^2
-head(restricted)
-```
-
 ```
 ##   Sepal.Length Species     Mean deviationScores      dev2
 ## 1          5.1  setosa 5.843333      -0.7433333 0.5525444
 ## 2          4.9  setosa 5.843333      -0.9433333 0.8898778
 ## 3          4.7  setosa 5.843333      -1.1433333 1.3072111
 ## 4          4.6  setosa 5.843333      -1.2433333 1.5458778
-## 5          5.0  setosa 5.843333      -0.8433333 0.7112111
-## 6          5.4  setosa 5.843333      -0.4433333 0.1965444
+```
+
+```
+##    Sepal.Length    Species     Mean deviationScores      dev2
+## 51          7.0 versicolor 5.843333       1.1566667 1.3378778
+## 52          6.4 versicolor 5.843333       0.5566667 0.3098778
+## 53          6.9 versicolor 5.843333       1.0566667 1.1165444
+## 54          5.5 versicolor 5.843333      -0.3433333 0.1178778
+```
+
+```
+##     Sepal.Length   Species     Mean deviationScores        dev2
+## 101          6.3 virginica 5.843333      0.45666667 0.208544444
+## 102          5.8 virginica 5.843333     -0.04333333 0.001877778
+## 103          7.1 virginica 5.843333      1.25666667 1.579211111
+## 104          6.3 virginica 5.843333      0.45666667 0.208544444
 ```
 
 ---
@@ -1010,20 +1084,6 @@ Step 3: Sum of Squares -- our **ERROR** term
 
 ```r
 Er &lt;- sum(restricted$dev2)
-head(restricted)
-```
-
-```
-##   Sepal.Length Species     Mean deviationScores      dev2
-## 1          5.1  setosa 5.843333      -0.7433333 0.5525444
-## 2          4.9  setosa 5.843333      -0.9433333 0.8898778
-## 3          4.7  setosa 5.843333      -1.1433333 1.3072111
-## 4          4.6  setosa 5.843333      -1.2433333 1.5458778
-## 5          5.0  setosa 5.843333      -0.8433333 0.7112111
-## 6          5.4  setosa 5.843333      -0.4433333 0.1965444
-```
-
-```r
 Er
 ```
 
@@ -1049,22 +1109,28 @@ dfr &lt;- 149
 ## The Full Model
 
 
-```r
-full &lt;- iris
-full$Mean &lt;- c(rep(groupMeans$means[1], times = 50),
-               rep(groupMeans$means[2], times = 50),
-               rep(groupMeans$means[3], times = 50))
-head(full)
-```
-
 ```
 ##   Sepal.Length Species  Mean
 ## 1          5.1  setosa 5.006
 ## 2          4.9  setosa 5.006
 ## 3          4.7  setosa 5.006
 ## 4          4.6  setosa 5.006
-## 5          5.0  setosa 5.006
-## 6          5.4  setosa 5.006
+```
+
+```
+##    Sepal.Length    Species  Mean
+## 51          7.0 versicolor 5.936
+## 52          6.4 versicolor 5.936
+## 53          6.9 versicolor 5.936
+## 54          5.5 versicolor 5.936
+```
+
+```
+##     Sepal.Length   Species  Mean
+## 101          6.3 virginica 6.588
+## 102          5.8 virginica 6.588
+## 103          7.1 virginica 6.588
+## 104          6.3 virginica 6.588
 ```
 
 ---
@@ -1074,19 +1140,28 @@ head(full)
 Step 1: Deviation Scores
 
 
-```r
-full$deviationScores &lt;- full$Sepal.Length - full$Mean
-head(full)
-```
-
 ```
 ##   Sepal.Length Species  Mean deviationScores
 ## 1          5.1  setosa 5.006           0.094
 ## 2          4.9  setosa 5.006          -0.106
 ## 3          4.7  setosa 5.006          -0.306
 ## 4          4.6  setosa 5.006          -0.406
-## 5          5.0  setosa 5.006          -0.006
-## 6          5.4  setosa 5.006           0.394
+```
+
+```
+##    Sepal.Length    Species  Mean deviationScores
+## 51          7.0 versicolor 5.936           1.064
+## 52          6.4 versicolor 5.936           0.464
+## 53          6.9 versicolor 5.936           0.964
+## 54          5.5 versicolor 5.936          -0.436
+```
+
+```
+##     Sepal.Length   Species  Mean deviationScores
+## 101          6.3 virginica 6.588          -0.288
+## 102          5.8 virginica 6.588          -0.788
+## 103          7.1 virginica 6.588           0.512
+## 104          6.3 virginica 6.588          -0.288
 ```
 
 ---
@@ -1095,19 +1170,28 @@ head(full)
 Step 2: Square Deviation Scores
 
 
-```r
-full$dev2 &lt;- full$deviationScores ^2
-head(full)
-```
-
 ```
 ##   Sepal.Length Species  Mean deviationScores     dev2
 ## 1          5.1  setosa 5.006           0.094 0.008836
 ## 2          4.9  setosa 5.006          -0.106 0.011236
 ## 3          4.7  setosa 5.006          -0.306 0.093636
 ## 4          4.6  setosa 5.006          -0.406 0.164836
-## 5          5.0  setosa 5.006          -0.006 0.000036
-## 6          5.4  setosa 5.006           0.394 0.155236
+```
+
+```
+##    Sepal.Length    Species  Mean deviationScores     dev2
+## 51          7.0 versicolor 5.936           1.064 1.132096
+## 52          6.4 versicolor 5.936           0.464 0.215296
+## 53          6.9 versicolor 5.936           0.964 0.929296
+## 54          5.5 versicolor 5.936          -0.436 0.190096
+```
+
+```
+##     Sepal.Length   Species  Mean deviationScores     dev2
+## 101          6.3 virginica 6.588          -0.288 0.082944
+## 102          5.8 virginica 6.588          -0.788 0.620944
+## 103          7.1 virginica 6.588           0.512 0.262144
+## 104          6.3 virginica 6.588          -0.288 0.082944
 ```
 
 ---
@@ -1118,20 +1202,6 @@ Step 3: Sum of Squares -- our **ERROR** term
 
 ```r
 Ef &lt;- sum(full$dev2)
-head(full)
-```
-
-```
-##   Sepal.Length Species  Mean deviationScores     dev2
-## 1          5.1  setosa 5.006           0.094 0.008836
-## 2          4.9  setosa 5.006          -0.106 0.011236
-## 3          4.7  setosa 5.006          -0.306 0.093636
-## 4          4.6  setosa 5.006          -0.406 0.164836
-## 5          5.0  setosa 5.006          -0.006 0.000036
-## 6          5.4  setosa 5.006           0.394 0.155236
-```
-
-```r
 Ef
 ```
 
@@ -1184,7 +1254,7 @@ round(x = effect, digits = 3)
 
 Is 119.265 more extreme than our critical value? 
 
-- A significant `\(F\)`-statistic is anything above 1. Yes, our value is larger than 1.
+- The critical value for this test is 3.058
 
 **Conclusion: The weighted error term of the restricted is larger than the weighted error term of the full. Using each group's mean was a better estimator, compared to the overall grand mean. Therefore, the means are statistically significantly different.**
 
@@ -1204,8 +1274,7 @@ summary(aov(Sepal.Length ~ Species, data = iris))
 ## Species       2  63.21  31.606   119.3 &lt;2e-16 ***
 ## Residuals   147  38.96   0.265                   
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ---
@@ -1241,7 +1310,7 @@ with the numerator depending on the normal
 ]
 ]
 
-&lt;img src="17-modelcomparison_files/figure-html/fdist.png", width="80%"&gt;
+&lt;img src="18-modelcomparison_files/figure-html/fdist.png", width="80%"&gt;
 
 ---
 
@@ -1258,17 +1327,15 @@ If the sample is not a random selection, the rules of probability don't apply.
 
 ## Utility
 
-We have programs like `R`. In the workforce, no one will expect you to calculate this stuff by hand. So why go through the effort of showing you this?
+### Why do this painful process?
 
 --
 
-A model is what **YOU** define. It's how you think the world works. The restricted model is really just an emobodiement of the null hypothesis! The full model is the embodiment of the alternative hypothesis!
+A model is what **YOU** define. It's how you think the world works. The restricted model is really just an embodiment of the null hypothesis! The full model is the embodiment of the alternative hypothesis!
 
 --
 
 Minimizing error terms is how we evaluate multitudes of models!
-
---
 
 &gt; *All models are wrong, but some are useful* - George Box
 
