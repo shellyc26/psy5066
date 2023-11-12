@@ -3,12 +3,17 @@ title: 'Comparisons and Contrasts'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E")
+
+```
 
 ```{r packagesAndData, warning=FALSE, include=FALSE}
 library(tidyverse)
@@ -18,7 +23,6 @@ library(kableExtra)
 
 ## Recap
 
-Oneway ANOVA with model comparison aprpoach
   - $E_R - E_F = SS_\text{Between}$
   - $SS_\text{Between}$ is the differences in means
   - $SS_\text{Within}$ is a hodgepodge of individual differences and random error
@@ -180,7 +184,8 @@ If *a priori* (aka planned ahead):
   -  $t$-test + Bonferonni correction
 - Contrasts (and maybe some Bonferonni correction, but mostly contrasts alone) is the ideal
 
---
+---
+## A Priori vs. Post Hoc
 
 What if you really don't know the outcome? Post-hoc tests!
 - Tukey
@@ -325,7 +330,7 @@ class: inverse, center, middle
 
 $$F = \frac{\psi^2}{MS_\text{Within}\Sigma(c_j^2/n_j)}$$
 
-$\psi$ is our contrast
+$\psi$ (Psi) is our contrast
 
 $c$ reflects the **coefficients** for that contrast
 

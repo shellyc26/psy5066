@@ -45,6 +45,8 @@ navbar:
         href: "lectures/18-modelcomparison.html"
       - text: "19-Oneway ANOVA"
         href: "lectures/19-onewayanova-merve.html"
+      - text: "20-Multiple Comparisons"
+        href: "lectures/20-multiplecomparisons.html"
     - text: PDF Slides
       menu:
       - text: "10-NHST v1"
@@ -67,6 +69,8 @@ navbar:
         href: "lectures/18-modelcomparison.pdf"
       - text: "19-Oneway Anova"
         href: "lectures/19-onewayanova-merve.pdf"
+      - text: "20-Multiple Comparisons"
+        href: "lectures/20-multiplecomparisons.pdf"
     - text: Homework
       href: homework.html
   right:
