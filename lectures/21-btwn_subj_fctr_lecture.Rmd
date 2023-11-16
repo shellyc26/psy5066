@@ -3,12 +3,18 @@ title: 'Two Between-Subjects Factors'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E")
+
+```
 
 ```{r packagesAndData, include=FALSE, warning=FALSE}
 library(tidyverse)
@@ -43,7 +49,7 @@ name: one
 
 ## Nomenclature
 
-![an image caption Source: gnomes.](20-btwn_subj_fctr_lecture_files/figure-html/gardengnome.jpg)
+![an image caption Source: gnomes.](21-btwn_subj_fctr_lecture_files/figure-html/gardengnome.jpg)
 
 ---
 
@@ -53,19 +59,17 @@ name: one
 
 .pull-left[
 Allowed doubles
-- *baff* & *bbaf*
-- *lopiff* & *llopif*
-- *dess* & *ddes*]
+- *baff*
+- *holl* 
+- *dess*]
 
 .pull-right[
 Unallowed doubles
-- *holl* & *hhol*
-- *vaff* & *vvaf*
-- *juss* & *jjus*]
+- *bbaf*
+- *hhol*
+- *ddes*]
 
 --
-
-## Data
 
 Two-way between-subjects, completely crossed (balanced) 
 ```{r echo=FALSE}
@@ -92,8 +96,12 @@ $H_{0.1}$: $\bar{x}_K = \bar{x}_{1st}$
 
 $H_{0.2}$: $\bar{x}_{allowed} = \bar{x}_{unallowed}$
 
---
+---
+## Null Hypothesis for "Main Effects" 
 
+$H_{0.1}$: $\bar{x}_K = \bar{x}_{1st}$
+
+$H_{0.2}$: $\bar{x}_{allowed} = \bar{x}_{unallowed}$
 ```{r}
 (grandmean <- mean(data$correct))
 (groupmeans <- aggregate(correct ~ grade + doublet, data, mean))
@@ -118,71 +126,23 @@ $H_{0.2}$: $\bar{x}_{allowed} = \bar{x}_{unallowed}$
 
 ## F Table 
 
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F2.png)
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F2.png)
 ---
 
 ## The variance tree
 
 --
 
-![Variance Tree 1](20-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
+![Variance Tree 1](21-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
 ---
 ## The variance tree
 
-![Variance Tree 2](20-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
-
----
-## The variance tree
-
-![Variance Tree 3](20-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
+![Variance Tree 2](21-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
 
 ---
 ## The variance tree
 
-![Variance Tree 4](20-btwn_subj_fctr_lecture_files/figure-html/SS4.png)
-
----
-## The variance tree
-
-![Variance Tree 5](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
----
-
-## Degrees of Freedom in two factor between subjects
-
-** $df_\text{Between}$ **
-
-- For *each* factor: 
-  - $df_{factor} = \text{Levels of factor} - 1$
-  - e.g., grade has **2 levels** (K, first)
-    - $df_{grade} = 2 - 1 = 1$
-
----
-## Degrees of Freedom in two factor between subjects
-
-** $df_{within/error/residual}$ **
-
-.pull-left[
-16 observations, 1 additional mean for grade factor, 1 additional mean for doublet factor, and 1 grand mean
-
-$$\small{df_w = N - (\text{Levels of }F_1 - 1) - \\
-(\text{Levels of }F_2 - 1)- 1}$$
-
-simplifies to $N - \text{Levels of }F_1 - \text{Levels of }F_2 + 1$
-]
-
-.pull-right[
-$df_w = 16 - 1 - 1 - 1 = 13$
-
-$df_w = 16 - (2 - 1) - (2 - 1) - \\ 1 = 13$
-
-$df_w = 16 - 2 - 2 + 1 = 13$
-]
-
----
-
-## Putting the pieces together
-
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F1.png)
+![Variance Tree 3](21-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
 
 ---
 
@@ -195,21 +155,23 @@ Restricted: our best guess for any student is the grand mean + some error
 Full: our best guess for any student is their grade's mean + some error
 ---
 
-## Step 1: The Restricted Model for Grade
+### Step 1: The Restricted Model for Grade
 
-Get Er for grade. First, deviations by subtracting from our grand mean of 6.025. That is, 6.025 is our PREDICTION of the **restricted** model for our first factor: grade. Then square deviations and sum them up.
 
-```{r}
+```{r, echo=FALSE}
 data$prediction <- grandmean
 (restricted_grade <- data %>%
-  mutate(deviationScores = correct - prediction,
-         dev2 = deviationScores ^ 2))
+  mutate(dev = correct - prediction,
+         dev2 = dev ^ 2))
 (Er_grade <- sum(restricted_grade$dev2))
 ```
 
+
+
+
 ---
 
-## Step 2: The Full Model for Grade
+### Step 2: The Full Model for Grade
 
 Get Ef for grade. Our best guess is the group's mean. 
 
@@ -218,16 +180,14 @@ Get Ef for grade. Our best guess is the group's mean.
 ```
 
 ---
-## Step 2: The Full Model for Grade
-
-First, deviations by subtracting each observation in a group from it's respective group mean. That is our deviations are each kindergartener's score - the kindergarten mean of 3.125. Each first grader's score - the first grade mean of 9. Then square deviations and sum them up. This is our **ERROR** term, our squared errors for grade. 
+### Step 2: The Full Model for Grade
 
 ```{r echo=FALSE}
 (full_grade <- data %>%
   mutate(prediction = c(rep(filter(grade_means, grade == "K")$correct, 8),
                         rep(filter(grade_means, grade == "1")$correct, 8)),
-         deviationScores = correct - prediction,
-         dev2 = deviationScores ^ 2))
+         dev = correct - prediction,
+         dev2 = dev ^ 2))
 (Ef_grade <- sum(full_grade$dev2))
 ```
 ---
@@ -249,7 +209,7 @@ $SS_{grade} = E_r - E_f$
 
 ## F Table
 
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F3.png)
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F3.png)
 
 ---
 
@@ -264,34 +224,36 @@ Full: our best guess for any student is their doublet type group's mean + some e
 
 ---
 
-## Step 1: The Restricted Model for Doublet Type
+### Step 1: The Restricted Model for Doublet Type
 
-```{r}
+```{r, echo=FALSE}
 data$prediction <- grandmean
 (restricted_dbl<- data %>%
-  mutate(deviationScores = correct - prediction,
-         dev2 = deviationScores ^ 2))
+  mutate(dev = correct - prediction,
+         dev2 = dev ^ 2))
 (Er_dbl <- sum(restricted_dbl$dev2))
 ```
 
+
+
 ---
 
-## Step 2: The Full Model for Doublet
+### Step 2: The Full Model for Doublet
 
 ```{r}
 (dbl_means <- aggregate(correct ~ doublet, data, mean))
 ```
 
 ---
-## Step 2: The Full Model for Doublet
+### Step 2: The Full Model for Doublet
 
 ```{r echo=FALSE}
 (full_dbl <- data %>%
    arrange(doublet) %>%
    mutate(prediction = c(rep(filter(dbl_means, doublet == "allowed")$correct, 8),
                          rep(filter(dbl_means, doublet == "unallowed")$correct, 8)),
-         deviationScores = correct - prediction,
-         dev2 = deviationScores ^ 2))
+         dev = correct - prediction,
+         dev2 = dev ^ 2))
 (Ef_dbl <- sum(full_dbl$dev2))
 ```
 ---
@@ -313,13 +275,13 @@ $SS_{dbl} = E_r - E_f$
 
 ## F Table
 
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F4.png)
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F4.png)
 
 ---
 
 ## What about that Error? 
 
-![an image caption Source: variance](20-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
+![an image caption Source: variance](21-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
 This is our **leftover variation** after taking our grade and doublet variables into account. 
 
 ---
@@ -360,15 +322,50 @@ So from the full model perspective, the best guess for any student is...
 ```
 
 ---
+## Degrees of Freedom in two factor between subjects
 
+** $df_\text{Between}$ **
+
+- For *each* factor: 
+  - $df_{factor} = \text{Levels of factor} - 1$
+  - e.g., grade has **2 levels** (K, first)
+    - $df_{grade} = 2 - 1 = 1$
+
+---
+## Degrees of Freedom in two factor between subjects
+
+** $df_{within/error/residual}$ **
+
+.pull-left[
+16 observations, 1 additional mean for grade factor, 1 additional mean for doublet factor, and 1 grand mean
+
+$$\small{df_w = N - (\text{Levels of }F_1 - 1) - \\
+(\text{Levels of }F_2 - 1)- 1}$$
+
+simplifies to $N - \text{Levels of }F_1 - \text{Levels of }F_2 + 1$
+]
+
+.pull-right[
+$df_w = 16 - 1 - 1 - 1 = 13$
+
+$df_w = 16 - (2 - 1) - (2 - 1) - \\ 1 = 13$
+
+$df_w = 16 - 2 - 2 + 1 = 13$
+]
+
+---
+## Putting the pieces together
+
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F1.png)
+---
 ## F Table
 
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F5.png)
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F5.png)
 
 ---
 
 ## F Table
-![an image caption Source: Ftable](20-btwn_subj_fctr_lecture_files/figure-html/F6.png)
+![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F6.png)
 
 ---
 

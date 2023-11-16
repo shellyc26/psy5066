@@ -47,6 +47,8 @@ navbar:
         href: "lectures/19-onewayanova-merve.html"
       - text: "20-Multiple Comparisons"
         href: "lectures/20-multiplecomparisons.html"
+      - text: "21-Between Subjects ANOVA"
+        href: "lectures/21-btwn_subj_fctr_lecture.html"
     - text: PDF Slides
       menu:
       - text: "10-NHST v1"
@@ -71,6 +73,8 @@ navbar:
         href: "lectures/19-onewayanova-merve.pdf"
       - text: "20-Multiple Comparisons"
         href: "lectures/20-multiplecomparisons.pdf"
+      - text: "21-Between Subjects ANOVA"
+        href: "lectures/21-btwn_subj_fctr_lecture.pdf"
     - text: Homework
       href: homework.html
   right:

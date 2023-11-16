@@ -3,10 +3,8 @@
   <head>
     <title>Two Between-Subjects Factors with Interactions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,7 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
 
 
 
@@ -243,7 +242,7 @@ AB(n-1) \\
 
 ---
 
-## What does the restricted model say?
+### What does the restricted model say?
 
 Your score = grand mean + some age effect + some problem effect + error
 
@@ -402,6 +401,19 @@ We have 3 rejected null hypotheses. We interpret:
 ]
 
 Proportion of the variation in Y that is associated with membership of the different groups defined by X. How much variance in our outcome is associated with Age? 11.2% of *total* variance can be accounted for by Age. 
+---
+## Eta-squared
+
+`\(\eta^2 = \frac{SS_{Effect}}{SS_{Total}}\)`
+
+.pull-left[
+&lt;img src="images/etasq.png", width = "100%"&gt;
+]
+
+.pull-right[
+
+`\(\eta^2 = \frac{4}{35.75} = .112\)`
+]
 
 Hard to compare across studies bc dependent on study's total variance.
 
@@ -421,7 +433,7 @@ Hard to compare across studies bc dependent on study's total variance.
 
 Proportion of the variation in Y that can be explained by X, after accounting for all other variables in th model. How much variance in our outcome is associated with Age, after accounting for Problem, and their interaction? 47.1%.
 
-Same rules of thumb for `\(\eta^2\)`; calculations differ slightly when sample sizes are unequal in cells or when there are more than 2 factors
+Same rules of thumb for `\(\eta^2\)`; calculations differ when sample sizes are unequal or when there are more than 2 factors
 
 ---
 
@@ -469,7 +481,8 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## Problem      1 20.782  20.782  42.939 2.72e-05 ***
 ## Residuals   12  5.808   0.484                     
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 --
@@ -495,7 +508,8 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## Problem      1  25.00  25.000  48.148 1.02e-05 ***
 ## Residuals   13   6.75   0.519                     
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ---
@@ -514,7 +528,8 @@ summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
 ## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
 ## Residuals   12   4.50   0.375                     
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ```r
@@ -528,14 +543,15 @@ summary(aov(Score ~ Age * Problem, data = mathproblem))
 ## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
 ## Residuals   12   4.50   0.375                     
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ---
 
 ## Plotting
 
-![](21-interactions_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](22-interactions_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 
