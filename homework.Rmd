@@ -23,9 +23,5 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Due on **11/7 by 9:30am**
 
 ## Homework 4
-- HW4 will be posted here
-- Due on **11/16 by 9:30am**
-
-## Homework 5
-- HW5 will be posted here
-- Due on **11/30 by 9:30am**
+- [Here is homework 4](homework/Homework-4-2023.html)
+- Due on **12/8 by 11:59pm**

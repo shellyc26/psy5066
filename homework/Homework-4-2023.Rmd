@@ -1,0 +1,70 @@
+---
+title: 'Psych 5066: Homework #4'
+output: 
+  html_document
+---
+
+# Instructions
+
+- You will make your own RMarkdown file. It must knit to a HTML file. And it must look pretty enough that Shelly and the AIs can easily read your *responses* **and** your *code*.
+
+- This HW assignment is about the use of Full/Restricted models. Please do your analyses using this frame work, "by hand" (aka as we have done in class several times). You may use an `R` function to double check your work if you wish (but not required).
+
+- You must make use of formatted text and of code chunks. You need to show the appropriate output of your code so that we can evaluate it. For instance, if I ask for the mean of something, and you store it in an object *and do not print it out*, then we have no way of knowing if your mean value is correct. You must print it out. You do not need to print out an entire dataframe (although if you have the urge, you can use the `head()` function to show the first 6 rows).
+
+- Please turn in both documents (the .Rmd and the .html) to Canvas
+
+
+# Data
+
+We will use the `palmerpenguins` data. Please install the package `palmerpenguins` if you don't have it already. The data itself is just called `penguins`. 
+
+### Preprocessing
+Remove missing data before getting started to make your life easier.
+
+# Question 1
+
+You are interested in if different species of penguins have different length flippers (this is the penguin equivalent of t-rex arms lol). 
+
+- What kind of statistical test is this?
+- Write out the null and alternative hypotheses. Then write out what the restricted and full models actually mean.
+- Do the analysis "by hand" using the model comparison framework
+- Double check your work by re-running the analysis using a function or two from `R`
+- Calculate an effect size
+- Interpret the results of the NHST procedure and the effect size
+- Make a corresponding figure
+
+# Question 2
+
+You are interested in if the sex differences seen in body mass are consistent across the 3 different islands where penguins live. 
+
+- What kind of statistical test is this?
+- Write out the null and alternative hypotheses. Then write out what the restricted and full models actually mean.
+- Provide either a statistical test or a figure showing that you meet at least 1 assumption of ANOVA
+- Do the analysis "by hand" using the model comparison framework
+- Double check your work by re-running the analysis using a function or two from `R`
+- Calculate an effect size
+- Interpret the results of the NHST procedure and the effect size
+- Make a corresponding figure
+
+# Question 3
+
+The island of Biscoe seems to have some really big penguins. You want to know if the average body mass of penguins from the islands of Dream and Torgersen is the same as Biscoe penguins. 
+
+- Do the analysis "by hand"
+
+# Question 4
+
+Your colleague approaches you saying they are running a 3x5 between-groups ANOVA and that they will perform corresponding post-hoc tests. 
+
+- How many post-hoc tests will there be?
+- The omnibus test uses an alpha of .05. To correct for multiple comparisons, you suggest to your colleague that they use the Bonferonni correction. What will their new alpha be, and why? What does this mean, practically, for your colleague running the analysis?
+
+# Question 5
+
+Briefly describe a project that you are currently working on (just enough so that we know what you're talking about in your answers below):
+
+- How are you operationalizing your constructs? 
+- Rank order the validities in terms of which you care most about for this particular project, and tell us why you care about it the most. There is no inherent right answer here -- justify your preference for this particular study.
+- For whichever validity you prioritize the most (ranked 1st), describe at least 2 ways this validity is threatened. What steps are you taking in your own work to combat these threats?
+ 
