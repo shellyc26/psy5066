@@ -49,6 +49,10 @@ navbar:
         href: "lectures/20-multiplecomparisons.html"
       - text: "21-Between Subjects ANOVA"
         href: "lectures/21-btwn_subj_fctr_lecture.html"
+      - text: "22-Interactions"
+        href: "lectures/22-interactions.html"
+      - text: "23-Within + Misc"
+        href: "lectures/23-within.html"
     - text: PDF Slides
       menu:
       - text: "10-NHST v1"
@@ -75,6 +79,10 @@ navbar:
         href: "lectures/20-multiplecomparisons.pdf"
       - text: "21-Between Subjects ANOVA"
         href: "lectures/21-btwn_subj_fctr_lecture.pdf"
+      - text: "22-Interactions"
+        href: "lectures/22-interactions.pdf"
+      - text: "23-Within + Misc"
+        href: "lectures/23-within.pdf"
     - text: Homework
       href: homework.html
   right:

@@ -3,10 +3,8 @@
   <head>
     <title>Miscellaneous</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -18,6 +16,8 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
+
 
 
 
@@ -140,7 +140,7 @@ New 2x2 design comparing treatments to reduce depression
 What happens when we break some of these assumptions?
 
 ---
-class: inverse, center
+class: inverse, center, middle
 
 # Within-subjects
 
@@ -221,8 +221,7 @@ class: inverse, center
 
 - Order effects
 
-  - All participants are assigned to eat 3 different flavors of ice cream and rate each of them on a scale of 1 to 10
-  - They all eat Chocolate -&gt; Vanilla -&gt; Strawberry
+  - Everyone gets Chocolate -&gt; Vanilla -&gt; Strawberry
   - How do you know that eating chocolate ice cream first doesn't change the way vanilla tastes to participants? 
   - You need to counterbalance! (some get c -&gt; v -&gt; s, some get v -&gt; s -&gt; c etc...)
   
@@ -232,12 +231,22 @@ class: inverse, center
   - Take Mike Strube's Hierarchical Linear Modeling class
 ---
 
+## Shelly hates within-subjects ANOVAs
+
+- When you have a within-subjects variable, our homogeneity assumption expands out to "sphericity"
+- Rather than the groups having the same variances, now it's the DIFFERENCE SCORES WITHIN THE GROUP that have to have the same variances
+- **At best you get the same answer as you would with a multilevel model**
+- At worst, you've violated assumptions (rather aggressively) and therefore it's not valid to interpret the results
+- More important: if you have within-subject variance, just explicitly model it!
+
+---
+
 ## Venn Diagram Exercise
 
 How do we break down variances?
 
 ---
-class: inverse
+class: inverse, middle, center
 
 # Analysis of Covariance (conceptually)
 
@@ -283,7 +292,7 @@ The Bad:
 
 
 ---
-class: inverse
+class: inverse, middle, center
 
 # Non-parametric Tests
 
@@ -319,7 +328,7 @@ Check out [this Stack Exchange](https://stats.stackexchange.com/questions/101274
 
 If we violate our assumptions, *any of them*, we cannot make any valid inferences! 
 
-![](22-within_files/figure-html/cat.png)
+![](23-within_files/figure-html/cat.png)
 
 ---
 ## Non-parametric tests
@@ -349,8 +358,8 @@ Limitations:
 .small[
 | Parametric Test | Situation | Non-Parametric Version|
 |-----------------|-----------|-----------------------|
-|Single sample *z* |Compare sample mean to population mean with known sigma | ¯\\_(ツ)_/¯  |
-|Single sample *t* |Compare sample mean to population mean with unknown sigma |*Wilcoxon Signed-Rank Test*|
+|Single sample *z* | sample mean vs population mean with known `\(\sigma\)` | ¯\\_(ツ)_/¯  |
+|Single sample *t* | sample mean vs population mean with unknown `\(\sigma\)` |*Wilcoxon Signed-Rank Test*|
 |Paired samples *t* |Compare 2 means with within-groups design|*Wilcoxon Signed-Rank Test*|
 |Independent samples *t* |Compare 2 means with between-groups design|*Mann-Whitney U Test*|
 |Oneway ANOVA (btwn groups)|Compare 3+ levels of IV|*Kruskal-Wallis H Test*|
