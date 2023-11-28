@@ -53,6 +53,8 @@ navbar:
         href: "lectures/22-interactions.html"
       - text: "23-Within + Misc"
         href: "lectures/23-within.html"
+      - text: "24-Measurement"
+        href: "lectures/24-measurement.html"
     - text: PDF Slides
       menu:
       - text: "10-NHST v1"
@@ -83,6 +85,8 @@ navbar:
         href: "lectures/22-interactions.pdf"
       - text: "23-Within + Misc"
         href: "lectures/23-within.pdf"
+      - text: "24-Measurement"
+        href: "lectures/24-measurement.pdf"
     - text: Homework
       href: homework.html
   right:
