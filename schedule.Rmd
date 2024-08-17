@@ -14,36 +14,36 @@ LSR readings can be found in the free, online textbook, [*Learning Statistics wi
 
 | Week | Date  |                        Topic                         |                                                    Readings                                                     |  HW Due  |
 |:----:|:-----:|:----------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|:--------:|
-|  1   | 8/29  |               Syllabus & Introductions               |                                                                                                                 |          |
-|  \-  | 8/31  |                        Models                        |                                                                                                                 |          |
-|  2   |  9/5  |          Measurements; RMarkdown/ RProjects          |                                                  LSR Ch 1 & 3                                                   |          |
-|  \-  |  9/7  |                   Describing data                    |                                                  LSR Ch 5 & 6                                                   |          |
-|  3   | 9/12  |                   Describing data                    |                       LSR Ch 5 & 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf)                       | HW 1 due |
-|  \-  | 9/14  |            Fisher tradition & probability            |                                                    LSR Ch 9                                                     |          |
-|  4   | 9/19  |           Normal & binomial distributions            |                                                    LSR Ch 9                                                     |          |
-|  \-  | 9/21  |     Sampling distributions and $t$ distributions     |                                                    LSR Ch 10                                                    |          |
-|  5   | 9/26  |                      **Exam 1**                      |                                                                                                                 |          |
-|  \-  | 9/28  |                 Hypothesis testing 1                 |                                                    LSR Ch 11                                                    | HW 2 due |
-|  6   | 10/3  |                 Hypothesis testing 2                 |                                                    LSR Ch 11                                                    |          |
-|  \-  | 10/5  |                   Critique of NHST                   | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf) |          |
-|  7   | 10/10 |               *No Class - Fall Break!*               |                                                                                                                 |          |
-|  \-  | 10/12 |                Open science practices                |                 [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)                  |          |
-|  8   | 10/17 |                   Chi-Square test                    |                                                    LSR Ch 12                                                    |          |
-|  \-  | 10/19 |                   One-sample tests                   |                                                    LSR Ch 13                                                    |          |
-|  9   | 10/24 |                   *Class Canceled*                   |                                                                                                                 |          |
-|  \-  | 10/26 |                 Comparing two means                  |                                                    LSR Ch 13                                                    |          |
-|  10  | 10/31 |              Comparing dependent means               |                                                    LSR Ch 13                                                    |          |
-|  \-  | 11/2  |                      **Exam 2**                      |                                                                                                                 |          |
-|  11  | 11/7  | Introduction to model comparisons & $F$-distribution |                                                    LSR Ch 14                                                    | HW 3 due |
-|  \-  | 11/9  |                    One-way ANOVA                     |                                                    LSR Ch 14                                                    |          |
-|  12  | 11/14 |           Multiple comparisons & contrasts           |                                                    LSR Ch 16                                                    |          |
-|  \-  | 11/16 |             Two between-subjects factors             |                                                    LSR Ch 16                                                    | HW 4 due |
-|  13  | 11/21 |                Interactions & ANCOVA                 |                                                    LSR Ch 16                                                    |          |
-|  \-  | 11/23 |           *No Class - Happy Thanksgiving!*           |                                                                                                                 |          |
-|  14  | 11/28 |               Within-subjects designs                |                                                    LSR Ch 16                                                    |          |
-|  \-  | 11/30 |                 Threats to Validity                  |                    LSR CH 2 & 4, [Cronbach & Meehl (1955)](readings/Cronbach_Meehl_1955.pdf)                    | HW 5 due |
-|  15  | 12/5  |              Threats to Validity Cont.               |                                                                                                                 |          |
-|  \-  | 12/7  |                      **Exam 3**                      |                                                                                                                 |          |
+|  1   | 8/27  |               Syllabus & Introductions               |                                                                                                                 |          |
+|  \-  | 8/29  |                        Models                        |                                                                                                                 |          |
+|  2   |  9/3  |          Measurements; RMarkdown/ RProjects          |                                                  LSR Ch 1 & 3                                                   |          |
+|  \-  |  9/5  |                   Describing data                    |                                                  LSR Ch 5 & 6                                                   |          |
+|  3   | 9/10  |                   Describing data                    |                       LSR Ch 5 & 6, [Ozer & Funder (2019)](readings/Ozer_Funder_2019.pdf)                       | HW 1 due |
+|  \-  | 9/12  |            Fisher tradition & probability            |                                                    LSR Ch 9                                                     |          |
+|  4   | 9/17  |           Normal & binomial distributions            |                                                    LSR Ch 9                                                     |          |
+|  \-  | 9/19  |     Sampling distributions and $t$ distributions     |                                                    LSR Ch 10                                                    |          |
+|  5   | 9/24  |                      **Exam 1**                      |                                                                                                                 |          |
+|  \-  | 9/26  |                 Hypothesis testing 1                 |                                                    LSR Ch 11                                                    | HW 2 due |
+|  6   | 10/1  |                 Hypothesis testing 2                 |                                                    LSR Ch 11                                                    |          |
+|  \-  | 10/3  |                   Critique of NHST                   | LSR Ch 11, [Simmons et al. (2011)](readings/Simmons_etal_2011.pdf), [Cumming (2014)](readings/Cumming_2014.pdf) |          |
+|  7   | 10/8  |               *No Class - Fall Break!*               |                                                                                                                 |          |
+|  \-  | 10/10 |                Open science practices                |                 [Five Thirty Eight](https://fivethirtyeight.com/features/science-isnt-broken/)                  |          |
+|  8   | 10/15 |                   Chi-Square test                    |                                                    LSR Ch 12                                                    |          |
+|  \-  | 10/17 |                   One-sample tests                   |                                                    LSR Ch 13                                                    |          |
+|  9   | 10/22 |                 Comparing two means                  |                                                    LSR Ch 13                                                    |          |
+|  \-  | 10/24 |              Comparing dependent means               |                                                    LSR Ch 13                                                    |          |
+|  10  | 10/29 |                   Visualizing Data                   |                                                                                                                 | HW 3 due |
+|  \-  | 10/31 |                      **Exam 2**                      |                                                                                                                 |          |
+|  11  | 11/5  | Introduction to model comparisons & $F$-distribution |                                                    LSR Ch 14                                                    |          |
+|  \-  | 11/7  |                    One-way ANOVA                     |                                                    LSR Ch 14                                                    |          |
+|  12  | 11/12 |           Multiple comparisons & contrasts           |                                                    LSR Ch 16                                                    |          |
+|  \-  | 11/14 |             Two between-subjects factors             |                                                    LSR Ch 16                                                    | HW 4 due |
+|  13  | 11/19 |                Interactions & ANCOVA                 |                                                    LSR Ch 16                                                    |          |
+|  \-  | 11/21 |               Within-subjects designs                |                                                    LSR Ch 16                                                    |          |
+|  14  | 11/26 |           *No Class – Happy Thanksgiving!*           |                                                                                                                 |          |
+|  \-  | 11/28 |                 Threats to Validity                  |                    LSR CH 2 & 4, [Cronbach & Meehl (1955)](readings/Cronbach_Meehl_1955.pdf)                    |          |
+|  15  | 12/3  |              Threats to Validity Cont.               |                                                                                                                 | HW 5 due |
+|  \-  | 12/5  |                      **Exam 3**                      |                                                                                                                 |          |
 
 # Overview
 
@@ -86,14 +86,14 @@ HWs are due at their due date by 9:30am. Grading will go by the following rubric
 
 You may work with your peers on homework assignments, with the following caveats:
 
-1.  Your code cannot be 100% identical to your peer's code (trust me, I can tell). It's one thing to work together and consult, but it's another thing to copy someone else's assignment. If it is determined that someone copied an entire homework assignment, both parties will be given automatic zero.
+1.  Your code cannot be 100% identical to your peer's code (trust me, we can tell). It's one thing to work together and consult, but it's another thing to copy someone's assignment. If it is determined that someone copied an entire homework assignment, both parties will be given automatic zero.
 2.  If you work with someone, you *must* acknowledge them in the assignment itself.
 
 ### Exams
 
 There will be 3 exams. They will test both your theoretical understanding of concepts, as well as your applied understanding of the material. You will not be expected to open `R` and code during these exams, however you will be expected to understand `R` code that has been provided. As exams get closer, I will go over the procedures and policies with you before the exam. If you have a disability that will require additional time, please contact me and Disability Resources as soon as possible (contact information below). The first exam is worth 20% of your grade. Exams 2 and 3 are each worth 25% of your grade.
 
-There will be 2 portions to each exam. The first part is a written exam to be taken during class time. The second portion will be an **oral** exam! You will schedule a time with me (I will have a sign up sheet for available times). Each oral exam to take longer than 10-15 minutes. Details (including points breakdown) will be further discussed in class as exams get closer.
+There will be 2 portions to each exam. The first part is a written exam to be taken during class time. The second portion will be an **oral** exam! You will schedule a time with me (I will have a sign up sheet for available times). Each oral exam to take longer than 10-15 minutes and will be worth between 10-15% of the exam grade.
 
 ### Final Grading Rubric
 
@@ -125,7 +125,7 @@ All assignments and examinations are mandatory. If you need to miss an exam you 
 ```
 # Learning from Crappy Years
 
-The 2020-2021 academic year sucked, and the 2021-2022 academic year was just plain weird. Things got a little better in 2022-2023, but still had its bizarre moments. But instead of burying our heads in the sand and forgetting they existed, let's at least extract some things and incorporate them into our lives. For this class, here's what that means...
+The pandemic made things...weird. But instead of burying our heads in the sand and forgetting it happened, let's at least extract some things and incorporate them into our lives. For this class, here's what that means...
 
 ### Staying Connected
 
