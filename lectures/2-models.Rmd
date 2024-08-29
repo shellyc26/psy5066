@@ -41,6 +41,7 @@ In reality, most statistical tests can be used with most kinds of research. It's
 class: inverse, middle, center
 
 # What is a model?
+not mathematical
 
 ---
 

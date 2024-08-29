@@ -3,7 +3,7 @@
   <head>
     <title>Exam 3 Review</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -51,7 +51,7 @@ class: inverse
 ## Create DataFrame
 
 
-```r
+``` r
 holidays = data.frame(
   Happiness = c(7, 6, 9, 8, 4, 5, 3, 5, 4, 8, 10, 7,
                 4, 3, 4, 4, 8, 6, 5, 5, 2, 3, 2, 5),
@@ -70,7 +70,7 @@ holidays = data.frame(
 ---
 
 
-```r
+``` r
 # Don't forget to change Holiday and Sweater variables into Factors!
 holidays &lt;- holidays %&gt;% 
   mutate(Holiday = as.factor(Holiday)) %&gt;%
@@ -144,7 +144,7 @@ holidays %&gt;% group_by(Holiday) %&gt;%
 ## Sum of Squares for Holiday (Restricted)
 
 
-```r
+``` r
 grandMean = round(mean(holidays$Happiness), 2)
 
 ssH = holidays
@@ -165,7 +165,7 @@ Er
 ## Sum of Squares for Holiday (Full)
 
 
-```r
+``` r
 means = holidays %&gt;% 
   group_by(Holiday) %&gt;% 
   summarize(m = mean(Happiness))
@@ -191,7 +191,7 @@ Ef
 ## Sum of Squares Holiday is... 
 
 
-```r
+``` r
 SSHoliday = Er-Ef
 dfh = 2
 MSHoliday = SSHoliday/dfh
@@ -210,7 +210,7 @@ SSHoliday
 
 
 
-```r
+``` r
 Er
 ```
 
@@ -218,7 +218,7 @@ Er
 ## [1] 110.9584
 ```
 
-```r
+``` r
 Ef
 ```
 
@@ -226,7 +226,7 @@ Ef
 ## [1] 47.5836
 ```
 
-```r
+``` r
 SSSweater
 ```
 
@@ -252,18 +252,11 @@ The goal is to create a table like this, and calculate the SS Interaction:
 ## SS Interaction
 
 
-```r
+``` r
 means = holidays %&gt;% 
   group_by(Holiday, Sweater) %&gt;% 
   summarize(m = mean(Happiness))
-```
 
-```
-## `summarise()` has grouped output by 'Holiday'. You can override using the
-## `.groups` argument.
-```
-
-```r
 means
 ```
 
@@ -287,7 +280,7 @@ means
 
 
 
-```r
+``` r
 means$Total = NA
 for (i in 1:nrow(means)) {
   means$Total[i] = means$m[i] - means$rowMean[i] - means$colMeans[i] + grandMean
@@ -365,7 +358,7 @@ means$Total2 = means$Total^2
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-```r
+``` r
 (SSInteraction = sum(means$Total2) * 4)
 ```
 
@@ -378,7 +371,7 @@ means$Total2 = means$Total^2
 ## SS Within
 
 
-```r
+``` r
 ssw = holidays
 ssw$prediction = c(7.50, 7.50, 7.50, 7.50,
                    4.25, 4.25, 4.25, 4.25,
@@ -404,7 +397,7 @@ SSWithin
 ## aov() Output
 
 
-```r
+``` r
 summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
 ```
 
@@ -412,7 +405,7 @@ summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
 ##                 Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## Holiday          2   8.08    4.04   1.854    0.185    
 ## Sweater          1  63.37   63.37  29.064 4.01e-05 ***
-## Holiday:Sweater  2   0.25    0.13   0.057    0.944    
+## Holiday:Sweater  2   0.25    0.12   0.057    0.944    
 ## Residuals       18  39.25    2.18                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -502,7 +495,7 @@ summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
 #### What effect sizes have we learned? Eta-Squared!
 
 
-```r
+``` r
 holiday.aov &lt;- aov(Happiness ~ Holiday * Sweater, data = holidays)
 eta_squared(holiday.aov, partial = FALSE)
 ```
@@ -522,7 +515,7 @@ eta_squared(holiday.aov, partial = FALSE)
 --
 
 
-```r
+``` r
 c(SSHoliday/Er, SSSweater/Er)
 ```
 
@@ -537,7 +530,7 @@ c(SSHoliday/Er, SSSweater/Er)
 #### Now Partial Eta-Squared!
 
 
-```r
+``` r
 holiday.aov &lt;- aov(Happiness ~ Holiday * Sweater, data = holidays)
 eta_squared(holiday.aov, partial = TRUE)
 ```
@@ -557,7 +550,7 @@ eta_squared(holiday.aov, partial = TRUE)
 --
 
 
-```r
+``` r
 c(SSHoliday/(SSWithin + SSHoliday), 
   SSSweater/(SSWithin + SSSweater),
   SSInteraction/(SSWithin + SSInteraction))
@@ -574,7 +567,7 @@ c(SSHoliday/(SSWithin + SSHoliday),
 #### Omega-squared
 
 
-```r
+``` r
 summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
 ```
 
@@ -582,7 +575,7 @@ summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
 ##                 Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## Holiday          2   8.08    4.04   1.854    0.185    
 ## Sweater          1  63.37   63.37  29.064 4.01e-05 ***
-## Holiday:Sweater  2   0.25    0.13   0.057    0.944    
+## Holiday:Sweater  2   0.25    0.12   0.057    0.944    
 ## Residuals       18  39.25    2.18                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -599,7 +592,7 @@ Omega-squared can be calculated using the following equation:
 ## Review 3
 
 
-```r
+``` r
 omega_squared(holiday.aov, partial = FALSE)
 ```
 
@@ -610,7 +603,7 @@ omega_squared(holiday.aov, partial = FALSE)
 ## ---------------------------------------
 ## Holiday         |   0.03 | [0.00, 1.00]
 ## Sweater         |   0.54 | [0.26, 1.00]
-## Holiday:Sweater |  -0.04 | [0.00, 1.00]
+## Holiday:Sweater |   0.00 | [0.00, 1.00]
 ## 
 ## - One-sided CIs: upper bound fixed at [1.00].
 ```
