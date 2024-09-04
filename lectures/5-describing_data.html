@@ -3,7 +3,7 @@
   <head>
     <title>Describing Data Part 2</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -154,7 +154,7 @@ Moment = variance is the second moment of a distribution
 
 
 
-```r
+``` r
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
@@ -170,7 +170,7 @@ Correlation = 0.68
 
 
 
-```r
+``` r
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
@@ -186,7 +186,7 @@ Correlation = -0.41
 
 
 
-```r
+``` r
 data %&gt;% ggplot(aes(x = x, y = y)) + geom_point(size = 3) + theme_bw()
 ```
 
@@ -289,7 +289,7 @@ It's not enough to calculate a correlation between two variables. You should alw
 
 
 
-```r
+``` r
 p = data %&gt;% ggplot(aes(x=x, y=y)) + geom_point()
 ggMarginal(p, type = "density")
 ```
@@ -302,7 +302,7 @@ ggMarginal(p, type = "density")
 
 
 
-```r
+``` r
 data %&gt;% ggplot(aes(x=x, y=y)) + geom_point() 
 ```
 
@@ -314,7 +314,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) + geom_point()
 .pull-left-small[
 .code-small[
 
-```r
+``` r
 data %&gt;% ggplot(aes(x=x, y=y)) +
   geom_point() +
   geom_smooth(method = "lm",
@@ -340,7 +340,7 @@ data %&gt;% ggplot(aes(x=x, y=y)) +
 .pull-left-small[
 .code-small[
 
-```r
+``` r
 data %&gt;%
 ggplot(aes(x=x, y=y)) +
   geom_point() +
@@ -367,7 +367,7 @@ What if I told you there were scores on X could range from 97 to 103?
 .code-small[
 
 
-```r
+``` r
 data %&gt;%
 ggplot(aes(x=x, y=y)) +
   geom_point() +
@@ -454,13 +454,13 @@ Known as **Simpson's Paradox**
 
 For Spearman, you'll get a different answer. 
 
-```r
+``` r
 x = rnorm(n = 10); y = rnorm(n = 10) #randomly generate 10 numbers from normal distribution
 ```
 
 .pull-left[
 
-```r
+``` r
 head(cbind(x,y))
 ```
 
@@ -474,7 +474,7 @@ head(cbind(x,y))
 ## [6,] -0.3593537 -1.2175787
 ```
 
-```r
+``` r
 cor(x,y, method = "pearson")
 ```
 
@@ -484,7 +484,7 @@ cor(x,y, method = "pearson")
 ]
 .pull-right[
 
-```r
+``` r
 head(cbind(x,y, rank(x), rank(y)))
 ```
 
@@ -498,7 +498,7 @@ head(cbind(x,y, rank(x), rank(y)))
 ## [6,] -0.3593537 -1.2175787  7 6
 ```
 
-```r
+``` r
 cor(x,y, method = "spearman")
 ```
 
@@ -513,7 +513,7 @@ cor(x,y, method = "spearman")
 If your data are naturally binary, no difference between Pearson and point-biserial.
 
 
-```r
+``` r
 x = rnorm(n = 10); y = rbinom(n = 10, size = 1, prob = .3)
 head(cbind(x,y))
 ```
@@ -530,7 +530,7 @@ head(cbind(x,y))
 
 .pull-left[
 
-```r
+``` r
 cor(x,y, method = "pearson")
 ```
 
@@ -540,7 +540,7 @@ cor(x,y, method = "pearson")
 ]
 .pull-right[
 
-```r
+``` r
 ltm::biserial.cor(x,y, level = 2)
 ```
 
@@ -554,13 +554,13 @@ ltm::biserial.cor(x,y, level = 2)
 If your data are artificially binary, there can be big differences.
 
 
-```r
+``` r
 x = rnorm(n = 10); y = rnorm(n = 10)
 ```
 
 .pull-left[
 
-```r
+``` r
 head(cbind(x,y))
 ```
 
@@ -574,7 +574,7 @@ head(cbind(x,y))
 ## [6,]  0.02831971 -1.2940189
 ```
 
-```r
+``` r
 cor(x,y, method = "pearson")
 ```
 
@@ -584,7 +584,7 @@ cor(x,y, method = "pearson")
 ]
 .pull-right[
 
-```r
+``` r
 d_y = ifelse(y &lt; median(y), 0, 1)
 head(cbind(x,y, d_y))
 ```
@@ -599,7 +599,7 @@ head(cbind(x,y, d_y))
 ## [6,]  0.02831971 -1.2940189   0
 ```
 
-```r
+``` r
 ltm::biserial.cor(x,d_y, level = 2)
 ```
 

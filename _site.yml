@@ -15,6 +15,8 @@ navbar:
         href: "lectures/3-dataTypes.html"
       - text: "4-Describing Data I"
         href: "lectures/4-describing_data.html"
+      - text: "5-Describing Data II"
+        href: "lectures/5-describing_data.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -25,6 +27,8 @@ navbar:
         href: "lectures/3-dataTypes.pdf"
       - text: "4-Describing Data I"
         href: "lectures/4-describing_data.pdf"
+      - text: "5-Describing Data II"
+        href: "lectures/5-describing_data.pdf"
     - text: Homework
       href: homework.html
   right:
