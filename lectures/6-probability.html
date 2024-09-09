@@ -3,7 +3,7 @@
   <head>
     <title>Fisher Tradition &amp; Probability</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -448,14 +448,14 @@ $$ \Large \frac{n!}{k!(n-k)!} = \binom{n}{k}$$
 ## What is the probability of getting 3 heads out of 5 coin flips?
 
 
-```r
+``` r
 Tails Heads Heads Tails Heads
 ```
 
 This can be represented in binomial form. First, we need to choose which value represents a "success". Here, we'll use **Heads**.
 
 
-```r
+``` r
 NotHeads Heads Heads NotHeads Heads
 ```
 
@@ -481,7 +481,7 @@ Remaining part of the equation is the combination rule for probability theory, `
 
 .pull-left[
 
-```r
+``` r
 H H H T T
 H T H H T
 H T H T H
@@ -492,7 +492,7 @@ H H T T H
 
 .pull-right[
 
-```r
+``` r
 T T H H H
 T H T H H
 T H H T H
@@ -524,7 +524,7 @@ $$
 
 Or in `R`
 
-```r
+``` r
 dbinom(x = 3, size = 5, prob = .5)
 ```
 
@@ -536,7 +536,7 @@ dbinom(x = 3, size = 5, prob = .5)
 
 .pull-left-small[
 
-```r
+``` r
 data.frame(heads = 0:5, prob = dbinom(x = 0:5, size = 5, prob = .5))
 ```
 
