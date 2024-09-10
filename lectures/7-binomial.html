@@ -3,7 +3,7 @@
   <head>
     <title>Binomial Distribution</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -289,7 +289,7 @@ In `R`, we can calculate the cumulative probability (X or lower), using the `pbi
 The probability of getting 23 questions or fewer correct:
 
 
-```r
+``` r
 pbinom(q = 23, size = 40, prob = .25)
 ```
 
@@ -303,7 +303,7 @@ pbinom(q = 23, size = 40, prob = .25)
 
 The probability of getting 24 or more questions correct:
 
-```r
+``` r
 #Note the use of the Law of Total Probability here
 1-pbinom(q = 23, size = 40, prob = .25)
 ```
