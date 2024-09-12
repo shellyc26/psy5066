@@ -3,7 +3,7 @@
   <head>
     <title>Normal Distribution</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -260,7 +260,7 @@ Note for the standard deviation property
 
 .pull-right[
 
-```r
+``` r
 starwars %&gt;% 
   select(1:2) %&gt;% 
   mutate_at(2, ~round(x = scale(.), digits = 2)) %&gt;% 
@@ -273,10 +273,10 @@ starwars %&gt;%
 ##   name           height[,1]
 ##   &lt;chr&gt;               &lt;dbl&gt;
 ## 1 Luke Skywalker      -0.07
-## 2 C-3PO               -0.21
-## 3 R2-D2               -2.25
+## 2 C-3PO               -0.22
+## 3 R2-D2               -2.26
 ## 4 Darth Vader          0.79
-## 5 Leia Organa         -0.7 
+## 5 Leia Organa         -0.71
 ## 6 Owen Lars            0.1
 ```
 
@@ -297,7 +297,7 @@ Luke Skywalker's height is z = -.07
 --
 
 
-```r
+``` r
 pnorm(q = -.07, mean = 0, sd = 1)
 ```
 
@@ -333,7 +333,7 @@ What does .4721 mean?
 The probability of getting a z-score of -.07 or greater?
 
 
-```r
+``` r
 1-pnorm(q = -.07, mean = 0, sd = 1)
 ```
 
@@ -353,7 +353,7 @@ What about R2D2? (z-score of -2.25)
   - Probability of getting a z-score of -2.25 or something even smaller
   
 
-```r
+``` r
 pnorm(q = -2.25, mean = 0, sd = 1)
 ```
 
@@ -369,7 +369,7 @@ pnorm(q = -2.25, mean = 0, sd = 1)
 Probability of getting a z-score of -2.25 or something larger
   
 
-```r
+``` r
 1-pnorm(q = -2.25, mean = 0, sd = 1)
 ```
 
