@@ -3,7 +3,7 @@
   <head>
     <title>Sampling Distributions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -196,7 +196,7 @@ We want to learn from incomplete or imperfect data.
 
 We can have a sampling distribution of data. All of the possible datasets that could have been observed if you ran the study a gajillion times.
 
-This is **generative**. If you knew the underlying process, you could create (or generates) data. 
+This is **generative**. If you knew the underlying process, you could create (or generate) data. 
 
 We could have collected the mean for each of those gajillion times. 
 
@@ -249,9 +249,9 @@ Remember bias?
 
 ## Relationship Between Population &amp; Sampling
 
-- If the population is normally distributed, the sampling distribution of the mean will be normally disributed
+- If the population is normally distributed, the sampling distribution of the mean will be normally distributed
 
-- If the population distribution is not normally distributed, the sampling distribution of the mean will become increasingly normally disributed as sample size increases
+- If the population distribution is not normally distributed, the sampling distribution of the mean will become increasingly normally distributed as sample size increases
 
 - We can use the normal distribution to make inferences about the unknown population mean, based on the sample mean and sample standard deviation
 
@@ -440,7 +440,7 @@ My next class will have 100 students. What range of exam means would be plausibl
 
 
 
-```r
+``` r
 M = 90
 SD = 8
 N = 100
@@ -456,7 +456,7 @@ print(c(ci_lb_z, ci_ub_z))
 ## [1] 88.43203 91.56797
 ```
 
-```r
+``` r
 ci_lb_z = M - sem * qt(p = .975, df = N-1)
 ci_ub_z = M + sem * qt(p = .975, df = N-1)
 print(c(ci_lb_z, ci_ub_z))
@@ -473,7 +473,7 @@ I give a classroom exam that produces a mean of 83.4 and a standard deviation of
 What is the 95% confidence interval around the mean?
 
 
-```r
+``` r
 M = 83.4
 SD = 10.6
 N = 26
@@ -489,7 +489,7 @@ print(c(ci_lb_z, ci_ub_z))
 ## [1] 79.32557 87.47443
 ```
 
-```r
+``` r
 ci_lb_z = M - sem * qt(p = .975, df = N-1)
 ci_ub_z = M + sem * qt(p = .975, df = N-1)
 print(c(ci_lb_z, ci_ub_z))
@@ -515,6 +515,8 @@ print(c(ci_lb_z, ci_ub_z))
 class:inverse
 
 ## Next time...
+
+Exam 1 Review with Ran
 
 Exam 1
 

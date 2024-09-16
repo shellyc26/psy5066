@@ -23,6 +23,8 @@ navbar:
         href: "lectures/7-binomial.html"
       - text: "8-Normal"
         href: "lectures/8-normal.html"
+      - text: "9-Sampling"
+        href: "lectures/9-sampling.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -41,6 +43,8 @@ navbar:
         href: "lectures/7-binomial.pdf"
       - text: "8-Normal"
         href: "lectures/8-normal.pdf"
+      - text: "9-Sampling"
+        href: "lectures/9-sampling.pdf"
     - text: Homework
       href: homework.html
   right:

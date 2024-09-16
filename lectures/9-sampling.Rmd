@@ -255,7 +255,7 @@ We want to learn from incomplete or imperfect data.
 
 We can have a sampling distribution of data. All of the possible datasets that could have been observed if you ran the study a gajillion times.
 
-This is **generative**. If you knew the underlying process, you could create (or generates) data. 
+This is **generative**. If you knew the underlying process, you could create (or generate) data. 
 
 We could have collected the mean for each of those gajillion times. 
 
@@ -352,9 +352,9 @@ Remember bias?
 
 ## Relationship Between Population & Sampling
 
-- If the population is normally distributed, the sampling distribution of the mean will be normally disributed
+- If the population is normally distributed, the sampling distribution of the mean will be normally distributed
 
-- If the population distribution is not normally distributed, the sampling distribution of the mean will become increasingly normally disributed as sample size increases
+- If the population distribution is not normally distributed, the sampling distribution of the mean will become increasingly normally distributed as sample size increases
 
 - We can use the normal distribution to make inferences about the unknown population mean, based on the sample mean and sample standard deviation
 
@@ -666,6 +666,8 @@ print(c(ci_lb_z, ci_ub_z))
 class:inverse
 
 ## Next time...
+
+Exam 1 Review with Ran
 
 Exam 1
 
