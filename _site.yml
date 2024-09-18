@@ -25,6 +25,8 @@ navbar:
         href: "lectures/8-normal.html"
       - text: "9-Sampling"
         href: "lectures/9-sampling.html"
+      - text: "Exam 1 Review"
+        href: "lectures/exam1review_SV.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -45,6 +47,8 @@ navbar:
         href: "lectures/8-normal.pdf"
       - text: "9-Sampling"
         href: "lectures/9-sampling.pdf"
+      - text: "Exam 1 Review"
+        href: "lectures/exam1review_SV.pdf"
     - text: Homework
       href: homework.html
   right:

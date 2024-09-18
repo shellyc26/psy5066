@@ -1,0 +1,177 @@
+---
+title: 'Exam 1 Practice Problems'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, warning=FALSE, message=FALSE, include = FALSE}
+library(tidyverse)
+library(palmerpenguins)
+penguins = penguins
+```
+
+
+# Penguins are cute
+
+<img src="images/penguins.png", width="50%">
+
+package: `palmerpenguins`
+
+---
+# Question Set 1
+
+Let's MANUALLY calculate the correlation between two variables X and Y
+
+```{r, echo=FALSE}
+X<-c(6,12,13,17,22,25,27,29,30,32)
+Y<-c(45,47,39,58,68,76,75,74,78,81)
+
+cbind(X,Y)
+```
+
+---
+
+# Question Set 2
+
+- Scientists have discovered that 14% of Adelie penguins have a genetic condition that prevents them from being able to reproduce. If 40 Adelie penguins are selected at random from any of the 3 islands, how many penguins could be expected to be able to reproduce?
+
+```{r, echo=FALSE}
+table(penguins$species, penguins$island)
+```
+
+---
+
+# Question Set 3
+
+- For an upcoming stats exam we have decided to be lazy and only make 5 multiple choice questions. The questions have 4 response options each. How likely are students to get *at least 4* of these questions correct simply by guessing? Calculate this "by hand" meaning do not use a `R` function
+
+---
+
+# Question Set 4
+
+- Get the z-scores of the `body_mass_g` variable "by hand" meaning do not use a `R` function
+- Which value is furthest away from the mean? Which is closest?
+- Interpret the 10th z-score
+- Which of these is an outlier? How do you propose to deal with this outlier?
+
+```{r, echo=FALSE}
+tinyp = penguins[c(1:3, 5:11),3:6]
+tinyp
+```
+
+---
+
+# Question Set 5
+
+- Which of these variables are qualitative? Quantitative?
+- Which variable would be appropriate for a binomial question?
+- Which variable do you assume is normally distributed? $t$ distributed?
+- Calculate the standard error of the mean for `bill_depth_mm` and describe what it means
+
+.code-small[
+```{r, echo=FALSE}
+tinyp = penguins[c(1:3, 5:11),]
+tinyp
+```
+]
+
+
+<!-- --- -->
+
+<!-- # Results Question Set 1 -->
+
+<!-- - Mean of X is 21.3 -->
+<!-- - Mean of Y is 64.1 -->
+<!-- - Sum of (X-Xmean)*(Y-Ymean) is 1172.7 -->
+<!-- - Sum of (X-Xmean)^2 is 704.1 -->
+<!-- - Sum of (Y-Ymean)^2 is 2176.9 -->
+<!-- - To calculate Correlation r= 1172.7/sqrt(704.1*2176.9) = .947 -->
+
+<!-- #### Check using the cor function in R -->
+<!-- ```{r} -->
+<!-- cor(X,Y) -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- # Results Question Set 2 -->
+
+<!-- #### The equation to use is *E*(*X*) = *Nθ* -->
+<!-- ```{r} -->
+<!-- theta <- 1 - 0.14 -->
+<!-- print(theta) -->
+<!-- expected_value <- 40 * theta -->
+<!-- print(expected_value) -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- # Results Question Set 3 -->
+
+<!-- - For a stats exam we have decided to be lazy and only make 5 multiple choice questions. The questions have 4 response options each. How likely are students to get *at least 4* of these questions correct simply by guessing? -->
+
+<!-- .code-small[ -->
+<!-- ```{r} -->
+<!-- #using pbinom -->
+<!-- 1-pbinom(q = 3, size = 5, prob = .25) -->
+
+<!-- #using formula -->
+<!-- (factorial(5)/(factorial(4)*factorial(5-4)))*.25^4*(1-.25)^(5-4)+(factorial(5)/(factorial(5) * factorial(5-5)))*.25^5*(1-.25)^(5-5) -->
+<!-- ``` -->
+<!-- ] -->
+
+
+<!-- $$P(4|.25,5) = \frac{5!}{4!(5-4)!}.25^4(1-.25)^{5-4} + \\ -->
+<!-- P(5|.25,5) = \frac{5!}{5!(5-5)!}.25^5(1-.25)^{5-5}$$ -->
+
+<!-- --- -->
+
+<!-- # Results Question Set 4 -->
+
+<!-- - Get the z-scores of the `body_mass_g` variable "by hand" meaning do not use a `R` function -->
+
+<!-- .code-small[ -->
+<!-- ```{r, echo=FALSE} -->
+<!-- tinyp = penguins[c(1:3, 5:11),3:6] -->
+<!-- tinyp -->
+<!-- m = mean(tinyp$body_mass_g) -->
+<!-- s = sd(tinyp$body_mass_g) -->
+<!-- ``` -->
+<!-- ] -->
+
+<!-- - Scores interpreted as distance from the mean, in standard deviations. -->
+<!-- - Mean = 3722.5 -->
+<!-- - SD = 440.2414 -->
+<!-- ```{r, echo=FALSE} -->
+<!-- tinyp$body_mass_g_z<-(tinyp$body_mass_g-mean(tinyp$body_mass_g))/sd(tinyp$body_mass_g) -->
+<!-- tinyp$body_mass_g_z -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- # Results Question Set 5 -->
+
+<!-- - Which of these variables are qualitative? Quantitative? -->
+<!-- - Which variable would be appropriate for a binomial question? -->
+<!-- - Which variable do you assume is normally distributed? $t$ distributed? -->
+<!-- - Calculate the standard error of the mean for `bill_depth_mm` and describe what it means -->
+
+<!-- .code-small[ -->
+<!-- ```{r, echo=FALSE} -->
+<!-- tinyp = penguins[c(1:3, 5:11),] -->
+<!-- tinyp -->
+<!-- ``` -->
+<!-- ] -->
+
+<!-- ```{r} -->
+<!-- se=sd(tinyp$bill_depth_mm)/sqrt(nrow(tinyp)) -->
+<!-- se -->
+<!-- ``` -->
+
+<!-- ] -->
+
