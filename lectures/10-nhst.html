@@ -3,7 +3,7 @@
   <head>
     <title>Hypothesis testing (NHST)</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -114,7 +114,7 @@ You can already test this using what you know about the binomial distribution.
 ---
 
 
-```r
+``` r
 dbinom(9, size = 10, prob = .5)
 ```
 
@@ -338,7 +338,7 @@ let's just recap. our null hypothesis was that the mean of apps pre 2020 equaled
 Now we use the properties of the Standard Normal Distribution to calculate probabilities, specifically the probability of getting a score this far away from `\(\mu\)` or more extreme:
 
 
-```r
+``` r
 pnorm(-2.18) + pnorm(2.18, lower.tail = F)
 ```
 
@@ -346,7 +346,7 @@ pnorm(-2.18) + pnorm(2.18, lower.tail = F)
 ## [1] 0.02925746
 ```
 
-```r
+``` r
 pnorm(-2.18)*2
 ```
 
@@ -416,7 +416,7 @@ If you didn't know the population standard deviation, you would use the sample o
 `$$t = \frac{\bar{X}- M}{SEM} = \frac{2.9-5.3}{1.03} = -2.32$$`
 
 
-```r
+``` r
 pnorm(-2.32)*2
 ```
 
@@ -424,7 +424,7 @@ pnorm(-2.32)*2
 ## [1] 0.02034088
 ```
 
-```r
+``` r
 pt(-2.32, df = N-1)*2
 ```
 

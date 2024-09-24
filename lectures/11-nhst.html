@@ -3,7 +3,7 @@
   <head>
     <title>NHST II</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -215,7 +215,7 @@ z = 1.64
 `$$\text{Critical Value} = \mu_0 + Z_{.95}\frac{\sigma}{\sqrt{N}}$$`
 
 
-```r
+``` r
 qnorm(.95)
 ```
 
@@ -332,7 +332,7 @@ Once the critical value and alternative value is established, we can determine t
 
 The proportion of the alternative distribution that falls below that point is the probability of a Type II error (.28); power is then .72.
 
-```r
+``` r
 pnorm(-.59)
 ```
 
@@ -354,7 +354,7 @@ The choice of 110 as the mean of `\(H_1\)` is completely arbirtary. What if we b
 .pull-right[
 `$$Z_1 = \frac{107.4 - 115}{\frac{20}{\sqrt{20}}} = -1.71$$`
 
-```r
+``` r
 1-pnorm(-1.71) 
 ```
 
@@ -379,7 +379,7 @@ What if instead we increase the sample size?  This will reduce variability in th
 
 `$$Z_1 = \frac{105.2 - 110}{\frac{20}{\sqrt{40}}} = -1.52$$`
 
-```r
+``` r
 1-pnorm(-1.52) 
 ```
 
@@ -408,7 +408,7 @@ That will move the critical value:
 
 `$$Z_1 = \frac{108.8 - 110}{\frac{20}{\sqrt{20}}} = -.28$$`
 
-```r
+``` r
 1-pnorm(-.28) 
 ```
 
