@@ -3,7 +3,7 @@
   <head>
     <title>Critiques of NHST</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -20,14 +20,27 @@ class: center, middle, inverse, title-slide
 
 
 
-
 ## Previously
-
-- Null hypothesis significance testing
+- NHST
 
 - Type I and Type II errors
 
 - Power
+
+---
+
+1. Define `\(H_0\)` and `\(H_1\)`. 
+
+2. Choose your `\(\alpha\)` level. 
+
+3. Collect data.
+
+4. Define your sampling distribution using your null hypothesis and either the knowns about the population or estimates of the population from your sample.
+
+5. Calculate the probability of your data or more extreme under the null. (To get the probability, you'll need to calculate some kind of standardized score, like a z-statistic.)
+
+6. Compare your probability (p-value) to your `\(\alpha\)` level and decide whether your data are "statistically significant" (reject the null) or not (fail to reject the null).
+
 
 ---
 
@@ -328,6 +341,10 @@ Only 36% of the studies were replicated, despite high power and claimed fidelity
 
 ![](images/replicability.png)
 
+---
+class: inverse, center, middle
+
+# Have you ever tried to replicate a study?
 
 ---
 
@@ -339,11 +356,6 @@ Only 36% of the studies were replicated, despite high power and claimed fidelity
 - Incomplete communication of the necessary conditions
     - Akin to reading just the first few ingredients for a recipe and then trying to duplicate the dish.
 
-
----
-class: inverse, center, middle
-
-# Have you ever tried to replicate a study?
 
 ---
 ## Why is it so hard to replicate?
