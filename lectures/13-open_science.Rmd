@@ -286,7 +286,7 @@ The most important aspect is **TRANSPARENCY**. That's it. It can come in the for
 knitr::include_graphics("images/RR.png")
 ```
 
-.small[image credit: [Doropthy Bishop](https://blog.wellcomeopenresearch.org/2018/12/04/rewarding-best-practice-with-registered-reports/)]
+.small[image credit: [Dorothy Bishop](https://blog.wellcomeopenresearch.org/2018/12/04/rewarding-best-practice-with-registered-reports/)]
 
 ---
 
