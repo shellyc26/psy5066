@@ -23,10 +23,10 @@ library(knitr)
 
 ## Recap
 
-Typically, the probability distribution function for a distribution is regulated by two parameters:
+Typically, the probability distribution function for a distribution is regulated by two parameters. For the normal:
 
- - mean
- - standard deviation
+ - mean $\mu$
+ - standard deviation $\sigma$
  
 --
 
@@ -125,7 +125,7 @@ Step 1: Get the ratio across rows:
 $\frac{(10-55)^2}{55}$
 $\frac{(100-55)^2}{55}$
 
-.code-small[
+
 ```{r}
 noise <- ((10-55)^2)/55
 noise
@@ -133,7 +133,7 @@ noise
 noNoise <- ((100-55)^2)/55
 noNoise
 ```
-]
+
 ---
 ## Trees Example
 
@@ -257,6 +257,10 @@ row.names(att) = c("Failed to complete high school",
 
 att
 ```
+
+*Null Hypothesis*: There is no association between the categorical variables we are testing. No association between educational attainment and attrition. They are independent
+
+*Alternative Hypothesis*: There is an association between educational attainment and attrition. They are not independent.
 
 ---
 

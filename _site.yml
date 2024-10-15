@@ -35,6 +35,8 @@ navbar:
         href: "lectures/12-critiques.html"
       - text: "13-Open Science"
         href: "lectures/13-open_science.html"
+      - text: "14-Chi Squared"
+        href: "lectures/14-chisq.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -65,6 +67,8 @@ navbar:
         href: "lectures/12-critiques.pdf"
       - text: "13-Open Science"
         href: "lectures/13-open_science.pdf"
+      - text: "14-Chi Squared"
+        href: "lectures/14-chisq.pdf"
     - text: Homework
       href: homework.html
   right:
