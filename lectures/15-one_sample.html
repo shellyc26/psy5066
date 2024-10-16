@@ -3,7 +3,7 @@
   <head>
     <title>One-sample hypothesis tests</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -146,7 +146,7 @@ Using the same Census at School data, we find that Missouri students who partici
 .tiny[We're using data from Missouri in 2021 only]
 
 
-```r
+``` r
 library(tidyverse)
 school %&gt;% 
   summarize(meanMemory = mean(Score_in_memory_game),
@@ -158,7 +158,7 @@ school %&gt;%
 ## 1   45.93098 13.05054
 ```
 
-```r
+``` r
 nrow(school)
 ```
 
@@ -197,7 +197,7 @@ $$ s = 13.05 $$
 
 
 
-```r
+``` r
 t.test(x = school$Score_in_memory_game, mu = 45.05, 
        alternative = "two.sided")
 ```
@@ -220,7 +220,7 @@ t.test(x = school$Score_in_memory_game, mu = 45.05,
 ---
 
 
-```r
+``` r
 lsr::oneSampleTTest(x = school$Score_in_memory_game, 
                     mu = 45.05, one.sided = FALSE)
 ```
@@ -285,7 +285,7 @@ Not bounded by 1 the way a correlation is bounded
 
 Another useful metric is the overlap between the two distributions -- the smaller the overlap, the farther apart the distributions
 
-![](15-one_sample_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](15-one_sample_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -294,7 +294,7 @@ Another useful metric is the overlap between the two distributions -- the smalle
 Download the data: [sample data](../data/cenus_at_school_missouri.csv)
 
 
-```r
+``` r
 library(tidyverse)
 school_pollution = read.csv(here("data/cenus_at_school_missouri.csv"))
 school_pollution = school %&gt;%
@@ -332,7 +332,7 @@ Using the same data:
 **Step 1**: Get the test statistic
 
 
-```r
+``` r
 school_pollution %&gt;% 
   summarize(meanPollution = round(mean(Importance_reducing_pollution),
                                   digits = 3),
@@ -345,7 +345,7 @@ school_pollution %&gt;%
 ## 1       718.673     297.403
 ```
 
-```r
+``` r
 nrow(school_pollution)
 ```
 
@@ -366,7 +366,7 @@ $$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
 $$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
 
 
-```r
+``` r
 (718.673 - 762.52) / (297.403/sqrt(49))
 ```
 
@@ -381,7 +381,7 @@ $$ \frac{718.673 - 762.52}{\frac{297.403}{\sqrt{49}}} $$
 **Step 2a**: Get the `\(p\)`-value. Interpret
 
 
-```r
+``` r
 t = (718.673 - 762.52) / (297.403/sqrt(49))
 N = nrow(school_pollution)
 2 * pt(q = t, df = N-1, lower.tail = TRUE)
@@ -401,7 +401,7 @@ The probability of obtaining a test statistic of -1.032 or more extreme, given t
 `\(\bar{X} \pm [t_{.975, df}\frac{\hat{\sigma}}{\sqrt{N}}]\)`
 
 
-```r
+``` r
 # we have N stored from previous slide
 xbar = 718.673
 sem = 297.403/sqrt(49)
@@ -416,7 +416,7 @@ ci_lb_t
 ## [1] 633.2489
 ```
 
-```r
+``` r
 ci_ub_t
 ```
 
@@ -438,7 +438,7 @@ CI_{95}[633.249, 804.097] $$
 
 `$$d = \frac{\bar{X}-\mu}{\hat{\sigma}}$$`
 
-```r
+``` r
 # we have xbar from before
 stdev = 297.403
 mu = 762.52
@@ -465,7 +465,7 @@ The standardized difference in means is quite small, with a Cohen's *d* equal to
 
 
 
-```r
+``` r
 lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution, 
                     mu = 762.52, one.sided = FALSE)
 ```
@@ -520,7 +520,7 @@ The one-sample *t*-test is used to test coefficients in a model.
 ### Let's compare to 0
 
 
-```r
+``` r
 lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution, 
                     mu = 0, one.sided = FALSE)
 ```
@@ -554,7 +554,7 @@ lsr::oneSampleTTest(x = school_pollution$Importance_reducing_pollution,
 ### Let's compare to 0
 
 
-```r
+``` r
 model = lm(Importance_reducing_pollution ~ 1, data = school_pollution)
 summary(model)
 ```
@@ -581,7 +581,7 @@ summary(model)
 ---
 
 
-```r
+``` r
 model = lm(Petal.Width ~ Species, data = iris)
 summary(model)
 ```

@@ -37,6 +37,8 @@ navbar:
         href: "lectures/13-open_science.html"
       - text: "14-Chi Squared"
         href: "lectures/14-chisq.html"
+      - text: "15-One Sample t"
+        href: "lectures/15-one_sample.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -69,6 +71,8 @@ navbar:
         href: "lectures/13-open_science.pdf"
       - text: "14-Chi Squared"
         href: "lectures/14-chisq.pdf"
+      - text: "15-One Sample t"
+        href: "lectures/15-one_sample.pdf"
     - text: Homework
       href: homework.html
   right:
