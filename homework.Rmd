@@ -19,7 +19,8 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Due on **9/26 by 9:30am**
 
 ## Homework 3
-- Due on **10/29 by 9:30am**
+- [Homework 3 can be found here](homework/homework_3.html)
+- Due on **10/31 by 9:30am**
 
 ## Homework 4
 - Due on **11/14 by 11:59pm**

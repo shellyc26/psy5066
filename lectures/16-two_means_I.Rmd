@@ -30,7 +30,7 @@ You tell me -- what is a one-sample *t*-test?
 
 - Samples are independent if observations from one sample do not affect or depend on observations from the other sample. A score from sample 1 shouldn't tell me anything about a score from sample 2 (e.g., whether the score is above or below the sample mean) 
 
-- Basically, you want independence of observations within your samples and between your samples for this analysis
+- You want independence of observations *within* your samples and *between* your samples for this analysis
 
 - Very common with experimental research (e.g., compare Treatment condition mean with Control condition mean)
 ---
@@ -52,15 +52,33 @@ $$t_{df} = \frac{(\bar{X}_1 - \bar{X}_2)-(\mu_1 - \mu_2)}{SE_{meandifference}}$$
 ---
 ## Homogeneity of Variance
 
-We assume homogeneity of variance for independent samples *t*-tests (i.e., even if samples come from different populations, these populations differ in mean but not variance), but in practice, this is unrealistic. We will most likely have two *different* variances
+We assume **homogeneity of variance** for independent samples *t*-tests
 
-Standard error is easy to calculate when you only know one *SD* (e.g., one-sample *t*-tests). But we have two *SD*s, so unless they're the exact same, "we" need to calculate a weighted combination of the two.
+  - Even if samples come from different populations, these populations differ in mean but *not* variance
+  - Is this practical?
+
+--
+
+Standard error is easy to calculate when you only know one *SD* (e.g., one-sample *t*-tests). But we have two *SD*s, so unless they're the exact same, we need to address this somehow. Maybe a *weighted combination* of the two. 
+
+---
+
+## Pop Quiz
+
+How to do we calculate standard error of the mean?
+
+How do we calculate a one-sample $t$-test?
+
+Let's compare it to our independent samples $t$-test...how do we calculate that?
+
 ---
 ## How to calculate the Standard Error
 
 Two main methods of calculating the *SE*:
+
 1. __Student's *t*-test__ is used when the variances of each sample are (roughly) the same. In many cases, slightly more powerful test but the **pooled variance** will be biased toward the sample with the larger sample size.
-2. __Welch's *t*-test__ if the variances are NOT (roughly) the same. Slightly less powerful.
+
+2. __Welch's *t*-test__ if the variances are NOT (roughly) the same. Slightly less powerful. You don't pool the variances int he same way
 ---
 
 ## Assumptions
@@ -89,24 +107,32 @@ $$\sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} $$
 ## $SE_{diff}$  Calculations
 $SE_{diff} = \hat{\sigma}_D$
 
-**Welch's **
-$$\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}$$
 Essentially, the squared $SE_{mean}$ of each sample is added then you take the square root.
 
 **Student's**
 $$\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}$$
+--
+
+**Welch's **
+$$\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}$$
 ---
 ## What did we just do?
 
-Final result is *SE* of the difference of independent means. Remember that standard deviations estimate population variability (i.e., variability of population scores). Taking the next step and dividing the *SD* by the square root of some variation of N (depending on the test equation) helps us estimate variability of means rather than scores. 
----
-**Welch's **
-$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$
+Final result is *SE of the difference of independent means*. 
 
+- Remember that standard deviations estimate population variability (i.e., variability of population scores)
+
+- Taking the next step and dividing the *SD* by the square root of some variation of $N$ (depending on the test equation) helps us estimate *variability of means* rather than scores. 
+---
 **Student's**
 $$\large{\hat{\sigma}_D = \sqrt{\frac{(N_1-1)\hat{\sigma}^2_1 + (N_2-1)\hat{\sigma}^2_2}{N_1+N_2-2}} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}$$
-Note that in Student's calculation, the variance for the larger sample will be weighted more heavily because each individual variance is being multiplied by N-1. Meanwhile, in Welch's, the standard deviations are being *divided* by sample size, so smaller samples will be weighted more heavily. 
+Note that in Student's calculation, the variance for the larger sample will be weighted more heavily because each individual variance is being multiplied by N-1. 
 
+--
+
+**Welch's **
+$$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$
+Meanwhile, in Welch's, the standard deviations are being *divided* by sample size, so smaller samples will be weighted more heavily. 
 ---
 $$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}}}$$
 ```{r}
@@ -115,13 +141,13 @@ $$\large{\hat{\sigma}_D = \sqrt{\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^
 sqrt(4^2/1000 + 7^2/30)
 sqrt(7^2/30)
 ```
-One large sample can't make up for a small sample with Welch's. 
+One large sample can't make up for a small sample with Welch's! 
 
 ---
-## *df* for Welch's
+## *df* for Welch's.
 
 $$df = \frac{[\frac{\hat{\sigma}^2_1}{N_1}+\frac{\hat{\sigma}^2_2}{N_2}]^2}{\frac{[\frac{\hat{\sigma}^2_1}{N1}]^2}{N_1-1}+\frac{[\frac{\hat{\sigma}^2_2}{N2}]^2}{N_2-1}}$$
-Welch's *df*  will likely not be a whole number. And while Welch's allows for violations of homogeneity (i.e., unequal variance), you'll still be punished for it with reduced *df* unless you have equal variance and equal sample size. This doesn't mean that Welch can't have a lower *p*-value than student, though. The df will suffer, but the $SE_{diff}$ could be lower to counteract that. 
+**Welch's *df*  will likely not be a whole number.** And while Welch's allows for violations of homogeneity (i.e., unequal variance), you'll still be punished for it with reduced *df* unless you have equal variance and equal sample size. This doesn't mean that Welch can't have a lower *p*-value than student, though. The df will suffer, but the $SE_{diff}$ could be lower to counteract that. 
 
 ---
 ## *df* for Student's
@@ -132,7 +158,7 @@ Unlike before when we subtracted by 1, we are now calculating two means, so we n
 ---
 We calculate our test statistic with:
 
-$$ t = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$ and then can find the probability of the absolute value of this test statistic (for two-tailed) or more extreme given the null is true.
+$$ t_{df} = \frac{\bar{X}_1-\bar{X}_2}{\sigma_D}$$ and then can find the probability of the absolute value of this test statistic (for two-tailed) or more extreme given the null is true.
 ---
 ## Examples!
 
@@ -142,6 +168,8 @@ Research Question: Do Kid or Adult trick `R` treaters get more candy
 set.seed(15)
 trickRtreat <- data.frame("Candy"=cbind(c(round(rnorm(n=500, mean=13.256, sd = 1.243)), round(rnorm(n=35, mean=14.5742, sd = 4.4523)))), "Age"=c(rep("Kid", 500), rep("Adult", 35)))
 # simulated data. How much Candy did each individual get? And are they adults or kids?
+
+head(trickRtreat)
 psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
 ```
 
@@ -154,8 +182,8 @@ psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
 ```
 
 $$\sigma_D = \sqrt{\frac{(500-1){1.28}^2 + (35-1){4.78}^2}{500+35-2}} \sqrt{\frac{1}{500} + \frac{1}{35}}$$
-$$= 1.73\sqrt{\frac{1}{500} + \frac{1}{35}} = 0.30$$
-$$df = 500 + 35 - 2$$ 
+$$ \sigma_D= 1.73\sqrt{\frac{1}{500} + \frac{1}{35}} = 0.302$$
+$$df = 500 + 35 - 2 = 533$$ 
 
 ---
 With this information, we can build a sampling distribution
@@ -208,7 +236,7 @@ Why stop there? We can also calculate confidence intervals of the mean differenc
 
 Confidence intervals are used to communicate the precision in how well our statistic estimates the parameter. As a reminder, they are grounded in frequentist probability: if we repeated our experiment or sampling infinitely, we would expect that 95% of our 95% confidence intervals would capture the true population parameter.
 
-In an independent sample's *t*-test, we calculated three statistics, and so you can construct three different confidence intervals.Yay
+In an independent sample's *t*-test, we calculated three statistics, and so you can construct three different confidence intervals. Yay.
 
 ---
 ### Confidence interval around the difference in means
@@ -231,7 +259,7 @@ SE_diff #remember this will differ depending on Welch or Student
 cv
 ```
 
-$CI_{\text{Difference}} = (14.09 -13.30) \pm .30(1.96)$
+$CI_{\text{Difference}} = (14.09 -13.30) \pm .302(1.96)$
 $$[.20, 1.38]$$
 
 Confidence interval doesn't include zero. Significant!
@@ -295,25 +323,16 @@ psych::describeBy(trickRtreat$Candy, group = trickRtreat$Age)
 
 *SD* seems to be pretty unequal, and the uneven sample size is going to exacerbate this issue. Student's *t* is pretty robust to homogeneity of variance violations when sample size is equal, but that's not the case here. 
 ---
-## Plot it! 
-
-.pull-left[
-.code-small[
 
 ```{r eval=FALSE}
 plot_data <- Rmisc::summarySE(trickRtreat, "Candy", "Age")
 plot_data %>% 
   ggplot(aes(x = Age, y = Candy, fill=Age)) + 
   geom_bar(stat = "identity") + ggtitle("Amount of Candy Obtained by Age Group") + 
-  geom_errorbar(aes(ymin=Candy-ci, ymax=Candy+ci), width = .2) + 
-  xlab("Age Group") +
-  scale_y_continuous(breaks=seq(5,16,1)) +
-  coord_cartesian( ylim = c(5,16))
+  geom_errorbar(aes(ymin=Candy-ci, ymax=Candy+ci), width = .2) + xlab("Age Group") + scale_y_continuous(breaks=seq(5,16,1)) + coord_cartesian( ylim = c(5,16))
 ```
-]
-]
 
-.pull-right[
+
 ```{r, echo=FALSE}
 plot_data <- Rmisc::summarySE(trickRtreat, "Candy", "Age")
 plot_data %>% 
@@ -324,7 +343,7 @@ plot_data %>%
   scale_y_continuous(breaks=seq(5,16,1)) +
   coord_cartesian( ylim = c(5,16))
 ```
-]
+
 
 
 ---
@@ -394,7 +413,7 @@ Don't need to base decision of Welch or Student based on a significance test. Ut
 ---
 ### Normality
 
-Finally, there's the assumption of normality. Specifically, this is the assumption that the population is normal -- if the population is normal, then our sampling distribution is **definitely** normal and we can use a *t*-distribution.
+Specifically, this is the assumption that the population is normal -- if the population is normal, then our sampling distribution is **definitely** normal and we can use a *t*-distribution.
 
 But even if the population is not normal, the Central Limit Theorem lets us assume our sampling distribution is normal because as N approaches infinity, the sampling distributions approaches normality. So we can be **pretty sure** the sampling distribution is normal. 
 
@@ -537,7 +556,7 @@ $$d = \frac{\bar{X}-\mu}{\hat{\sigma}}$$
 .small[Cohen, J. (1988), Statistical power analysis for the behavioral sciences (2nd Ed.). Hillsdale: Lawrence Erlbaum.]
 
 ---
-## Double check your work -- Student's *t*
+### Double check your work -- Student's *t*
 
 ```{r, warning=FALSE}
 library(lsr)
@@ -546,7 +565,7 @@ independentSamplesTTest(Candy ~ Age, data = trickRtreat, var.equal = T)
 
 ---
 
-## Double check your work -- Welch's *t*
+### Double check your work -- Welch's *t*
 
 ```{r, warning=FALSE}
 library(lsr)

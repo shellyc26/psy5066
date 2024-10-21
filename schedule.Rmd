@@ -32,8 +32,8 @@ LSR readings can be found in the free, online textbook, [*Learning Statistics wi
 | \- | 10/17 | One-sample tests | LSR Ch 13 |  |
 | 9 | 10/22 | Comparing two means | LSR Ch 13 |  |
 | \- | 10/24 | Comparing dependent means | LSR Ch 13 |  |
-| 10 | 10/29 | Visualizing Data |  | HW 3 due |
-| \- | 10/31 | **Exam 2** |  |  |
+| 10 | 10/29 | Visualizing Data |  |  |
+| \- | 10/31 | **Exam 2** |  | HW 3 due |
 | 11 | 11/5 | Introduction to model comparisons & $F$-distribution | LSR Ch 14 |  |
 | \- | 11/7 | One-way ANOVA | LSR Ch 14 |  |
 | 12 | 11/12 | Multiple comparisons & contrasts | LSR Ch 16 |  |

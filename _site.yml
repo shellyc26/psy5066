@@ -39,6 +39,8 @@ navbar:
         href: "lectures/14-chisq.html"
       - text: "15-One Sample t"
         href: "lectures/15-one_sample.html"
+      - text: "16-Two Means I"
+        href: "lectures/16-two_means_I.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -73,6 +75,8 @@ navbar:
         href: "lectures/14-chisq.pdf"
       - text: "15-One Sample t"
         href: "lectures/15-one_sample.pdf"
+      - text: "16-Two Means I"
+        href: "lectures/16-two_means_I.pdf"
     - text: Homework
       href: homework.html
   right:
