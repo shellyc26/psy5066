@@ -41,6 +41,8 @@ navbar:
         href: "lectures/15-one_sample.html"
       - text: "16-Two Means I"
         href: "lectures/16-two_means_I.html"
+      - text: "17-Two Means II"
+        href: "lectures/17-two_means_ke.pdf"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -77,6 +79,8 @@ navbar:
         href: "lectures/15-one_sample.pdf"
       - text: "16-Two Means I"
         href: "lectures/16-two_means_I.pdf"
+      - text: "17-Two Means II"
+        href: "lectures/17-two_means_ke.pdf"
     - text: Homework
       href: homework.html
   right:
