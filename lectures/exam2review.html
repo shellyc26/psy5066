@@ -3,7 +3,7 @@
   <head>
     <title>Exam 2 Practice Problems</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,7 +13,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Exam 2 Practice Problems
+]
 
 ---
 
@@ -51,7 +53,7 @@ You are concerned that your results are biased because some makers only make cho
 Need standard error:
 
 
-```r
+``` r
 variances = candy %&gt;% 
   group_by(Type) %&gt;% 
   summarize(vars = var(Calories))
@@ -67,7 +69,7 @@ variances
 ## 2 Not Chocolate 2703.
 ```
 
-```r
+``` r
 sdChoc = variances$vars[1]
 sdNonChoc = variances$vars[2]
 N1 = 5
@@ -88,7 +90,7 @@ welchSE
 Get test statistic
 
 
-```r
+``` r
 means = candy %&gt;% 
   group_by(Type) %&gt;% 
   summarize(means = mean(Calories))
@@ -104,7 +106,7 @@ means
 ## 2 Not Chocolate  128.
 ```
 
-```r
+``` r
 meanChoc = means$means[1]
 meanNotChoc = means$means[2]
 
@@ -119,7 +121,7 @@ tStatistic
 ## Group 1 - Independent Samples *t*
 
 
-```r
+``` r
 t.test(Calories ~ Type, data = candy)
 ```
 
@@ -141,7 +143,7 @@ t.test(Calories ~ Type, data = candy)
 ## Group 2 - Paired Samples *t*
 
 
-```r
+``` r
 candy$diff = candy$Calories - candy$MiniCalories
 meanDiff = mean(candy$diff)
 sdDiff = sd(candy$diff)
@@ -157,7 +159,7 @@ tStatisticPaired
 ## [1] 5.502914
 ```
 
-```r
+``` r
 pt(tStatisticPaired, df = NPairs-1, lower.tail = F)
 ```
 
@@ -169,7 +171,7 @@ pt(tStatisticPaired, df = NPairs-1, lower.tail = F)
 ## Group 2 - Paired Samples *t*
 
 
-```r
+``` r
 t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
 ```
 
@@ -179,12 +181,12 @@ t.test(candy$Calories, candy$MiniCalories, paired = T, alternative = "greater")
 ## 
 ## data:  candy$Calories and candy$MiniCalories
 ## t = 5.5029, df = 9, p-value = 0.0001894
-## alternative hypothesis: true difference in means is greater than 0
+## alternative hypothesis: true mean difference is greater than 0
 ## 95 percent confidence interval:
 ##  43.01397      Inf
 ## sample estimates:
-## mean of the differences 
-##                    64.5
+## mean difference 
+##            64.5
 ```
 
 ---
@@ -195,7 +197,7 @@ Null = There is no relationship (not associated, are independent)
 Alternative = There is a relationship (are associated, are dependent)
 
 
-```r
+``` r
 newCandy = data.frame(Hershey = c(18, 46),
            Mars = c(22, 37))
 rownames(newCandy) &lt;- c("Non-Chocolate", "Chocolate")
@@ -258,7 +260,7 @@ chi(1) = 1.17
 --
 
 
-```r
+``` r
 pchisq(q = 1.17, df = 1, lower.tail = F)
 ```
 
@@ -267,7 +269,7 @@ pchisq(q = 1.17, df = 1, lower.tail = F)
 ```
 
 
-```r
+``` r
 chisq.test(newCandy, correct = FALSE)
 ```
 
@@ -326,6 +328,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

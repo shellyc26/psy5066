@@ -4,9 +4,7 @@
     <title>Visualizing Data</title>
     <meta charset="utf-8" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -24,25 +22,15 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
 ![](images/twitterP.jpeg)
-
----
-
-## `ggplot2`
-
-- [Intro to `ggplot2`](introGgplot.pdf)
-
-- [Customization](customizationGgplot.pdf)
-
-- [Adding Stuff](multiPanelGgplot.pdf)
-
-- [Layers](layersGgplot.pdf)
 
 ---
 
 ## Recap
 
-- Goal of this week is to get you to stop and think about your plots *before* you make them. What are the kinds of things you should be considering? 
+- Goal is to get you to stop and think about your plots *before* you make them. What are the kinds of things you should be considering? 
 
 ---
 ## What is Data Viz?
@@ -102,7 +90,7 @@ If your PI asks you build a dashboard, think long and hard before committing.
 ---
 name: good
 
-## What makes a good figure?
+### What makes a good figure?
 
 - Clear, descriptive title
 
@@ -112,7 +100,7 @@ name: good
 - Scale is:
   - consistent across axis
   - easily interpreted
-  - chosen so that data are evenly distributed (remember restricted range from correlation?)
+  - chosen so that data are evenly distributed 
   
 - Data points are represented clearly, with a good key/legend
 
@@ -123,7 +111,7 @@ name: good
 
 There are no 100% right answers, but there are wrong ones...
 
-- Pie charts are never the answer; **3D pie charts are the worst of the worse**
+- **3D pie charts are the worst of the worse**
   - Instead, try stacked bar plot or even better, stacked dot plot
   
 - **3D bar plots are never the answer**
@@ -134,7 +122,7 @@ There are no 100% right answers, but there are wrong ones...
   - Shelly is skeptical of lines -- need to be careful
 
 ---
-## Why Bar Plots Can Suck
+
 
 .pull-left[
 ![](images/barplot1.png)
@@ -143,7 +131,7 @@ There are no 100% right answers, but there are wrong ones...
 .pull-right[
 ![](images/barplot2.png)
 
-- Different alternatives exist, with dot plots being the best option probably
+- Different alternatives exist, with dotplots being the best option probably
 
 - Bars are more appropriate when you have proportions or counts; but even still -- dotplots
 
@@ -184,8 +172,6 @@ name: avoid
 
 ## Things to avoid
 
-- Chartjunk
-
 - Misleading text/axes
 
 - Inaccurate plotting
@@ -194,37 +180,9 @@ name: avoid
 
 ---
 
-## Chartjunk
-
-.pull-left[
-![](images/clutter1.png)
-]
-
-.pull-right[
-![](images/clutter2.png)
-]
-
-???
-chartjunk is anything that gets in the way of reading the information displayed. this is stuff like unnecessary lines or grids behind the graph. patterns within the graph that might create the impression of movement or vibration like the diagonal lines. or something called DUCKS which are any dressings added to the graph that are distracting. like this weird monster or the clowns. it can be fancy fonts or 3d effects or again, anything that detracts from the data itself. 
-
----
-
 ## Misleading Text/Axes
 
 ![](images/covid1.png)
-
----
-## Inaccurate Plotting
-
-&lt;center&gt;
-&lt;img src="images/pickleball.jpg", width="70%"&gt;
-&lt;/center&gt;
---
-
-- Is it 21.7% of 6-17 year olds play pickleball? or is it 21.7% of pickeball players are 6-17 years old? No one over 24 years old is allowed to play?
-
-- 45.1% of pickeball players make over 100k? 45.1% of pickleball players are high income? Does no one play pickleball and make between $75k-99.9k?
-
 
 ---
 
@@ -291,7 +249,7 @@ When you have something side-by-side, you can have different colors. OR you can 
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = iris, aes(x = Species, y = Petal.Length)) +
   geom_boxplot(aes(fill = Species)) +
   scale_fill_manual(values = c("#0b2c0b",
@@ -303,7 +261,7 @@ ggplot(data = iris, aes(x = Species, y = Petal.Length)) +
 ]
 
 .pull-right[
-&lt;img src="dataViz_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="18-dataViz_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -391,7 +349,7 @@ How do you know if you've made a good figure?
 ---
 name: rules
 
-## Rules
+
 - Don't make a plot when a table will do
 - Represent data with appropriate significant figures
 - Use appropriate plot types for the data types

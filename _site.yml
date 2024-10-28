@@ -43,6 +43,10 @@ navbar:
         href: "lectures/16-two_means_I.html"
       - text: "17-Two Means II"
         href: "lectures/17-two_means_ke.pdf"
+      - text: "18-Data Viz"
+        href: "lectures/18-dataViz.html"
+      - text: "Exam 2 Review"
+        href: "lectures/exam2review.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -81,6 +85,10 @@ navbar:
         href: "lectures/16-two_means_I.pdf"
       - text: "17-Two Means II"
         href: "lectures/17-two_means_ke.pdf"
+      - text: "18-Data Viz"
+        href: "lectures/18-dataViz.pdf"
+      - text: "Exam 2 Review"
+        href: "lectures/exam2review.pdf"
     - text: Homework
       href: homework.html
   right:
