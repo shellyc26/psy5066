@@ -47,6 +47,8 @@ navbar:
         href: "lectures/18-dataViz.html"
       - text: "Exam 2 Review"
         href: "lectures/exam2review.html"
+      - text: "19-Model Comparisons"
+        href: "lectures/19-modelcomparison.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -89,6 +91,8 @@ navbar:
         href: "lectures/18-dataViz.pdf"
       - text: "Exam 2 Review"
         href: "lectures/exam2review.pdf"
+      - text: "19-Model Comparisons"
+        href: "lectures/19-modelcomparison.pdf"
     - text: Homework
       href: homework.html
   right:

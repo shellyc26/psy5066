@@ -3,7 +3,7 @@
   <head>
     <title>Model Comparison Approach</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -142,7 +142,7 @@ Let's break it down into **full** and **restricted** models:
 ## The Data
 
 
-```r
+``` r
 dems &lt;- data.frame(Dem = c(30, 69, 99, 77, 29, 37, 38, 37))
 dems
 ```
@@ -165,7 +165,7 @@ dems
 Step 1: Get the deviation scores. In the restricted model, we are subtracting from our population estimate of 53%. That is, 53% is our PREDICTION of the **restricted** model
 
 
-```r
+``` r
 dems$deviationScores &lt;- dems$Dem - 53
 dems
 ```
@@ -187,7 +187,7 @@ dems
 Step 2: Square the deviation scores
 
 
-```r
+``` r
 dems$dev2 &lt;- dems$deviationScores ^2
 dems
 ```
@@ -209,7 +209,7 @@ dems
 Step 3: Get the sum of the square deviation scores. This is our **ERROR** term. It is the squared errors. 
 
 
-```r
+``` r
 Er &lt;- sum(dems$dev2)
 dems
 ```
@@ -226,7 +226,7 @@ dems
 ## 8  37             -16  256
 ```
 
-```r
+``` r
 Er
 ```
 
@@ -243,7 +243,7 @@ Step 4: Determine the degrees of freedom.
 - In this restricted model, there is nothing that we are "guessing" or estimating. So there is nothing to subtract. `\(df = n\)`, **df = 8**
 
 
-```r
+``` r
 dfr &lt;- 8
 ```
 
@@ -253,7 +253,7 @@ dfr &lt;- 8
 Step 1: Get the deviation scores. In the full model, we are subtracting from our population estimate of 52%. That is, 52% is the PREDICTION of the **full** model.
 
 
-```r
+``` r
 demsFull = dems %&gt;% 
   select(Dem)
 
@@ -278,7 +278,7 @@ demsFull
 Step 2: Square the deviation scores
 
 
-```r
+``` r
 demsFull$dev2 &lt;- demsFull$deviationScores^2
 demsFull
 ```
@@ -300,7 +300,7 @@ demsFull
 Step 3: Get the sum of the square deviation scores. This is our **ERROR** term. It is the squared errors. 
 
 
-```r
+``` r
 Ef &lt;- sum(demsFull$dev2)
 demsFull
 ```
@@ -317,7 +317,7 @@ demsFull
 ## 8  37             -15  225
 ```
 
-```r
+``` r
 Ef
 ```
 
@@ -334,7 +334,7 @@ Step 4: Determine the degrees of freedom.
 - In this full model, we are guessing/estimating our sample mean of 52. `\(df = n-1\)`, **df = 8 - 1 = 7**
 
 
-```r
+``` r
 dff &lt;- 7
 ```
 
@@ -343,7 +343,7 @@ dff &lt;- 7
 `$$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$`
 
 
-```r
+``` r
 effect &lt;- ((Er - Ef) / (dfr - dff)) / (Ef/dff)
 effect
 ```
@@ -357,7 +357,7 @@ effect
 This is our `\(F\)`-statistic. `\(t^2 = F\)`. So to get our `\(t\)`-statistic, let's take the square root of our `effect`.
 
 
-```r
+``` r
 tstat &lt;- sqrt(effect)
 round(x = tstat, digits = 3)
 ```
@@ -382,7 +382,7 @@ Is 0.108 more extreme than our critical value?
 We just did a one-sample `\(t\)`-test! Let's verify our results:
 
 
-```r
+``` r
 t.test(x = dems$Dem, mu = 53)
 ```
 
@@ -414,7 +414,7 @@ name: indep
 
 
 
-```r
+``` r
 dems &lt;- data.frame(Dem = c(30, 69, 99, 77, 29, 37, 38, 37,
                            30, 62, 50, 69, 27, 29, 44, 45),
                    Year = c(rep("2016", times = 8),
@@ -465,7 +465,7 @@ dems
 Let's get the grand mean to use in our Restricted model and the means of each group (% Dem in 2010 vs. % Dem in 2016):
 
 
-```r
+``` r
 grandMean &lt;- mean(dems$Dem)
 
 groupMeans &lt;- dems %&gt;% 
@@ -479,7 +479,7 @@ grandMean
 ## [1] 48.25
 ```
 
-```r
+``` r
 groupMeans
 ```
 
@@ -496,7 +496,7 @@ groupMeans
 ## The Restricted Model
 
 
-```r
+``` r
 dems$Mean &lt;- rep(grandMean, times = nrow(dems))
 dems
 ```
@@ -527,7 +527,7 @@ dems
 Step 1: Deviation Scores
 
 
-```r
+``` r
 dems$deviationScores &lt;- dems$Dem - dems$Mean
 dems
 ```
@@ -558,7 +558,7 @@ dems
 Step 2: Square Deviation Scores
 
 
-```r
+``` r
 dems$dev2 &lt;- dems$deviationScores ^2
 dems
 ```
@@ -591,7 +591,7 @@ Step 3: Sum of Squares -- our **ERROR** term
 .pull-left[
 .code-small[
 
-```r
+``` r
 Er &lt;- sum(dems$dev2)
 dems
 ```
@@ -621,7 +621,7 @@ dems
 .pull-right[
 .code-small[
 
-```r
+``` r
 Er
 ```
 
@@ -641,7 +641,7 @@ Step 4: Determine the degrees of freedom.
 - In this restricted model, we are guessing/estimating our grand mean of 48.25. `\(df = n-1\)`, **df = 16 - 1 = 15**
 
 
-```r
+``` r
 dfr &lt;- 15
 ```
 
@@ -650,7 +650,7 @@ dfr &lt;- 15
 ## The Full Model
 
 
-```r
+``` r
 dems &lt;- data.frame(Dem = c(30, 69, 99, 77, 29, 37, 38, 37,
                            30, 62, 50, 69, 27, 29, 44, 45),
                    Year = c(rep("2016", times = 8),
@@ -689,7 +689,7 @@ dems
 Step 1: Deviation Scores
 
 
-```r
+``` r
 dems$deviationScores &lt;- dems$Dem - dems$Mean
 dems
 ```
@@ -720,7 +720,7 @@ dems
 Step 2: Square Deviation Scores
 
 
-```r
+``` r
 dems$dev2 &lt;- dems$deviationScores ^2
 dems
 ```
@@ -753,7 +753,7 @@ Step 3: Sum of Squares -- our **ERROR** term
 .pull-left[
 .code-small[
 
-```r
+``` r
 Ef &lt;- sum(dems$dev2)
 dems
 ```
@@ -783,7 +783,7 @@ dems
 .pull-right[
 .code-small[
 
-```r
+``` r
 Ef
 ```
 
@@ -802,7 +802,7 @@ Step 4: Determine the degrees of freedom.
 - In this full model, we are guessing/estimating our 2 means (mean for 2010 and mean for 2016). `\(df = n-2\)`, **df = 16 - 2 = 14**
 
 
-```r
+``` r
 dff &lt;- 14
 ```
 
@@ -811,7 +811,7 @@ dff &lt;- 14
 `$$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$`
 
 
-```r
+``` r
 effect &lt;- ((Er - Ef) / (dfr - dff)) / (Ef/dff)
 effect
 ```
@@ -825,7 +825,7 @@ effect
 This is our `\(F\)`-statistic. Remember that `\(t^2 = F\)`. So to get our `\(t\)`-statistic, let's take the square root of our `effect`.
 
 
-```r
+``` r
 tstat &lt;- sqrt(effect)
 round(x = tstat, digits = 3)
 ```
@@ -850,7 +850,7 @@ Is 0.697 more extreme than our critical value?
 We just did an independent-samples `\(t\)`-test! Let's verify our results:
 
 
-```r
+``` r
 t.test(dems$Dem ~ dems$Year)
 ```
 
@@ -934,7 +934,7 @@ name: aov
 ## Reorder the data for teaching purposes
 
 
-```r
+``` r
 iris_sorted = iris %&gt;% 
   group_by(Sepal.Length, Species) %&gt;% 
   arrange(Sepal.Length)
@@ -960,7 +960,7 @@ iris_sorted = iris %&gt;%
 Let's get the grand mean to use in our Restricted model and the means of each group:
 
 
-```r
+``` r
 grandMean &lt;- mean(iris$Sepal.Length)
 
 groupMeans &lt;- iris %&gt;% 
@@ -974,7 +974,7 @@ grandMean
 ## [1] 5.843333
 ```
 
-```r
+``` r
 groupMeans
 ```
 
@@ -1082,7 +1082,7 @@ Step 2: Square Deviation Scores
 Step 3: Sum of Squares -- our **ERROR** term
 
 
-```r
+``` r
 Er &lt;- sum(restricted$dev2)
 Er
 ```
@@ -1100,7 +1100,7 @@ Step 4: Determine the degrees of freedom.
 - In this restricted model, we are guessing/estimating our grand mean of 5.843. `\(df = n-1\)`, **df = 150 - 1 = 149**
 
 
-```r
+``` r
 dfr &lt;- 149
 ```
 
@@ -1200,7 +1200,7 @@ Step 2: Square Deviation Scores
 Step 3: Sum of Squares -- our **ERROR** term
 
 
-```r
+``` r
 Ef &lt;- sum(full$dev2)
 Ef
 ```
@@ -1218,7 +1218,7 @@ Step 4: Determine the degrees of freedom.
 - In this full model, we are guessing/estimating our 3 means (mean for each species). `\(df = n-3\)`, **df = 150 - 3 = 147**
 
 
-```r
+``` r
 dff &lt;- 147
 ```
 
@@ -1227,7 +1227,7 @@ dff &lt;- 147
 `$$\frac{(E_r - E_f) / (df_r - df_f)}{E_f/df_f}$$`
 
 
-```r
+``` r
 effect &lt;- ((Er - Ef) / (dfr - dff)) / (Ef/dff)
 effect
 ```
@@ -1241,7 +1241,7 @@ effect
 This is our `\(F\)`-statistic. This is an ANOVA, so we can stick with the `\(F\)`-statistic. (back to this in a sec)
 
 
-```r
+``` r
 round(x = effect, digits = 3)
 ```
 
@@ -1265,7 +1265,7 @@ Is 119.265 more extreme than our critical value?
 We just did a oneway ANOVA! Let's verify our results:
 
 
-```r
+``` r
 summary(aov(Sepal.Length ~ Species, data = iris))
 ```
 
