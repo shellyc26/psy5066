@@ -23,24 +23,6 @@ library(knitr)
 colors = RColorBrewer::brewer.pal(4, "Set2")
 ```
 
-## Announcements
-- We will first grade Exam 2, then grade HW 3.
-
---
-
-- I am going to modify the HW due dates a bit so stay tuned
-
---
-
-- Exam 3:
-  - Heavily weighted to newer material
-  - Older material covered would be things like, define a p-value, confidence intervals, and what types of tests would you use for different research questions. I will NOT make you re-calculate specific tests. 
-  
---
-
-- **Merve is teaching on Thursday 11/9**
-
----
 ## Recap
 
 * We've compared a lot of means:
@@ -191,7 +173,7 @@ dfr <- 8
 ---
 
 ## The Full Model
-Step 1: Get the deviation scores. In the full model, we are subtracting from our population estimate of 52%. That is, 52% is the PREDICTION of the **full** model.
+Step 1: Get the deviation scores. In the full model, we are subtracting from our sample estimate of 52%. That is, 52% is the PREDICTION of the **full** model.
 
 ```{r}
 demsFull = dems %>% 
