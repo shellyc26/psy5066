@@ -23,7 +23,8 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Due on **10/31 by 9:30am**
 
 ## Homework 4
-- Due on **11/14 by 11:59pm**
+- [Homework 4 can be found here](homework/Homework-4-2024.html)
+- Due on **11/24 by 11:59pm**
 
 ## Homework 5
 - Due on **12/3 by 11:59pm**

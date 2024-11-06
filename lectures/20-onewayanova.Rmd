@@ -3,12 +3,18 @@ title: 'Oneway ANOVA'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, rladies-fonts, "my-theme.css"]
+    css: ["xaringan-themer.css", "my-theme.css"]
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#17139C",link_color = "#DD3E3E")
+
+```
 
 ```{r packagesAndData, warning=FALSE, include=FALSE}
 library(tidyverse)
@@ -22,10 +28,14 @@ library(kableExtra)
 Model comparison approach
   - Restricted/Full is the embodiment of the Null/Alternative
   - Why are we doing this?
---  
-    - The right balance between simplicity and complexity — parsimony
-    - Full model will have a smaller (or equal) error than Restricted model, but it will also have a smaller degrees of freedom.
-    - We are essentially asking whether the increase in explained variance is "worth" the loss of degrees of freedom.
+
+--
+
+## Why are we doing this? 
+
+  - The right balance between simplicity and complexity — parsimony
+  - Full model will have a smaller (or equal) error than Restricted model, but it will also have a smaller degrees of freedom.
+  - We are essentially asking whether the increase in explained variance is "worth" the loss of degrees of freedom.
   
 ---
 
@@ -57,7 +67,7 @@ Composite Rating
 ---
 
 
-## CDR - Clinical Dementia Rating
+### CDR - Clinical Dementia Rating
 
 Assesses performance in 6 areas: memory, orientation, judgement & problem solving, community affairs, home & hobbies, and personal care. 
 
@@ -91,7 +101,7 @@ kable(cdr)
 
 ---
 
-## The data in long format
+### The data in long format
 
 .pull-left[
 ```{r}
@@ -114,7 +124,7 @@ cdrLong %>%
 
 ---
 
-## Means
+### Means
 
 ```{r}
 grandMean = mean(cdrLong$AnxietyScores)
@@ -143,7 +153,7 @@ cdrLong %>%
 
 ---
 
-## Restricted Model
+### Restricted Model
 
 ```{r echo=FALSE}
 cdrLong$restrictedDev = cdrLong$AnxietyScores - cdrLong$grandMean
@@ -158,7 +168,7 @@ Er
 .small[We used **_grand mean_** for the restricted model.]
 ---
 
-## Restricted Model
+### Restricted Model
 
 Degrees of freedom = $n - 1$
 
@@ -183,7 +193,7 @@ cdrLong %>%
 
 ---
 
-## Full Model
+### Full Model
 
 ```{r echo=FALSE}
 cdrLong$fullDev = cdrLong$AnxietyScores - cdrLong$groupMeans
@@ -198,7 +208,7 @@ Ef
 .small[We used individual **_group means_** for the full model.]
 ---
 
-## Full Model
+### Full Model
 
 Degrees of freedom = $n - 3$
 
@@ -211,7 +221,7 @@ dff
 
 ---
 
-## Wrapping it up!
+### Wrapping it up!
 
 $$ F = \frac{(1343.333-420)/(14-12)}{420/12} \\
 F = \frac{461.667}{35} \\
@@ -221,7 +231,7 @@ Critical value is 3.885
 
 ---
 
-## Tricks are for kids
+### Tricks are for kids
 
 - $E_R$ = squared deviations from the grand mean
 - $E_F$ = squared deviations from the group means
@@ -229,12 +239,12 @@ Critical value is 3.885
 
 ---
 
-## Tricks are for kids
+### Tricks are for kids
 
 
 
 $$ E_R - E_F = n \times \Sigma ( \text{Grand Mean - Group Mean})^2 $$
-$$ E_R - E_F = 5 \times ((32- 42.333)^2 + (44-42.333)^2 + (51-42.333)^2) $$
+$$  = 5 \times ((32- 42.333)^2 + (44-42.333)^2 + (51-42.333)^2) $$
 $$ E_R - E_F = 5 \times (106.778 + 2.778 + 75.111) $$ 
 $$ E_R - E_F = 923.333 $$
 ```{r}
@@ -243,7 +253,7 @@ Er - Ef
 
 ---
 
-## ANOVA Formula
+### ANOVA Formula
 
 .pull-left[
 $$ F = \frac{(E_R - E_F) / (df_R - df_F)}{E_F/df_F} $$
@@ -260,27 +270,25 @@ $$F = \frac{SS_B/df_\text{numerator}}{SS_W/df_\text{denominator}}$$
 
 ---
 
-## Er - Ef
+### Er - Ef
 
 - Sum of square deviations from the grand mean *minus* sum of squared deviations from the group mean
 - $E_R - E_F = n \times \Sigma ( \text{Grand Mean - Group Mean})^2$
 - Sum of squared deviations **_between_** groups
-
 - **_How different each group is from other groups?_**
 
 --
 
-## Ef
+### Ef
 
 - Sum of squared deviations from the group mean
 - Errors reflect how much an individual deviates from the group
 - Sum of squared deviations **_within_** groups
-
 - **_How different each individual is from their own group?_**
 
 ---
 
-## ANOVA Formula
+### ANOVA Formula
 
 .pull-left[
 
@@ -294,7 +302,7 @@ $$F = \frac{MS_B}{MS_W}$$
 
 ---
 
-## ANOVA Table or Source Table
+### ANOVA Table or Source Table
 
 ```{r}
 summary(aov(AnxietyScores ~ ImpairmentType, data = cdrLong))
@@ -317,7 +325,7 @@ The ratio of SS between (signal) with the SS within (noise)
 
 ---
 
-## Analysis of "Variance"
+### Analysis of "Variance"
 
 Total variability associated with the outcome variable (SStot) can be divided into “the variation due to the differences in the sample means for the different groups” (SSb) plus “all the rest of the variation” (SSw).
 
@@ -333,7 +341,7 @@ Note that the cut-off point will depend on the dfs.
 
 ---
 
-## Eta Squared 
+### Eta Squared 
 
 $$\eta^2 = \frac{SS_B}{SS_\text{Total}}$$
 
@@ -348,7 +356,7 @@ If you take the square root of $\eta^2$, it can be interpreted as if it referred
 
 ---
 
-## Proportionate Reduction in Error (PRE)
+### Proportionate Reduction in Error (PRE)
 
 To what extent does the full model reduce the errors made? 
 
@@ -360,12 +368,12 @@ $$PRE = \frac{E_R - E_F}{E_R}$$
 
 ---
 
-## Assumptions, assumptions
+### Assumptions, assumptions
 
 The following should hold in order to assume that your observed $F$ maps on to the population distribution for $F$:
 
 1. Normally distributed scores
-2. Equal variances
+2. Equal variances (homogeneity)
 3. Scores should be independent
 
 --
@@ -374,17 +382,17 @@ What happens when your $n$ is unequal? Or your variances are not equal?
 
 ---
 
-## Assumptions, assumptions
+### Assumptions, assumptions
 
 If you have unequal $n$, we need to use a slightly different formula for $E_F$
 
 - $E_F$ reflects deviations from the group mean
-- $\Sigma(\text{Sum of the squared deviations X sample size for the group})$
+- $\Sigma(\text{SS X sample size for the group})$
 - Weight the sum of squares by the group size
 
 ---
 
-## When is the *F* test robust? 
+### When is the *F* test robust? 
 
 ```{r echo=FALSE}
 f = data.frame(c("Appropriate", "Good, unless there's a very large difference"),
@@ -397,21 +405,24 @@ kable(f)
 
 ---
 
-## When is the *F* test robust? 
+### When is the *F* test robust? 
 
 - If you have large samples with very large variances, considered a *conservative* test
- 
+
   A conservative test tends to reduce the chance of a Type I error (rejection of a true null hypothesis) at the cost of increasing the risk of a Type II error.
   
 - If you have large samples with very small variances, considered a *liberal* test
 
   A liberal test tends to increase the chance of a Type I error but reduces the chance of a Type II error.
   
-- Large variances make it harder to detect true differences (more conservative).
-- Small variances make it easier to detect differences, including those that might not be meaningful (more liberal).
+- Large variances make it harder to detect true differences (more conservative). Small variances make it easier to detect differences, including those that might not be meaningful (more liberal).
 
 ---
 
+### You try!
+ - Complete the first question in HW 4 
+ 
+---
 class: inverse
 
 ## Next time

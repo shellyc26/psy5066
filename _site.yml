@@ -49,6 +49,8 @@ navbar:
         href: "lectures/exam2review.html"
       - text: "19-Model Comparisons"
         href: "lectures/19-modelcomparison.html"
+      - text: "20-Oneway ANOVA"
+        href: "lectures/20-onewayanova.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -93,6 +95,8 @@ navbar:
         href: "lectures/exam2review.pdf"
       - text: "19-Model Comparisons"
         href: "lectures/19-modelcomparison.pdf"
+      - text: "20-Oneway ANOVA"
+        href: "lectures/20-onewayanova.pdf"
     - text: Homework
       href: homework.html
   right:

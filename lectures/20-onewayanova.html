@@ -3,12 +3,10 @@
   <head>
     <title>Oneway ANOVA</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -25,15 +23,21 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
 ## Recap
 
 Model comparison approach
   - Restricted/Full is the embodiment of the Null/Alternative
   - Why are we doing this?
---  
-    - The right balance between simplicity and complexity — parsimony
-    - Full model will have a smaller (or equal) error than Restricted model, but it will also have a smaller degrees of freedom.
-    - We are essentially asking whether the increase in explained variance is "worth" the loss of degrees of freedom.
+
+--
+
+## Why are we doing this? 
+
+  - The right balance between simplicity and complexity — parsimony
+  - Full model will have a smaller (or equal) error than Restricted model, but it will also have a smaller degrees of freedom.
+  - We are essentially asking whether the increase in explained variance is "worth" the loss of degrees of freedom.
   
 ---
 
@@ -65,7 +69,7 @@ Composite Rating
 ---
 
 
-## CDR - Clinical Dementia Rating
+### CDR - Clinical Dementia Rating
 
 Assesses performance in 6 areas: memory, orientation, judgement &amp; problem solving, community affairs, home &amp; hobbies, and personal care. 
 
@@ -89,50 +93,22 @@ We want to know if participants' anxiety scores are different for each of these 
 
 Participant Anxiety Scores (20-80) for each of the groups:
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; NoImpairment &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; VeryMildImpairment &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; MildImpairment &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| NoImpairment| VeryMildImpairment| MildImpairment|
+|------------:|------------------:|--------------:|
+|           30|                 35|             45|
+|           35|                 40|             55|
+|           30|                 45|             55|
+|           25|                 45|             50|
+|           40|                 55|             50|
 
 ---
 
-## The data in long format
+### The data in long format
 
 .pull-left[
 
-```r
+``` r
 cdrLong = cdr %&gt;% 
   pivot_longer(cols = 1:3,
                names_to = "ImpairmentType",
@@ -217,10 +193,10 @@ cdrLong = cdr %&gt;%
 
 ---
 
-## Means
+### Means
 
 
-```r
+``` r
 grandMean = mean(cdrLong$AnxietyScores)
 grandMean
 ```
@@ -229,7 +205,7 @@ grandMean
 ## [1] 42.33333
 ```
 
-```r
+``` r
 meansCdr =  cdrLong %&gt;% 
   group_by(ImpairmentType) %&gt;% 
   summarize(meanAnxiety = mean(AnxietyScores))
@@ -245,7 +221,7 @@ meansCdr
 ## 3 VeryMildImpairment          44
 ```
 
-```r
+``` r
 ## create a new column repeating the correct means
 
 cdrLong$grandMean = rep(grandMean, times = nrow(cdrLong))
@@ -361,7 +337,7 @@ cdrLong$groupMeans = c(rep(meansCdr$meanAnxiety[1], times = 5),
 
 ---
 
-## Restricted Model
+### Restricted Model
 
 &lt;table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -505,14 +481,14 @@ cdrLong$groupMeans = c(rep(meansCdr$meanAnxiety[1], times = 5),
 .small[We used **_grand mean_** for the restricted model.]
 ---
 
-## Restricted Model
+### Restricted Model
 
 Degrees of freedom = `\(n - 1\)`
 
 We had to estimate the overall grand mean
 
 
-```r
+``` r
 dfr = nrow(cdrLong) - 1
 dfr
 ```
@@ -629,7 +605,7 @@ dfr
 
 ---
 
-## Full Model
+### Full Model
 
 &lt;table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -773,14 +749,14 @@ dfr
 .small[We used individual **_group means_** for the full model.]
 ---
 
-## Full Model
+### Full Model
 
 Degrees of freedom = `\(n - 3\)`
 
 We had to estimate 3 things; each of the group means
 
 
-```r
+``` r
 dff = nrow(cdrLong) - 3
 dff
 ```
@@ -791,7 +767,7 @@ dff
 
 ---
 
-## Wrapping it up!
+### Wrapping it up!
 
 $$ F = \frac{(1343.333-420)/(14-12)}{420/12} \\
 F = \frac{461.667}{35} \\
@@ -801,7 +777,7 @@ Critical value is 3.885
 
 ---
 
-## Tricks are for kids
+### Tricks are for kids
 
 - `\(E_R\)` = squared deviations from the grand mean
 - `\(E_F\)` = squared deviations from the group means
@@ -809,16 +785,16 @@ Critical value is 3.885
 
 ---
 
-## Tricks are for kids
+### Tricks are for kids
 
 
 
 $$ E_R - E_F = n \times \Sigma ( \text{Grand Mean - Group Mean})^2 $$
-$$ E_R - E_F = 5 \times ((32- 42.333)^2 + (44-42.333)^2 + (51-42.333)^2) $$
+$$  = 5 \times ((32- 42.333)^2 + (44-42.333)^2 + (51-42.333)^2) $$
 $$ E_R - E_F = 5 \times (106.778 + 2.778 + 75.111) $$ 
 $$ E_R - E_F = 923.333 $$
 
-```r
+``` r
 Er - Ef
 ```
 
@@ -828,7 +804,7 @@ Er - Ef
 
 ---
 
-## ANOVA Formula
+### ANOVA Formula
 
 .pull-left[
 $$ F = \frac{(E_R - E_F) / (df_R - df_F)}{E_F/df_F} $$
@@ -845,27 +821,25 @@ $$ F = \frac{923.333/2}{420/12} $$
 
 ---
 
-## Er - Ef
+### Er - Ef
 
 - Sum of square deviations from the grand mean *minus* sum of squared deviations from the group mean
 - `\(E_R - E_F = n \times \Sigma ( \text{Grand Mean - Group Mean})^2\)`
 - Sum of squared deviations **_between_** groups
-
 - **_How different each group is from other groups?_**
 
 --
 
-## Ef
+### Ef
 
 - Sum of squared deviations from the group mean
 - Errors reflect how much an individual deviates from the group
 - Sum of squared deviations **_within_** groups
-
 - **_How different each individual is from their own group?_**
 
 ---
 
-## ANOVA Formula
+### ANOVA Formula
 
 .pull-left[
 
@@ -879,10 +853,10 @@ $$ F = \frac{923.333/2}{420/12} $$
 
 ---
 
-## ANOVA Table or Source Table
+### ANOVA Table or Source Table
 
 
-```r
+``` r
 summary(aov(AnxietyScores ~ ImpairmentType, data = cdrLong))
 ```
 
@@ -894,7 +868,7 @@ summary(aov(AnxietyScores ~ ImpairmentType, data = cdrLong))
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-```r
+``` r
 2 + 12
 ```
 
@@ -902,7 +876,7 @@ summary(aov(AnxietyScores ~ ImpairmentType, data = cdrLong))
 ## [1] 14
 ```
 
-```r
+``` r
 923.333 + 420
 ```
 
@@ -923,7 +897,7 @@ The ratio of SS between (signal) with the SS within (noise)
 
 ---
 
-## Analysis of "Variance"
+### Analysis of "Variance"
 
 Total variability associated with the outcome variable (SStot) can be divided into “the variation due to the differences in the sample means for the different groups” (SSb) plus “all the rest of the variation” (SSw).
 
@@ -939,7 +913,7 @@ Note that the cut-off point will depend on the dfs.
 
 ---
 
-## Eta Squared 
+### Eta Squared 
 
 `$$\eta^2 = \frac{SS_B}{SS_\text{Total}}$$`
 
@@ -954,7 +928,7 @@ If you take the square root of `\(\eta^2\)`, it can be interpreted as if it refe
 
 ---
 
-## Proportionate Reduction in Error (PRE)
+### Proportionate Reduction in Error (PRE)
 
 To what extent does the full model reduce the errors made? 
 
@@ -966,12 +940,12 @@ To what extent does the full model reduce the errors made?
 
 ---
 
-## Assumptions, assumptions
+### Assumptions, assumptions
 
 The following should hold in order to assume that your observed `\(F\)` maps on to the population distribution for `\(F\)`:
 
 1. Normally distributed scores
-2. Equal variances
+2. Equal variances (homogeneity)
 3. Scores should be independent
 
 --
@@ -980,57 +954,44 @@ What happens when your `\(n\)` is unequal? Or your variances are not equal?
 
 ---
 
-## Assumptions, assumptions
+### Assumptions, assumptions
 
 If you have unequal `\(n\)`, we need to use a slightly different formula for `\(E_F\)`
 
 - `\(E_F\)` reflects deviations from the group mean
-- `\(\Sigma(\text{Sum of the squared deviations X sample size for the group})\)`
+- `\(\Sigma(\text{SS X sample size for the group})\)`
 - Weight the sum of squares by the group size
 
 ---
 
-## When is the *F* test robust? 
+### When is the *F* test robust? 
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Equal Sample Sizes &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Unequal Sample Sizes &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Equal Variances &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Appropriate &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Appropriate &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Unequal Variances &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Good, unless there's a very large difference &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ??? &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|                  |Equal Sample Sizes                           |Unequal Sample Sizes |
+|:-----------------|:--------------------------------------------|:--------------------|
+|Equal Variances   |Appropriate                                  |Appropriate          |
+|Unequal Variances |Good, unless there's a very large difference |???                  |
 
 ---
 
-## When is the *F* test robust? 
+### When is the *F* test robust? 
 
 - If you have large samples with very large variances, considered a *conservative* test
- 
+
   A conservative test tends to reduce the chance of a Type I error (rejection of a true null hypothesis) at the cost of increasing the risk of a Type II error.
   
 - If you have large samples with very small variances, considered a *liberal* test
 
   A liberal test tends to increase the chance of a Type I error but reduces the chance of a Type II error.
   
-- Large variances make it harder to detect true differences (more conservative).
-- Small variances make it easier to detect differences, including those that might not be meaningful (more liberal).
+- Large variances make it harder to detect true differences (more conservative). Small variances make it easier to detect differences, including those that might not be meaningful (more liberal).
 
 ---
 
+### You try!
+ - Complete the first question in HW 4 
+ 
+---
 class: inverse
 
 ## Next time

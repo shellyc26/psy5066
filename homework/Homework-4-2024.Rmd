@@ -60,11 +60,4 @@ Your colleague approaches you saying they are running a 3x5 between-groups ANOVA
 - How many post-hoc tests will there be?
 - The omnibus test uses an alpha of .05. To correct for multiple comparisons, you suggest to your colleague that they use the Bonferonni correction. What will their new alpha be, and why? What does this mean, practically, for your colleague running the analysis?
 
-# Question 5
 
-Briefly describe a project that you are currently working on (just enough so that we know what you're talking about in your answers below):
-
-- How are you operationalizing your constructs? 
-- Rank order the validities in terms of which you care most about for this particular project, and tell us why you care about it the most. There is no inherent right answer here -- justify your preference for this particular study.
-- For whichever validity you prioritize the most (ranked 1st), describe at least 2 ways this validity is threatened. What steps are you taking in your own work to combat these threats?
- 
