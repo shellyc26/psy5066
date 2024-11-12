@@ -3,7 +3,7 @@
   <head>
     <title>Comparisons and Contrasts</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -106,7 +106,7 @@ FWER for 6 tests with an `\(\alpha = .05\)`:
 
 ---
 
-## You can't choose your family. Kinda.
+### You can't choose your family. Kinda.
 
 What is the family? Is it:
 
@@ -189,7 +189,6 @@ If *a priori* (aka planned ahead):
 
 What if you really don't know the outcome? Post-hoc tests!
 - Tukey
-- Scheffe
 
 ---
 
@@ -206,7 +205,7 @@ class: inverse, center, middle
 **Pairwise**:
 
 - Is Christian Bale ranked higher than Adam West?
-- Is Ben Affleck ranked lowest of all the Batmen?
+- Is Ben Affleck ranked lower than Adam West?
 ]
 
 .pull-right[
@@ -282,7 +281,7 @@ What issues might present with the Bonferonni correction for multiple comparison
 
 `\(\text{Mean 1 - Mean 2} = q\sqrt{\frac{\text{MS Within}}{\text{N per group}}}\)`
 
-- MS within = .8, N per group = .5, q = 4.05 (you get this from a table based on your df and number of groups; or I give it to you)
+- MS within = .8, N per group = 5, q = 4.05 (you get this from a table based on your df and number of groups; or I give it to you)
 
 - Mean 1 - Mean 2 = 1.62
 
@@ -307,7 +306,7 @@ Comparing Adam West to Michael Keaton, 3 - 2.6 = .4 (not sig)
 
 ... the rest are not significant
 
----
+???
 
 ## When all else fails
 
@@ -371,7 +370,7 @@ Means:
 
 ---
 
-## Calculating the F
+### Calculating the F
 
 - Mean square error within is .8 (go back to omnibus test)
 - `\(\psi = -0.6\)`
