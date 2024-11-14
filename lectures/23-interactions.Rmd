@@ -54,7 +54,7 @@ Here are our data...
 
 .pull-left[
 
-$H_{0.1}$ : The two age groups perform similarly
+$H_{0.1}$ : The two age groups perform similarly, regardless of how hard the math problem is
 
 
 $H_{0.1}: \mu_8 = \mu_9$
@@ -63,7 +63,7 @@ $H_{0.1}: \mu_8 = \mu_9$
 
 .pull-right[
 
-$H_{0.2}$ : Children perform similarly on normal and tricky math problems
+$H_{0.2}$ : Children perform similarly on normal and tricky math problems, regardless of how old the kids are
 
 
 $H_{0.2}: \mu_{\text{normal}} = \mu_{\text{tricky}}$
@@ -79,13 +79,17 @@ $H_{0.2}: \mu_{\text{normal}} = \mu_{\text{tricky}}$
 
 ## Adding a 3rd Null Hypothesis
 
-$H_{0.3}$ : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+$H_{0.3}$ : *Differential performance from age group is independent of problem type*
 
 $H_{0.3}$ : *Differential performance on problem types is independent of age group*
 
 --
 
 `r emo::ji("point_up")` These are the same! They are symmetric.
+
+--
+
+They are factors are NOT dependent on one another. 
 
 ---
 
@@ -163,7 +167,7 @@ How many means did we calculate?
 --
 
 \begin{equation}
-AB(n-1) \\
+AP(n-1) \\
 2 \times 2 (4-1) \\
 4 \times3 \\
 12
@@ -235,7 +239,7 @@ $SS_{Age} = E_R - E_F$
 ---
 ## Calculating the Interaction ( $SS_{AxP}$ )
 
-$H_{0.3}$ : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+$H_{0.3}$ : *Differential performance from age group is independent of problem type*
 
 $H_{0.3}$ : *Differential performance on problem types is independent of age group*
 
@@ -413,7 +417,7 @@ Hard to compare across studies bc dependent on study's total variance.
 
 ---
 
-## Partial eta-squared
+### Partial eta-squared
 $\eta_p^2 = \frac{SS_{Effect}}{SS_{Effect} + SS_{Error}}$
 
 .pull-left[

@@ -3,7 +3,7 @@
   <head>
     <title>Two Between-Subjects Factors with Interactions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -50,7 +50,7 @@ Here are our data...
 
 .pull-left[
 
-`\(H_{0.1}\)` : The two age groups perform similarly
+`\(H_{0.1}\)` : The two age groups perform similarly, regardless of how hard the math problem is
 
 
 `\(H_{0.1}: \mu_8 = \mu_9\)`
@@ -59,7 +59,7 @@ Here are our data...
 
 .pull-right[
 
-`\(H_{0.2}\)` : Children perform similarly on normal and tricky math problems
+`\(H_{0.2}\)` : Children perform similarly on normal and tricky math problems, regardless of how old the kids are
 
 
 `\(H_{0.2}: \mu_{\text{normal}} = \mu_{\text{tricky}}\)`
@@ -75,13 +75,17 @@ Here are our data...
 
 ## Adding a 3rd Null Hypothesis
 
-`\(H_{0.3}\)` : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+`\(H_{0.3}\)` : *Differential performance from age group is independent of problem type*
 
 `\(H_{0.3}\)` : *Differential performance on problem types is independent of age group*
 
 --
 
 ☝️ These are the same! They are symmetric.
+
+--
+
+They are factors are NOT dependent on one another. 
 
 ---
 
@@ -159,7 +163,7 @@ How many means did we calculate?
 --
 
 `\begin{equation}
-AB(n-1) \\
+AP(n-1) \\
 2 \times 2 (4-1) \\
 4 \times3 \\
 12
@@ -210,7 +214,7 @@ AB(n-1) \\
 `\(SS_{Age} = E_R - E_F\)`
 
 
-```r
+``` r
 35.75 - 31.75
 ```
 
@@ -236,7 +240,7 @@ AB(n-1) \\
 ---
 ## Calculating the Interaction ( `\(SS_{AxP}\)` )
 
-`\(H_{0.3}\)` : *The differences between age groups are the same regardless of problem type (tricky or normal)*
+`\(H_{0.3}\)` : *Differential performance from age group is independent of problem type*
 
 `\(H_{0.3}\)` : *Differential performance on problem types is independent of age group*
 
@@ -359,7 +363,7 @@ So from the full model perspective, the best guess for observation is...
 ![](images/finaltable3.png)
 
 
-```r
+``` r
 qf(p = .05, df1 = 1, df2 = 12, lower.tail = FALSE)
 ```
 
@@ -419,7 +423,7 @@ Hard to compare across studies bc dependent on study's total variance.
 
 ---
 
-## Partial eta-squared
+### Partial eta-squared
 `\(\eta_p^2 = \frac{SS_{Effect}}{SS_{Effect} + SS_{Error}}\)`
 
 .pull-left[
@@ -440,7 +444,7 @@ Same rules of thumb for `\(\eta^2\)`; calculations differ when sample sizes are 
 ## In `R`
 
 
-```r
+``` r
 library(here)
 mathproblem = read.csv(here("data/mathproblem.csv"))
 mathproblem
@@ -471,7 +475,7 @@ mathproblem
 ## In `R` - No Interaction
 
 
-```r
+``` r
 summary(aov(Score ~ Age + Problem, data = mathproblem))
 ```
 
@@ -481,8 +485,7 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## Problem      1 20.782  20.782  42.939 2.72e-05 ***
 ## Residuals   12  5.808   0.484                     
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 --
@@ -494,7 +497,7 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## In `R` - No Interaction
 
 
-```r
+``` r
 mathproblem[2,2] &lt;- "Eight"
 mathproblem$Age &lt;- factor(mathproblem$Age)
 mathproblem$Problem &lt;- factor(mathproblem$Problem)
@@ -508,8 +511,7 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## Problem      1  25.00  25.000  48.148 1.02e-05 ***
 ## Residuals   13   6.75   0.519                     
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ---
@@ -517,7 +519,7 @@ summary(aov(Score ~ Age + Problem, data = mathproblem))
 ## In `R` - With Interaction
 
 
-```r
+``` r
 summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
 ```
 
@@ -528,11 +530,10 @@ summary(aov(Score ~ Age + Problem + Age*Problem, data = mathproblem))
 ## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
 ## Residuals   12   4.50   0.375                     
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-```r
+``` r
 summary(aov(Score ~ Age * Problem, data = mathproblem))
 ```
 
@@ -543,15 +544,14 @@ summary(aov(Score ~ Age * Problem, data = mathproblem))
 ## Age:Problem  1   2.25   2.250    6.00  0.03062 *  
 ## Residuals   12   4.50   0.375                     
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ---
 
 ## Plotting
 
-![](22-interactions_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](23-interactions_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 

@@ -49,7 +49,7 @@ name: one
 
 ## Nomenclature
 
-![an image caption Source: gnomes.](21-btwn_subj_fctr_lecture_files/figure-html/gardengnome.jpg)
+![](22-btwn_subj_fctr_lecture_files/figure-html/gardengnome.jpg)
 
 ---
 
@@ -86,9 +86,9 @@ xtabs(~ grade + doublet, data)
 ---
 ## Null Hypothesis for "Main Effects" 
 
-$H_{0.1}$: Main effect of grade: The two age groups perform similarly
+$H_{0.1}$: Main effect of grade: The two grade groups perform similarly, regardless of doublet type.
 
-$H_{0.2}$: Main effect of doublet legality: Children perform similarly with allowed and unallowed doublets
+$H_{0.2}$: Main effect of doublet legality: Children perform similarly with allowed and unallowed doublets, regardless of what grade they are in.
 
 --
 
@@ -126,23 +126,21 @@ $H_{0.2}$: $\bar{x}_{allowed} = \bar{x}_{unallowed}$
 
 ## F Table 
 
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F2.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F2.png)
 ---
 
 ## The variance tree
 
---
-
-![Variance Tree 1](21-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
+![Variance Tree 1](22-btwn_subj_fctr_lecture_files/figure-html/SS1.png)
 ---
 ## The variance tree
 
-![Variance Tree 2](21-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
+![Variance Tree 2](22-btwn_subj_fctr_lecture_files/figure-html/SS2.png)
 
 ---
 ## The variance tree
 
-![Variance Tree 3](21-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
+![Variance Tree 3](22-btwn_subj_fctr_lecture_files/figure-html/SS3.png)
 
 ---
 
@@ -209,7 +207,7 @@ $SS_{grade} = E_r - E_f$
 
 ## F Table
 
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F3.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F3.png)
 
 ---
 
@@ -275,13 +273,13 @@ $SS_{dbl} = E_r - E_f$
 
 ## F Table
 
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F4.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F4.png)
 
 ---
 
 ## What about that Error? 
 
-![an image caption Source: variance](21-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
+![an image caption Source: variance](22-btwn_subj_fctr_lecture_files/figure-html/SS5.png)
 This is our **leftover variation** after taking our grade and doublet variables into account. 
 
 ---
@@ -356,16 +354,16 @@ $df_w = 16 - 2 - 2 + 1 = 13$
 ---
 ## Putting the pieces together
 
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F1.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F1.png)
 ---
 ## F Table
 
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F5.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F5.png)
 
 ---
 
 ## F Table
-![an image caption Source: Ftable](21-btwn_subj_fctr_lecture_files/figure-html/F6.png)
+![an image caption Source: Ftable](22-btwn_subj_fctr_lecture_files/figure-html/F6.png)
 
 ---
 
