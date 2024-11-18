@@ -55,6 +55,8 @@ navbar:
         href: "lectures/21-multiplecomparisons.html"
       - text: "22-Twoway ANOVA"
         href: "lectures/22-btwn_subj_fctr_lecture.html"
+      - text: "23-Interactions"
+        href: "lectures/23-interactions.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -105,6 +107,8 @@ navbar:
         href: "lectures/21-multiplecomparisons.pdf"
       - text: "22-Twoway ANOVA"
         href: "lectures/22-btwn_subj_fctr_lecture.pdf"
+      - text: "23-Interactions"
+        href: "lectures/23-interactions.pdf"
     - text: Homework
       href: homework.html
   right:

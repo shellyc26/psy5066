@@ -89,7 +89,7 @@ $H_{0.3}$ : *Differential performance on problem types is independent of age gro
 
 --
 
-They are factors are NOT dependent on one another. 
+The null hypothesis is that these factors do NOT dependent on one another. 
 
 ---
 
@@ -371,9 +371,9 @@ qf(p = .05, df1 = 1, df2 = 12, lower.tail = FALSE)
 
 We have 3 rejected null hypotheses. We interpret:
 
-1) There is a main effect of age; the means of age groups are not equal
+1) There is a main effect of age; the means of age groups are not equal, regardless of problem type
 
-2) There is a main effct of problem type; the means of normal vs. tricky math problems are not equal
+2) There is a main effect of problem type; the means of normal vs. tricky math problems are not equal, regardless of age
 
 3) The difference in age groups differs by problem type (and vice versa)
 
@@ -426,7 +426,7 @@ $\eta_p^2 = \frac{SS_{Effect}}{SS_{Effect} + SS_{Error}}$
 
 .pull-right[
 
-$\eta^2 = \frac{4}{4 + 4.5} = .471$
+$\eta^2_p = \frac{4}{4 + 4.5} = .471$
 ]
 
 Proportion of the variation in Y that can be explained by X, after accounting for all other variables in th model. How much variance in our outcome is associated with Age, after accounting for Problem, and their interaction? 47.1%.
