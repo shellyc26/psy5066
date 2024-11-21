@@ -241,11 +241,6 @@ class: inverse, center, middle
 - At worst, you've violated assumptions (rather aggressively) and therefore it's not valid to interpret the results
 - More important: if you have within-subject variance, just explicitly model it!
 
----
-
-## Venn Diagram Exercise
-
-How do we break down variances?
 
 ---
 class: inverse, middle, center
