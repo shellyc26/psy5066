@@ -27,4 +27,5 @@ Homework assignments will appear here. You'll be able to access the assignment, 
 - Due on **11/24 by 11:59pm**
 
 ## Homework 5
+- [Homework 5 can be found here](homework/homework-6.html)
 - Due on **12/3 by 11:59pm**

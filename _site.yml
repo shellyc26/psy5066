@@ -59,6 +59,8 @@ navbar:
         href: "lectures/23-interactions.html"
       - text: "24-Miscellaneous"
         href: "lectures/24-within.html"
+      - text: "25-Validity"
+        href: "lectures/25-measurement.html"
     - text: PDF Slides
       menu:
       - text: "1-Intro"
@@ -113,6 +115,8 @@ navbar:
         href: "lectures/23-interactions.pdf"
       - text: "24-Miscellaneous"
         href: "lectures/24-within.pdf"
+      - text: "25-Validity"
+        href: "lectures/25-measurement.pdf"
     - text: Homework
       href: homework.html
   right:

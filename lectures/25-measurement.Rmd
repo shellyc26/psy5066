@@ -1,5 +1,5 @@
 ---
-title: 'Threats to measurement validity'
+title: 'Threats to validity'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -69,6 +69,11 @@ In order to infer that A --> B, we have to make three assumptions:
 
 - What threatens our ability to carry out this seemingly simple task? 
     - How do quantitative methods help us solve these problems?
+
+---
+class: middle, inverse, center
+
+# Do you believe it?
 
 ---
 
@@ -587,15 +592,17 @@ However:
 
 ## Construct validity
 
-- The validity of the inference that a given operationalization of of a construct does a good job representing the construct. 
+- **Definition**: The validity of the inference that a given operationalization of of a construct does a good job representing the construct. 
 
 ![](images/intro_operation.jpg)
 
 ---
 
-class: middle
+# Construct Validity
 
-- Construct validity refers to the correctness of the label that is applied to the operation. It depends on first demonstrating adequate reliability and then is bolstered by demonstrating relations of the target operation to other operations.
+- **Construct validity** refers to the correctness of the label that is applied to the operation.
+
+- It depends on first demonstrating adequate reliability and then is bolstered by demonstrating relations of the target operation to other operations.
 
 ???
 Example of happiness survey with big fancy words actually just measuring intelligence

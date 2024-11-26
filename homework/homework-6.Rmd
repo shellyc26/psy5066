@@ -10,7 +10,7 @@ output:
 
 - This HW assignment is about interpreting findings! There is no math to be done. Hooray!
 
-- Please turn in both documents (the .Rmd and the .html) to the **ASSIGNMENTS** page *and* the **PEER REVIEW DISCUSSION** on Canvas.
+- Please turn in both documents (the .Rmd and the .html) to the **ASSIGNMENTS** page on Canvas.
 
 Good luck!
 
@@ -27,7 +27,7 @@ Researchers were interested in factors that contribute to improved self-esteem. 
  
  - If researchers had 50 participants in each condition, how many total participants did they have in this study? (hint: no formula needed)
  
- - For every main effect(s) and interaction(s), write one sentence indicating what they found. Please describe the interaction(s) both ways. You can assume any difference is "real" or "significant". Be sure to be clear about what you're describing for each.
+ - For every main effect(s) and interaction(s), write one sentence indicating what they found. Please describe the interaction(s) both ways. You can assume any difference is "real" or "significant".
  
  - A colleague finds that this particular measure of self-esteem doesn't correlate with depression the way that the colleague thought it would. Do you still believe the results of the study presented above? Why or why not? Be specific!
  

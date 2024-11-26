@@ -20,13 +20,7 @@ class: center, middle, inverse, title-slide
 
 
 
-## Exam 3
 
-- Cumulative-ish
-- 4 hours to complete between Thursday (12/8) and Tuesday (12/13) 11:59pm
-- There will be lab hours on Thursday 12/8!
-
----
 
 ## Review 1
 
@@ -38,7 +32,7 @@ The holidays are upon us! You want to know if happiness (scale of 1-10) this tim
 | **Hanukkah**  | 4, 8, 10, 7  | 4, 3, 4, 4       |
 | **Kwanzaa**    | 8, 6, 5, 5   | 2, 3, 2, 5       |
 
-Calculate the ANOVA for main effects and interaction. Be able to interpret all *F* tests. 
+Calculate the ANOVA for main effects and interaction. Be able to interpret all *F* tests. Do this using a model comparison approach
 
 ---
 
@@ -256,7 +250,14 @@ The goal is to create a table like this, and calculate the SS Interaction:
 means = holidays %&gt;% 
   group_by(Holiday, Sweater) %&gt;% 
   summarize(m = mean(Happiness))
+```
 
+```
+## `summarise()` has grouped output by 'Holiday'. You can override using
+## the `.groups` argument.
+```
+
+``` r
 means
 ```
 
@@ -650,7 +651,6 @@ class: inverse
 ## End of Review
 
 - Good luck on Exam!
-- Don't forget Course Evals!
 
 
     </textarea>
