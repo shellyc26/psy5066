@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Exam 3 Review</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Exam 3 Review
+]
+
+---
+
+
+
+
+
+## Review 1
+
+The holidays are upon us! You want to know if happiness (scale of 1-10) this time of year is impacted by which holiday folks celebrate (Christmas, Hanukkah, Kwanzaa) and ugly sweaters (ugly, not ugly). You're specifically interested in whether these interact. That is, you think that an ugly Christmas sweater might bring more joy than an ugly Hanukkah sweater or ugly Kwanzaa sweater. Here are the data:
+
+|               | Ugly Sweater | Not Ugly Sweater |
+|---------------|--------------|------------------|
+| **Christmas** | 7, 6, 9, 8   | 4, 5, 3, 5       |
+| **Hanukkah**  | 4, 8, 10, 7  | 4, 3, 4, 4       |
+| **Kwanzaa**   | 8, 6, 5, 5   | 2, 3, 2, 5       |
+
+Calculate the ANOVA for main effects and interaction. Be able to interpret all *F* tests. Do this using a model comparison approach.
+
+---
+
+###Fill out this table:
+
+&lt;img src="images/unfilled.png", width="75%"&gt;
+
+---
+
+class: inverse
+
+# Review 1 Answers
+
+---
+
+## Create DataFrame
+
+
+``` r
+holidays &lt;- data.frame(
+  Happiness = c(7, 6, 9, 8, 4, 5, 3, 5, 4, 8, 10, 7,
+                4, 3, 4, 4, 8, 6, 5, 5, 2, 3, 2, 5),
+  Holiday = rep(c("Christmas", "Hanukkah", "Kwanzaa"), each = 8),
+  Sweater = rep(c(rep("Ugly", 4), rep("Not Ugly", 4)), 3)
+) %&gt;%
+  mutate(
+    Holiday = as.factor(Holiday),
+    Sweater = as.factor(Sweater)
+  )
+
+holidays &lt;- holidays %&gt;%
+  select(Holiday, Sweater, Happiness)
+```
+
+---
+
+
+``` r
+holidays %&gt;% group_by(Holiday) %&gt;%
+  slice_head(n = 3) %&gt;%
+  kable("html") %&gt;% 
+  kable_styling(font_size = 16)
+```
+
+&lt;table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Holiday &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sweater &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Happiness &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Christmas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Christmas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Christmas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hanukkah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hanukkah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hanukkah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwanzaa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwanzaa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwanzaa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Determine Degrees of Freedom
+
+
+``` r
+# three cells for holiday: christmas, hanukkah, kwanzaa
+df_holiday &lt;- 3 - 1
+df_sweater &lt;- 2 - 1
+df_interaction &lt;- (3-1) * (2-1)
+
+#holiday has 3 levels, sweater has 2 levels 
+df_w &lt;- 24 - (3 * 2)
+
+c(df_holiday, df_sweater, df_interaction, df_w)
+```
+
+```
+## [1]  2  1  2 18
+```
+
+---
+
+## Fill out DF Column:
+
+&lt;img src="images/df.png", width="75%"&gt;
+
+---
+
+
+## Sum of Squares for Holiday (Restricted Model)
+
+
+``` r
+grandMean &lt;- mean(holidays$Happiness)
+
+#making a function to calc error
+calculate_error &lt;- function(data, predictions) {
+  errors &lt;- data$Happiness - predictions
+  sum(errors^2)
+}
+
+#also known as the error of the restricted model
+ss_restricted &lt;- calculate_error(holidays, rep(grandMean, nrow(holidays)))
+ss_restricted
+```
+
+```
+## [1] 110.9583
+```
+
+---
+
+## Sum of Squares for Holiday (Full Model)
+
+
+``` r
+holiday_means &lt;- holidays %&gt;%
+  group_by(Holiday) %&gt;%
+  summarize(mean_happiness = mean(Happiness), .groups = "drop")
+
+predictions_holiday &lt;- holidays %&gt;%
+  left_join(holiday_means, by = "Holiday") %&gt;%
+  pull(mean_happiness)
+
+#also known as the error of the full model
+ss_full_holiday &lt;- calculate_error(holidays, predictions_holiday)
+ss_full_holiday
+```
+
+```
+## [1] 102.875
+```
+
+---
+
+## Sum of Squares Holiday is... 
+
+
+``` r
+SSHoliday &lt;- ss_restricted - ss_full_holiday
+dfh &lt;- nlevels(holidays$Holiday) - 1
+MSHoliday &lt;- SSHoliday / dfh
+SSHoliday
+```
+
+```
+## [1] 8.083333
+```
+
+---
+
+## SS Sweater
+
+
+``` r
+sweater_means &lt;- holidays %&gt;%
+  group_by(Sweater) %&gt;%
+  summarize(mean_happiness = mean(Happiness), .groups = "drop")
+
+predictions_sweater &lt;- holidays %&gt;%
+  left_join(sweater_means, by = "Sweater") %&gt;%
+  pull(mean_happiness)
+
+#calcing the error of the full model for sweater
+ss_full_sweater &lt;- calculate_error(holidays, predictions_sweater)
+SSSweater &lt;- ss_restricted - ss_full_sweater
+SSSweater
+```
+
+```
+## [1] 63.375
+```
+
+---
+
+## SS Interaction
+
+The goal is to create a table like this, and calculate the SS Interaction: 
+
+|                  | Ugly Sweater | Not Ugly Sweater | Row Means |
+|------------------|--------------|------------------|-----------|
+| **Christmas**    | 7, 6, 9, 8   | 4, 5, 3, 5       | **5.875** |
+| **Hanukkah**     | 4, 8, 10, 7  | 4, 3, 4, 4       | **5.5**   |
+| **Kwanzaa**      | 8, 6, 5, 5   | 2, 3, 2, 5       | **4.5**   |
+| **Column Means** | **6.92**     | **3.67**         | **5.29**  |
+
+---
+
+## SS Interaction
+
+
+``` r
+means = holidays %&gt;% 
+  group_by(Holiday, Sweater) %&gt;% 
+  summarize(m = mean(Happiness))
+
+means
+```
+
+```
+## # A tibble: 6 × 3
+## # Groups:   Holiday [3]
+##   Holiday   Sweater      m
+##   &lt;fct&gt;     &lt;fct&gt;    &lt;dbl&gt;
+## 1 Christmas Not Ugly  4.25
+## 2 Christmas Ugly      7.5 
+## 3 Hanukkah  Not Ugly  3.75
+## 4 Hanukkah  Ugly      7.25
+## 5 Kwanzaa   Not Ugly  3   
+## 6 Kwanzaa   Ugly      6
+```
+
+---
+
+## SS Interaction
+
+
+
+&lt;table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Holiday &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sweater &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean_happiness &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; row_mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; col_mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; interaction_effect &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Christmas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Not Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.875 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.666667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Christmas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.875 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.916667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hanukkah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Not Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.666667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.125 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hanukkah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.916667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.125 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwanzaa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Not Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.666667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.125 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwanzaa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ugly &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.916667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.125 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+``` r
+#calcing SSInteraction
+SSInteraction &lt;- sum((interaction_table$interaction_effect)^2) * 4
+SSInteraction
+```
+
+```
+## [1] 0.25
+```
+
+---
+
+## SS Within
+
+
+``` r
+predictions_within &lt;- holidays %&gt;%
+  left_join(interaction_means, by = c("Holiday", "Sweater")) %&gt;%
+  pull(mean_happiness)
+
+SSWithin &lt;- calculate_error(holidays, predictions_within)
+SSWithin
+```
+
+```
+## [1] 39.25
+```
+
+---
+
+## Fill out the SS Column
+
+&lt;img src="images/ss.png", width="75%"&gt;
+
+---
+
+## Calculate the Mean Squares
+
+
+``` r
+MSHoliday &lt;- SSHoliday / df_holiday
+MSSweater &lt;- SSSweater / df_sweater
+MSInteraction &lt;- SSInteraction / df_interaction
+MSWithin &lt;- SSWithin / df_w
+
+c(MSHoliday, MSSweater, MSInteraction, MSWithin)
+```
+
+```
+## [1]  4.041667 63.375000  0.125000  2.180556
+```
+
+---
+
+## Fill out the MS Column
+
+&lt;img src="images/ms.png", width="75%"&gt;
+
+---
+
+## Calculate the F Statistic
+
+
+``` r
+F_Holiday &lt;- MSHoliday / MSWithin
+F_Sweater &lt;- MSSweater / MSWithin
+F_Interaction &lt;- MSInteraction / MSWithin
+
+c(F_Holiday, F_Sweater, F_Interaction)
+```
+
+```
+## [1]  1.85350318 29.06369427  0.05732484
+```
+
+---
+
+## Fill out the F Stat Column
+
+&lt;img src="images/fstat.png", width="75%"&gt;
+
+---
+
+## Double Checking w/ aov() Output
+
+
+``` r
+summary(aov(Happiness ~ Holiday * Sweater, data = holidays))
+```
+
+```
+##                 Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Holiday          2   8.08    4.04   1.854    0.185    
+## Sweater          1  63.37   63.37  29.064 4.01e-05 ***
+## Holiday:Sweater  2   0.25    0.12   0.057    0.944    
+## Residuals       18  39.25    2.18                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+-- 
+
+#### What do we conclude about the main effects? 
+
+--
+
+#### Do the effects of Holiday and Sweater interact?
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Statistical Conclusion Validity?
+
+- low statistical power
+- violations of assumptions
+- fishing and the error rate problem
+- unreliable measures
+- restricted range
+- unreliable group assignment 
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Internal Validity?
+
+- ambiguous temporal precedence
+- selection
+- attrition
+- history
+- maturation
+- regression
+- testing
+- instrumentation
+
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about Construct Validity?
+
+- inadequate explication of constructs
+- construct confounding
+- reactive self-report changes
+- reactivity to the experimental situation
+- experimenter expectancy
+- novelty and disruption effects
+
+---
+
+## Review 2
+
+#### Do you believe these findings? Which type of validity is threatened and why?
+
+### How about External Validity?
+
+- sampling bias
+- experimenter effects
+- hawthorne effect
+- testing effects
+- situation effects
+
+---
+
+## Review 3
+
+#### What effect sizes have we learned? Eta-Squared!
+
+---
+
+## Review 3
+
+#### What effect sizes have we learned? Eta-Squared!
+
+
+``` r
+holiday.aov &lt;- aov(Happiness ~ Holiday * Sweater, data = holidays)
+eta_squared(holiday.aov, partial = FALSE)
+```
+
+```
+## # Effect Size for ANOVA (Type I)
+## 
+## Parameter       |     Eta2 |       95% CI
+## -----------------------------------------
+## Holiday         |     0.07 | [0.00, 1.00]
+## Sweater         |     0.57 | [0.29, 1.00]
+## Holiday:Sweater | 2.25e-03 | [0.00, 1.00]
+## 
+## - One-sided CIs: upper bound fixed at [1.00].
+```
+
+--
+
+
+``` r
+c(SSHoliday/ss_restricted, SSSweater/ss_restricted)
+```
+
+```
+## [1] 0.07285017 0.57116035
+```
+
+---
+
+## Review 3
+
+#### Now Partial Eta-Squared!
+
+
+``` r
+holiday.aov &lt;- aov(Happiness ~ Holiday * Sweater, data = holidays)
+eta_squared(holiday.aov, partial = TRUE)
+```
+
+```
+## # Effect Size for ANOVA (Type I)
+## 
+## Parameter       | Eta2 (partial) |       95% CI
+## -----------------------------------------------
+## Holiday         |           0.17 | [0.00, 1.00]
+## Sweater         |           0.62 | [0.35, 1.00]
+## Holiday:Sweater |       6.33e-03 | [0.00, 1.00]
+## 
+## - One-sided CIs: upper bound fixed at [1.00].
+```
+
+--
+
+
+``` r
+c(SSHoliday/(SSWithin + SSHoliday), 
+  SSSweater/(SSWithin + SSSweater),
+  SSInteraction/(SSWithin + SSInteraction))
+```
+
+```
+## [1] 0.170774648 0.617539586 0.006329114
+```
+
+---
+
+## Review 4
+
+#### What tests did we learn about? 
+
+- Compare sample mean to population mean with unknown sigma
+
+- Compare 2 means with within-groups design
+
+- Compare 2 means with between-groups design
+
+- Compare 3+ levels of IV
+
+- 2+ IVs (main effects/interactions)
+
+
+---
+
+## Review 4 Answers
+
+| **Situation** | **Which Test?** |
+|---------------|-----------------|
+| Compare sample mean to population mean with unknown sigma | Single sample *t*  test | 
+| Compare 2 means with within-groups design | Paired samples *t* test |  
+| Compare 2 means with between-groups design | Independent samples *t* test |  
+| Compare 3+ levels of IV | One-way ANOVA (between groups) |  
+| 2+ IVs (main effects/interactions) | Two-way ANOVA |  
+
+---
+
+class: inverse
+
+## End of Review
+
+- Good luck on Exam!
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
